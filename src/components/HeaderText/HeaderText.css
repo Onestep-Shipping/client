@@ -1,0 +1,17 @@
+.header-text-container {
+  margin-right: 70px;
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+
+.header-text {
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  margin: 0px 10px;
+}
+
+.header-text-container:hover {
+  border-bottom: solid white 4px;
+}
