@@ -1,17 +1,17 @@
 import React from 'react';
-import './About.css';
+import './News.css';
 
 import Header from '../../components/Header/Header.js';
 
-const About = () => {
+const News = () => {
   return (
     <div class="homepage-container">
       <Header />
       <div class="body-container2">
-        About
+        News
       </div>
     </div>
   );
 };
 
-export default About;
+export default News;

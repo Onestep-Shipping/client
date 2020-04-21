@@ -1,0 +1,71 @@
+.search-container2 {
+  width: fit-content;
+  height: fit-content;
+  margin-bottom: 20px;
+}
+
+.textfield-container2 {
+  margin-bottom: 20px;
+}
+
+.location2 {
+  width: 230px;
+  height: 25px;
+  padding: 20px;
+  font-size: 18px;
+  padding: 5px 15px;
+  border-radius: 4px;
+  border: solid #14B9D7 2px;
+  outline: none;
+  margin-right: 40px;
+}
+
+.schedule-label-text2 {
+  color: #14B9D7;
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+#from-date2 {
+  width: 130px;
+  height: 25px;
+  padding: 20px;
+  font-size: 16px;
+  padding: 5px 15px;
+  border-radius: 4px;
+  border: solid #14B9D7 2px;
+  outline: none;
+}
+
+#to-date2 {
+  width: 130px;
+  height: 25px;
+  padding: 20px;
+  font-size: 16px;
+  padding: 5px 15px;
+  border-radius: 4px;
+  border: solid #14B9D7 2px;
+  outline: none;
+}
+
+#carrier-selector2 {
+  width: 80%;
+  height: 35px;
+  padding: 20px;
+  font-size: 18px;
+  padding: 5px 15px;
+  border-radius: 4px;
+  border: solid #14B9D7 2px;
+  outline: none;
+}
+
+#find-button2 {
+  padding: 10px 15px;
+  background-color: #BF037A;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 20px;
+  border-radius: 3px;
+  cursor: pointer;
+}
