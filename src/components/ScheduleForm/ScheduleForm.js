@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import DatePicker from 'react-datepicker';
 
 import './ScheduleForm.css';
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
 
 const ScheduleForm = () => {
   const [carriers] = useState(
