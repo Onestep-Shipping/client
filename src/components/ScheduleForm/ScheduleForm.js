@@ -10,12 +10,11 @@ const ScheduleForm = () => {
   );
 
   const today = new Date;
-
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(today);
 
   return (
-    <form class="schedule-form-cotainer">
+    <form class="schedule-form-cotainer" action="/schedule">
       <text class="schedule-label">From</text>
       <div class="textfield-container">
         <input type="text" class="location" placeholder="Location" />
@@ -47,7 +46,7 @@ const ScheduleForm = () => {
           }
         </select>
       </div>
-      <button id="find-button">Find</button>
+      <button id="find-button" type="submit">Find</button>
     </form>
   );
 };
