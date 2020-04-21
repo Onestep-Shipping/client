@@ -1,0 +1,50 @@
+const DATA = [
+  {
+    id: 1,
+    from: 'Vancouver, BC | CA',
+    fromDate: '04/21/2020',
+    trans: 0,
+    ves: 'YM UPSURGENCE / 043W / PN2',
+    to: 'Vung Tau | VN',
+    toDate: '04/21/2020',
+    time: '35',
+  },
+  {
+    from: 'Vancouver, BC | CA',
+    fromDate: '04/21/2020',
+    trans: 0,
+    ves: 'YM UPSURGENCE / 043W / PN2',
+    to: 'Vung Tau | VN',
+    toDate: '04/21/2020',
+    time: '35',
+  },
+  {
+    from: 'Vancouver, BC | CA',
+    fromDate: '04/21/2020',
+    trans: 0,
+    ves: 'YM UPSURGENCE / 043W / PN2',
+    to: 'Vung Tau | VN',
+    toDate: '04/21/2020',
+    time: '35',
+  },
+  {
+    from: 'Vancouver, BC | CA',
+    fromDate: '04/21/2020',
+    trans: 0,
+    ves: 'YM UPSURGENCE / 043W / PN2',
+    to: 'Vung Tau | VN',
+    toDate: '04/21/2020',
+    time: '35',
+  },
+  {
+    from: 'Vancouver, BC | CA',
+    fromDate: '04/21/2020',
+    trans: 0,
+    ves: 'YM UPSURGENCE / 043W / PN2',
+    to: 'Vung Tau | VN',
+    toDate: '04/21/2020',
+    time: '35',
+  },
+];
+
+export default DATA;

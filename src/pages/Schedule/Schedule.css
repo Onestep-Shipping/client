@@ -9,12 +9,12 @@
   background-size: cover;
 }
 
-.body-container2 {
+.schedule-body-container {
   width: 100%;
   height: 85%;
   display: flex;
   flex-direction: column;
-  padding: 50px;
+  padding: 50px 0px;
   align-items: center;
   background-color: white;
 }
@@ -30,7 +30,7 @@
   font-weight: bold;
 }
 
-.schedule-result-row {
+.schedule-result-header-row {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -39,6 +39,68 @@
   margin-bottom: 20px;
 }
 
+.schedule-result-row {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 10px 0px;
+  user-select: none;
+}
+
+.schedule-result-row-selected {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 10px 0px;
+  background-color: rgb(148, 223, 179);
+  border-radius: 10px;
+  user-select: none;
+}
+
+.schedule-result-row:hover {
+  background-color: rgb(230, 230, 230);
+  border-radius: 10px;
+}
+
 .schedult-result-text {
   font-size: 16px;
+}
+
+.schedult-result-text-time {
+  font-size: 15px;
+  font-style: italic;
+}
+
+.col {
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result-button {
+  padding: 10px 15px;
+  background-color: #BF037A;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 20px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.schedule-button-container {
+  width: 15%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }

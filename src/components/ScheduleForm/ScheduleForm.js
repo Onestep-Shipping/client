@@ -9,7 +9,7 @@ const ScheduleForm = () => {
       ['Hapag-Lloyd', 'Maersk', 'YangMing', 'ONE', 'MSC', 'APL'],
   );
 
-  const today = new Date;
+  const today = new Date();
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(today);
 
