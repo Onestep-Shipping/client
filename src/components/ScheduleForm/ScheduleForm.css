@@ -12,25 +12,26 @@
 }
 
 .textfield-container {
+  width: 100%;
   margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.css-10nd86i {
+  width: 500px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  margin-right: 40px;
 }
 
 .schedule-label {
   color: white;
   font-size: 23px;
   margin-bottom: 10px;
-}
-
-.location {
-  width: 230px;
-  height: 30px;
-  padding: 20px;
-  font-size: 18px;
-  padding: 5px 15px;
-  border-radius: 4px;
-  border: none;
-  outline: none;
-  margin-right: 40px;
 }
 
 #to-date {
@@ -42,6 +43,7 @@
   border-radius: 4px;
   border: none;
   outline: none;
+  border: solid #14B9D7 2px;
 }
 
 #from-date {
@@ -53,17 +55,19 @@
   border-radius: 4px;
   border: none;
   outline: none;
+  border: solid #14B9D7 2px;
 }
 
 #carrier-selector {
   width: 200px;
   height: 35px;
   padding: 20px;
-  font-size: 18px;
+  font-size: 16px;
   padding: 5px 15px;
   border-radius: 4px;
   border: none;
   outline: none;
+  border: solid #14B9D7 2px;
 }
 
 #find-button {

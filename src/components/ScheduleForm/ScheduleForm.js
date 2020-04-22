@@ -1,23 +1,27 @@
 import React, {useState} from 'react';
+import Select from 'react-select';
 import DatePicker from 'react-datepicker';
+import {FROM_LOCATIONS, TO_LOCATIONS, CARRIERS} from './data.js';
 
 import './ScheduleForm.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const ScheduleForm = () => {
-  const [carriers] = useState(
-      ['Hapag-Lloyd', 'Maersk', 'YangMing', 'ONE', 'MSC', 'APL'],
-  );
-
   const today = new Date();
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(today);
+
+  const [fromLocation, setFromLocation] = useState('');
+  const [toLocation, setToLocation] = useState('');
+  const [carrier, setCarrier] = useState(CARRIERS[0]);
 
   return (
     <form class="schedule-form-cotainer" action="/schedule">
       <text class="schedule-label">From</text>
       <div class="textfield-container">
-        <input type="text" class="location" placeholder="Location" />
+        <Select
+          options={FROM_LOCATIONS} placeholder="Location"
+          onChange={(opt) => setFromLocation(opt.label)}/>
         <DatePicker
           id="from-date"
           selected={startDate}
@@ -28,7 +32,8 @@ const ScheduleForm = () => {
       </div>
       <text class="schedule-label">To</text>
       <div class="textfield-container">
-        <input type="text" class="location" placeholder="Location" />
+        <Select options={TO_LOCATIONS} placeholder="Location"
+          onChange={(opt) => setToLocation(opt.label)}/>
         <DatePicker
           id="to-date"
           selected={endDate}
@@ -38,9 +43,11 @@ const ScheduleForm = () => {
       </div>
       <text class="schedule-label">Carrier</text>
       <div class="textfield-container">
-        <select id="carrier-selector">
+        <select
+          id="carrier-selector"
+          onChange={(carrier) => setCarrier(carrier)} >
           {
-            carriers.map((opt) => {
+            CARRIERS.map((opt) => {
               return (<option value={opt}>{opt}</option>);
             })
           }
