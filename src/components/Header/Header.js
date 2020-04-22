@@ -5,7 +5,7 @@ import HeaderText from '../HeaderText/HeaderText.js';
 import {useHistory} from 'react-router-dom';
 
 const Header = () => {
-  let history = useHistory();
+  const history = useHistory();
 
   return (
     <div class="header-container">
@@ -26,7 +26,7 @@ const Header = () => {
           />
           <HeaderText value="News" action={(e) => history.push('/news')} />
           <HeaderText
-            value="Services" action={(e) => history.push('/services')} 
+            value="Services" action={(e) => history.push('/services')}
           />
           <HeaderText value="About" action={(e) => history.push('/about')} />
         </div>

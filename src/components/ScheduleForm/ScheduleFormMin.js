@@ -5,15 +5,6 @@ import DatePicker from 'react-datepicker';
 import {FROM_LOCATIONS, TO_LOCATIONS, CARRIERS} from './data.js';
 
 const ScheduleFormMin = () => {
-  const scaryAnimals = [
-    {label: 'Alligators', value: 1},
-    {label: 'Crocodiles', value: 2},
-    {label: 'Sharks', value: 3},
-    {label: 'Small crocodiles', value: 4},
-    {label: 'Smallest crocodiles', value: 5},
-    {label: 'Snakes', value: 6},
-  ];
-
   const today = new Date();
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(today);
