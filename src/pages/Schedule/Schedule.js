@@ -3,7 +3,7 @@ import './Schedule.css';
 
 import DATA from './data.js';
 import Header from '../../components/Header/Header.js';
-import ScheduleFormMin from '../../components/ScheduleFormMin/ScheduleFormMin.js';
+import ScheduleFormMin from '../../components/ScheduleForm/ScheduleFormMin.js';
 
 const Schedule = () => {
   const [resultHeaders] = useState(['Port of Loading', 'Transshipments',
