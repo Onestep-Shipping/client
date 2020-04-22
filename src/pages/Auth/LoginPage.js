@@ -2,8 +2,11 @@ import React, {useState} from 'react';
 import './LoginPage.css';
 import LoginForm from '../../components/AuthForm/LoginForm.js';
 import RegisterForm from '../../components/AuthForm/RegisterForm.js';
+import {useHistory} from 'react-router-dom';
 
 const LoginPage = () => {
+  const history = useHistory();
+
   const [inLoginform, setForm] = useState(true);
 
   const showLoginForm = () => {
@@ -16,6 +19,9 @@ const LoginPage = () => {
 
   return (
     <div className="root-container">
+      <div class="login-page-logo-container" onClick={(e) => history.push('/')}>
+        <text id="login-page-logo-text">Shippose</text>
+      </div>
       <div className="box-controller">
         <div
           className={`controller ${inLoginform ? 'selected-controller' : ''}`}

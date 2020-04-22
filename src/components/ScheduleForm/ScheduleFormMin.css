@@ -75,3 +75,7 @@
   border-radius: 3px;
   cursor: pointer;
 }
+
+#find-button2:hover {
+  background-color: rgb(163, 0, 103);
+}

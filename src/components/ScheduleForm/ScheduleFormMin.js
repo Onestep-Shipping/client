@@ -13,7 +13,7 @@ const ScheduleFormMin = () => {
     <div class="search-container2">
       <div class="textfield-container2">
         <text class="schedule-label-text2">From</text>
-        <Select options={FROM_LOCATIONS} placeholder="Location"/>
+        <Select options={FROM_LOCATIONS} placeholder="Location" clearable/>
         <DatePicker
           id="from-date2"
           selected={startDate}
@@ -24,7 +24,7 @@ const ScheduleFormMin = () => {
       <div class="textfield-container2">
         <text class="schedule-label-text2">  </text>
         <text class="schedule-label-text2">To</text>
-        <Select options={TO_LOCATIONS} placeholder="Location"/>
+        <Select options={TO_LOCATIONS} placeholder="Location" clearable/>
         <DatePicker
           id="to-date2"
           selected={endDate}

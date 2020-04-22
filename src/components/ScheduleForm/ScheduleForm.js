@@ -30,7 +30,7 @@ const ScheduleForm = () => {
       <div class="textfield-container">
         <Select
           options={FROM_LOCATIONS} placeholder="Location"
-          onChange={(opt) => setFromLocation(opt.label)}/>
+          onChange={(opt) => setFromLocation(opt.label)} clearable/>
         <DatePicker
           id="from-date"
           selected={startDate}
@@ -41,7 +41,7 @@ const ScheduleForm = () => {
       <text class="schedule-label">To</text>
       <div class="textfield-container">
         <Select options={TO_LOCATIONS} placeholder="Location"
-          onChange={(opt) => setToLocation(opt.label)}/>
+          onChange={(opt) => setToLocation(opt.label)} clearable/>
         <DatePicker
           id="to-date"
           selected={endDate}

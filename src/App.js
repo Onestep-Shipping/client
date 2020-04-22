@@ -10,7 +10,7 @@ import About from './pages/About/About.js';
 import Services from './pages/Services/Services.js';
 import News from './pages/News/News.js';
 import Contact from './pages/Contact/Contact.js';
-import Login from './pages/Auth/LoginPage.js';
+import LoginPage from './pages/Auth/LoginPage.js';
 import './App.css';
 
 const App = () => {
@@ -23,7 +23,7 @@ const App = () => {
           <Route path="/schedule" component={Schedule} />
           <Route path="/news" component={News} />
           <Route path="/contact" component={Contact} />
-          <Route path="/auth" component={Login} />
+          <Route path="/auth" component={LoginPage} />
           <Route path="/" component={Homepage} />
         </Switch>
       </Router>

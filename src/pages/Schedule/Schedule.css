@@ -97,6 +97,10 @@
   cursor: pointer;
 }
 
+.result-button:hover {
+  background-color: rgb(163, 0, 103);
+}
+
 .schedule-button-container {
   width: 15%;
   display: flex;
