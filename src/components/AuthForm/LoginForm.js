@@ -9,16 +9,9 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [displayErrors, setDisplayErrors] = useState(false);
 
-  const onEmailChange = (e) => {
+  const onInputChange = (e, func) => {
     const value = e.currentTarget.value;
-    setEmail(value === null ? '' : value);
-  };
-
-  const onPasswordChange = (e) => {
-    const value = e.currentTarget.value;
-    if (value !== null) {
-      setPassword(value);
-    }
+    func(value === null ? '' : value);
   };
 
   const submitLogin = (e) => {
@@ -38,7 +31,7 @@ const LoginForm = () => {
           name="Email"
           type="email"
           displayErrors={displayErrors}
-          onChange={onEmailChange}
+          onChange={(e) => onInputChange(e, setEmail)}
           value={email}
         />
 
@@ -46,7 +39,7 @@ const LoginForm = () => {
           name="Password"
           type="password"
           displayErrors={displayErrors}
-          onChange={onPasswordChange}
+          onChange={(e) => onInputChange(e, setPassword)}
           value={password}
         />
 

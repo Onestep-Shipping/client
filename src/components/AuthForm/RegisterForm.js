@@ -4,21 +4,20 @@ import './AuthForm.css';
 import Input from '../Input/Input';
 
 const RegisterForm = () => {
+  const [companyName, setCompanyName] = useState('');
+  const [address, setAddress] = useState('');
+  const [phone, setPhone] = useState('');
+  const [name, setName] = useState('');
+  const [position, setPosition] = useState('');
+  const [taxId, setTaxId] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
   const [displayErrors, setDisplayErrors] = useState(false);
 
-  const onEmailChange = (e) => {
+  const onInputChange = (e, func) => {
     const value = e.currentTarget.value;
-    setEmail(value === null ? '' : value);
-  };
-
-  const onPasswordChange = (e) => {
-    const value = e.currentTarget.value;
-    if (value !== null) {
-      setPassword(value);
-    }
+    func(value === null ? '' : value);
   };
 
   const submitLogin = (e) => {
@@ -39,24 +38,24 @@ const RegisterForm = () => {
             name="Company Name"
             type="text"
             displayErrors={displayErrors}
-            onChange={onEmailChange}
-            value={email}
+            onChange={(e) => onInputChange(e, setCompanyName)}
+            value={companyName}
           />
 
           <Input
             name="Address"
             type="address"
             displayErrors={displayErrors}
-            onChange={onEmailChange}
-            value={email}
+            onChange={(e) => onInputChange(e, setAddress)}
+            value={address}
           />
 
           <Input
             name="Telephone"
             type="phone"
             displayErrors={displayErrors}
-            onChange={onEmailChange}
-            value={email}
+            onChange={(e) => onInputChange(e, setPhone)}
+            value={phone}
           />
         </div>
 
@@ -65,31 +64,31 @@ const RegisterForm = () => {
             name="Your Name"
             type="text"
             displayErrors={displayErrors}
-            onChange={onEmailChange}
-            value={email}
+            onChange={(e) => onInputChange(e, setName)}
+            value={name}
           />
 
           <Input
             name="Position"
             type="text"
             displayErrors={displayErrors}
-            onChange={onEmailChange}
-            value={email}
+            onChange={(e) => onInputChange(e, setPosition)}
+            value={position}
           />
 
           <Input
             name="Tax ID"
             type="text"
             displayErrors={displayErrors}
-            onChange={onEmailChange}
-            value={email}
+            onChange={(e) => onInputChange(e, setTaxId)}
+            value={taxId}
           />
 
           <Input
             name="Email"
             type="email"
             displayErrors={displayErrors}
-            onChange={onEmailChange}
+            onChange={(e) => onInputChange(e, setEmail)}
             value={email}
           />
 
@@ -97,7 +96,7 @@ const RegisterForm = () => {
             name="Password"
             type="password"
             displayErrors={displayErrors}
-            onChange={onPasswordChange}
+            onChange={(e) => onInputChange(e, setPassword)}
             value={password}
           />
 
