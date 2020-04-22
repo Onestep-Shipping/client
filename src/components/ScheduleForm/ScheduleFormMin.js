@@ -18,7 +18,6 @@ const ScheduleFormMin = () => {
           id="from-date2"
           selected={startDate}
           onChange={setStartDate}
-          minDate={startDate}
           placeholderText="Select a day"
         />
       </div>

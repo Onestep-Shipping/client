@@ -11,7 +11,9 @@ const ScheduleForm = () => {
   const history = useHistory();
 
   const handleSubmit = (e) => {
-    history.push('/schedule');
+    if (fromLocation !== '' && toLocation !== '') {
+      history.push('/schedule');
+    }
   };
 
   const today = new Date();
@@ -33,7 +35,6 @@ const ScheduleForm = () => {
           id="from-date"
           selected={startDate}
           onChange={setStartDate}
-          minDate={startDate}
           placeholderText="Select a day"
         />
       </div>

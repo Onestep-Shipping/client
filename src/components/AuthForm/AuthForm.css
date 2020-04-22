@@ -1,0 +1,64 @@
+.inner-container {
+  transition: visibility 0.2s ease-out;
+  background-color: white;
+}
+
+.inner-container.show {
+  visibility: visible;
+}
+
+.header {
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 17px;
+  /* margin-left: 35px; */
+  /* margin-right: 35px; */
+  font-family: Ozxgen, sans-serif;
+  font-size: 22px;
+  border-bottom: 2px solid #70a1ff;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.register-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.login-btn {
+  padding: 6px 30px;
+  /* background-color: #417cef; */
+  border: 0;
+  font-size: 18px;
+  border-radius: 3px;
+  font-family: Oxygen, sans-serif;
+  background-color: rgba(15, 15, 15, 0.03);
+  margin-top: 20px;
+  border: 2px solid #417cef;
+  transition: background-color 0.3s ease-out;
+  cursor: pointer;
+  outline:none;
+  width: 100%;
+}
+
+.login-btn:hover {
+  background-color: #417cef;
+  color: white;
+}
+
+.danger-error {
+  border: 1px solid red;
+  color: #e74c3c;
+  font-size: 16px;
+  margin: 5px 0px;
+  padding: 5px 10px;
+}
+
+.company-info-container {
+  margin-right: 50px;
+}

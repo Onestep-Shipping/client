@@ -3,13 +3,14 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-} from "react-router-dom";
+} from 'react-router-dom';
 import Homepage from './pages/Homepage/Homepage.js';
 import Schedule from './pages/Schedule/Schedule.js';
 import About from './pages/About/About.js';
 import Services from './pages/Services/Services.js';
 import News from './pages/News/News.js';
 import Contact from './pages/Contact/Contact.js';
+import Login from './pages/Auth/LoginPage.js';
 import './App.css';
 
 const App = () => {
@@ -17,24 +18,13 @@ const App = () => {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/services">
-            <Services />
-          </Route>
-          <Route path="/schedule">
-            <Schedule />
-          </Route>
-          <Route path="/news">
-            <News />
-          </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-          <Route path="/">
-            <Homepage />
-          </Route>
+          <Route path="/about" component={About} />
+          <Route path="/services" component={Services} />
+          <Route path="/schedule" component={Schedule} />
+          <Route path="/news" component={News} />
+          <Route path="/contact" component={Contact} />
+          <Route path="/auth" component={Login} />
+          <Route path="/" component={Homepage} />
         </Switch>
       </Router>
     </div>

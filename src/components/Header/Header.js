@@ -3,15 +3,21 @@ import './Header.css';
 import SearchTextfield from '../SearchTextfield/SearchTextfield.js';
 import HeaderText from '../HeaderText/HeaderText.js';
 import {useHistory} from 'react-router-dom';
+import userIcon from '../../assets/user-icon.svg';
 
 const Header = () => {
   const history = useHistory();
 
   return (
     <div class="header-container">
-      <div class="login-n-register-container">
-        <button class="user-button" id="register-button">Register</button>
-        <button class="user-button" id="login-button">Login</button>
+      <div class="login-container">
+        <button
+          class="user-button"
+          onClick={(e) => history.push('/auth')}
+        >
+          <img class="svg" src={userIcon} />
+          <text>Login</text>
+        </button>
       </div>
 
       <div class="lower-container">
