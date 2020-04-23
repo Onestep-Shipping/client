@@ -12,6 +12,8 @@ const Header = () => {
 
   const {currentUser} = useContext(AuthContext);
 
+  console.log(currentUser);
+
   const handleLogin = () => {
     if (currentUser) {
       app.auth().signOut();
@@ -25,7 +27,11 @@ const Header = () => {
       <div class="login-container">
         <button id="login-button" class="user-button" onClick={handleLogin}>
           <img class="svg" src={userIcon} />
-          <text>{currentUser ? currentUser.email : 'Login'}</text>
+          <text>
+            {currentUser ?
+              currentUser.email.substring(0, currentUser.email.indexOf('@')) :
+              'Login'}
+          </text>
         </button>
       </div>
 
