@@ -11,6 +11,7 @@ const ScheduleForm = () => {
   const history = useHistory();
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     if (fromLocation !== '' && toLocation !== '') {
       history.push('/schedule');
     }

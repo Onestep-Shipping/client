@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './LoginPage.css';
+import './Auth.css';
 import LoginForm from '../../components/AuthForm/LoginForm.js';
 import RegisterForm from '../../components/AuthForm/RegisterForm.js';
 import {useHistory} from 'react-router-dom';

@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import './AuthForm.css';
 
 import Input from '../Input/Input';
+import {useHistory} from 'react-router-dom';
+import app from '../../firebase/base.js';
 
 const LoginForm = () => {
+  const history = useHistory();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
@@ -14,14 +18,22 @@ const LoginForm = () => {
     func(value === null ? '' : value);
   };
 
-  const submitLogin = (e) => {
+  const handleLogin = useCallback(async (e) => {
     e.preventDefault();
-  };
+    try {
+      await app
+          .auth()
+          .signInWithEmailAndPassword(email, password);
+      history.goBack();
+    } catch (error) {
+      alert(error);
+    }
+  }, [history, email, password]);
 
   return (
     <div className="inner-container">
       <div className="header">Login</div>
-      <form className="box" onSubmit={(e) => submitLogin(e)} noValidate>
+      <form className="box" onSubmit={handleLogin} noValidate>
         {errors.length > 0 &&
           errors.map((err) => {
             return <small className="danger-error">{err}</small>;

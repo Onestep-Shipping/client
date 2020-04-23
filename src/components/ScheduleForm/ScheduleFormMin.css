@@ -12,18 +12,15 @@
   justify-content: space-between;
 }
 
-.css-1aya2g8 {
-  outline: none !important;
-  border: none !important;
-  border-radius: 2px !important;
-}
-
-.css-10nd86i {
-  width: 300px;
+.css-1pcexqc-container, .css-bg1rzq-control {
+  width: 260px;
   outline: none;
   margin-right: 40px;
   border-radius: 4px;
-  border: solid #14B9D7 2px;
+}
+
+.css-bg1rzq-control {
+  border: solid #14B9D7 2px !important;
 }
 
 .schedule-label-text2 {

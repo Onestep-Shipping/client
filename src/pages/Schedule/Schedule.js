@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import './Schedule.css';
 
 import DATA from './data.js';
 import Header from '../../components/Header/Header.js';
 import ScheduleFormMin from '../../components/ScheduleForm/ScheduleFormMin.js';
+import {AuthContext} from '../../firebase/Auth.js';
 
 const Schedule = () => {
   const [resultHeaders] = useState(['Port of Loading', 'Transshipments',
@@ -11,6 +12,8 @@ const Schedule = () => {
 
   const [results] = useState(DATA);
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
+
+  const {currentUser} = useContext(AuthContext);
 
   return (
     <div class="homepage-container">
@@ -55,10 +58,16 @@ const Schedule = () => {
               );
             })
           }
-          <div class="schedule-button-container">
-            <button class="result-button">Quote</button>
-            <button class="result-button">Book</button>
-          </div>
+          {currentUser ?
+            (<div class="schedule-button-container">
+              <button class="result-button">Quote</button>
+              <button class="result-button">Book</button>
+            </div>) : (
+              <a href="/auth" class="warning-text">
+                You must log in to proceed.
+              </a>
+            )
+          }
         </div>
       </div>
     </div>
