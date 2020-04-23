@@ -12,8 +12,6 @@ const Header = () => {
 
   const {currentUser} = useContext(AuthContext);
 
-  console.log(currentUser);
-
   const handleLogin = () => {
     if (currentUser) {
       app.auth().signOut();

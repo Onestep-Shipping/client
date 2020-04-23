@@ -1,13 +1,16 @@
 import React, {useState, useContext} from 'react';
 import './Schedule.css';
 
-import DATA from './data.js';
+import DATA from '../../data/ScheduleDetailsData.js';
 import Header from '../../components/Header/Header.js';
 import ScheduleFormMin from '../../components/ScheduleForm/ScheduleFormMin.js';
 import {AuthContext} from '../../firebase/Auth.js';
+import {useHistory} from 'react-router-dom';
 
 const Schedule = () => {
-  const [resultHeaders] = useState(['Port of Loading', 'Transshipments',
+  const history = useHistory();
+
+  const [resultHeaders] = useState(['#', 'Port of Loading', 'Transshipments',
     'Vessels / Services', 'Port of Discharge', 'Transit Time']);
 
   const [quoteHeaders] = useState(['Ocean Freight (All-in)',
@@ -17,6 +20,10 @@ const Schedule = () => {
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
 
   const {currentUser} = useContext(AuthContext);
+
+  const handleQuoteSubmit = (id) => {
+    history.push('/booking/' + id);
+  };
 
   return (
     <div class="homepage-container">
@@ -28,7 +35,9 @@ const Schedule = () => {
             {
               resultHeaders.map((header) => {
                 return (
-                  <text class="schedult-result-header-text">{header}</text>
+                  <div class="col">
+                    <text class="schedult-result-header-text">{header}</text>
+                  </div>
                 );
               })
             }
@@ -41,6 +50,9 @@ const Schedule = () => {
                     class={'schedule-result-row' +
                       (index === currentBookingIndex ? '-selected' : '')}
                     onClick={(e) => setCurrentBookingIndex(index)}>
+                    <div class="col">
+                      <text class="schedult-result-text">{index + 1}</text>
+                    </div>
                     <div class="col">
                       <text class="schedult-result-text">{booking.from}</text>
                       <text class="schedult-result-text-time">{booking.fromDate}</text>
@@ -75,7 +87,12 @@ const Schedule = () => {
                           <text class="schedult-result-text">${booking.adFee}</text>
                         </div>
                       </div>
-                      <button class="result-button">Accept</button>
+                      <button
+                        class="result-button"
+                        onClick={() => handleQuoteSubmit(index)}
+                      >
+                        Accept
+                      </button>
                     </div>) :
                     <div />}
                 </div>
