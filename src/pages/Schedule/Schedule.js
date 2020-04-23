@@ -10,6 +10,9 @@ const Schedule = () => {
   const [resultHeaders] = useState(['Port of Loading', 'Transshipments',
     'Vessels / Services', 'Port of Discharge', 'Transit Time']);
 
+  const [quoteHeaders] = useState(['Ocean Freight (All-in)',
+    'Documentation Fee', 'Administration Fee']);
+
   const [results] = useState(DATA);
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
 
@@ -33,40 +36,57 @@ const Schedule = () => {
           {
             results.map((booking, index) => {
               return (
-                <div
-                  class={'schedule-result-row' +
-                    (index === currentBookingIndex ? '-selected' : '')}
-                  onClick={(e) =>setCurrentBookingIndex(index)}>
-                  <div class="col">
-                    <text class="schedult-result-text">{booking.from}</text>
-                    <text class="schedult-result-text-time">{booking.fromDate}</text>
+                <div class="schedule-result-row-container">
+                  <div
+                    class={'schedule-result-row' +
+                      (index === currentBookingIndex ? '-selected' : '')}
+                    onClick={(e) => setCurrentBookingIndex(index)}>
+                    <div class="col">
+                      <text class="schedult-result-text">{booking.from}</text>
+                      <text class="schedult-result-text-time">{booking.fromDate}</text>
+                    </div>
+                    <div class="col">
+                      <text class="schedult-result-text">{booking.trans}</text>
+                    </div>
+                    <div class="col">
+                      <text class="schedult-result-text">{booking.ves}</text>
+                    </div>
+                    <div class="col">
+                      <text class="schedult-result-text">{booking.to}</text>
+                      <text class="schedult-result-text-time">{booking.toDate}</text>
+                    </div>
+                    <div class="col">
+                      <text class="schedult-result-text">{booking.time}</text>
+                    </div>
                   </div>
-                  <div class="col">
-                    <text class="schedult-result-text">{booking.trans}</text>
-                  </div>
-                  <div class="col">
-                    <text class="schedult-result-text">{booking.ves}</text>
-                  </div>
-                  <div class="col">
-                    <text class="schedult-result-text">{booking.to}</text>
-                    <text class="schedult-result-text-time">{booking.toDate}</text>
-                  </div>
-                  <div class="col">
-                    <text class="schedult-result-text">{booking.time}</text>
-                  </div>
+                  {(index === currentBookingIndex && currentUser) ?
+                    (<div class="quote-dropdown">
+                      <div class="schedule-result-header-row">
+                        <div class="col2">
+                          <text class="schedult-result-header-text">{quoteHeaders[0]}</text>
+                          <text class="schedult-result-text">{booking.oceanFreight}</text>
+                        </div>
+                        <div class="col2">
+                          <text class="schedult-result-header-text">{quoteHeaders[1]}</text>
+                          <text class="schedult-result-text">{booking.docFee}</text>
+                        </div>
+                        <div class="col2">
+                          <text class="schedult-result-header-text">{quoteHeaders[2]}</text>
+                          <text class="schedult-result-text">{booking.adFee}</text>
+                        </div>
+                      </div>
+                      <button class="result-button">{'Accept & Book'}</button>
+                    </div>) :
+                    <div />}
                 </div>
               );
             })
           }
-          {currentUser ?
-            (<div class="schedule-button-container">
-              <button class="result-button">Quote</button>
-              <button class="result-button">Book</button>
-            </div>) : (
+          {!currentUser ? (
               <a href="/auth" class="warning-text">
                 You must log in to proceed.
               </a>
-            )
+            ) : <div />
           }
         </div>
       </div>
