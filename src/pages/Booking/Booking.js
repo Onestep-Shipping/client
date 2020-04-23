@@ -8,13 +8,23 @@ import Header from '../../components/Header/Header.js';
 const Booking = () => {
   const {id} = useParams();
 
+  const CONTAINER_TYPES = ['20\' Dry', '40\' Dry', '40\'HC Dry'];
+  const PAYMENT_TYPES = ['Prepaid', 'Collect'];
+
   const [commodity, setCommodity] = useState('');
   const [shCode, setShCode] = useState('');
+  const [containerType, setContainerType] = useState(CONTAINER_TYPES[0]);
   const [quantity, setQuantity] = useState('');
+  const [paymentTerm, setPaymentTerm] = useState(PAYMENT_TYPES[0]);
 
   const onInputChange = (e, func) => {
     const value = e.currentTarget.value;
     func(value === null ? '' : value);
+  };
+
+  const handleBook = (e) => {
+    console.log(containerType);
+    console.log(paymentTerm);
   };
 
   return (
@@ -27,7 +37,6 @@ const Booking = () => {
           </div>
           <div class="info-container">
             {DATA.map((booking, index) => {
-              console.log(booking);
               if (index == id) {
                 return (
                   <div class="booking-details-container">
@@ -110,10 +119,11 @@ const Booking = () => {
               </div>
               <div class="info-row">
                 <text class="info-label">Container Type: </text>
-                <select class="booking-form-input">
-                  <option value="dry-20">20' Dry</option>
-                  <option value="dry-40">40' Dry</option>
-                  <option value="dry-40hc">40'HC Dry</option>
+                <select class="booking-form-input"
+                  onChange={(e) => onInputChange(e, setContainerType)}>
+                  <option value={CONTAINER_TYPES[0]}>{CONTAINER_TYPES[0]}</option>
+                  <option value={CONTAINER_TYPES[1]}>{CONTAINER_TYPES[1]}</option>
+                  <option value={CONTAINER_TYPES[2]}>{CONTAINER_TYPES[2]}</option>
                 </select>
               </div>
               <div class="info-row">
@@ -129,12 +139,13 @@ const Booking = () => {
               </div>
               <div class="info-row">
                 <text class="info-label">Payment Term: </text>
-                <select class="booking-form-input">
-                  <option value="prepaid">Prepaid</option>
-                  <option value="collect">Collect</option>
+                <select class="booking-form-input"
+                  onChange={(e) => onInputChange(e, setPaymentTerm)}>
+                  <option value={PAYMENT_TYPES[0]}>{PAYMENT_TYPES[0]}</option>
+                  <option value={PAYMENT_TYPES[1]}>{PAYMENT_TYPES[1]}</option>
                 </select>
               </div>
-              <button class="result-button" onClick={() => {}}>
+              <button class="result-button" onClick={handleBook}>
                 Book
               </button>
             </form>
