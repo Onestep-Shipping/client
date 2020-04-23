@@ -97,3 +97,9 @@
   align-items: center;
   justify-content: space-evenly;
 }
+
+.warning-text {
+  color: #BF037A;
+  font-size: 25px;
+  font-weight: bolder;
+}

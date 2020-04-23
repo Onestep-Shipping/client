@@ -26,7 +26,7 @@
 
 .register-box {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -61,4 +61,11 @@
 
 .company-info-container {
   margin-right: 50px;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
