@@ -64,18 +64,18 @@ const Schedule = () => {
                       <div class="schedule-result-header-row">
                         <div class="col2">
                           <text class="schedult-result-header-text">{quoteHeaders[0]}</text>
-                          <text class="schedult-result-text">{booking.oceanFreight}</text>
+                          <text class="schedult-result-text">${booking.oceanFreight}</text>
                         </div>
                         <div class="col2">
                           <text class="schedult-result-header-text">{quoteHeaders[1]}</text>
-                          <text class="schedult-result-text">{booking.docFee}</text>
+                          <text class="schedult-result-text">${booking.docFee}</text>
                         </div>
                         <div class="col2">
                           <text class="schedult-result-header-text">{quoteHeaders[2]}</text>
-                          <text class="schedult-result-text">{booking.adFee}</text>
+                          <text class="schedult-result-text">${booking.adFee}</text>
                         </div>
                       </div>
-                      <button class="result-button">{'Accept & Book'}</button>
+                      <button class="result-button">Accept</button>
                     </div>) :
                     <div />}
                 </div>
