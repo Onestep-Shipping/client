@@ -7,7 +7,7 @@ import ScheduleFormMin from '../../components/ScheduleForm/ScheduleFormMin.js';
 import {AuthContext} from '../../firebase/Auth.js';
 
 const Schedule = () => {
-  const [resultHeaders] = useState(['Port of Loading', 'Transshipments',
+  const [resultHeaders] = useState(['#', 'Port of Loading', 'Transshipments',
     'Vessels / Services', 'Port of Discharge', 'Transit Time']);
 
   const [quoteHeaders] = useState(['Ocean Freight (All-in)',
@@ -28,7 +28,9 @@ const Schedule = () => {
             {
               resultHeaders.map((header) => {
                 return (
-                  <text class="schedult-result-header-text">{header}</text>
+                  <div class="col">
+                    <text class="schedult-result-header-text">{header}</text>
+                  </div>
                 );
               })
             }
@@ -41,6 +43,9 @@ const Schedule = () => {
                     class={'schedule-result-row' +
                       (index === currentBookingIndex ? '-selected' : '')}
                     onClick={(e) => setCurrentBookingIndex(index)}>
+                    <div class="col">
+                      <text class="schedult-result-text">{index + 1}</text>
+                    </div>
                     <div class="col">
                       <text class="schedult-result-text">{booking.from}</text>
                       <text class="schedult-result-text-time">{booking.fromDate}</text>

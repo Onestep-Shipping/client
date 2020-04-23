@@ -69,6 +69,7 @@
   border-bottom-left-radius: 10px;
   padding: 20px;
   transition: all 0.3s ease-in;
+  user-select: none;
 }
 
 .schedule-result-row:hover {
@@ -83,6 +84,7 @@
 .schedult-result-text-time {
   font-size: 15px;
   font-style: italic;
+  color: rgb(77, 77, 77);
 }
 
 .col {
