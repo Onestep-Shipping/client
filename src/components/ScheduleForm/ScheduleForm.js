@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
-import {FROM_LOCATIONS, TO_LOCATIONS, CARRIERS} from './data.js';
+import {
+  FROM_LOCATIONS, TO_LOCATIONS, CARRIERS,
+} from '../../data/ScheduleFormData.js';
 
 import './ScheduleForm.css';
 import 'react-datepicker/dist/react-datepicker.css';

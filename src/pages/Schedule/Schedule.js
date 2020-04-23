@@ -1,12 +1,15 @@
 import React, {useState, useContext} from 'react';
 import './Schedule.css';
 
-import DATA from './data.js';
+import DATA from '../../data/ScheduleDetailsData.js';
 import Header from '../../components/Header/Header.js';
 import ScheduleFormMin from '../../components/ScheduleForm/ScheduleFormMin.js';
 import {AuthContext} from '../../firebase/Auth.js';
+import {useHistory} from 'react-router-dom';
 
 const Schedule = () => {
+  const history = useHistory();
+
   const [resultHeaders] = useState(['#', 'Port of Loading', 'Transshipments',
     'Vessels / Services', 'Port of Discharge', 'Transit Time']);
 
@@ -17,6 +20,10 @@ const Schedule = () => {
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
 
   const {currentUser} = useContext(AuthContext);
+
+  const handleQuoteSubmit = (id) => {
+    history.push('/booking/' + id);
+  };
 
   return (
     <div class="homepage-container">
@@ -80,7 +87,12 @@ const Schedule = () => {
                           <text class="schedult-result-text">${booking.adFee}</text>
                         </div>
                       </div>
-                      <button class="result-button">Accept</button>
+                      <button
+                        class="result-button"
+                        onClick={() => handleQuoteSubmit(index)}
+                      >
+                        Accept
+                      </button>
                     </div>) :
                     <div />}
                 </div>

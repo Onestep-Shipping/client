@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import './ScheduleFormMin.css';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
-import {FROM_LOCATIONS, TO_LOCATIONS, CARRIERS} from './data.js';
+import {
+  FROM_LOCATIONS, TO_LOCATIONS, CARRIERS,
+} from '../../data/ScheduleFormData.js';
 
 const ScheduleFormMin = () => {
   const today = new Date();
