@@ -1,5 +1,6 @@
 import React from 'react';
 import './Input.css';
+import PropTypes from 'prop-types';
 
 const Input = (props) => {
   const {type, name, displayErrors} = props;
@@ -22,7 +23,7 @@ const Input = (props) => {
 export default Input;
 
 Input.propTypes = {
-  name: String,
-  type: String,
-  displayErrors: Object,
+  name: PropTypes.string,
+  type: PropTypes.string,
+  displayErrors: PropTypes.bool,
 };
