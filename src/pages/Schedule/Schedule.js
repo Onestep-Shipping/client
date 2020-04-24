@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useCallback} from 'react';
 import './Schedule.css';
 
 import DATA from '../../data/ScheduleDetailsData.js';
@@ -21,9 +21,9 @@ const Schedule = () => {
 
   const {currentUser} = useContext(AuthContext);
 
-  const handleQuoteSubmit = (id) => {
+  const handleQuoteSubmit = useCallback((id) => {
     history.push('/booking/' + id);
-  };
+  }, []);
 
   return (
     <div className="homepage-container">

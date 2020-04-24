@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import './Booking.css';
 
 import {useParams, useHistory} from 'react-router-dom';
@@ -18,16 +18,16 @@ const Booking = () => {
   const [quantity, setQuantity] = useState('');
   const [paymentTerm, setPaymentTerm] = useState(PAYMENT_TYPES[0]);
 
-  const onInputChange = (e, func) => {
+  const onInputChange = useCallback((e, func) => {
     const value = e.currentTarget.value;
     func(value === null ? '' : value);
-  };
+  }, []);
 
-  const handleBook = () => {
+  const handleBook = useCallback(() => {
     console.log(containerType);
     console.log(paymentTerm);
     history.push(id + '/completed');
-  };
+  }, [containerType, history, paymentTerm, id]);
 
   return (
     <div className="homepage-container">

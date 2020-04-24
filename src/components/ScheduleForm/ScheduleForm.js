@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {useHistory} from 'react-router-dom';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
@@ -11,14 +11,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const ScheduleForm = () => {
   const history = useHistory();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (fromLocation !== '' && toLocation !== '') {
-      history.push('/schedule');
-    }
-  };
-
   const today = new Date();
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(today);
@@ -26,6 +18,13 @@ const ScheduleForm = () => {
   const [fromLocation, setFromLocation] = useState('');
   const [toLocation, setToLocation] = useState('');
   const [carrier, setCarrier] = useState(CARRIERS[0]);
+
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+    if (fromLocation !== '' && toLocation !== '') {
+      history.push('/schedule');
+    }
+  }, [history, fromLocation, toLocation]);
 
   return (
     <form className="schedule-form-cotainer" onSubmit={handleSubmit}>
