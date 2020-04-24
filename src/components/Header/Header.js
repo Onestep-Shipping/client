@@ -1,38 +1,16 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import './Header.css';
 import SearchTextfield from '../SearchTextfield/SearchTextfield.js';
+import Dropdown from '../Dropdown/Dropdown.js';
 import HeaderText from '../HeaderText/HeaderText.js';
 import {useHistory} from 'react-router-dom';
-import userIcon from '../../assets/user-icon.svg';
-import app from '../../firebase/base.js';
-import {AuthContext} from '../../firebase/Auth.js';
 
 const Header = () => {
   const history = useHistory();
 
-  const {currentUser} = useContext(AuthContext);
-
-  const handleLogin = () => {
-    if (currentUser) {
-      app.auth().signOut();
-    } else {
-      history.push('/auth');
-    }
-  };
-
   return (
     <div class="header-container">
-      <div class="login-container">
-        <button id="login-button" class="user-button" onClick={handleLogin}>
-          <img class="svg" src={userIcon} />
-          <text>
-            {currentUser ?
-              currentUser.email.substring(0, currentUser.email.indexOf('@')) :
-              'Login'}
-          </text>
-        </button>
-      </div>
-
+      <Dropdown />
       <div class="lower-container">
         <div class="logo-container" onClick={(e) => history.push('/')}>
           <text id="logo-text">Shippose</text>

@@ -71,7 +71,7 @@ const Schedule = () => {
                       <text class="schedult-result-text">{booking.time}</text>
                     </div>
                   </div>
-                  {(index === currentBookingIndex && currentUser) ?
+                  {(index === currentBookingIndex && currentUser) &&
                     (<div class="quote-dropdown">
                       <div class="schedule-result-header-row">
                         <div class="col2">
@@ -93,17 +93,15 @@ const Schedule = () => {
                       >
                         Accept
                       </button>
-                    </div>) :
-                    <div />}
+                    </div>)}
                 </div>
               );
             })
           }
-          {!currentUser ? (
-              <a href="/auth" class="warning-text">
-                You must log in to proceed.
-              </a>
-            ) : <div />
+          {!currentUser &&
+            <a href="/auth" class="warning-text">
+              You must log in to proceed.
+            </a>
           }
         </div>
       </div>

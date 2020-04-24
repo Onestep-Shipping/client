@@ -1,0 +1,71 @@
+.login-container {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+}
+
+.user-button {
+  background-color: white;
+  padding: 0px 10px;
+  color: #BF037A;
+  font-size: 16px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 2px;
+  border: none;
+  outline: none;
+  margin-bottom: 43px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-button:hover {
+  background-color: #e0e0e0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  top:35px;
+  right:0px;
+  width: 120px;
+  background-color: white;
+  position: absolute;
+
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+li a {
+  color: #000;
+  text-decoration: none;
+}
+li {
+  padding: 8px 16px;
+  border-bottom: 1px solid #e5e5e5;
+  cursor: pointer;
+}
+li:last-child {
+  border-bottom: none;
+}
+li:hover {
+  background-color: #e5e5e5;
+  color: black;
+}
+
+.svg {
+	width: 30px;
+	height: 30px;
+  filter: invert(0%) sepia(100%) saturate(44%) hue-rotate(220deg) brightness(101%) contrast(101%);
+  margin-right: 5px;
+}
+
+.svg-arrow {
+  margin-left: 10px;
+  width: 10px;
+  height: 10px;
+  opacity: 0.7;
+}
