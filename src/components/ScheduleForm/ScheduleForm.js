@@ -28,9 +28,9 @@ const ScheduleForm = () => {
   const [carrier, setCarrier] = useState(CARRIERS[0]);
 
   return (
-    <form class="schedule-form-cotainer" onSubmit={handleSubmit}>
-      <text class="schedule-label">From</text>
-      <div class="textfield-container">
+    <form className="schedule-form-cotainer" onSubmit={handleSubmit}>
+      <text className="schedule-label">From</text>
+      <div className="textfield-container">
         <Select
           options={FROM_LOCATIONS} placeholder="Location"
           onChange={(opt) => setFromLocation(opt.label)} clearable/>
@@ -41,8 +41,8 @@ const ScheduleForm = () => {
           placeholderText="Select a day"
         />
       </div>
-      <text class="schedule-label">To</text>
-      <div class="textfield-container">
+      <text className="schedule-label">To</text>
+      <div className="textfield-container">
         <Select options={TO_LOCATIONS} placeholder="Location"
           onChange={(opt) => setToLocation(opt.label)} clearable/>
         <DatePicker
@@ -52,14 +52,14 @@ const ScheduleForm = () => {
           onChange={setEndDate}
         />
       </div>
-      <text class="schedule-label">Carrier</text>
-      <div class="textfield-container">
+      <text className="schedule-label">Carrier</text>
+      <div className="textfield-container">
         <select
           id="carrier-selector"
           onChange={(carrier) => setCarrier(carrier)} >
           {
-            CARRIERS.map((opt) => {
-              return (<option value={opt}>{opt}</option>);
+            CARRIERS.map((opt, ind) => {
+              return (<option value={opt} key={ind}>{opt}</option>);
             })
           }
         </select>

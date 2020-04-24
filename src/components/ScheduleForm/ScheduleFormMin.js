@@ -12,9 +12,9 @@ const ScheduleFormMin = () => {
   const [endDate, setEndDate] = useState(today);
 
   return (
-    <div class="search-container2">
-      <div class="textfield-container2">
-        <text class="schedule-label-text2">From</text>
+    <div className="search-container2">
+      <div className="textfield-container2">
+        <text className="schedule-label-text2">From</text>
         <Select options={FROM_LOCATIONS} placeholder="Location" clearable/>
         <DatePicker
           id="from-date2"
@@ -23,9 +23,9 @@ const ScheduleFormMin = () => {
           placeholderText="Select a day"
         />
       </div>
-      <div class="textfield-container2">
-        <text class="schedule-label-text2">  </text>
-        <text class="schedule-label-text2">To</text>
+      <div className="textfield-container2">
+        <text className="schedule-label-text2">  </text>
+        <text className="schedule-label-text2">To</text>
         <Select options={TO_LOCATIONS} placeholder="Location" clearable/>
         <DatePicker
           id="to-date2"
@@ -35,12 +35,12 @@ const ScheduleFormMin = () => {
           placeholderText="Select a day"
         />
       </div>
-      <div class="textfield-container2">
-        <text class="schedule-label-text2">Carrier</text>
+      <div className="textfield-container2">
+        <text className="schedule-label-text2">Carrier</text>
         <select id="carrier-selector2">
           {
-            CARRIERS.map((opt) => {
-              return (<option value={opt}>{opt}</option>);
+            CARRIERS.map((opt, ind) => {
+              return (<option value={opt} key={ind}>{opt}</option>);
             })
           }
         </select>

@@ -34,19 +34,19 @@ const RegisterForm = () => {
     } catch (error) {
       alert(error);
     }
-  }, [history]);
+  }, [history, email, password]);
 
   return (
     <div className="inner-container">
       <div className="header">Register</div>
       <form className="register-box" onSubmit={handleSignUp} noValidate>
         {errors.length > 0 &&
-          errors.map((err) => {
-            return <small className="danger-error">{err}</small>;
+          errors.map((err, ind) => {
+            return <small className="danger-error" key={ind}>{err}</small>;
           })
         }
-        <div class="info-container">
-          <div class="company-info-container">
+        <div className="info-container">
+          <div className="company-info-container">
             <Input
               name="Company Name"
               type="text"

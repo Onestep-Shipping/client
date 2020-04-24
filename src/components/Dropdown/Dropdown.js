@@ -19,7 +19,7 @@ const Dropdown = () => {
     }
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = () => {
     setDisplayMenu(false);
     if (currentUser) {
       setDisplayMenu(!displayMenu);
@@ -43,15 +43,15 @@ const Dropdown = () => {
   }, []);
 
   return (
-    <div ref={node} class="login-container">
-      <button id="login-button" class="user-button" onClick={handleLogin}>
-        <img class="svg" src={userIcon} />
+    <div ref={node} className="login-container">
+      <button id="login-button" className="user-button" onClick={handleLogin}>
+        <img className="svg" src={userIcon} alt="User Icon" />
         <text>
           {currentUser ?
             currentUser.email.substring(0, currentUser.email.indexOf('@')) :
             'Login'}
         </text>
-        {currentUser && <img class="svg-arrow" src={arrowDownIcon} />}
+        {currentUser && <img className="svg-arrow" src={arrowDownIcon} alt="Dropdown Icon" />}
       </button>
       {displayMenu &&
         <ul>

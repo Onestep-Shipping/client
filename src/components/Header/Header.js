@@ -9,23 +9,23 @@ const Header = () => {
   const history = useHistory();
 
   return (
-    <div class="header-container">
+    <div className="header-container">
       <Dropdown />
-      <div class="lower-container">
-        <div class="logo-container" onClick={(e) => history.push('/')}>
+      <div className="lower-container">
+        <div className="logo-container" onClick={() => history.push('/')}>
           <text id="logo-text">Shippose</text>
         </div>
 
-        <div class="menu-container">
+        <div className="menu-container">
           <SearchTextfield />
           <HeaderText
-            value="Contact" action={(e) => history.push('/contact')}
+            value="Contact" action={() => history.push('/contact')}
           />
-          <HeaderText value="News" action={(e) => history.push('/news')} />
+          <HeaderText value="News" action={() => history.push('/news')} />
           <HeaderText
-            value="Services" action={(e) => history.push('/services')}
+            value="Services" action={() => history.push('/services')}
           />
-          <HeaderText value="About" action={(e) => history.push('/about')} />
+          <HeaderText value="About" action={() => history.push('/about')} />
         </div>
       </div>
     </div>

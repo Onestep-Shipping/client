@@ -26,70 +26,70 @@ const Schedule = () => {
   };
 
   return (
-    <div class="homepage-container">
+    <div className="homepage-container">
       <Header />
-      <div class="schedule-body-container">
+      <div className="schedule-body-container">
         <ScheduleFormMin />
-        <div class="schedule-result-container">
-          <div class="schedule-result-header-row">
+        <div className="schedule-result-container">
+          <div className="schedule-result-header-row">
             {
-              resultHeaders.map((header) => {
+              resultHeaders.map((header, ind) => {
                 return (
-                  <div class="col">
-                    <text class="schedult-result-header-text">{header}</text>
+                  <div className="col" key={ind}>
+                    <text className="schedult-result-header-text">{header}</text>
                   </div>
                 );
               })
             }
           </div>
           {
-            results.map((booking, index) => {
+            results.map((booking, ind) => {
               return (
-                <div class="schedule-result-row-container">
+                <div className="schedule-result-row-container" key={ind}>
                   <div
-                    class={'schedule-result-row' +
-                      (index === currentBookingIndex ? '-selected' : '')}
-                    onClick={(e) => setCurrentBookingIndex(index)}>
-                    <div class="col">
-                      <text class="schedult-result-text">{index + 1}</text>
+                    className={'schedule-result-row' +
+                      (ind === currentBookingIndex ? '-selected' : '')}
+                    onClick={() => setCurrentBookingIndex(ind)}>
+                    <div className="col">
+                      <text className="schedult-result-text">{ind + 1}</text>
                     </div>
-                    <div class="col">
-                      <text class="schedult-result-text">{booking.from}</text>
-                      <text class="schedult-result-text-time">{booking.fromDate}</text>
+                    <div className="col">
+                      <text className="schedult-result-text">{booking.from}</text>
+                      <text className="schedult-result-text-time">{booking.fromDate}</text>
                     </div>
-                    <div class="col">
-                      <text class="schedult-result-text">{booking.trans}</text>
+                    <div className="col">
+                      <text className="schedult-result-text">{booking.trans}</text>
                     </div>
-                    <div class="col">
-                      <text class="schedult-result-text">{booking.ves}</text>
+                    <div className="col">
+                      <text className="schedult-result-text">{booking.ves}</text>
                     </div>
-                    <div class="col">
-                      <text class="schedult-result-text">{booking.to}</text>
-                      <text class="schedult-result-text-time">{booking.toDate}</text>
+                    <div className="col">
+                      <text className="schedult-result-text">{booking.to}</text>
+                      <text className="schedult-result-text-time">{booking.toDate}</text>
                     </div>
-                    <div class="col">
-                      <text class="schedult-result-text">{booking.time}</text>
+                    <div className="col">
+                      <text className="schedult-result-text">{booking.time}</text>
                     </div>
                   </div>
-                  {(index === currentBookingIndex && currentUser) &&
-                    (<div class="quote-dropdown">
-                      <div class="schedule-result-header-row">
-                        <div class="col2">
-                          <text class="schedult-result-header-text">{quoteHeaders[0]}</text>
-                          <text class="schedult-result-text">${booking.oceanFreight}</text>
+                  {(ind === currentBookingIndex && currentUser) &&
+                    (<div className="quote-dropdown">
+                      <div className="schedule-result-header-row">
+                        <div className="col2">
+                          <text className="schedult-result-header-text">{quoteHeaders[0]}</text>
+                          <text className="schedult-result-text">${booking.oceanFreight}</text>
                         </div>
-                        <div class="col2">
-                          <text class="schedult-result-header-text">{quoteHeaders[1]}</text>
-                          <text class="schedult-result-text">${booking.docFee}</text>
+                        <div className="col2">
+                          <text className="schedult-result-header-text">{quoteHeaders[1]}</text>
+                          <text className="schedult-result-text">${booking.docFee}</text>
                         </div>
-                        <div class="col2">
-                          <text class="schedult-result-header-text">{quoteHeaders[2]}</text>
-                          <text class="schedult-result-text">${booking.adFee}</text>
+                        <div className="col2">
+                          <text className="schedult-result-header-text">{quoteHeaders[2]}</text>
+                          <text className="schedult-result-text">${booking.adFee}</text>
                         </div>
                       </div>
                       <button
-                        class="result-button"
-                        onClick={() => handleQuoteSubmit(index)}
+                        className="result-button"
+                        onClick={() => handleQuoteSubmit(ind)}
                       >
                         Accept
                       </button>
@@ -99,7 +99,7 @@ const Schedule = () => {
             })
           }
           {!currentUser &&
-            <a href="/auth" class="warning-text">
+            <a href="/auth" className="warning-text">
               You must log in to proceed.
             </a>
           }

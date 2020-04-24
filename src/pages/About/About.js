@@ -5,9 +5,9 @@ import Header from '../../components/Header/Header.js';
 
 const About = () => {
   return (
-    <div class="homepage-container">
+    <div className="homepage-container">
       <Header />
-      <div class="body-container2">
+      <div className="body-container2">
         About
       </div>
     </div>
