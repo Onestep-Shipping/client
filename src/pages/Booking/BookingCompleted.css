@@ -1,0 +1,19 @@
+.success-text {
+  font-size: 35px;
+  color: rgb(19, 161, 0);
+  margin-bottom: 20px;
+}
+
+.success-text-small {
+  font-size: 20px;
+  color: rgb(109, 109, 109);
+  margin-bottom: 50px;
+}
+
+#left-button {
+  margin-right: 30px;
+}
+
+.gif {
+  margin-top: 20px;
+}

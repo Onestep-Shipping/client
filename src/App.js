@@ -13,8 +13,10 @@ import News from './pages/News/News.js';
 import Contact from './pages/Contact/Contact.js';
 import Auth from './pages/Auth/Auth.js';
 import Booking from './pages/Booking/Booking.js';
+import BookingCompleted from './pages/Booking/BookingCompleted.js';
 import {AuthProvider} from './firebase/Auth.js';
 import PrivateRoute from './firebase/PrivateRoute.js';
+
 import './App.css';
 
 const App = () => {
@@ -23,7 +25,11 @@ const App = () => {
       <Router>
         <div className="App">
           <Switch>
-            <PrivateRoute path="/booking/:id" component={Booking} />
+            <Route
+              path="/booking/:id/completed"
+              component={BookingCompleted}
+            />
+            <Route path="/booking/:id" component={Booking} />
             <Route path="/about" component={About} />
             <Route path="/services" component={Services} />
             <Route path="/schedule" component={Schedule} />

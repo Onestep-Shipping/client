@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import './Booking.css';
 
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import DATA from '../../data/ScheduleDetailsData.js';
 import Header from '../../components/Header/Header.js';
 
 const Booking = () => {
   const {id} = useParams();
+  const history = useHistory();
 
   const CONTAINER_TYPES = ['20\' Dry', '40\' Dry', '40\'HC Dry'];
   const PAYMENT_TYPES = ['Prepaid', 'Collect'];
@@ -25,6 +26,7 @@ const Booking = () => {
   const handleBook = (e) => {
     console.log(containerType);
     console.log(paymentTerm);
+    history.push(id + '/completed');
   };
 
   return (
