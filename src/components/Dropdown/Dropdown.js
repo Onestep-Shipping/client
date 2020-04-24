@@ -1,38 +1,25 @@
-import React, {useState, useContext, useEffect, useRef, useCallback} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import './Dropdown.css';
-import userIcon from '../../assets/user-icon.svg';
-import arrowDownIcon from '../../assets/arrow-down.svg';
+import PropTypes from 'prop-types';
 import {useHistory} from 'react-router-dom';
-import app from '../../firebase/base.js';
-import {AuthContext} from '../../firebase/Auth.js';
 
-const Dropdown = () => {
+const Dropdown = (props) => {
   const node = useRef();
-  const [displayMenu, setDisplayMenu] = useState(false);
   const history = useHistory();
+  const [open, setOpen] = useState(false);
 
-  const {currentUser} = useContext(AuthContext);
+  const {content, options, onChange, isLoggedIn = false, isAlwaysVisible = true} = props;
 
   const measuredRef = useCallback((e) => {
-    if (!node.current.contains(e.target)) {
-      setDisplayMenu(false);
+    if (node.current && !node.current.contains(e.target)) {
+      setOpen(false);
     }
   }, []);
 
-  const handleLogin = useCallback(() => {
-    setDisplayMenu(false);
-    if (currentUser) {
-      setDisplayMenu(!displayMenu);
-    } else {
-      history.push('/auth');
-    }
-  }, [currentUser, displayMenu, history]);
-
-  const signOut = useCallback(() => {
-    setDisplayMenu(false);
-    app.auth().signOut();
-    window.location.reload();
-  }, []);
+  const handleChange = selectedValue => {
+    onChange(selectedValue);
+    setOpen(false);
+  };
 
   useEffect(() => {
     document.addEventListener('mousedown', measuredRef);
@@ -42,26 +29,43 @@ const Dropdown = () => {
     };
   }, [measuredRef]);
 
+  const handleAuth = () => {
+    if (isLoggedIn) {
+      setOpen(!open);
+    } else {
+      history.push('/auth');
+    }
+  }
+
+  if (!isAlwaysVisible) {
+    return <div />;
+  }
+
   return (
     <div ref={node} className="login-container">
-      <button id="login-button" className="user-button" onClick={handleLogin}>
-        <img className="svg" src={userIcon} alt="User Icon" />
-        <text>
-          {currentUser ?
-            currentUser.email.substring(0, currentUser.email.indexOf('@')) :
-            'Login'}
-        </text>
-        {currentUser && <img className="svg-arrow" src={arrowDownIcon} alt="Dropdown Icon" />}
+      <button className="user-button" onClick={handleAuth}>
+        {content}
       </button>
-      {displayMenu &&
-        <ul>
-          <li>Profile</li>
-          <li>Tracking</li>
-          <li onClick={signOut}>Sign Out</li>
+      {open && (
+        <ul className="dropdown-menu">
+          {options.map((opt, ind) => (
+            <li className="dropdown-menu-item" key={ind} onClick={() => handleChange(opt)}>
+              {opt}
+            </li>
+          ))}
         </ul>
-      }
+      )}
     </div>
   );
 };
 
 export default Dropdown;
+
+Dropdown.propTypes = {
+  content: PropTypes.element,
+  options: PropTypes.array,
+  onChange: PropTypes.func,
+  isLoggedIn: PropTypes.bool,
+  isAlwaysVisible: PropTypes.bool
+};
+
