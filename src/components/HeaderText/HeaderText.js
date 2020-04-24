@@ -1,5 +1,6 @@
 import React from 'react';
 import './HeaderText.css';
+import PropTypes from 'prop-types';
 
 const HeaderText = (props) => {
   const {value, action} = props;
@@ -14,6 +15,6 @@ const HeaderText = (props) => {
 export default HeaderText;
 
 HeaderText.propTypes = {
-  value: String,
-  action: Function
+  value: PropTypes.string,
+  action: PropTypes.func
 };

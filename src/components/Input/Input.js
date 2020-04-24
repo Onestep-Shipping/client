@@ -2,7 +2,7 @@ import React from 'react';
 import './Input.css';
 
 const Input = (props) => {
-  const {type, value, name, displayErrors} = props;
+  const {type, name, displayErrors} = props;
   const lcName = name.toLowerCase().replace(' ', '-');
   const errorClass = displayErrors ? 'display-errors' : '';
 
@@ -14,9 +14,7 @@ const Input = (props) => {
         name={lcName}
         className={'login-input ' + errorClass}
         placeholder={name}
-        onChange={(e) => props.onChange(e)}
-        value={value}
-        required/>
+        required />
     </div>
   );
 };
@@ -26,7 +24,5 @@ export default Input;
 Input.propTypes = {
   name: String,
   type: String,
-  value: String,
   displayErrors: Object,
-  onChange: Function
 };

@@ -8,18 +8,13 @@ import app from '../../firebase/base.js';
 const LoginForm = () => {
   const history = useHistory();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
   const [displayErrors, setDisplayErrors] = useState(false);
 
-  const onInputChange = useCallback((e, func) => {
-    const value = e.currentTarget.value;
-    func(value === null ? '' : value);
-  }, []);
-
   const handleLogin = useCallback(async (e) => {
     e.preventDefault();
+    const email = e.target[0].value;
+    const password = e.target[1].value;
     try {
       await app
           .auth()
@@ -28,7 +23,7 @@ const LoginForm = () => {
     } catch (error) {
       alert(error);
     }
-  }, [history, email, password]);
+  }, [history]);
 
   return (
     <div className="inner-container">
@@ -39,20 +34,12 @@ const LoginForm = () => {
             return <small className="danger-error" key={ind}>{err}</small>;
           })
         }
-        <Input
-          name="Email"
-          type="email"
-          displayErrors={displayErrors}
-          onChange={(e) => onInputChange(e, setEmail)}
-          value={email}
-        />
+        <Input name="Email" type="email" displayErrors={displayErrors} />
 
         <Input
           name="Password"
           type="password"
           displayErrors={displayErrors}
-          onChange={(e) => onInputChange(e, setPassword)}
-          value={password}
         />
 
         <button className="login-btn">Login</button>

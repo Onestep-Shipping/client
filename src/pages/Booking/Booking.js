@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import './Booking.css';
 
 import {useParams, useHistory} from 'react-router-dom';
@@ -12,22 +12,15 @@ const Booking = () => {
   const CONTAINER_TYPES = ['20\' Dry', '40\' Dry', '40\'HC Dry'];
   const PAYMENT_TYPES = ['Prepaid', 'Collect'];
 
-  const [commodity, setCommodity] = useState('');
-  const [shCode, setShCode] = useState('');
-  const [containerType, setContainerType] = useState(CONTAINER_TYPES[0]);
-  const [quantity, setQuantity] = useState('');
-  const [paymentTerm, setPaymentTerm] = useState(PAYMENT_TYPES[0]);
-
-  const onInputChange = useCallback((e, func) => {
-    const value = e.currentTarget.value;
-    func(value === null ? '' : value);
-  }, []);
-
-  const handleBook = useCallback(() => {
-    console.log(containerType);
-    console.log(paymentTerm);
+  const handleBook = useCallback((e) => {
+    e.preventDefault();
+    // const commodity = e.target[0].value;
+    // const hsCode = e.target[1].value;
+    // const containerType = e.target[2].value;
+    // const quantity = e.target[3].value;
+    // const payment = e.target[4].value;
     history.push(id + '/completed');
-  }, [containerType, history, paymentTerm, id]);
+  }, [history, id]);
 
   return (
     <div className="homepage-container">
@@ -41,7 +34,7 @@ const Booking = () => {
             {DATA.map((booking, index) => {
               if (index.toString() === id) {
                 return (
-                  <div className="booking-details-container">
+                  <div className="booking-details-container" key={index}>
                     <div className="info-row">
                       <div>
                         <text className="info-label">From: </text>
@@ -97,7 +90,7 @@ const Booking = () => {
                 return null;
               }
             })}
-            <form className="booking-form-container">
+            <form className="booking-form-container" onSubmit={handleBook} noValidate>
               <h2>Booking Details</h2>
               <div className="info-row">
                 <text className="info-label">Commodity: </text>
@@ -106,8 +99,6 @@ const Booking = () => {
                   name="commodity"
                   className="booking-form-input"
                   placeholder="i.e. Food, Clothes, etc."
-                  onChange={(e) => onInputChange(e, setCommodity)}
-                  value={commodity}
                   required/>
               </div>
               <div className="info-row">
@@ -117,14 +108,11 @@ const Booking = () => {
                   name="sh-code"
                   className="booking-form-input"
                   placeholder="i.e. 420010"
-                  onChange={(e) => onInputChange(e, setShCode)}
-                  value={shCode}
                   required/>
               </div>
               <div className="info-row">
                 <text className="info-label">Container Type: </text>
-                <select className="booking-form-input"
-                  onChange={(e) => onInputChange(e, setContainerType)}>
+                <select className="booking-form-input">
                   <option value={CONTAINER_TYPES[0]}>{CONTAINER_TYPES[0]}</option>
                   <option value={CONTAINER_TYPES[1]}>{CONTAINER_TYPES[1]}</option>
                   <option value={CONTAINER_TYPES[2]}>{CONTAINER_TYPES[2]}</option>
@@ -137,19 +125,16 @@ const Booking = () => {
                   name="quantity"
                   className="booking-form-input"
                   placeholder="i.e. 1, 2, 3, 4, etc."
-                  onChange={(e) => onInputChange(e, setQuantity)}
-                  value={quantity}
                   required/>
               </div>
               <div className="info-row">
                 <text className="info-label">Payment Term: </text>
-                <select className="booking-form-input"
-                  onChange={(e) => onInputChange(e, setPaymentTerm)}>
+                <select className="booking-form-input">
                   <option value={PAYMENT_TYPES[0]}>{PAYMENT_TYPES[0]}</option>
                   <option value={PAYMENT_TYPES[1]}>{PAYMENT_TYPES[1]}</option>
                 </select>
               </div>
-              <button className="result-button" onClick={handleBook}>
+              <button className="result-button">
                 Book
               </button>
             </form>

@@ -10,20 +10,19 @@ import {useHistory} from 'react-router-dom';
 const Schedule = () => {
   const history = useHistory();
 
-  const [resultHeaders] = useState(['#', 'Port of Loading', 'Transshipments',
-    'Vessels / Services', 'Port of Discharge', 'Transit Time']);
+  const RESULT_HEADERS = ['#', 'Port of Loading', 'Transshipments',
+    'Vessels / Services', 'Port of Discharge', 'Transit Time'];
 
-  const [quoteHeaders] = useState(['Ocean Freight (All-in)',
-    'Documentation Fee', 'Administration Fee']);
+  const QUOTE_HEADERS = ['Ocean Freight (All-in)',
+    'Documentation Fee', 'Administration Fee'];
 
-  const [results] = useState(DATA);
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
 
   const {currentUser} = useContext(AuthContext);
 
   const handleQuoteSubmit = useCallback((id) => {
     history.push('/booking/' + id);
-  }, []);
+  }, [history]);
 
   return (
     <div className="homepage-container">
@@ -33,7 +32,7 @@ const Schedule = () => {
         <div className="schedule-result-container">
           <div className="schedule-result-header-row">
             {
-              resultHeaders.map((header, ind) => {
+              RESULT_HEADERS.map((header, ind) => {
                 return (
                   <div className="col" key={ind}>
                     <text className="schedult-result-header-text">{header}</text>
@@ -43,7 +42,7 @@ const Schedule = () => {
             }
           </div>
           {
-            results.map((booking, ind) => {
+            DATA.map((booking, ind) => {
               return (
                 <div className="schedule-result-row-container" key={ind}>
                   <div
@@ -75,15 +74,15 @@ const Schedule = () => {
                     (<div className="quote-dropdown">
                       <div className="schedule-result-header-row">
                         <div className="col2">
-                          <text className="schedult-result-header-text">{quoteHeaders[0]}</text>
+                          <text className="schedult-result-header-text">{QUOTE_HEADERS[0]}</text>
                           <text className="schedult-result-text">${booking.oceanFreight}</text>
                         </div>
                         <div className="col2">
-                          <text className="schedult-result-header-text">{quoteHeaders[1]}</text>
+                          <text className="schedult-result-header-text">{QUOTE_HEADERS[1]}</text>
                           <text className="schedult-result-text">${booking.docFee}</text>
                         </div>
                         <div className="col2">
-                          <text className="schedult-result-header-text">{quoteHeaders[2]}</text>
+                          <text className="schedult-result-header-text">{QUOTE_HEADERS[2]}</text>
                           <text className="schedult-result-text">${booking.adFee}</text>
                         </div>
                       </div>

@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect, useCallback} from 'react';
+import React, {useState, useContext, useEffect, useRef, useCallback} from 'react';
 import './Dropdown.css';
 import userIcon from '../../assets/user-icon.svg';
 import arrowDownIcon from '../../assets/arrow-down.svg';
@@ -7,13 +7,14 @@ import app from '../../firebase/base.js';
 import {AuthContext} from '../../firebase/Auth.js';
 
 const Dropdown = () => {
+  const node = useRef();
   const [displayMenu, setDisplayMenu] = useState(false);
   const history = useHistory();
 
   const {currentUser} = useContext(AuthContext);
 
-  const measuredRef = useCallback(node => {
-    if (node !== null) {
+  const measuredRef = useCallback((e) => {
+    if (!node.current.contains(e.target)) {
       setDisplayMenu(false);
     }
   }, []);
@@ -42,7 +43,7 @@ const Dropdown = () => {
   }, [measuredRef]);
 
   return (
-    <div ref={measuredRef} className="login-container">
+    <div ref={node} className="login-container">
       <button id="login-button" className="user-button" onClick={handleLogin}>
         <img className="svg" src={userIcon} alt="User Icon" />
         <text>

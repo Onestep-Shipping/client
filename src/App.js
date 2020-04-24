@@ -29,7 +29,7 @@ const App = () => {
               path="/booking/:id/completed"
               component={BookingCompleted}
             />
-            <PrivateRoute path="/booking/:id" component={Booking} />
+            <Route path="/booking/:id" component={Booking} />
             <Route path="/about" component={About} />
             <Route path="/services" component={Services} />
             <Route path="/schedule" component={Schedule} />
