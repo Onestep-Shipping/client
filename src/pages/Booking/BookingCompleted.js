@@ -9,25 +9,25 @@ const BookingCompleted = () => {
   const history = useHistory();
 
   return (
-    <div class="homepage-container">
+    <div className="homepage-container">
       <Header />
-      <div class="body-container2">
-        <img class="gif" src={completedIcon} alt="Success!" />
-        <text class="success-text">Successfully booked!</text>
-        <text class="success-text-small">
+      <div className="body-container2">
+        <img className="gif" src={completedIcon} alt="Success!" />
+        <text className="success-text">Successfully booked!</text>
+        <text className="success-text-small">
           We will get back to you as soon as
           possible with booking confirmation ☺
         </text>
         <div>
           <button
-            class="result-button"
+            className="result-button"
             id="left-button"
             onClick={() => history.push('/schedule')}
           >
             Book More
           </button>
           <button
-            class="result-button"
+            className="result-button"
             onClick={() => {}}
           >
             Track Process

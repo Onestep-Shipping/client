@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect, useRef} from 'react';
+import React, {useState, useContext, useEffect, useCallback} from 'react';
 import './Dropdown.css';
 import userIcon from '../../assets/user-icon.svg';
 import arrowDownIcon from '../../assets/arrow-down.svg';
@@ -7,51 +7,50 @@ import app from '../../firebase/base.js';
 import {AuthContext} from '../../firebase/Auth.js';
 
 const Dropdown = () => {
-  const node = useRef();
   const [displayMenu, setDisplayMenu] = useState(false);
   const history = useHistory();
 
   const {currentUser} = useContext(AuthContext);
 
-  const handleChange = (e) => {
-    if (!node.current.contains(e.target)) {
+  const measuredRef = useCallback(node => {
+    if (node !== null) {
       setDisplayMenu(false);
     }
-  };
+  }, []);
 
-  const handleLogin = (e) => {
+  const handleLogin = useCallback(() => {
     setDisplayMenu(false);
     if (currentUser) {
       setDisplayMenu(!displayMenu);
     } else {
       history.push('/auth');
     }
-  };
+  }, [currentUser, displayMenu, history]);
 
-  const signOut = () => {
+  const signOut = useCallback(() => {
     setDisplayMenu(false);
     app.auth().signOut();
     window.location.reload();
-  };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleChange);
-
-    return () => {
-      document.removeEventListener('mousedown', handleChange);
-    };
   }, []);
 
+  useEffect(() => {
+    document.addEventListener('mousedown', measuredRef);
+
+    return () => {
+      document.removeEventListener('mousedown', measuredRef);
+    };
+  }, [measuredRef]);
+
   return (
-    <div ref={node} class="login-container">
-      <button id="login-button" class="user-button" onClick={handleLogin}>
-        <img class="svg" src={userIcon} />
+    <div ref={measuredRef} className="login-container">
+      <button id="login-button" className="user-button" onClick={handleLogin}>
+        <img className="svg" src={userIcon} alt="User Icon" />
         <text>
           {currentUser ?
             currentUser.email.substring(0, currentUser.email.indexOf('@')) :
             'Login'}
         </text>
-        {currentUser && <img class="svg-arrow" src={arrowDownIcon} />}
+        {currentUser && <img className="svg-arrow" src={arrowDownIcon} alt="Dropdown Icon" />}
       </button>
       {displayMenu &&
         <ul>

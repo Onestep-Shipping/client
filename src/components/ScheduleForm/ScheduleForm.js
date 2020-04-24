@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {useHistory} from 'react-router-dom';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
@@ -11,14 +11,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const ScheduleForm = () => {
   const history = useHistory();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (fromLocation !== '' && toLocation !== '') {
-      history.push('/schedule');
-    }
-  };
-
   const today = new Date();
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(today);
@@ -27,10 +19,17 @@ const ScheduleForm = () => {
   const [toLocation, setToLocation] = useState('');
   const [carrier, setCarrier] = useState(CARRIERS[0]);
 
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+    if (fromLocation !== '' && toLocation !== '') {
+      history.push('/schedule');
+    }
+  }, [history, fromLocation, toLocation]);
+
   return (
-    <form class="schedule-form-cotainer" onSubmit={handleSubmit}>
-      <text class="schedule-label">From</text>
-      <div class="textfield-container">
+    <form className="schedule-form-cotainer" onSubmit={handleSubmit}>
+      <text className="schedule-label">From</text>
+      <div className="textfield-container">
         <Select
           options={FROM_LOCATIONS} placeholder="Location"
           onChange={(opt) => setFromLocation(opt.label)} clearable/>
@@ -41,8 +40,8 @@ const ScheduleForm = () => {
           placeholderText="Select a day"
         />
       </div>
-      <text class="schedule-label">To</text>
-      <div class="textfield-container">
+      <text className="schedule-label">To</text>
+      <div className="textfield-container">
         <Select options={TO_LOCATIONS} placeholder="Location"
           onChange={(opt) => setToLocation(opt.label)} clearable/>
         <DatePicker
@@ -52,14 +51,14 @@ const ScheduleForm = () => {
           onChange={setEndDate}
         />
       </div>
-      <text class="schedule-label">Carrier</text>
-      <div class="textfield-container">
+      <text className="schedule-label">Carrier</text>
+      <div className="textfield-container">
         <select
           id="carrier-selector"
           onChange={(carrier) => setCarrier(carrier)} >
           {
-            CARRIERS.map((opt) => {
-              return (<option value={opt}>{opt}</option>);
+            CARRIERS.map((opt, ind) => {
+              return (<option value={opt} key={ind}>{opt}</option>);
             })
           }
         </select>

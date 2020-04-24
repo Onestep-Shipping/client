@@ -19,7 +19,7 @@ const LoginPage = () => {
 
   return (
     <div className="root-container">
-      <div class="login-page-logo-container" onClick={(e) => history.push('/')}>
+      <div className="login-page-logo-container" onClick={(e) => history.push('/')}>
         <text id="login-page-logo-text">Shippose</text>
       </div>
       <div className="box-controller">

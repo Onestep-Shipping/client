@@ -5,9 +5,9 @@ import ScheduleForm from '../../components/ScheduleForm/ScheduleForm.js';
 
 const Homepage = () => {
   return (
-    <div class="homepage-container">
+    <div className="homepage-container">
       <Header />
-      <div class="body-container">
+      <div className="body-container">
         <text id="schedule-header-text">Find Schedule</text>
         <ScheduleForm />
       </div>

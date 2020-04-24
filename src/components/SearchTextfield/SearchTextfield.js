@@ -4,7 +4,7 @@ import searchIcon from '../../assets/search-icon.png';
 
 const SearchTextfield = () => {
   return (
-    <div class="search-container">
+    <div className="search-container">
       <input type="text" id="search" placeholder="Search" />
       <button id="search-button">
         <img src={searchIcon} alt="Search Icon" id="search-icon" />

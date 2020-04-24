@@ -22,3 +22,11 @@ const Input = (props) => {
 };
 
 export default Input;
+
+Input.propTypes = {
+  name: String,
+  type: String,
+  value: String,
+  displayErrors: Object,
+  onChange: Function
+};

@@ -13,10 +13,10 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [displayErrors, setDisplayErrors] = useState(false);
 
-  const onInputChange = (e, func) => {
+  const onInputChange = useCallback((e, func) => {
     const value = e.currentTarget.value;
     func(value === null ? '' : value);
-  };
+  }, []);
 
   const handleLogin = useCallback(async (e) => {
     e.preventDefault();
@@ -35,8 +35,8 @@ const LoginForm = () => {
       <div className="header">Login</div>
       <form className="box" onSubmit={handleLogin} noValidate>
         {errors.length > 0 &&
-          errors.map((err) => {
-            return <small className="danger-error">{err}</small>;
+          errors.map((err, ind) => {
+            return <small className="danger-error" key={ind}>{err}</small>;
           })
         }
         <Input
