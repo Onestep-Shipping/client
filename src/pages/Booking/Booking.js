@@ -38,51 +38,51 @@ const Booking = () => {
                     <div className="info-row">
                       <div>
                         <text className="info-label">From: </text>
-                        <text className="schedult-info-text-left">{booking.from}</text>
+                        <text className="schedule-info-text-left">{booking.from}</text>
                       </div>
                       <div>
                         <text className="info-label">Date: </text>
-                        <text className="schedult-info-text">{booking.fromDate}</text>
+                        <text className="schedule-info-text">{booking.fromDate}</text>
                       </div>
                     </div>
                     <div className="info-row">
                       <div>
                         <text className="info-label">Transshipments: </text>
-                        <text className="schedult-result-text">{booking.trans}</text>
+                        <text className="schedule-result-text">{booking.trans}</text>
                       </div>
                     </div>
                     <div className="info-row">
                       <text className="info-label">Vessels / Services: </text>
-                      <text className="schedult-result-text">{booking.ves}</text>
+                      <text className="schedule-result-text">{booking.ves}</text>
                     </div>
                     <div className="info-row">
                       <div>
                         <text className="info-label">To: </text>
-                        <text className="schedult-info-text-left">{booking.to}</text>
+                        <text className="schedule-info-text-left">{booking.to}</text>
                       </div>
                       <div>
                         <text className="info-label">Date: </text>
-                        <text className="schedult-info-text">{booking.toDate}</text>
+                        <text className="schedule-info-text">{booking.toDate}</text>
                       </div>
                     </div>
                     <div className="info-row">
                       <div>
                         <text className="info-label">Transit Time: </text>
-                        <text className="schedult-result-text">{booking.time} days</text>
+                        <text className="schedule-result-text">{booking.time} days</text>
                       </div>
                     </div>
                     <h2>Quote</h2>
                     <div className="info-row">
                       <text className="info-label">Ocean Freight (All-in): </text>
-                      <text className="schedult-result-text">${booking.oceanFreight}</text>
+                      <text className="schedule-result-text">${booking.oceanFreight}</text>
                     </div>
                     <div className="info-row">
                       <text className="info-label">Documentation Fee: </text>
-                      <text className="schedult-result-text">${booking.docFee}</text>
+                      <text className="schedule-result-text">${booking.docFee}</text>
                     </div>
                     <div className="info-row">
                       <text className="info-label">Administration Fee: </text>
-                      <text className="schedult-result-text">${booking.adFee}</text>
+                      <text className="schedule-result-text">${booking.adFee}</text>
                     </div>
                   </div>
                 );
@@ -113,9 +113,11 @@ const Booking = () => {
               <div className="info-row">
                 <text className="info-label">Container Type: </text>
                 <select className="booking-form-input">
-                  <option value={CONTAINER_TYPES[0]}>{CONTAINER_TYPES[0]}</option>
-                  <option value={CONTAINER_TYPES[1]}>{CONTAINER_TYPES[1]}</option>
-                  <option value={CONTAINER_TYPES[2]}>{CONTAINER_TYPES[2]}</option>
+                  {CONTAINER_TYPES.map((type, ind) => {
+                    return (
+                      <option value={type} key={ind}>{type}</option>
+                    )
+                  })}
                 </select>
               </div>
               <div className="info-row">
@@ -130,8 +132,11 @@ const Booking = () => {
               <div className="info-row">
                 <text className="info-label">Payment Term: </text>
                 <select className="booking-form-input">
-                  <option value={PAYMENT_TYPES[0]}>{PAYMENT_TYPES[0]}</option>
-                  <option value={PAYMENT_TYPES[1]}>{PAYMENT_TYPES[1]}</option>
+                  {PAYMENT_TYPES.map((type, ind) => {
+                    return (
+                      <option value={type} key={ind}>{type}</option>
+                    )
+                  })}
                 </select>
               </div>
               <button className="result-button">

@@ -1,5 +1,5 @@
 const DATA = [
-  {
+  { 
     from: 'Vancouver, BC | CA',
     fromDate: '04/21/2020',
     trans: 0,
@@ -10,6 +10,9 @@ const DATA = [
     oceanFreight: 1000,
     docFee: 100,
     adFee: 100,
+    bookedDate: '02/15/2020',
+    carrier: 'Hapag-Lloyd',
+    status: 'In Process',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -22,6 +25,9 @@ const DATA = [
     oceanFreight: 2000,
     docFee: 200,
     adFee: 200,
+    bookedDate: '02/15/2020',
+    carrier: 'Hapag-Lloyd',
+    status: 'In Process',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -34,6 +40,9 @@ const DATA = [
     oceanFreight: 3000,
     docFee: 300,
     adFee: 300,
+    bookedDate: '02/15/2020',
+    carrier: 'Hapag-Lloyd',
+    status: 'In Process',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -46,6 +55,9 @@ const DATA = [
     oceanFreight: 4000,
     docFee: 400,
     adFee: 400,
+    bookedDate: '02/15/2020',
+    carrier: 'Hapag-Lloyd',
+    status: 'Received',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -58,6 +70,9 @@ const DATA = [
     oceanFreight: 4000,
     docFee: 400,
     adFee: 400,
+    bookedDate: '02/15/2020',
+    carrier: 'Hapag-Lloyd',
+    status: 'Received',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -70,6 +85,9 @@ const DATA = [
     oceanFreight: 5000,
     docFee: 500,
     adFee: 500,
+    bookedDate: '02/15/2020',
+    carrier: 'Hapag-Lloyd',
+    status: 'Received',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -82,6 +100,9 @@ const DATA = [
     oceanFreight: 5000,
     docFee: 500,
     adFee: 500,
+    bookedDate: '02/15/2020',
+    carrier: 'Hapag-Lloyd',
+    status: 'Received',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -94,6 +115,9 @@ const DATA = [
     oceanFreight: 5000,
     docFee: 500,
     adFee: 500,
+    bookedDate: '02/15/2020',
+    carrier: 'Hapag-Lloyd',
+    status: 'Received',
   },
 ];
 

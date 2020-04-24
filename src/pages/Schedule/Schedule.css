@@ -14,7 +14,7 @@
   padding: 30px 0px;
 }
 
-.schedult-result-header-text {
+.schedule-result-header-text {
   font-size: 18px;
   font-weight: bold;
 }
@@ -38,6 +38,7 @@
   margin-bottom: 10px;
   padding: 10px 0px;
   user-select: none;
+  border-radius: 10px;
 }
 
 .schedule-result-row-selected {
@@ -77,11 +78,11 @@
   border-radius: 10px;
 }
 
-.schedult-result-text {
+.schedule-result-text {
   font-size: 16px;
 }
 
-.schedult-result-text-time {
+.schedule-result-text-time {
   font-size: 15px;
   font-style: italic;
   color: rgb(77, 77, 77);

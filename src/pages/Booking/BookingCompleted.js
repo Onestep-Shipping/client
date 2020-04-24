@@ -28,7 +28,7 @@ const BookingCompleted = () => {
           </button>
           <button
             className="result-button"
-            onClick={() => {}}
+            onClick={() => history.push('/profile')}
           >
             Track Process
           </button>

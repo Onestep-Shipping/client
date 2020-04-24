@@ -20,6 +20,8 @@ const Header = () => {
     console.log(val);
     if (val === "Sign Out") {
       signOut();
+    } else {
+      history.push('/' + val.toLowerCase());
     }
   }, [currentUser, history]);
 
@@ -56,12 +58,12 @@ const Header = () => {
         <Dropdown
           content={loginButton}
           onChange={val => handleLogin(val)}
-          options={["Profile", "Tracking", "Sign Out"]}
+          options={["Profile", "Sign Out"]}
           isLoggedIn={isLoggedIn} />
         <Dropdown
           content={notificationButton}
           onChange={val => handleNotification(val)}
-          options={["Tomato", "Cucumber", "Potato"]}
+          options={["Notification is empty."]}
           isLoggedIn={isLoggedIn} isAlwaysVisible={isLoggedIn} />
       </div>
       <div className="lower-container">

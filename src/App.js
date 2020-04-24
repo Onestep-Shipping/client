@@ -7,6 +7,7 @@ import {
 
 import Homepage from './pages/Homepage/Homepage.js';
 import Schedule from './pages/Schedule/Schedule.js';
+import Profile from './pages/Profile/Profile.js';
 import About from './pages/About/About.js';
 import Services from './pages/Services/Services.js';
 import News from './pages/News/News.js';
@@ -25,11 +26,12 @@ const App = () => {
       <Router>
         <div className="App">
           <Switch>
-            <PrivateRoute
+            <Route
               path="/booking/:id/completed"
               component={BookingCompleted}
             />
             <Route path="/booking/:id" component={Booking} />
+            <Route path="/profile" component={Profile} />
             <Route path="/about" component={About} />
             <Route path="/services" component={Services} />
             <Route path="/schedule" component={Schedule} />

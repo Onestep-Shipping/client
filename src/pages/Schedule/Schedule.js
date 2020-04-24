@@ -35,7 +35,7 @@ const Schedule = () => {
               RESULT_HEADERS.map((header, ind) => {
                 return (
                   <div className="col" key={ind}>
-                    <text className="schedult-result-header-text">{header}</text>
+                    <text className="schedule-result-header-text">{header}</text>
                   </div>
                 );
               })
@@ -50,40 +50,40 @@ const Schedule = () => {
                       (ind === currentBookingIndex ? '-selected' : '')}
                     onClick={() => setCurrentBookingIndex(ind)}>
                     <div className="col">
-                      <text className="schedult-result-text">{ind + 1}</text>
+                      <text className="schedule-result-text">{ind + 1}</text>
                     </div>
                     <div className="col">
-                      <text className="schedult-result-text">{booking.from}</text>
-                      <text className="schedult-result-text-time">{booking.fromDate}</text>
+                      <text className="schedule-result-text">{booking.from}</text>
+                      <text className="schedule-result-text-time">{booking.fromDate}</text>
                     </div>
                     <div className="col">
-                      <text className="schedult-result-text">{booking.trans}</text>
+                      <text className="schedule-result-text">{booking.trans}</text>
                     </div>
                     <div className="col">
-                      <text className="schedult-result-text">{booking.ves}</text>
+                      <text className="schedule-result-text">{booking.ves}</text>
                     </div>
                     <div className="col">
-                      <text className="schedult-result-text">{booking.to}</text>
-                      <text className="schedult-result-text-time">{booking.toDate}</text>
+                      <text className="schedule-result-text">{booking.to}</text>
+                      <text className="schedule-result-text-time">{booking.toDate}</text>
                     </div>
                     <div className="col">
-                      <text className="schedult-result-text">{booking.time}</text>
+                      <text className="schedule-result-text">{booking.time}</text>
                     </div>
                   </div>
                   {(ind === currentBookingIndex && currentUser) &&
                     (<div className="quote-dropdown">
                       <div className="schedule-result-header-row">
                         <div className="col2">
-                          <text className="schedult-result-header-text">{QUOTE_HEADERS[0]}</text>
-                          <text className="schedult-result-text">${booking.oceanFreight}</text>
+                          <text className="schedule-result-header-text">{QUOTE_HEADERS[0]}</text>
+                          <text className="schedule-result-text">${booking.oceanFreight}</text>
                         </div>
                         <div className="col2">
-                          <text className="schedult-result-header-text">{QUOTE_HEADERS[1]}</text>
-                          <text className="schedult-result-text">${booking.docFee}</text>
+                          <text className="schedule-result-header-text">{QUOTE_HEADERS[1]}</text>
+                          <text className="schedule-result-text">${booking.docFee}</text>
                         </div>
                         <div className="col2">
-                          <text className="schedult-result-header-text">{QUOTE_HEADERS[2]}</text>
-                          <text className="schedult-result-text">${booking.adFee}</text>
+                          <text className="schedule-result-header-text">{QUOTE_HEADERS[2]}</text>
+                          <text className="schedule-result-text">${booking.adFee}</text>
                         </div>
                       </div>
                       <button
