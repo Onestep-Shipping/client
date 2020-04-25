@@ -98,9 +98,12 @@ const Schedule = () => {
             })
           }
           {!currentUser &&
-            <a href="/auth" className="warning-text">
-              You must log in to proceed.
-            </a>
+            <button
+              className="result-button"
+              onClick={() => history.push('/auth')}
+            >
+              Login to Proceed
+            </button>
           }
         </div>
       </div>
