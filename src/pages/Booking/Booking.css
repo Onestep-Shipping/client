@@ -1,4 +1,5 @@
 .booking-container {
+  width: 65%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,15 +9,6 @@
 .h1-container {
   width: 100%;
   border-bottom: solid 2px black;
-}
-
-.booking-details-container {
-  padding: 10px 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  margin-right: 100px;
 }
 
 .booking-form-container {
@@ -99,6 +91,9 @@ input[type=number]::-webkit-inner-spin-button {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
 }
 
 .instruction-result-row {
@@ -145,15 +140,4 @@ input[type=number]::-webkit-inner-spin-button {
 
 .add-button:hover {
   background-color: #00923d;
-}
-
-.booking-details-container2 {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  margin-bottom: 50px;
-  border: black solid 2px;
-  border-radius: 10px;
-  padding: 30px 20px 20px 20px;
 }

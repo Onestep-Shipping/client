@@ -14,7 +14,6 @@ import News from './pages/News/News.js';
 import Contact from './pages/Contact/Contact.js';
 import Auth from './pages/Auth/Auth.js';
 import Booking from './pages/Booking/Booking.js';
-import BOLInstruction from './pages/Booking/BOLInstruction.js';
 import Success from './pages/Success/Success.js';
 import {AuthProvider} from './firebase/Auth.js';
 import PrivateRoute from './firebase/PrivateRoute.js';
@@ -28,8 +27,12 @@ const App = () => {
         <div className="App">
           <Switch>
             <Route path="/success/:type" component={Success} />
-            <Route path="/booking/:id" component={Booking} />
-            <Route path="/billing-instruction/:id" component={BOLInstruction} />
+            <Route path="/booking/:id">
+              <Booking formType='booking'/>
+            </Route>
+            <Route path="/billing-instruction/:id"> 
+              <Booking formType='bol'/>
+            </Route>
             <Route path="/profile" component={Profile} />
             <Route path="/about" component={About} />
             <Route path="/services" component={Services} />

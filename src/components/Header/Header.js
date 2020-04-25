@@ -18,15 +18,6 @@ const Header = () => {
   const {currentUser} = useContext(AuthContext);
   const isLoggedIn = currentUser ? true : false;
 
-  const handleLogin = useCallback((val) => {
-    console.log(val);
-    if (val === "Sign Out") {
-      signOut();
-    } else {
-      history.push('/profile');
-    }
-  }, [currentUser, history]);
-
   const handleNotification = useCallback((val) => {
     console.log(val);
   }, []);
@@ -35,6 +26,15 @@ const Header = () => {
     app.auth().signOut();
     window.location.reload();
   }, []);
+  
+  const handleLogin = useCallback((val) => {
+    console.log(val);
+    if (val === "Sign Out") {
+      signOut();
+    } else {
+      history.push('/profile');
+    }
+  }, [history, signOut]);
 
   const loginButton = (
     <div className="button-content">
