@@ -47,16 +47,6 @@ const Booking = () => {
                     </div>
                     <div className="info-row">
                       <div>
-                        <text className="info-label">Transshipments: </text>
-                        <text className="schedule-result-text">{booking.trans}</text>
-                      </div>
-                    </div>
-                    <div className="info-row">
-                      <text className="info-label">Vessels / Services: </text>
-                      <text className="schedule-result-text">{booking.ves}</text>
-                    </div>
-                    <div className="info-row">
-                      <div>
                         <text className="info-label">To: </text>
                         <text className="schedule-info-text-left">{booking.to}</text>
                       </div>
@@ -64,6 +54,16 @@ const Booking = () => {
                         <text className="info-label">Date: </text>
                         <text className="schedule-info-text">{booking.toDate}</text>
                       </div>
+                    </div>
+                    <div className="info-row">
+                      <div>
+                        <text className="info-label">Transshipments: </text>
+                        <text className="schedule-result-text">{booking.trans}</text>
+                      </div>
+                    </div>
+                    <div className="info-row">
+                      <text className="info-label">Vessels / Services: </text>
+                      <text className="schedule-result-text">{booking.ves}</text>
                     </div>
                     <div className="info-row">
                       <div>
@@ -91,7 +91,6 @@ const Booking = () => {
               }
             })}
             <form className="booking-form-container" onSubmit={handleBook} noValidate>
-              <h2>Booking Details</h2>
               <div className="info-row">
                 <text className="info-label">Commodity: </text>
                 <input
@@ -102,10 +101,10 @@ const Booking = () => {
                   required/>
               </div>
               <div className="info-row">
-                <text className="info-label">SH Code: </text>
+                <text className="info-label">HS Code: </text>
                 <input
                   type="number"
-                  name="sh-code"
+                  name="hs-code"
                   className="booking-form-input"
                   placeholder="i.e. 420010"
                   required/>

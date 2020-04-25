@@ -10,6 +10,8 @@ import userIcon from '../../assets/user-icon.svg';
 import arrowDownIcon from '../../assets/arrow-down.svg';
 import notiIcon from '../../assets/noti-icon.svg';
 
+const NOTIFICATIONS = [];
+
 const Header = () => {
   const history = useHistory();
 
@@ -21,7 +23,7 @@ const Header = () => {
     if (val === "Sign Out") {
       signOut();
     } else {
-      history.push('/' + val.toLowerCase());
+      history.push('/profile');
     }
   }, [currentUser, history]);
 
@@ -49,6 +51,7 @@ const Header = () => {
   const notificationButton = (
     <div className="button-content">
       <img className="svg-noti" src={notiIcon} alt="Nofification Icon" />
+      {NOTIFICATIONS.length > 0 && <div className="red-dot" />}
     </div>
   );
 
@@ -58,12 +61,12 @@ const Header = () => {
         <Dropdown
           content={loginButton}
           onChange={val => handleLogin(val)}
-          options={["Profile", "Sign Out"]}
+          options={["My Booking", "Sign Out"]}
           isLoggedIn={isLoggedIn} />
         <Dropdown
           content={notificationButton}
           onChange={val => handleNotification(val)}
-          options={["Notification is empty."]}
+          options={NOTIFICATIONS.length > 0 ? NOTIFICATIONS : ["Notification is empty."]}
           isLoggedIn={isLoggedIn} isAlwaysVisible={isLoggedIn} />
       </div>
       <div className="lower-container">

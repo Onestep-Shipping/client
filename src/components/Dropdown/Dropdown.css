@@ -6,25 +6,20 @@
 }
 
 .user-button {
-  background-color: white;
+  background-color: transparent;
   padding: 0px 10px;
-  color: #BF037A;
+  color: white;
   font-size: 16px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 2px;
   border: none;
   outline: none;
-  margin-bottom: 43px;
+  margin-bottom: 20px;
   cursor: pointer;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
   margin-left: 10px;
-}
-
-.user-button:hover {
-  background-color: #e0e0e0;
+  margin-top: 5px;
 }
 
 .dropdown-menu {
@@ -38,6 +33,7 @@
 
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  margin-top: 5px;
 }
 
 .dropdown-menu-item {
