@@ -9,8 +9,6 @@ const Success = () => {
   const history = useHistory();
   const { type } = useParams();
 
-  console.log(type);
-
   let message = "";
   let waitingFor = "";
 

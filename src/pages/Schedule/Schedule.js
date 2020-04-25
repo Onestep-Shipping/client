@@ -3,9 +3,11 @@ import './Schedule.css';
 
 import DATA from '../../data/ScheduleDetailsData.js';
 import Header from '../../components/Header/Header.js';
-import ScheduleFormMin from '../../components/ScheduleForm/ScheduleFormMin.js';
+import ScheduleForm from '../../components/ScheduleForm/ScheduleForm.js';
 import {AuthContext} from '../../firebase/Auth.js';
 import {useHistory} from 'react-router-dom';
+import styles from '../../components/ScheduleForm/ScheduleFormMin.module.css';
+
 
 const Schedule = () => {
   const history = useHistory();
@@ -28,7 +30,7 @@ const Schedule = () => {
     <div className="homepage-container">
       <Header />
       <div className="schedule-body-container">
-        <ScheduleFormMin />
+        <ScheduleForm styles={styles}/>
         <div className="schedule-result-container">
           <div className="schedule-result-header-row">
             {

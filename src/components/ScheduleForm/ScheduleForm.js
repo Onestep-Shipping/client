@@ -1,71 +1,72 @@
 import React, {useState, useCallback} from 'react';
+import './ScheduleForm.css';
 import {useHistory} from 'react-router-dom';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import {
   FROM_LOCATIONS, TO_LOCATIONS, CARRIERS,
 } from '../../data/ScheduleFormData.js';
-
-import './ScheduleForm.css';
 import 'react-datepicker/dist/react-datepicker.css';
+import PropTypes from 'prop-types';
 
-const ScheduleForm = () => {
+const ScheduleForm = (props) => {
+  const { styles } = props;
   const history = useHistory();
   const today = new Date();
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(today);
 
-  const [fromLocation, setFromLocation] = useState('');
-  const [toLocation, setToLocation] = useState('');
-  const [carrier, setCarrier] = useState(CARRIERS[0]);
-
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
-    if (fromLocation !== '' && toLocation !== '') {
-      history.push('/schedule');
-    }
-  }, [history, fromLocation, toLocation]);
+    history.push('/schedule');
+  }, [history]);
 
   return (
-    <form className="schedule-form-cotainer" onSubmit={handleSubmit}>
-      <text className="schedule-label">From</text>
-      <div className="textfield-container">
-        <Select
-          options={FROM_LOCATIONS} placeholder="Location"
-          onChange={(opt) => setFromLocation(opt.label)} clearable/>
-        <DatePicker
-          id="from-date"
-          selected={startDate}
-          onChange={setStartDate}
-          placeholderText="Select a day"
-        />
+    <form className={styles.formContainer} onSubmit={handleSubmit}>
+      <div className={styles.infoContainer}>
+        <text className={styles.scheduleLabel}>From</text>
+        <div className={styles.textfieldContainer}>
+          <Select
+            options={FROM_LOCATIONS} placeholder="Location" clearable/>
+          <DatePicker
+            className={styles.fromDate}
+            selected={startDate}
+            onChange={setStartDate}
+            placeholderText="Select a day"
+          />
+        </div>
       </div>
-      <text className="schedule-label">To</text>
-      <div className="textfield-container">
-        <Select options={TO_LOCATIONS} placeholder="Location"
-          onChange={(opt) => setToLocation(opt.label)} clearable/>
-        <DatePicker
-          id="to-date"
-          selected={endDate}
-          minDate={startDate}
-          onChange={setEndDate}
-        />
+      <div className={styles.infoContainer}>
+        <text className={styles.scheduleLabel}>To</text>
+        <div className={styles.textfieldContainer}>
+          <Select options={TO_LOCATIONS} placeholder="Location" clearable/>
+          <DatePicker
+            className={styles.toDate}
+            selected={endDate}
+            minDate={startDate}
+            onChange={setEndDate}
+          />
+        </div>
       </div>
-      <text className="schedule-label">Carrier</text>
-      <div className="textfield-container">
-        <select
-          id="carrier-selector"
-          onChange={(carrier) => setCarrier(carrier)} >
-          {
-            CARRIERS.map((opt, ind) => {
-              return (<option value={opt} key={ind}>{opt}</option>);
-            })
-          }
-        </select>
+      <div className={styles.infoContainer}>
+        <text className={styles.scheduleLabel}>Carrier</text>
+        <div className={styles.textfieldContainer}>
+          <select className={styles.carrierSelector}>
+            {
+              CARRIERS.map((opt, ind) => {
+                return (<option value={opt} key={ind}>{opt}</option>);
+              })
+            }
+          </select>
+        </div>
       </div>
-      <button id="find-button" type="submit">Find</button>
+      <button className={styles.findButton} type="submit">Find</button>
     </form>
   );
 };
 
 export default ScheduleForm;
+
+ScheduleForm.propTypes = {
+  styles: PropTypes.object,
+};

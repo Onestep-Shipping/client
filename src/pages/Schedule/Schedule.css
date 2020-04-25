@@ -69,7 +69,11 @@
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   padding: 20px;
-  transition: all 0.3s ease-in;
+
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: opaci 0.3s ease-in;
   user-select: none;
 }
 
