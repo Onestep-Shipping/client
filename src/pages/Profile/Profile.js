@@ -68,7 +68,7 @@ const Profile = () => {
                       <text className="schedule-result-text-time">{booking.toDate}</text>
                     </div>
                     <div className="col">
-                      <text className="schedule-result-text">{booking.ves}</text>
+                      <text className="schedule-result-text">{booking.ves.substring(0, booking.ves.indexOf('/'))}</text>
                     </div>
                     <div className="col" onClick={() => handleBook(booking.bookingStatus, ind)}>
                       <text 

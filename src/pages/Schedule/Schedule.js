@@ -34,7 +34,7 @@ const Schedule = () => {
             {
               RESULT_HEADERS.map((header, ind) => {
                 return (
-                  <div className="col" key={ind}>
+                  <div className={"col" + (ind === 0 ? "-numb" : "")} key={ind}>
                     <text className="schedule-result-header-text">{header}</text>
                   </div>
                 );
@@ -49,7 +49,7 @@ const Schedule = () => {
                     className={'schedule-result-row' +
                       (ind === currentBookingIndex ? '-selected' : '')}
                     onClick={() => setCurrentBookingIndex(ind)}>
-                    <div className="col">
+                    <div className="col-numb">
                       <text className="schedule-result-text">{ind + 1}</text>
                     </div>
                     <div className="col">
