@@ -30,7 +30,7 @@ const App = () => {
             <Route path="/booking/:id">
               <Booking formType='booking'/>
             </Route>
-            <Route path="/billing-instruction/:id"> 
+            <Route path="/bill-of-lading/:id"> 
               <Booking formType='bol'/>
             </Route>
             <Route path="/profile" component={Profile} />

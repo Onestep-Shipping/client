@@ -9,14 +9,14 @@ const Success = () => {
   const history = useHistory();
   const { type } = useParams();
 
-  let message = "";
+  let message = "Successfully ";
   let waitingFor = "";
 
   if (type.startsWith("booking")) {
-    message = "Successfully booked!";
+    message += "booked!";
     waitingFor = "booking confirmation";
   } else if (type.startsWith("bol")) {
-    message = "Information successfully sent!";
+    message += "sent!";
     waitingFor = "BOL confirmation";
   }
 

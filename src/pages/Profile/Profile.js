@@ -21,7 +21,7 @@ const Profile = () => {
 
   const handleBook = (status, id) => {
     if (status === "Received") {
-      history.push('/billing-instruction/' + id);
+      history.push('/bill-of-lading/' + id);
     }
   }
 
