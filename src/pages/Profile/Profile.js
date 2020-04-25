@@ -10,9 +10,9 @@ const Profile = () => {
   const PROFILE_HEADERS = ['Date Booked', 'From', 'To', 'Vessel', 'Booking Status', 'BOL Status'];
 
   const chooseBackgrounColorFromStatus = (booking, bol) => {
-    if (booking === "In Process" && bol === "In Process") {
+    if (booking === "In Process" && bol === "Not Ready") {
       return "#e6e6e6"; // gray
-    } else if (booking === "Received" && bol === "Received") {
+    } else if (booking === "Completed" && bol === "Completed") {
       return "#a0eec1"; // green
     } else {
       return "#f2e89d"; // yellow
@@ -71,14 +71,18 @@ const Profile = () => {
                       <text className="schedule-result-text">{booking.ves.substring(0, booking.ves.indexOf('/'))}</text>
                     </div>
                     <div className="col" onClick={() => handleBook(booking.bookingStatus, ind)}>
-                      <text 
-                        className={"schedule-result-text" + (booking.bookingStatus === "Received" ? "-link" : "")}>
+                      <text
+                        id={booking.bookingStatus === "Received" ? "red-link" : ""}
+                        className={"schedule-result-text" + 
+                          (booking.bookingStatus === "Completed" ? "-link" : "")}>
                           {booking.bookingStatus}
                       </text>
                     </div>
                     <div className="col" onClick={() => handleBol(booking.bolStatus, ind)}>
                       <text 
-                        className={"schedule-result-text" + (booking.bolStatus === "Received" ? "-link" : "")}>
+                        id={booking.bolStatus === "Received" ? "red-link" : ""}
+                        className={"schedule-result-text" + 
+                          (booking.bolStatus === "Completed" ? "-link" : "")}>
                           {booking.bolStatus}
                       </text>
                     </div>
