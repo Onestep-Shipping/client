@@ -11,8 +11,8 @@ const DATA = [
     docFee: 100,
     adFee: 100,
     bookedDate: '02/15/2020',
-    carrier: 'Hapag-Lloyd',
-    status: 'In Process',
+    bookingStatus: 'In Process',
+    bolStatus: 'In Process',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -26,8 +26,8 @@ const DATA = [
     docFee: 200,
     adFee: 200,
     bookedDate: '02/15/2020',
-    carrier: 'Hapag-Lloyd',
-    status: 'In Process',
+    bookingStatus: 'In Process',
+    bolStatus: 'In Process',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -41,8 +41,8 @@ const DATA = [
     docFee: 300,
     adFee: 300,
     bookedDate: '02/15/2020',
-    carrier: 'Hapag-Lloyd',
-    status: 'In Process',
+    bookingStatus: 'In Process',
+    bolStatus: 'In Process',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -56,8 +56,8 @@ const DATA = [
     docFee: 400,
     adFee: 400,
     bookedDate: '02/15/2020',
-    carrier: 'Hapag-Lloyd',
-    status: 'Received',
+    bookingStatus: 'Received',
+    bolStatus: 'In Process',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -71,8 +71,8 @@ const DATA = [
     docFee: 400,
     adFee: 400,
     bookedDate: '02/15/2020',
-    carrier: 'Hapag-Lloyd',
-    status: 'Received',
+    bookingStatus: 'Received',
+    bolStatus: 'In Process',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -86,8 +86,8 @@ const DATA = [
     docFee: 500,
     adFee: 500,
     bookedDate: '02/15/2020',
-    carrier: 'Hapag-Lloyd',
-    status: 'Received',
+    bookingStatus: 'Received',
+    bolStatus: 'Received',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -101,8 +101,8 @@ const DATA = [
     docFee: 500,
     adFee: 500,
     bookedDate: '02/15/2020',
-    carrier: 'Hapag-Lloyd',
-    status: 'Received',
+    bookingStatus: 'Received',
+    bolStatus: 'Received',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -116,8 +116,8 @@ const DATA = [
     docFee: 500,
     adFee: 500,
     bookedDate: '02/15/2020',
-    carrier: 'Hapag-Lloyd',
-    status: 'Received',
+    bookingStatus: 'Received',
+    bolStatus: 'Received',
   },
 ];
 

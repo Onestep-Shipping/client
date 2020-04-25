@@ -19,7 +19,7 @@ const Booking = () => {
     // const containerType = e.target[2].value;
     // const quantity = e.target[3].value;
     // const payment = e.target[4].value;
-    history.push(id + '/completed');
+    history.push('/success/booking-' + id);
   }, [history, id]);
 
   return (

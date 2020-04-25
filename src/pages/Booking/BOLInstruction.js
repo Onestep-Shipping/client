@@ -23,7 +23,7 @@ const BOLInstruction = () => {
     // const description = e.target[4].value;
     // const hsCode = e.target[5].value;
     // const caedNo = e.target[6].value;
-    // history.push(id + '/completed');
+    history.push('/success/bol-' + id);
   }, [history, id]);
 
   const addContainer = () => {

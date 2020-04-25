@@ -15,7 +15,7 @@ import Contact from './pages/Contact/Contact.js';
 import Auth from './pages/Auth/Auth.js';
 import Booking from './pages/Booking/Booking.js';
 import BOLInstruction from './pages/Booking/BOLInstruction.js';
-import BookingCompleted from './pages/Booking/BookingCompleted.js';
+import Success from './pages/Success/Success.js';
 import {AuthProvider} from './firebase/Auth.js';
 import PrivateRoute from './firebase/PrivateRoute.js';
 
@@ -27,10 +27,7 @@ const App = () => {
       <Router>
         <div className="App">
           <Switch>
-            <Route
-              path="/booking/:id/completed"
-              component={BookingCompleted}
-            />
+            <Route path="/success/:type" component={Success} />
             <Route path="/booking/:id" component={Booking} />
             <Route path="/billing-instruction/:id" component={BOLInstruction} />
             <Route path="/profile" component={Profile} />

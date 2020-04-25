@@ -7,19 +7,27 @@ import DATA from '../../data/ScheduleDetailsData.js';
 
 const Profile = () => {
   const history = useHistory();
-  const PROFILE_HEADERS = ['Date Booked', 'From', 'To', 'Vessel', 'Booking Status'];
+  const PROFILE_HEADERS = ['Date Booked', 'From', 'To', 'Vessel', 'Booking Status', 'BOL Status'];
 
-  const chooseBackgrounColorFromStatus = (status) => {
-    if (status === "In Process") {
-      return "#f2e89d"; // yellow
-    } else {
+  const chooseBackgrounColorFromStatus = (booking, bol) => {
+    if (booking === "In Process" && bol === "In Process") {
+      return "#e6e6e6"; // gray
+    } else if (booking === "Received" && bol === "Received") {
       return "#a0eec1"; // green
+    } else {
+      return "#f2e89d"; // yellow
     }
   };
 
-  const handleClick = (status, id) => {
+  const handleBook = (status, id) => {
     if (status === "Received") {
       history.push('/billing-instruction/' + id);
+    }
+  }
+
+  const handleBol = (status, id) => {
+    if (status === "Received") {
+      console.log(id);
     }
   }
 
@@ -45,7 +53,9 @@ const Profile = () => {
                 <div className="schedule-result-row-container" key={ind}>
                   <div 
                     className='schedule-result-row' 
-                    style={{backgroundColor: chooseBackgrounColorFromStatus(booking.status)}} >
+                    style={{
+                      backgroundColor: chooseBackgrounColorFromStatus(booking.bookingStatus, booking.bolStatus)
+                    }} >
                     <div className="col">
                       <text className="schedule-result-text">{booking.bookedDate}</text>
                     </div>
@@ -60,10 +70,16 @@ const Profile = () => {
                     <div className="col">
                       <text className="schedule-result-text">{booking.ves}</text>
                     </div>
-                    <div className="col" onClick={() => handleClick(booking.status, ind)}>
+                    <div className="col" onClick={() => handleBook(booking.bookingStatus, ind)}>
                       <text 
-                        className={"schedule-result-text" + (booking.status === "Received" ? "-link" : "")}>
-                          {booking.status}
+                        className={"schedule-result-text" + (booking.bookingStatus === "Received" ? "-link" : "")}>
+                          {booking.bookingStatus}
+                      </text>
+                    </div>
+                    <div className="col" onClick={() => handleBol(booking.bolStatus, ind)}>
+                      <text 
+                        className={"schedule-result-text" + (booking.bolStatus === "Received" ? "-link" : "")}>
+                          {booking.bolStatus}
                       </text>
                     </div>
                   </div>

@@ -1,22 +1,36 @@
 import React from 'react';
-import './BookingCompleted.css';
+import './Success.css';
 import completedIcon from '../../assets/success-icon.gif';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 
 import Header from '../../components/Header/Header.js';
 
-const BookingCompleted = () => {
+const Success = () => {
   const history = useHistory();
+  const { type } = useParams();
+
+  console.log(type);
+
+  let message = "";
+  let waitingFor = "";
+
+  if (type.startsWith("booking")) {
+    message = "Successfully booked!";
+    waitingFor = "booking confirmation";
+  } else if (type.startsWith("bol")) {
+    message = "Information successfully sent!";
+    waitingFor = "BOL confirmation";
+  }
 
   return (
     <div className="homepage-container">
       <Header />
       <div className="body-container2">
         <img className="gif" src={completedIcon} alt="Success!" />
-        <text className="success-text">Successfully booked!</text>
+        <text className="success-text">{message}</text>
         <text className="success-text-small">
           We will get back to you as soon as
-          possible with booking confirmation ☺
+          possible with {waitingFor} ☺
         </text>
         <div>
           <button
@@ -38,4 +52,4 @@ const BookingCompleted = () => {
   );
 };
 
-export default BookingCompleted;
+export default Success;

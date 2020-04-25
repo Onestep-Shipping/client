@@ -101,6 +101,13 @@
   align-items: center;
 }
 
+.col3 {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .result-button {
   padding: 10px 15px;
   background-color: #BF037A;

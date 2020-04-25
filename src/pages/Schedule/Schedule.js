@@ -73,15 +73,15 @@ const Schedule = () => {
                   {(ind === currentBookingIndex && currentUser) &&
                     (<div className="quote-dropdown">
                       <div className="schedule-result-header-row">
-                        <div className="col2">
+                        <div className="col3">
                           <text className="schedule-result-header-text">{QUOTE_HEADERS[0]}</text>
                           <text className="schedule-result-text">${booking.oceanFreight}</text>
                         </div>
-                        <div className="col2">
+                        <div className="col3">
                           <text className="schedule-result-header-text">{QUOTE_HEADERS[1]}</text>
                           <text className="schedule-result-text">${booking.docFee}</text>
                         </div>
-                        <div className="col2">
+                        <div className="col3">
                           <text className="schedule-result-header-text">{QUOTE_HEADERS[2]}</text>
                           <text className="schedule-result-text">${booking.adFee}</text>
                         </div>
