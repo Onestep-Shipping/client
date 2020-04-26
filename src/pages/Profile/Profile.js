@@ -7,7 +7,7 @@ import DATA from '../../data/ScheduleDetailsData.js';
 
 const Profile = () => {
   const history = useHistory();
-  const PROFILE_HEADERS = ['Date Booked', 'From', 'To', 'Vessel', 'Booking Status', 'BOL Status'];
+  const PROFILE_HEADERS = ['#', 'Date Booked', 'From', 'To', 'Vessel', 'Booking Status', 'BOL Status'];
 
   const chooseBackgrounColorFromStatus = (booking, bol) => {
     if (booking === "In Process" && bol === "Not Ready") {
@@ -40,7 +40,7 @@ const Profile = () => {
             {
               PROFILE_HEADERS.map((header, ind) => {
                 return (
-                  <div className="col" key={ind}>
+                  <div className={"col" + (ind === 0 ? "2" : "3")} key={ind}>
                     <text className="schedule-result-header-text">{header}</text>
                   </div>
                 );
@@ -50,27 +50,30 @@ const Profile = () => {
           {
             DATA.map((booking, ind) => {
               return (
-                <div className="schedule-result-row-container" key={ind}>
+                <div key={ind}>
                   <div 
-                    className='schedule-result-row' 
+                    className='booking-profile-row' 
                     style={{
                       backgroundColor: chooseBackgrounColorFromStatus(booking.bookingStatus, booking.bolStatus)
                     }} >
-                    <div className="col">
+                    <div className="col2">
+                      <text className="schedule-result-text">{ind + 1}</text>
+                    </div>
+                    <div className="col3">
                       <text className="schedule-result-text">{booking.bookedDate}</text>
                     </div>
-                    <div className="col">
+                    <div className="col3">
                       <text className="schedule-result-text">{booking.from}</text>
                       <text className="schedule-result-text-time">{booking.fromDate}</text>
                     </div>
-                    <div className="col">
+                    <div className="col3">
                       <text className="schedule-result-text">{booking.to}</text>
                       <text className="schedule-result-text-time">{booking.toDate}</text>
                     </div>
-                    <div className="col">
+                    <div className="col3">
                       <text className="schedule-result-text">{booking.ves.substring(0, booking.ves.indexOf('/'))}</text>
                     </div>
-                    <div className="col" onClick={() => handleBook(booking.bookingStatus, ind)}>
+                    <div className="col3" onClick={() => handleBook(booking.bookingStatus, ind)}>
                       <text
                         id={booking.bookingStatus === "Received" ? "red-link" : ""}
                         className={"schedule-result-text" + 
@@ -78,7 +81,7 @@ const Profile = () => {
                           {booking.bookingStatus}
                       </text>
                     </div>
-                    <div className="col" onClick={() => handleBol(booking.bolStatus, ind)}>
+                    <div className="col3" onClick={() => handleBol(booking.bolStatus, ind)}>
                       <text 
                         id={booking.bolStatus === "Received" ? "red-link" : ""}
                         className={"schedule-result-text" + 
