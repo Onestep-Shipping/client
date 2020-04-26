@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import './ScheduleForm.css';
 import {useHistory} from 'react-router-dom';
 import Select from 'react-select';
@@ -9,17 +9,31 @@ import {
 import 'react-datepicker/dist/react-datepicker.css';
 import PropTypes from 'prop-types';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { 
+  setFromLocation, 
+  setFromDate, 
+  setToLocation, 
+  setToDate, 
+  setCarrier 
+} from '../../actions/ScheduleActions.js';
+
 const ScheduleForm = (props) => {
-  const { styles } = props;
+  const { styles, schedule } = props;
   const history = useHistory();
-  const today = new Date();
-  const [startDate, setStartDate] = useState(today);
-  const [endDate, setEndDate] = useState(today);
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
     history.push('/schedule');
   }, [history]);
+
+  const handleFromDateSelect = (fromDate) => {
+    props.setFromDate(fromDate);
+    if (fromDate > schedule.toDate) {
+      props.setToDate(fromDate);
+    }
+  }
 
   return (
     <form className={styles.formContainer} onSubmit={handleSubmit}>
@@ -27,11 +41,15 @@ const ScheduleForm = (props) => {
         <text className={styles.scheduleLabel}>From</text>
         <div className={styles.textfieldContainer}>
           <Select
-            options={FROM_LOCATIONS} placeholder="Location" clearable/>
+            options={FROM_LOCATIONS} 
+            placeholder="Location" 
+            value={schedule.fromLocation}
+            onChange={props.setFromLocation}
+            clearable/>
           <DatePicker
             className={styles.fromDate}
-            selected={startDate}
-            onChange={setStartDate}
+            selected={schedule.fromDate}
+            onSelect={handleFromDateSelect}
             placeholderText="Select a day"
           />
         </div>
@@ -39,19 +57,27 @@ const ScheduleForm = (props) => {
       <div className={styles.infoContainer}>
         <text className={styles.scheduleLabel}>To</text>
         <div className={styles.textfieldContainer}>
-          <Select options={TO_LOCATIONS} placeholder="Location" clearable/>
+          <Select 
+            options={TO_LOCATIONS} 
+            placeholder="Location" 
+            onChange={props.setToLocation}
+            value={schedule.toLocation}
+            clearable/>
           <DatePicker
             className={styles.toDate}
-            selected={endDate}
-            minDate={startDate}
-            onChange={setEndDate}
+            selected={schedule.toDate}
+            minDate={schedule.fromDate}
+            onSelect={props.setToDate}
           />
         </div>
       </div>
       <div className={styles.infoContainer}>
         <text className={styles.scheduleLabel}>Carrier</text>
         <div className={styles.textfieldContainer}>
-          <select className={styles.carrierSelector}>
+          <select 
+            value={schedule.carrier}
+            className={styles.carrierSelector} 
+            onChange={(e) => props.setCarrier(e.target.value)}>
             {
               CARRIERS.map((opt, ind) => {
                 return (<option value={opt} key={ind}>{opt}</option>);
@@ -60,13 +86,34 @@ const ScheduleForm = (props) => {
           </select>
         </div>
       </div>
-      <button className={styles.findButton} type="submit">Find</button>
+      <button className={styles.findButton}>Find</button>
     </form>
   );
 };
 
-export default ScheduleForm;
+const mapStateToProps = (state) => {
+  const schedule = state;
+  return schedule;
+};
+
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    setFromLocation, 
+    setFromDate, 
+    setToLocation, 
+    setToDate, 
+    setCarrier
+  }, dispatch)
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ScheduleForm);
 
 ScheduleForm.propTypes = {
   styles: PropTypes.object,
+  schedule: PropTypes.object,
+  setFromLocation: PropTypes.func,
+  setFromDate: PropTypes.func,
+  setToLocation: PropTypes.func,
+  setToDate: PropTypes.func,
+  setCarrier: PropTypes.func,
 };
