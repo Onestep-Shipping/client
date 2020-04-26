@@ -43,7 +43,7 @@ const RegisterForm = () => {
             return <small className="danger-error" key={ind}>{err}</small>;
           })
         }
-        <div className="info-container">
+        <div className="all-texfield-register-container">
           <div className="company-info-container">
             <Input name="Company Name" type="text" displayErrors={displayErrors} />
             <Input name="Address" type="address" displayErrors={displayErrors} />

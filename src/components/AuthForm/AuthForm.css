@@ -15,7 +15,7 @@
   /* margin-right: 35px; */
   font-family: Ozxgen, sans-serif;
   font-size: 22px;
-  border-bottom: 2px solid #224DAA;
+  border-bottom: 2px solid #14B9D7;
 }
 
 .box {
@@ -39,7 +39,7 @@
   font-family: Oxygen, sans-serif;
   background-color: rgba(15, 15, 15, 0.03);
   margin-top: 20px;
-  border: 2px solid #224DAA;
+  border: 2px solid #14B9D7;
   transition: background-color 0.3s ease-out;
   cursor: pointer;
   outline:none;
@@ -47,7 +47,7 @@
 }
 
 .login-btn:hover {
-  background-color: #224DAA;
+  background-color: #14B9D7;
   color: white;
 }
 
@@ -68,4 +68,13 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.all-texfield-register-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 10px;
 }
