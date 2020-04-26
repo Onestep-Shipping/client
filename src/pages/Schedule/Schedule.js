@@ -89,13 +89,7 @@ const Schedule = () => {
         <div className="schedule-result-container">
           <FixedSizeList headers={RESULT_HEADERS} data={DATA} row={row}/>
           {!currentUser &&
-            <button
-              id="login-to-proceed-button"
-              className="result-button"
-              onClick={() => history.push('/auth')}
-            >
-              Login to Proceed
-            </button>
+            <h1>Please login to proceed.</h1>
           }
         </div>
       </div>

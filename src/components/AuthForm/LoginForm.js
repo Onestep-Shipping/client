@@ -2,11 +2,11 @@ import React, {useState, useCallback} from 'react';
 import './AuthForm.css';
 
 import Input from '../Input/Input';
-import {useHistory} from 'react-router-dom';
 import app from '../../firebase/base.js';
+import PropTypes from 'prop-types';
 
-const LoginForm = () => {
-  const history = useHistory();
+const LoginForm = (props) => {
+  const { closeModal } = props;
 
   const [errors, setErrors] = useState([]);
   const [displayErrors, setDisplayErrors] = useState(false);
@@ -15,15 +15,17 @@ const LoginForm = () => {
     e.preventDefault();
     const email = e.target[0].value;
     const password = e.target[1].value;
-    try {
-      await app
-          .auth()
-          .signInWithEmailAndPassword(email, password);
-      history.goBack();
-    } catch (error) {
-      alert(error);
+    if (email.length > 0 && password.length > 0) {
+      try {
+        await app
+            .auth()
+            .signInWithEmailAndPassword(email, password);
+        closeModal();
+      } catch (error) {
+        alert(error);
+      }
     }
-  }, [history]);
+  }, []);
 
   return (
     <div className="inner-container">
@@ -49,3 +51,7 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
+LoginForm.propTypes = {
+  closeModal: PropTypes.func,
+};

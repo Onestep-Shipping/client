@@ -1,14 +1,22 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import './Dropdown.css';
 import PropTypes from 'prop-types';
-import {useHistory} from 'react-router-dom';
+import AuthModal from '../AuthModal/AuthModal.js';
 
 const Dropdown = (props) => {
   const node = useRef();
-  const history = useHistory();
   const [open, setOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  const {content, options, onChange, isLoggedIn = false, isAlwaysVisible = true} = props;
+  const {type = '', content, options = [], onChange, isLoggedIn = false, isAlwaysVisible = true} = props;
+
+  const openModal = () => {
+    setModalOpen(true);
+  }
+ 
+  const closeModal = () => {
+    setModalOpen(false);
+  }
 
   const measuredRef = useCallback((e) => {
     if (node.current && !node.current.contains(e.target)) {
@@ -33,7 +41,7 @@ const Dropdown = (props) => {
     if (isLoggedIn) {
       setOpen(!open);
     } else {
-      history.push('/auth');
+      openModal();
     }
   }
 
@@ -55,6 +63,10 @@ const Dropdown = (props) => {
           ))}
         </ul>
       )}
+      <AuthModal
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+        type={type} />
     </div>
   );
 };
@@ -62,6 +74,7 @@ const Dropdown = (props) => {
 export default Dropdown;
 
 Dropdown.propTypes = {
+  type: PropTypes.string,
   content: PropTypes.element,
   options: PropTypes.array,
   onChange: PropTypes.func,

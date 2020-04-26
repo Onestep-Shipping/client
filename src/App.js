@@ -12,7 +12,6 @@ import About from './pages/About/About.js';
 import Services from './pages/Services/Services.js';
 import News from './pages/News/News.js';
 import Contact from './pages/Contact/Contact.js';
-import Auth from './pages/Auth/Auth.js';
 import Booking from './pages/Booking/Booking.js';
 import Success from './pages/Success/Success.js';
 import {AuthProvider} from './firebase/Auth.js';
@@ -39,7 +38,6 @@ const App = () => {
             <Route path="/schedule" component={Schedule} />
             <Route path="/news" component={News} />
             <Route path="/contact" component={Contact} />
-            <Route path="/auth" component={Auth} />
             <Route path="/" component={Homepage} />
           </Switch>
         </div>

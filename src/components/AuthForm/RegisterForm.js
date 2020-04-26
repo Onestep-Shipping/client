@@ -2,11 +2,11 @@ import React, {useState, useCallback} from 'react';
 import './AuthForm.css';
 
 import Input from '../Input/Input';
-import {withRouter, useHistory} from 'react-router-dom';
 import app from '../../firebase/base.js';
+import PropTypes from 'prop-types';
 
-const RegisterForm = () => {
-  const history = useHistory();
+const RegisterForm = (props) => {
+  const { closeModal } = props;
 
   const [errors, setErrors] = useState([]);
   const [displayErrors, setDisplayErrors] = useState(false);
@@ -14,25 +14,19 @@ const RegisterForm = () => {
 
   const handleSignUp = useCallback(async (e) => {
     e.preventDefault();
-    
-    // const companyName = e.target[0].value;
-    // const address = e.target[1].value;
-    // const phone = e.target[2].value;
-    // const taxID = e.target[3].value;
-    // const personInCharge = e.target[4].value;
-    // const position = e.target[5].value;
     const email = e.target[6].value;
     const password = e.target[7].value;
-
-    try {
-      await app
-          .auth()
-          .createUserWithEmailAndPassword(email, password);
-      history.push('/');
-    } catch (error) {
-      alert(error);
+    if (email.length > 0 && password.length > 0) {
+      try {
+        await app
+            .auth()
+            .createUserWithEmailAndPassword(email, password);
+        closeModal();
+      } catch (error) {
+        alert(error);
+      }
     }
-  }, [history]);
+  }, []);
 
   return (
     <div className="inner-container">
@@ -43,7 +37,7 @@ const RegisterForm = () => {
             return <small className="danger-error" key={ind}>{err}</small>;
           })
         }
-        <div className="info-container">
+        <div className="all-texfield-register-container">
           <div className="company-info-container">
             <Input name="Company Name" type="text" displayErrors={displayErrors} />
             <Input name="Address" type="address" displayErrors={displayErrors} />
@@ -63,4 +57,8 @@ const RegisterForm = () => {
   );
 };
 
-export default withRouter(RegisterForm);
+export default RegisterForm;
+
+RegisterForm.propTypes = {
+  closeModal: PropTypes.func,
+};

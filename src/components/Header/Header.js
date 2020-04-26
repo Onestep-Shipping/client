@@ -6,7 +6,8 @@ import HeaderText from '../HeaderText/HeaderText.js';
 import {useHistory} from 'react-router-dom';
 import app from '../../firebase/base.js';
 import {AuthContext} from '../../firebase/Auth.js';
-import userIcon from '../../assets/user-icon.svg';
+import registerIcon from '../../assets/register-icon.svg';
+import loginIcon from '../../assets/login-icon.svg';
 import arrowDownIcon from '../../assets/arrow-down.svg';
 import notiIcon from '../../assets/noti-icon.svg';
 
@@ -18,17 +19,16 @@ const Header = () => {
   const {currentUser} = useContext(AuthContext);
   const isLoggedIn = currentUser ? true : false;
 
+
   const handleNotification = useCallback((val) => {
     console.log(val);
   }, []);
 
   const signOut = useCallback(() => {
     app.auth().signOut();
-    window.location.reload();
   }, []);
   
   const handleLogin = useCallback((val) => {
-    console.log(val);
     if (val === "Sign Out") {
       signOut();
     } else {
@@ -36,17 +36,16 @@ const Header = () => {
     }
   }, [history, signOut]);
 
-  const loginButton = (
+  const userButton = (name, icon) => {return (
     <div className="button-content">
-      <img className="svg" src={userIcon} alt="User Icon" />
+      <img className="svg" src={icon} alt="User Icon" />
       <text>
       {currentUser ?
-        currentUser.email.substring(0, currentUser.email.indexOf('@')) :
-          'Login'}
+        currentUser.email.substring(0, currentUser.email.indexOf('@')) : name}
       </text>
       {currentUser && <img className="svg-arrow" src={arrowDownIcon} alt="Dropdown Icon" />}
     </div>
-  );
+  )};
 
   const notificationButton = (
     <div className="button-content">
@@ -59,7 +58,13 @@ const Header = () => {
     <div className="header-container">
       <div className="login-container">
         <Dropdown
-          content={loginButton}
+          type={'register'}
+          content={userButton('Register', registerIcon)}
+          oonChange={val => handleLogin(val)}
+          isLoggedIn={isLoggedIn} isAlwaysVisible={!isLoggedIn} />
+        <Dropdown
+          content={userButton('Login', loginIcon)}
+          type={'login'}
           onChange={val => handleLogin(val)}
           options={["My Booking", "Sign Out"]}
           isLoggedIn={isLoggedIn} />
@@ -71,7 +76,7 @@ const Header = () => {
       </div>
       <div className="lower-container">
         <div className="logo-container" onClick={() => history.push('/')}>
-          <text id="logo-text">Shippose</text>
+          <text id="logo-text">OneStep Ocean</text>
         </div>
 
         <div className="menu-container">
