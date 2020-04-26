@@ -20,19 +20,19 @@
   align-items: center;
 }
 
-@media (max-width:980px) {
+@media (max-width:880px) {
   .logo-container {
     margin-bottom: 40px;
-  }
+  };
 }
 
 #logo-text {
   color: white;
   font-family: 'Impact';
   font-size: 40px;
-  margin-bottom: 50px;
   user-select: none;
   cursor: pointer;
+  margin-bottom: 30px;
 }
 
 .lower-container {
