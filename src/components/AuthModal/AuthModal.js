@@ -1,6 +1,5 @@
 import React from 'react';
 import Modal from 'react-modal';
-import './AuthModal.css';
 import LoginForm from '../AuthForm/LoginForm.js';
 import RegisterForm from '../AuthForm/RegisterForm.js';
 import PropTypes from 'prop-types';
