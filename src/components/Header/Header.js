@@ -26,7 +26,6 @@ const Header = () => {
 
   const signOut = useCallback(() => {
     app.auth().signOut();
-    window.location.reload();
   }, []);
   
   const handleLogin = useCallback((val) => {

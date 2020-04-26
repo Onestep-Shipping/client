@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import './AuthModal.css';
 import LoginForm from '../AuthForm/LoginForm.js';
 import RegisterForm from '../AuthForm/RegisterForm.js';
+import PropTypes from 'prop-types';
 
 const customStyles = {
   content : {
@@ -10,9 +11,9 @@ const customStyles = {
     left                  : '50%',
     right                 : 'auto',
     bottom                : 'auto',
-    marginRight           : '-50%',
     transform             : 'translate(-50%, -50%)',
     borderRadius          : '10px',
+    padding               : '0px'
   }
 };
 
@@ -25,9 +26,17 @@ const AuthModal = (props) => {
       onRequestClose={closeModal}
       style={customStyles}
     >
-      {type === 'login' ? <LoginForm /> : <RegisterForm />}
+      {type === 'login' ? 
+        <LoginForm closeModal={closeModal}/> : 
+        <RegisterForm closeModal={closeModal}/>}
     </Modal>
   );
 }
 
 export default AuthModal;
+
+AuthModal.propTypes = {
+  isModalOpen: PropTypes.bool,
+  closeModal: PropTypes.func,
+  type: PropTypes.string,
+};

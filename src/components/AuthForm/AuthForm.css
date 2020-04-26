@@ -1,6 +1,7 @@
 .inner-container {
   transition: visibility 0.2s ease-out;
-  background-color: white;
+  background-color: rgb(243, 251, 252);
+  padding: 50px;
 }
 
 .inner-container.show {
@@ -32,8 +33,6 @@
 
 .login-btn {
   padding: 6px 30px;
-  /* background-color: #417cef; */
-  border: 0;
   font-size: 18px;
   border-radius: 3px;
   font-family: Oxygen, sans-serif;

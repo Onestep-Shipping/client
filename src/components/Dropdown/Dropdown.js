@@ -1,12 +1,10 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import './Dropdown.css';
 import PropTypes from 'prop-types';
-import {useHistory} from 'react-router-dom';
 import AuthModal from '../AuthModal/AuthModal.js';
 
 const Dropdown = (props) => {
   const node = useRef();
-  const history = useHistory();
   const [open, setOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -43,7 +41,6 @@ const Dropdown = (props) => {
     if (isLoggedIn) {
       setOpen(!open);
     } else {
-      // history.push('/auth');
       openModal();
     }
   }
