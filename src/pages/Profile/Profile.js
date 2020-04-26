@@ -4,6 +4,7 @@ import {useHistory} from 'react-router-dom';
 
 import Header from '../../components/Header/Header.js';
 import FixedSizeList from '../../components/FixedSizeList/FixedSizeList.js';
+import DATA from '../../data/ScheduleDetailsData.js';
 
 const Profile = () => {
   const history = useHistory();
@@ -82,7 +83,7 @@ const Profile = () => {
       <Header />
       <div className="body-container2">
         <div className="profile-container">
-          <FixedSizeList headers={PROFILE_HEADERS} row={row}/>
+          <FixedSizeList headers={PROFILE_HEADERS} data={DATA} row={row}/>
         </div>
       </div>
     </div>

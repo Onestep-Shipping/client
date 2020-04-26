@@ -7,6 +7,7 @@ import {AuthContext} from '../../firebase/Auth.js';
 import {useHistory} from 'react-router-dom';
 import styles from '../../components/ScheduleForm/ScheduleFormMin.module.css';
 import FixedSizeList from '../../components/FixedSizeList/FixedSizeList.js';
+import DATA from '../../data/ScheduleDetailsData.js';
 
 const Schedule = () => {
   const history = useHistory();
@@ -86,7 +87,7 @@ const Schedule = () => {
       <div className="schedule-body-container">
         <ScheduleForm styles={styles}/>
         <div className="schedule-result-container">
-          <FixedSizeList headers={RESULT_HEADERS} row={row}/>
+          <FixedSizeList headers={RESULT_HEADERS} data={DATA} row={row}/>
           {!currentUser &&
             <button
               id="login-to-proceed-button"

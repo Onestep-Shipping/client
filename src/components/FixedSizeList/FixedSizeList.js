@@ -2,28 +2,26 @@ import React, {useState} from 'react';
 import './FixedSizeList.css';
 import PropTypes from 'prop-types';
 
-import DATA from '../../data/ScheduleDetailsData.js';
-
 const LIST_SIZE = 5;
 
 const FixedSizeList = (props) => {
-  const { headers, row } = props;
+  const { headers, data, row } = props;
   const [currentPage, setCurrentPage] = useState(1);
 
-  const max = Math.ceil(DATA.length / LIST_SIZE);
+  const max = Math.ceil(data.length / LIST_SIZE);
 
   const handleNext = () => {
     const newPageVal = currentPage + 1;
 
-    console.log(DATA.slice(currentPage - 1, 3 + 1))
+    console.log(data.slice(currentPage - 1, 3 + 1))
     if (newPageVal <= max) {
       setCurrentPage(newPageVal);
     }
   }
 
   const sliceArray = () => {
-    const endIndex = currentPage === max ? DATA.length : (currentPage * LIST_SIZE);
-    return DATA.slice((currentPage - 1) * LIST_SIZE, endIndex);
+    const endIndex = currentPage === max ? data.length : (currentPage * LIST_SIZE);
+    return data.slice((currentPage - 1) * LIST_SIZE, endIndex);
   }
 
   const handlePrev = () => {
@@ -74,5 +72,6 @@ export default FixedSizeList;
 
 FixedSizeList.propTypes = {
   headers: PropTypes.array,
+  data: PropTypes.array,
   row: PropTypes.element,
 };
