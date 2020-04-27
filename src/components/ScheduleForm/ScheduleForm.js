@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useContext} from 'react';
 import './ScheduleForm.css';
 import {useHistory} from 'react-router-dom';
 import Select from 'react-select';
@@ -8,20 +8,18 @@ import {
 } from '../../data/ScheduleFormData.js';
 import 'react-datepicker/dist/react-datepicker.css';
 import PropTypes from 'prop-types';
-
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { 
-  setFromLocation, 
-  setFromDate, 
-  setToLocation, 
-  setToDate, 
-  setCarrier 
-} from '../../actions/ScheduleActions.js';
+import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
 
 const ScheduleForm = (props) => {
-  const { styles, schedule } = props;
+  const { styles } = props;
   const history = useHistory();
+
+  const { schedule, 
+          setFromLocation, 
+          setFromDate, 
+          setToLocation, 
+          setToDate, 
+          setCarrier  } = useContext(ScheduleFormContext);
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
@@ -29,9 +27,9 @@ const ScheduleForm = (props) => {
   }, [history]);
 
   const handleFromDateSelect = (fromDate) => {
-    props.setFromDate(fromDate);
+    setFromDate(fromDate);
     if (fromDate > schedule.toDate) {
-      props.setToDate(fromDate);
+      setToDate(fromDate);
     }
   }
 
@@ -44,7 +42,7 @@ const ScheduleForm = (props) => {
             options={FROM_LOCATIONS} 
             placeholder="Location" 
             value={schedule.fromLocation}
-            onChange={props.setFromLocation}
+            onChange={setFromLocation}
             clearable/>
           <DatePicker
             className={styles.fromDate}
@@ -60,14 +58,14 @@ const ScheduleForm = (props) => {
           <Select 
             options={TO_LOCATIONS} 
             placeholder="Location" 
-            onChange={props.setToLocation}
+            onChange={setToLocation}
             value={schedule.toLocation}
             clearable/>
           <DatePicker
             className={styles.toDate}
             selected={schedule.toDate}
             minDate={schedule.fromDate}
-            onSelect={props.setToDate}
+            onSelect={setToDate}
           />
         </div>
       </div>
@@ -77,7 +75,7 @@ const ScheduleForm = (props) => {
           <select 
             value={schedule.carrier}
             className={styles.carrierSelector} 
-            onChange={(e) => props.setCarrier(e.target.value)}>
+            onChange={(e) => setCarrier(e.target.value)}>
             {
               CARRIERS.map((opt, ind) => {
                 return (<option value={opt} key={ind}>{opt}</option>);
@@ -91,29 +89,9 @@ const ScheduleForm = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  const schedule = state;
-  return schedule;
-};
+export default ScheduleForm;
 
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({
-    setFromLocation, 
-    setFromDate, 
-    setToLocation, 
-    setToDate, 
-    setCarrier
-  }, dispatch)
-);
-
-export default connect(mapStateToProps, mapDispatchToProps)(ScheduleForm);
 
 ScheduleForm.propTypes = {
   styles: PropTypes.object,
-  schedule: PropTypes.object,
-  setFromLocation: PropTypes.func,
-  setFromDate: PropTypes.func,
-  setToLocation: PropTypes.func,
-  setToDate: PropTypes.func,
-  setCarrier: PropTypes.func,
 };

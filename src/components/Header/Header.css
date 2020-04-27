@@ -20,13 +20,13 @@
   align-items: center;
 }
 
-@media (max-width:880px) {
+@media (max-width:950px) {
   .logo-container {
-    margin-bottom: 40px;
-  };
+    margin-bottom: 100px;
+  }
 }
 
-#logo-text {
+.logo-text {
   color: white;
   font-family: 'Impact';
   font-size: 40px;

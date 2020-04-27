@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import app from './base.js';
+import app from '../firebase/base.js';
+import PropTypes from 'prop-types';
 
-const AuthContext = React.createContext();
+export const AuthContext = React.createContext();
 
-// eslint-disable-next-line react/prop-types
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
@@ -22,4 +22,8 @@ const AuthProvider = ({children}) => {
   );
 };
 
-export {AuthContext, AuthProvider};
+export default AuthProvider;
+
+AuthProvider.propTypes = {
+  children: PropTypes.element,
+};

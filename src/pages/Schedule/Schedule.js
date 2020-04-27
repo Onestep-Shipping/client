@@ -3,7 +3,7 @@ import './Schedule.css';
 
 import Header from '../../components/Header/Header.js';
 import ScheduleForm from '../../components/ScheduleForm/ScheduleForm.js';
-import {AuthContext} from '../../firebase/Auth.js';
+import { AuthContext } from '../../context/AuthContext.js';
 import {useHistory} from 'react-router-dom';
 import styles from '../../components/ScheduleForm/ScheduleFormMin.module.css';
 import FixedSizeList from '../../components/FixedSizeList/FixedSizeList.js';

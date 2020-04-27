@@ -5,7 +5,7 @@ import Dropdown from '../Dropdown/Dropdown.js';
 import HeaderText from '../HeaderText/HeaderText.js';
 import {useHistory} from 'react-router-dom';
 import app from '../../firebase/base.js';
-import {AuthContext} from '../../firebase/Auth.js';
+import { AuthContext } from '../../context/AuthContext.js';
 import registerIcon from '../../assets/register-icon.svg';
 import loginIcon from '../../assets/login-icon.svg';
 import arrowDownIcon from '../../assets/arrow-down.svg';
@@ -76,7 +76,7 @@ const Header = () => {
       </div>
       <div className="lower-container">
         <div className="logo-container" onClick={() => history.push('/')}>
-          <text id="logo-text">OneStep Ocean</text>
+          <text className="logo-text">OneStep Ocean</text>
         </div>
 
         <div className="menu-container">

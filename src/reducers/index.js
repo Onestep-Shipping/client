@@ -1,8 +1,0 @@
-import { combineReducers } from 'redux';
-import scheduleReducer from './ScheduleReducer.js';
-
-const rootReducer = combineReducers({
-  schedule: scheduleReducer,
-});
-
-export default rootReducer;
