@@ -4,8 +4,6 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './store/index';
 
 import Homepage from './pages/Homepage/Homepage.js';
 import Schedule from './pages/Schedule/Schedule.js';
@@ -16,15 +14,16 @@ import News from './pages/News/News.js';
 import Contact from './pages/Contact/Contact.js';
 import Booking from './pages/Booking/Booking.js';
 import Success from './pages/Success/Success.js';
-import {AuthProvider} from './firebase/Auth.js';
+import AuthProvider from './context/AuthContext.js';
+import ScheduleFormProvider from "./context/ScheduleFormContext.js";
 import PrivateRoute from './firebase/PrivateRoute.js';
 
 import './App.css';
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <AuthProvider>
+    <AuthProvider>
+      <ScheduleFormProvider>
         <Router>
           <div className="App">
             <Switch>
@@ -45,8 +44,8 @@ const App = () => {
             </Switch>
           </div>
         </Router>
-      </AuthProvider>
-    </Provider>
+      </ScheduleFormProvider>
+    </AuthProvider>
   );
 };
 
