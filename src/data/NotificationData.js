@@ -1,8 +1,9 @@
 const NOTIFICATIONS = [
-  { 
-    message: 'You received a new booking confirmation!',
-    bookingId: 0,
-  },
+  'You received a new booking confirmation for booking #12',
+  'You received a new booking confirmation for booking #12',
+  'You received a new booking confirmation for booking #12',
+  'You received a new booking confirmation for booking #12',
+  'You received a new booking confirmation for booking #12',
 ];
 
 export default NOTIFICATIONS;

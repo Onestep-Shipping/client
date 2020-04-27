@@ -72,8 +72,7 @@ const Schedule = () => {
             </div>
             <button
               className="result-button"
-              onClick={() => handleQuoteSubmit(ind)}
-            >
+              onClick={() => handleQuoteSubmit(ind)}>
               Accept
             </button>
           </div>)}

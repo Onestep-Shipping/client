@@ -11,7 +11,9 @@ import loginIcon from '../../assets/login-icon.svg';
 import arrowDownIcon from '../../assets/arrow-down.svg';
 import notiIcon from '../../assets/noti-icon.svg';
 
-const NOTIFICATIONS = [];
+import NOTIFICATIONS from '../../data/NotificationData.js';
+
+const USER_OPTIONS = ["My Booking", "Sign Out"];
 
 const Header = () => {
   const history = useHistory();
@@ -19,22 +21,28 @@ const Header = () => {
   const {currentUser} = useContext(AuthContext);
   const isLoggedIn = currentUser ? true : false;
 
-
   const handleNotification = useCallback((val) => {
     console.log(val);
   }, []);
 
   const signOut = useCallback(() => {
     app.auth().signOut();
+    history.push('/');
   }, []);
   
   const handleLogin = useCallback((val) => {
     if (val === "Sign Out") {
       signOut();
-    } else {
+    } else if (val === "My Booking") {
       history.push('/profile');
     }
   }, [history, signOut]);
+
+  const notificationCustomStyle = {
+    width: '250px',
+    height: '250px', 
+    overflowY: 'scroll'
+  }
 
   const userButton = (name, icon) => {return (
     <div className="button-content">
@@ -56,41 +64,36 @@ const Header = () => {
 
   return (
     <div className="header-container">
-      <div className="login-container">
-        <Dropdown
-          type={'register'}
-          content={userButton('Register', registerIcon)}
-          oonChange={val => handleLogin(val)}
-          isLoggedIn={isLoggedIn} isAlwaysVisible={!isLoggedIn} />
-        <Dropdown
-          content={userButton('Login', loginIcon)}
-          type={'login'}
-          onChange={val => handleLogin(val)}
-          options={["My Booking", "Sign Out"]}
-          isLoggedIn={isLoggedIn} />
-        <Dropdown
-          content={notificationButton}
-          onChange={val => handleNotification(val)}
-          options={NOTIFICATIONS.length > 0 ? NOTIFICATIONS : ["Notification is empty."]}
-          isLoggedIn={isLoggedIn} isAlwaysVisible={isLoggedIn} />
-      </div>
-      <div className="lower-container">
-        <div className="logo-container" onClick={() => history.push('/')}>
+        <div onClick={() => history.push('/')}>
           <text className="logo-text">OneStep Ocean</text>
         </div>
 
         <div className="menu-container">
+          <div className="login-container">
+            <Dropdown
+              type={'register'}
+              content={userButton('Register', registerIcon)}
+              onChange={val => handleLogin(val)}
+              isLoggedIn={isLoggedIn} isAlwaysVisible={!isLoggedIn} />
+            <Dropdown
+              content={userButton('Login', loginIcon)}
+              type={'login'}
+              onChange={val => handleLogin(val)}
+              options={USER_OPTIONS}
+              isLoggedIn={isLoggedIn} />
+            <Dropdown
+              content={notificationButton}
+              onChange={val => handleNotification(val)}
+              options={NOTIFICATIONS.length > 0 ? NOTIFICATIONS : ["Notification is empty."]}
+              isLoggedIn={isLoggedIn} isAlwaysVisible={isLoggedIn} 
+              customStyle={notificationCustomStyle} />
+          </div>
           <SearchTextfield />
-          <HeaderText
-            value="Contact" action={() => history.push('/contact')}
-          />
+          <HeaderText value="Contact" action={() => history.push('/contact')} />
           <HeaderText value="News" action={() => history.push('/news')} />
-          <HeaderText
-            value="Services" action={() => history.push('/services')}
-          />
+          <HeaderText value="Services" action={() => history.push('/services')} />
           <HeaderText value="About" action={() => history.push('/about')} />
         </div>
-      </div>
     </div>
   );
 };

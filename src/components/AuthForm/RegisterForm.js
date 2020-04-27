@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {useState, useCallback} from 'react';
 import './AuthForm.css';
 
@@ -26,7 +27,7 @@ const RegisterForm = (props) => {
         alert(error);
       }
     }
-  }, []);
+  }, [closeModal]);
 
   return (
     <div className="inner-container">

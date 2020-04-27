@@ -11,7 +11,7 @@ const Homepage = () => {
       <div className="body-container">
         <text id="schedule-header-text">Find Schedule</text>
         <ScheduleForm styles={styles}/>
-      </div>
+      </div>)
     </div>
   );
 };

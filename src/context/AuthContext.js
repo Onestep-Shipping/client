@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 export const AuthContext = React.createContext();
 
 const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(app.auth().currentUser);
 
   useEffect(() => {
     app.auth().onAuthStateChanged(setCurrentUser);
@@ -13,9 +13,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value = {{
-        currentUser,
-      }}
+      value = {{ currentUser }}
     >
       {children}
     </AuthContext.Provider>

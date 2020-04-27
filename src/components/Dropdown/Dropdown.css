@@ -13,12 +13,11 @@
   border-radius: 2px;
   border: none;
   outline: none;
-  margin-bottom: 30px;
   cursor: pointer;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 10px;
+  margin-left: 0px;
   margin-top: 5px;
   user-select: none;
 }
@@ -41,6 +40,7 @@
   padding: 8px 16px;
   border-bottom: 1px solid #e5e5e5;
   cursor: pointer;
+  line-height: 25px;
 }
 
 .dropdown-menu-item:last-child {

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {useState, useCallback} from 'react';
 import './AuthForm.css';
 
@@ -25,7 +26,7 @@ const LoginForm = (props) => {
         alert(error);
       }
     }
-  }, []);
+  }, [closeModal]);
 
   return (
     <div className="inner-container">
@@ -37,13 +38,7 @@ const LoginForm = (props) => {
           })
         }
         <Input name="Email" type="email" displayErrors={displayErrors} />
-
-        <Input
-          name="Password"
-          type="password"
-          displayErrors={displayErrors}
-        />
-
+        <Input name="Password" type="password" displayErrors={displayErrors} />
         <button className="login-btn">Login</button>
       </form>
     </div>

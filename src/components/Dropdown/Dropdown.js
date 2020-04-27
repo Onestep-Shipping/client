@@ -8,7 +8,15 @@ const Dropdown = (props) => {
   const [open, setOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const {type = '', content, options = [], onChange, isLoggedIn = false, isAlwaysVisible = true} = props;
+  const {
+    type = '', 
+    content, 
+    options = [], 
+    onChange, 
+    isLoggedIn = false, 
+    isAlwaysVisible = true,
+    customStyle = {},
+  } = props;
 
   const openModal = () => {
     setModalOpen(true);
@@ -55,7 +63,8 @@ const Dropdown = (props) => {
         {content}
       </button>
       {open && (
-        <ul className="dropdown-menu">
+        <ul style={customStyle}
+          className="dropdown-menu">
           {options.map((opt, ind) => (
             <li className="dropdown-menu-item" key={ind} onClick={() => handleChange(opt)}>
               {opt}
@@ -79,6 +88,7 @@ Dropdown.propTypes = {
   options: PropTypes.array,
   onChange: PropTypes.func,
   isLoggedIn: PropTypes.bool,
-  isAlwaysVisible: PropTypes.bool
+  isAlwaysVisible: PropTypes.bool,
+  customStyle: PropTypes.object,
 };
 

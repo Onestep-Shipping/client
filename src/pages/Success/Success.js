@@ -17,7 +17,7 @@ const Success = () => {
     waitingFor = "booking confirmation";
   } else if (type.startsWith("bol")) {
     message += "sent!";
-    waitingFor = "BOL confirmation";
+    waitingFor = "bill of lading";
   }
 
   return (

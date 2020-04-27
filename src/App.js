@@ -27,14 +27,18 @@ const App = () => {
         <Router>
           <div className="App">
             <Switch>
-              <Route path="/success/:type" component={Success} />
-              <Route path="/booking/:id">
+              <PrivateRoute exact path="/success/:type">
+                <Success />
+              </PrivateRoute>
+              <PrivateRoute exact path="/booking/:id">
                 <Booking formType='booking'/>
-              </Route>
-              <Route path="/bill-of-lading/:id"> 
+              </PrivateRoute>
+              <PrivateRoute exact path="/bill-of-lading/:id"> 
                 <Booking formType='bol'/>
-              </Route>
-              <Route path="/profile" component={Profile} />
+              </PrivateRoute>
+              <PrivateRoute path="/profile">
+                <Profile />
+              </PrivateRoute>
               <Route path="/about" component={About} />
               <Route path="/services" component={Services} />
               <Route path="/schedule" component={Schedule} />

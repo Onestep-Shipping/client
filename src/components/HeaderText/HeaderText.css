@@ -1,5 +1,4 @@
 .header-text-container {
-  padding-bottom: 10px;
   cursor: pointer;
 }
 
@@ -9,8 +8,4 @@
   cursor: pointer;
   user-select: none;
   margin: 0px 10px;
-}
-
-.header-text-container:hover {
-  border-bottom: solid white 4px;
 }

@@ -1,29 +1,23 @@
 .header-container {
-  width: 85%;
-  height: 103px;
+  width: 90%;
+  padding: 10px 0px;
   border-bottom: solid 1px white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .menu-container {
   width: 70%;
-  height: 50%;
   display: flex;
   flex-direction: row-reverse;
   align-items: flex-end;
   justify-content: space-between;
 }
 
-.logo-container {
-  width: 50%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
 @media (max-width:950px) {
-  .logo-container {
-    margin-bottom: 100px;
-  }
+  
 }
 
 .logo-text {
@@ -32,18 +26,6 @@
   font-size: 40px;
   user-select: none;
   cursor: pointer;
-  margin-bottom: 30px;
-}
-
-.lower-container {
-  width: 100%;
-  height: 50%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
 }
 
 .button-content {
