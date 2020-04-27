@@ -76,7 +76,7 @@ const Header = () => {
       </div>
       <div className="lower-container">
         <div className="logo-container" onClick={() => history.push('/')}>
-          <text id="logo-text">OneStep Ocean</text>
+          <text className="logo-text">OneStep Ocean</text>
         </div>
 
         <div className="menu-container">
