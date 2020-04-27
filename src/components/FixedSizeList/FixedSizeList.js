@@ -44,7 +44,7 @@ const FixedSizeList = (props) => {
           })
         }
       </div>
-
+        
       {
         sliceArray().map((booking, ind) => {
           return (
