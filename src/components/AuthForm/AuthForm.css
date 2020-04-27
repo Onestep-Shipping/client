@@ -2,7 +2,7 @@
   transition: visibility 0.2s ease-out;
   background-color: rgb(255, 255, 255);
   padding: 50px;
-  border: 2px rgb(15, 0, 83) solid;
+  border: 3px #14B9D7 solid;
   border-radius: 10px;
 }
 
