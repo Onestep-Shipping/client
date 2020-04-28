@@ -8,12 +8,12 @@ import DATA from '../../../data/ScheduleDetailsData.js';
 
 const Profile = () => {
   const history = useHistory();
-  const PROFILE_HEADERS = ['#', 'Date Booked', 'From', 'To', 'Vessel', 'Booking Status', 'BOL Status'];
+  const PROFILE_HEADERS = ['#', 'Date Booked', 'From', 'To', 'Vessel', 'Booking Status', 'BOL Status', 'Invoice Status'];
 
-  const chooseBackgrounColorFromStatus = (booking, bol) => {
+  const chooseBackgrounColorFromStatus = (booking, bol, invoice) => {
     if (booking === "In Process" && bol === "Not Ready") {
-      return "#e6e6e6"; // gray
-    } else if (booking === "Completed" && bol === "Completed") {
+      return "#f0f0f0"; // gray
+    } else if (booking === "Received" && bol === "Received" && invoice === "Received") {
       return "#a0eec1"; // green
     } else {
       return "#f2e89d"; // yellow
@@ -22,13 +22,15 @@ const Profile = () => {
 
   const handleBook = useCallback((status, id) => {
     if (status === "Received") {
-      history.push('/bill-of-lading/' + id);
+      history.push('/booking-confirmation/' + id);
     }
   }, [history]);
 
   const handleBol = (status, id) => {
-    if (status === "Received") {
-      console.log(id);
+    if (status === "Ready") {
+      history.push('/bill-of-lading-instruction/' + id);
+    } else if (status === "Received") {
+      history.push('/bill-of-lading-confirmation/' + id);
     }
   }
 
@@ -38,7 +40,9 @@ const Profile = () => {
         <div 
           className='booking-profile-row' 
           style={{
-            backgroundColor: chooseBackgrounColorFromStatus(booking.bookingStatus, booking.bolStatus)
+            backgroundColor: chooseBackgrounColorFromStatus(
+              booking.bookingStatus, booking.bolStatus, booking.invoiceStatus
+            )
           }} >
           <div className="col-numb">
             <text className="schedule-result-text">{ind + 1}</text>
@@ -60,8 +64,7 @@ const Profile = () => {
           <div className="col" onClick={() => handleBook(booking.bookingStatus, ind)}>
             <text
               id={booking.bookingStatus === "Received" ? "red-link" : ""}
-              className={"schedule-result-text" + 
-                (booking.bookingStatus === "Completed" ? "-link" : "")}>
+              className={"schedule-result-text"}>
                 {booking.bookingStatus}
             </text>
           </div>
@@ -69,8 +72,15 @@ const Profile = () => {
             <text 
               id={booking.bolStatus === "Received" ? "red-link" : ""}
               className={"schedule-result-text" + 
-                (booking.bolStatus === "Completed" ? "-link" : "")}>
+                (booking.bolStatus === "Ready" ? "-link" : "")}>
                 {booking.bolStatus}
+            </text>
+          </div>
+          <div className="col" onClick={() => handleBol(booking.invoiceStatus, ind)}>
+            <text 
+              id={booking.invoiceStatus === "Received" ? "red-link" : ""}
+              className={"schedule-result-text"}>
+                {booking.invoiceStatus}
             </text>
           </div>
         </div>

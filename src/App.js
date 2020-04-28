@@ -39,7 +39,7 @@ const App = () => {
               <PrivateRoute exact path="/booking/:id">
                 <Booking formType='booking'/>
               </PrivateRoute>
-              <PrivateRoute exact path="/bill-of-lading/:id"> 
+              <PrivateRoute exact path="/bill-of-lading-instruction/:id"> 
                 <Booking formType='bol'/>
               </PrivateRoute>
               <PrivateRoute path="/profile">

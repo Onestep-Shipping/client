@@ -1,11 +1,13 @@
 .profile-container {
-  width: 80%;
+  width: 99%;
   padding: 30px 0px;
 }
 
 .schedule-result-text-link {
   color: rgb(25, 68, 161);
   font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 #red-link {
@@ -24,5 +26,6 @@
   justify-content: space-between;
   padding: 30px 0px;
   user-select: none;
+  border: 2px solid white;
 }
 
