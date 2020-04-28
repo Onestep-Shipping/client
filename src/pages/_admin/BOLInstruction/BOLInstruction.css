@@ -1,0 +1,32 @@
+.bol-instruction-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.bol-instruction-list {
+  width: 30%;
+  height: 100%;
+  list-style-type: none;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  overflow:hidden; 
+  overflow-y:scroll;
+}
+
+.bol-instruction-detail {
+  height: 100%;
+  width: 70%;
+  background-color: pink;
+}
+
+.bol-instruction-item {
+  width: 100%;
+  height: 100px;
+  background-color: aliceblue;
+  border: 2px solid white;
+}
