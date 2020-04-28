@@ -5,7 +5,7 @@ import profileImg from '../../../assets/profile-placeholder.png';
 import Header from '../../../components/Header/Header.js';
 import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js';
 import BOOKING_REQ from '../../../data/BookingRequestData.js';
-import {InfoRow, ShipmentDetail} from '../Helpers.js';
+import { InfoRow } from '../Helpers.js';
 
 const BookingRequest = () => {
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);

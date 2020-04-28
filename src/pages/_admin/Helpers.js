@@ -6,7 +6,7 @@ const InfoRow = props => {
 
   return (
     <div className="info-row">
-      <text className="info-label">{label}</text>
+      <text className="info-label">{label}: </text>
       <text className="schedule-result-text">{value}</text>
     </div>
   );
