@@ -20,7 +20,7 @@ const Schedule = () => {
 
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
 
-  const {currentUser} = useContext(AuthContext);
+  const { currentUser, isAdmin } = useContext(AuthContext);
 
   const handleQuoteSubmit = useCallback((id) => {
     history.push('/booking/' + id);
@@ -54,7 +54,7 @@ const Schedule = () => {
             <text className="schedule-result-text">{booking.time}</text>
           </div>
         </div>
-        {(ind === currentBookingIndex && currentUser) &&
+        {(ind === currentBookingIndex && !isAdmin && currentUser) &&
           (<div className="quote-dropdown">
             <div className="schedule-result-header-row">
               <div className="col3">
