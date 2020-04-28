@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../pages/Booking/Booking.css';
+import '../../pages/_user/Booking/Booking.css';
 import PropTypes from 'prop-types';
 import {InfoRow, Select} from './Helpers.js';
 
