@@ -2,9 +2,9 @@ import React, {useCallback} from 'react';
 import './Profile.css';
 import { useHistory } from 'react-router-dom';
 
-import Header from '../../components/Header/Header.js';
-import FixedSizeList from '../../components/FixedSizeList/FixedSizeList.js';
-import DATA from '../../data/ScheduleDetailsData.js';
+import Header from '../../../components/Header/Header.js';
+import FixedSizeList from '../../../components/FixedSizeList/FixedSizeList.js';
+import DATA from '../../../data/ScheduleDetailsData.js';
 
 const Profile = () => {
   const history = useHistory();

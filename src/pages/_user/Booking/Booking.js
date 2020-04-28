@@ -3,10 +3,10 @@ import './Booking.css';
 import PropTypes from 'prop-types';
 
 import {useParams, useHistory} from 'react-router-dom';
-import Header from '../../components/Header/Header.js';
-import BookingDisplay from '../../components/BookingDisplay/BookingDisplay.js';
-import BookingForm from '../../components/GreenForm/BookingForm.js';
-import BolForm from '../../components/GreenForm/BolForm.js';
+import Header from '../../../components/Header/Header.js';
+import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js';
+import BookingForm from '../../../components/GreenForm/BookingForm.js';
+import BolForm from '../../../components/GreenForm/BolForm.js';
 
 const Booking = (props) => {
   const { id } = useParams();

@@ -3,7 +3,7 @@ import './Header.css';
 import SearchTextfield from '../SearchTextfield/SearchTextfield.js';
 import Dropdown from '../Dropdown/Dropdown.js';
 import HeaderText from '../HeaderText/HeaderText.js';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import app from '../../firebase/base.js';
 import { AuthContext } from '../../context/AuthContext.js';
 import registerIcon from '../../assets/register-icon.svg';
@@ -13,12 +13,13 @@ import notiIcon from '../../assets/noti-icon.svg';
 
 import NOTIFICATIONS from '../../data/NotificationData.js';
 
+const ADMIN_OPTIONS = ["Companies", "Booking Request", "BOL Instruction", "Invoice", "Sign Out"];
 const USER_OPTIONS = ["My Booking", "Sign Out"];
 
 const Header = () => {
   const history = useHistory();
 
-  const {currentUser} = useContext(AuthContext);
+  const { currentUser, isAdmin } = useContext(AuthContext);
   const isLoggedIn = currentUser ? true : false;
 
   const handleNotification = useCallback((val) => {
@@ -28,15 +29,26 @@ const Header = () => {
   const signOut = useCallback(() => {
     app.auth().signOut();
     history.push('/');
-  }, []);
+  }, [history]);
+
+    const handleAdminRedirect = useCallback((val) => {
+    const lcName = val.toLowerCase().replace(' ', '-');
+    history.push("/admin/" + lcName);
+  }, [history]);
   
   const handleLogin = useCallback((val) => {
-    if (val === "Sign Out") {
-      signOut();
-    } else if (val === "My Booking") {
-      history.push('/profile');
+    switch (val) {
+      case "My Booking":
+        history.push('/profile');
+        break;
+      case "Sign Out":
+        signOut();
+        break;
+      default:
+        handleAdminRedirect(val);
+        break;
     }
-  }, [history, signOut]);
+  }, [history, signOut, handleAdminRedirect]);
 
   const notificationCustomStyle = {
     width: '250px',
@@ -79,7 +91,7 @@ const Header = () => {
               content={userButton('Login', loginIcon)}
               type={'login'}
               onChange={val => handleLogin(val)}
-              options={USER_OPTIONS}
+              options={isAdmin ? ADMIN_OPTIONS : USER_OPTIONS}
               isLoggedIn={isLoggedIn} />
             <Dropdown
               content={notificationButton}

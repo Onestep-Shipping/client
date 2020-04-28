@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import '../../pages/Booking/Booking.css';
+import '../../pages/_user/Booking/Booking.css';
 import PropTypes from 'prop-types';
 import {Textarea, ExtraInput, InfoRow} from './Helpers.js';
 

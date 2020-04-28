@@ -1,9 +1,9 @@
 import React from 'react';
 import './Success.css';
-import completedIcon from '../../assets/success-icon.gif';
+import completedIcon from '../../../assets/success-icon.gif';
 import {useHistory, useParams} from 'react-router-dom';
 
-import Header from '../../components/Header/Header.js';
+import Header from '../../../components/Header/Header.js';
 
 const Success = () => {
   const history = useHistory();
