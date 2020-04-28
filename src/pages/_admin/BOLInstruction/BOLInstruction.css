@@ -8,7 +8,7 @@
 }
 
 .bol-instruction-list {
-  width: 30%;
+  width: 35%;
   height: 100%;
   list-style-type: none;
   background-color: white;
@@ -20,7 +20,7 @@
 
 .bol-instruction-detail {
   height: 100%;
-  width: 70%;
+  width: 65%;
   background-color: rgb(255, 255, 255);
   border-left: 2px solid rgb(207, 207, 207);
   overflow: hidden; 
@@ -32,13 +32,21 @@
   font-size: 25px;
 }
 
-.bol-instruction-item {
-  background-color: rgb(255, 255, 255);
-  border-radius: 20px;
-  margin: 10px;
+.bol-instruction-item-pending {
+  background-color: rgb(255, 251, 219);
   padding: 10px 20px;
   line-height: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
 
+.bol-instruction-item-completed {
+  background-color: rgb(226, 253, 237);
+  padding: 10px 20px;
+  line-height: 25px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -47,7 +55,7 @@
 }
 
 #selected-item {
-  background-color: rgb(233, 238, 246);
+  filter: brightness(0.9);
 }
 
 .item-header-container {
@@ -143,4 +151,47 @@
 
 .pdf-text {
   margin-bottom: 30px;
+}
+
+.checkbox {
+ outline: none;
+
+}
+
+label {
+	display: inline;
+}
+
+.regular-checkbox {
+	display: none;
+}
+
+.regular-checkbox + label {
+	background-color: #fafafa;
+	border: 1px solid #cacece;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	padding: 9px;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+}
+
+.regular-checkbox + label:active, .regular-checkbox:checked + label:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+.regular-checkbox:checked + label {
+	background-color: #e9ecee;
+	border: 1px solid #adb8c0;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+	color: #99a1a7;
+}
+
+.regular-checkbox:checked + label:after {
+	content: '\2714';
+	font-size: 14px;
+	position: absolute;
+	top: -5px;
+	left: 3px;
+	color: #1bb300;
 }

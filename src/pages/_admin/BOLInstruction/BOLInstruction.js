@@ -25,8 +25,22 @@ const BOLInstruction = () => {
           <ul className="bol-instruction-list"> 
             {BOL.map((booking, ind) => (
                 <li id={(ind === currentBolIndex ? 'selected-item' : '')}
-                    className="bol-instruction-item"
+                    className={"bol-instruction-item" + (booking.isCompleted ? "-completed" : "-pending")}
                     onClick={() => setCurrentBolIndex(ind)} key={ind}>
+                  {/* <input
+                    className="checkbox"
+                    name="isGoing"
+                    type="checkbox"
+                    checked={booking.isCompleted}
+                    // onChange={this.handleInputChange} 
+                  /> */}
+                  <div>
+                    <input 
+                      type="checkbox" id="checkbox-1-1" className="regular-checkbox" 
+                      checked={booking.isCompleted} 
+                    />
+                    <label htmlFor="checkbox-1-1"></label>
+                  </div>
                   <img className="profile-image" src={profileImg} alt="Profile Image" />
                   <div className="item-header-container">
                     <text className="booking-id-text">Booking #{booking.id}</text>

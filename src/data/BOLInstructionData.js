@@ -3,6 +3,7 @@ const BOL_INSTRUCTION = [
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
     id: '5764235',
+    isCompleted: false,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
       toLocation: 'Vung Tau | VN',
@@ -46,13 +47,14 @@ const BOL_INSTRUCTION = [
       orderNo: '23151',
       hsCode: '240035',
       caedNo: '12535',
-      value: 16560
+      value: 16560,
     }
   },
   {
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
     id: '5764235',
+    isCompleted: false,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
       toLocation: 'Vung Tau | VN',
@@ -81,6 +83,7 @@ const BOL_INSTRUCTION = [
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
     id: '5764235',
+    isCompleted: false,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
       toLocation: 'Vung Tau | VN',
@@ -109,6 +112,7 @@ const BOL_INSTRUCTION = [
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
     id: '5764235',
+    isCompleted: false,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
       toLocation: 'Vung Tau | VN',
@@ -137,6 +141,7 @@ const BOL_INSTRUCTION = [
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
     id: '5764235',
+    isCompleted: false,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
       toLocation: 'Vung Tau | VN',
@@ -165,6 +170,7 @@ const BOL_INSTRUCTION = [
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
     id: '5764235',
+    isCompleted: true,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
       toLocation: 'Vung Tau | VN',
@@ -193,6 +199,7 @@ const BOL_INSTRUCTION = [
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
     id: '5764235',
+    isCompleted: true,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
       toLocation: 'Vung Tau | VN',
@@ -221,6 +228,7 @@ const BOL_INSTRUCTION = [
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
     id: '5764235',
+    isCompleted: true,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
       toLocation: 'Vung Tau | VN',
@@ -249,6 +257,7 @@ const BOL_INSTRUCTION = [
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
     id: '5764235',
+    isCompleted: true,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
       toLocation: 'Vung Tau | VN',
@@ -277,6 +286,7 @@ const BOL_INSTRUCTION = [
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
     id: '5764235',
+    isCompleted: true,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
       toLocation: 'Vung Tau | VN',
