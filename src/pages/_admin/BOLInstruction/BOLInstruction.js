@@ -3,7 +3,9 @@ import './BOLInstruction.css';
 import profileImg from '../../../assets/profile-placeholder.png';
 
 import Header from '../../../components/Header/Header.js';
+import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js';
 import BOL from '../../../data/BOLInstructionData.js';
+import {InfoRow, ShipmentDetail} from './Helpers.js';
 
 const BOLInstruction = () => {
   const [currentBolIndex, setCurrentBolIndex] = useState(0);
@@ -62,89 +64,26 @@ const BOLInstruction = () => {
 
           <div className="form-container">
             <text className="booking-id-text">Schedule</text>
-            <div className="booking-details-container">
-              <div className="info-row">
-                <div>
-                  <text className="info-label">From: </text>
-                  <text className="schedule-info-text-left">{BOL[currentBolIndex].schedule.fromLocation}</text>
-                </div>
-                <div>
-                  <text className="info-label">To: </text>
-                  <text className="schedule-info-text">{BOL[currentBolIndex].schedule.toLocation}</text>
-                </div>
-              </div>
-              <div className="info-row">
-                <text className="info-label">Vessels: </text>
-                <text className="schedule-info-text">{BOL[currentBolIndex].schedule.ves}</text>
-              </div>
-            </div>
+            <BookingDisplay id={'' + currentBolIndex} fields={3}/>
           </div>
 
           <div className="form-container">
             <text className="booking-id-text">BOL Instruction</text>
             <div className="booking-details-container">
-              <div className="info-row">
-                <text className="info-label">Shipper: </text>
-                <text className="schedule-result-text">{BOL[currentBolIndex].bol.shipper}</text>
-              </div>
-              <div className="info-row">
-                <text className="info-label">Consignee: </text>
-                <text className="schedule-result-text">{BOL[currentBolIndex].bol.consignee}</text>
-              </div>
-              <div className="info-row">
-                <text className="info-label">Notify: </text>
-                <text className="schedule-result-text">{BOL[currentBolIndex].bol.notify}</text>
-              </div>
-              <div className="info-row">
-                <text className="info-label">Description of Goods: </text>
-                <text className="schedule-result-text">{BOL[currentBolIndex].bol.description}</text>
-              </div>
-              <div className="info-row">
-                <text className="info-label">Shipment Detail: </text>
-              </div>
+              <InfoRow label="Shipper" value={BOL[currentBolIndex].bol.shipper} />
+              <InfoRow label="Consignee" value={BOL[currentBolIndex].bol.consignee} />
+              <InfoRow label="Notify" value={BOL[currentBolIndex].bol.notify} />
+              <InfoRow label="Description of Goods" value={BOL[currentBolIndex].bol.description} />
+              <InfoRow label="Shipment Detail" value="" />
               <div className="shipment-detail-row">
                 {BOL[currentBolIndex].bol.cargoInfo.map((container, ind) => (
-                  <div className="shipment-detail-container" key={ind}>
-                    <text className="schedule-result-text">{ind + 1}</text>
-                    <div className="shipment-ind-row">
-                      <text className="schedule-result-text">Container No.</text>
-                      <text className="schedule-result-text">{container.containerNo}</text>
-                    </div>
-                    <div className="shipment-ind-row">
-                      <text className="schedule-result-text">Seel No. </text>
-                      <text className="schedule-result-text">{container.seelNo}</text>
-                    </div>
-                    <div className="shipment-ind-row">
-                      <text className="schedule-result-text">Cargo Weight (kgs)</text>
-                      <text className="schedule-result-text">{container.weight}</text>
-                    </div>
-                    <div className="shipment-ind-row">
-                      <text className="schedule-result-text">Measurement (cbm)</text>
-                      <text className="schedule-result-text">{container.measurement}</text>
-                    </div>
-                    <div className="shipment-ind-row">
-                      <text className="schedule-result-text">VGM</text>
-                      <text className="schedule-result-text">{container.vgm}</text>
-                    </div>
-                  </div>
+                 <ShipmentDetail key={ind} container={container} ind={ind} />
                 ))}
               </div>
-              <div className="info-row">
-                <text className="info-label">Order/PO Number: </text>
-                <text className="schedule-result-text">{BOL[currentBolIndex].bol.orderNo}</text>
-              </div>
-              <div className="info-row">
-                <text className="info-label">HS Code: </text>
-                <text className="schedule-result-text">{BOL[currentBolIndex].bol.hsCode}</text>
-              </div>
-              <div className="info-row">
-                <text className="info-label">CAED/AES Number: </text>
-                <text className="schedule-result-text">{BOL[currentBolIndex].bol.caedNo}</text>
-              </div>
-              <div className="info-row">
-                <text className="info-label">Cargo Value: </text>
-                <text className="schedule-result-text">{BOL[currentBolIndex].bol.value}</text>
-              </div>
+              <InfoRow label="Order/PO Number" value={BOL[currentBolIndex].bol.orderNo} />
+              <InfoRow label="HS Code" value={BOL[currentBolIndex].bol.hsCode} />
+              <InfoRow label="CAED/AES Number" value={BOL[currentBolIndex].bol.caedNo} />
+              <InfoRow label="Cargo Value" value={BOL[currentBolIndex].bol.value} />
             </div>
           </div>
 
