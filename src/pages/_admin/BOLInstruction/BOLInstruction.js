@@ -5,7 +5,7 @@ import profileImg from '../../../assets/profile-placeholder.png';
 import Header from '../../../components/Header/Header.js';
 import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js';
 import BOL from '../../../data/BOLInstructionData.js';
-import {InfoRow, ShipmentDetail} from './Helpers.js';
+import {InfoRow, ShipmentDetail} from '../Helpers.js';
 
 const BOLInstruction = () => {
   const [currentBolIndex, setCurrentBolIndex] = useState(0);
@@ -32,21 +32,21 @@ const BOLInstruction = () => {
       <Header />
       <div className="bol-instruction-container">
           <ul className="bol-instruction-list"> 
-            {BOL.map((booking, ind) => (
+            {BOL.map((bol, ind) => (
                 <li id={(ind === currentBolIndex ? 'selected-item' : '')}
-                    className={"bol-instruction-item" + (booking.isCompleted ? "-completed" : "-pending")}
+                    className={"bol-instruction-item" + (bol.isCompleted ? "-completed" : "-pending")}
                     onClick={() => handleCurrentBolIndexChange(ind)} key={ind}>
                   <div>
                     <input 
                       type="checkbox" id="checkbox-1-1" className="regular-checkbox" 
-                      checked={booking.isCompleted} 
+                      checked={bol.isCompleted} 
                     />
                     <label htmlFor="checkbox-1-1"></label>
                   </div>
                   <img className="profile-image" src={profileImg} alt="Profile Image" />
                   <div className="item-header-container">
-                    <text className="booking-id-text">Booking #{booking.id}</text>
-                    <text className="customer-email-text">From: {booking.email}</text>
+                    <text className="booking-id-text">Booking #{bol.id}</text>
+                    <text className="customer-email-text">From: {bol.email}</text>
                   </div>
                   <text>Fri</text>
                 </li>
