@@ -14,19 +14,133 @@
   background-color: white;
   margin: 0;
   padding: 0;
-  overflow:hidden; 
-  overflow-y:scroll;
+  overflow: hidden; 
+  overflow-y: scroll;
 }
 
 .bol-instruction-detail {
   height: 100%;
   width: 70%;
-  background-color: pink;
+  background-color: rgb(255, 255, 255);
+  border-left: 2px solid rgb(207, 207, 207);
+  overflow: hidden; 
+  overflow-y: scroll;
+}
+
+.booking-id-container {
+  padding-top: 30px;
+  font-size: 25px;
 }
 
 .bol-instruction-item {
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  margin: 10px;
+  padding: 10px 20px;
+  line-height: 25px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+#selected-item {
+  background-color: rgb(233, 238, 246);
+}
+
+.item-header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.customer-email-text {
+  font-size: 14px;
+  color: rgb(42, 42, 42);
+}
+
+.booking-id-text {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.profile-image {
+  width: 60px;
+  border: none;
+  border-radius: 50px;
+}
+
+.customer-info-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px black solid;
+  padding-bottom: 10px;
+  margin: 5px 50px;
+}
+
+.form-container {
+  margin-top: 30px;
   width: 100%;
-  height: 100px;
-  background-color: aliceblue;
-  border: 2px solid white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shipment-detail-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.shipment-detail-container {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px;
+  padding: 10px 20px;
+  line-height: 20px;
+}
+
+.shipment-ind-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border-bottom: 1px solid black;
+}
+
+.bol-button-form {
+  margin-bottom: 50px;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+}
+
+.file-label {
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #BF037A;
+  margin-right: 30px;
+}
+
+.pdf-text {
+  margin-bottom: 30px;
 }
