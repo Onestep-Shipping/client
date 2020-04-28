@@ -43,7 +43,7 @@ const BOLInstruction = () => {
                     />
                     <label htmlFor="checkbox-1-1"></label>
                   </div>
-                  <img className="profile-image" src={profileImg} alt="Profile Image" />
+                  <img className="profile-image" src={profileImg} alt="" />
                   <div className="item-header-container">
                     <text className="booking-id-text">Booking #{bol.id}</text>
                     <text className="customer-email-text">From: {bol.email}</text>

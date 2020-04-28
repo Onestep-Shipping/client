@@ -26,7 +26,7 @@ const BookingRequest = () => {
                     />
                     <label htmlFor="checkbox-1-1"></label>
                   </div>
-                  <img className="profile-image" src={profileImg} alt="Profile Image" />
+                  <img className="profile-image" src={profileImg} alt="" />
                   <div className="item-header-container">
                     <text className="booking-id-text">{booking.company}</text>
                     <text className="customer-email-text">From: {booking.email}</text>
