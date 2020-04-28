@@ -53,7 +53,7 @@ const BOL_INSTRUCTION = [
   {
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
-    id: '5764235',
+    id: '329564',
     isCompleted: false,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
@@ -82,7 +82,7 @@ const BOL_INSTRUCTION = [
   {
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
-    id: '5764235',
+    id: '325695',
     isCompleted: false,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
@@ -111,7 +111,7 @@ const BOL_INSTRUCTION = [
   {
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
-    id: '5764235',
+    id: '39582093',
     isCompleted: false,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
@@ -140,7 +140,7 @@ const BOL_INSTRUCTION = [
   {
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
-    id: '5764235',
+    id: '2385902',
     isCompleted: false,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
@@ -169,7 +169,7 @@ const BOL_INSTRUCTION = [
   {
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
-    id: '5764235',
+    id: '9384595',
     isCompleted: true,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
@@ -198,7 +198,7 @@ const BOL_INSTRUCTION = [
   {
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
-    id: '5764235',
+    id: '5738502',
     isCompleted: true,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
@@ -227,7 +227,7 @@ const BOL_INSTRUCTION = [
   {
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
-    id: '5764235',
+    id: '2938425',
     isCompleted: true,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
@@ -256,7 +256,7 @@ const BOL_INSTRUCTION = [
   {
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
-    id: '5764235',
+    id: '9852352',
     isCompleted: true,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',
@@ -285,7 +285,7 @@ const BOL_INSTRUCTION = [
   {
     dateSent: '15/05/2020',
     email: 'scarlet.nguyen01@gmail.com',
-    id: '5764235',
+    id: '837452',
     isCompleted: true,
     schedule: {
       fromLocation: 'Vancouver, BC | CA',

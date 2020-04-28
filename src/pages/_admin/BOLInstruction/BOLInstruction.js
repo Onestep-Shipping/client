@@ -18,6 +18,13 @@ const BOLInstruction = () => {
     }
   }
 
+  const handleCurrentBolIndexChange = ind => {
+    if (ind !== currentBolIndex) {
+      setPDF("");
+    }
+    setCurrentBolIndex(ind)
+  }
+
   return (
     <div className="homepage-container">
       <Header />
@@ -26,14 +33,7 @@ const BOLInstruction = () => {
             {BOL.map((booking, ind) => (
                 <li id={(ind === currentBolIndex ? 'selected-item' : '')}
                     className={"bol-instruction-item" + (booking.isCompleted ? "-completed" : "-pending")}
-                    onClick={() => setCurrentBolIndex(ind)} key={ind}>
-                  {/* <input
-                    className="checkbox"
-                    name="isGoing"
-                    type="checkbox"
-                    checked={booking.isCompleted}
-                    // onChange={this.handleInputChange} 
-                  /> */}
+                    onClick={() => handleCurrentBolIndexChange(ind)} key={ind}>
                   <div>
                     <input 
                       type="checkbox" id="checkbox-1-1" className="regular-checkbox" 
@@ -149,18 +149,20 @@ const BOLInstruction = () => {
           </div>
 
           <div className="pdf-text">{pdf}</div>
-          <div className="bol-button-form">
-            <label htmlFor="file" className="file-label"> 
-              Choose a file
-            </label>
-            <input 
-              type='file' id='file' ref={inputFile} 
-              className="inputfile" 
-              onChange={handleChange}
-              accept="application/pdf"
-            />
-            <button className="result-button">Send to Customer</button>
-          </div>
+          {!BOL[currentBolIndex].isCompleted &&
+            <div className="bol-button-form">
+              <label htmlFor="file" className="file-label"> 
+                Choose a file
+              </label>
+              <input 
+                type='file' id='file' ref={inputFile} 
+                className="inputfile" 
+                onChange={handleChange}
+                accept="application/pdf"
+              />
+              <button className="result-button">Send to Customer</button>
+            </div>
+          }
         </div>
       </div>
     </div>

@@ -41,6 +41,7 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  cursor: pointer;
 }
 
 .bol-instruction-item-completed {
@@ -51,6 +52,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
   cursor: pointer;
 }
 
