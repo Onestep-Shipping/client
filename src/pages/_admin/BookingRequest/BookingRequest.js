@@ -6,6 +6,7 @@ import Header from '../../../components/Header/Header.js';
 import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js';
 import BOOKING_REQ from '../../../data/BookingRequestData.js';
 import { InfoRow } from '../Helpers.js';
+import pdfGenerator from './pdfGenerator.js';
 
 const BookingRequest = () => {
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
@@ -62,7 +63,7 @@ const BookingRequest = () => {
           </div>
           
           <div className="bol-button-form">
-            <button className="result-button">Send to Customer</button>
+            <button className="result-button" onClick={pdfGenerator}>Send to Customer</button>
           </div>
         </div>
       </div>
