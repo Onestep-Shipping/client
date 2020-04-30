@@ -75,8 +75,8 @@ const pdfGenerator = info => {
 
   doc.setFontSize(12);
   doc.setFontType('bold');
-  doc.text(80, 480, "Empty Pickup Location");
-  doc.text(350, 480, "Return Location");
+  doc.text(80, 483, "Empty Pickup Location");
+  doc.text(350, 483, "Return Location");
 
   doc.setFontType('normal');
   doc.setFontSize(10);

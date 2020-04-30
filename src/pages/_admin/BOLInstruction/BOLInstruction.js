@@ -24,7 +24,7 @@ const BOLInstruction = () => {
     if (ind !== currentBolIndex) {
       setPDF("");
     }
-    setCurrentBolIndex(ind)
+    setCurrentBolIndex(ind);
   }
 
   return (
@@ -32,10 +32,8 @@ const BOLInstruction = () => {
       <Header />
       <div className="bol-instruction-container">
         <UserList 
-          ind={currentBolIndex}  
           setInd={handleCurrentBolIndexChange}
-          opt={BOL} type="bol"
-        />
+          opt={BOL} type="bol" />
         <div className="bol-instruction-detail"> 
           <div className="booking-id-container">
             <h2>Booking #{BOL[currentBolIndex].id}</h2>

@@ -43,15 +43,15 @@ const RegisterForm = (props) => {
             <Input name="Company Name" type="text" displayErrors={displayErrors} />
             <Input name="Address" type="address" 
               displayErrors={displayErrors} 
-              placeholder="Line 1"
+              placeholder="Street"
             />
             <Input name="" type="address" 
               displayErrors={displayErrors} 
-              placeholder="Line 2"
+              placeholder="City, Province & Postal Code"
             />
             <Input name="" type="address" 
               displayErrors={displayErrors} 
-              placeholder="Line 3"
+              placeholder="Country"
             />
             <Input name="Telephone" type="phone" displayErrors={displayErrors} />
           </div>
