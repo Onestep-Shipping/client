@@ -104,7 +104,7 @@ const BookingRequest = () => {
               <text className={styles.scheduleLabel}>VGM Cut-off</text>
             </div>
             <div className="confirmation-info-container">
-              <MiniDatePicker name="terminal "value={terminalDate} action={setTerminalDate} />
+              <MiniDatePicker name="terminal" value={terminalDate} action={setTerminalDate} />
               <MiniDatePicker name="doc" value={docDate} action={setDocDate} />
               <MiniDatePicker name="vgm" value={vgmDate} action={setVgmDate} />
             </div>

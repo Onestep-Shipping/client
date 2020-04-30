@@ -20,7 +20,7 @@ const MiniDatePicker = props => {
   return (
     <div>
       <DatePicker
-        name={name} // "substract -Date-"
+        name={name}
         className={styles.fromDate}
         placeholderText="Select a day"
         selected={value}
@@ -123,6 +123,7 @@ InfoRow.propTypes = {
 };
 
 MiniDatePicker.propTypes = {
+  name: PropTypes.string,
   value: PropTypes.string,
   action: PropTypes.func,
 };
