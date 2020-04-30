@@ -1,5 +1,11 @@
 .header-text-container {
   cursor: pointer;
+  padding: 3px 0px;
+  border: 1px solid transparent;
+}
+
+.header-text-container:hover, .header-text-container:active {
+  border: 1px solid white;
 }
 
 .header-text {

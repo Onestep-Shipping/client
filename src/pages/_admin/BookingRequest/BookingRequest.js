@@ -88,8 +88,9 @@ const BookingRequest = () => {
             </div>
           </div>
 
-          <h2>Booking Confirmation</h2>
+          {!BOOKING_REQ[currentBookingIndex].isCompleted &&
           <form className="booking-confirmation-container" onSubmit={handleSubmit}>
+            <h2>Booking Confirmation</h2>
             <div className="confirmation-info-container">
               <text className={styles.scheduleLabel}>Booking No.</text>
               <input
@@ -124,7 +125,7 @@ const BookingRequest = () => {
                 Send to Customer
               </button>
             </div>
-          </form>
+          </form>}
         </div>
       </div>
     </div>
