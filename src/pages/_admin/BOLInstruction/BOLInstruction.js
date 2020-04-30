@@ -55,7 +55,7 @@ const BOLInstruction = () => {
           </ul>
         <div className="bol-instruction-detail"> 
           <div className="booking-id-container">
-            <text className="booking-id-text-in-detail">Booking #{BOL[currentBolIndex].id}</text>
+            <h2>Booking #{BOL[currentBolIndex].id}</h2>
           </div>
           <div className="customer-info-container">
             <text>Email: {BOL[currentBolIndex].email}</text>
@@ -63,12 +63,12 @@ const BOLInstruction = () => {
           </div>
 
           <div className="form-container">
-            <text className="booking-id-text">Schedule</text>
+            <h2>Schedule</h2>
             <BookingDisplay id={'' + currentBolIndex} fields={3}/>
           </div>
 
           <div className="form-container">
-            <text className="booking-id-text">BOL Instruction</text>
+            <h2>BOL Instruction</h2>
             <div className="booking-details-container">
               <InfoRow label="Shipper" value={BOL[currentBolIndex].bol.shipper} />
               <InfoRow label="Consignee" value={BOL[currentBolIndex].bol.consignee} />
