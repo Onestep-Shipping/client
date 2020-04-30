@@ -28,8 +28,8 @@ const BolForm = (props) => {
           );
         })}
       </div>
-      {Array(row).fill().map((booking, ind) => {
-        return (
+      {Array(row).fill().map((booking, ind) =>
+        (
           <div className='instruction-result-row' key={ind}>
             {TRACKING_HEADERS.map((header, i) => {
               const lcName = header.toLowerCase().replace(' ', '-');
@@ -37,8 +37,8 @@ const BolForm = (props) => {
               return ( <ExtraInput name={finalName} key={i}/> )
             })}
           </div>
-        );
-      })}
+        )
+      )}
       <button className="add-button" onClick={addContainer}>
         Add Container
       </button>

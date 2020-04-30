@@ -191,9 +191,9 @@ label {
 
 .regular-checkbox:checked + label:after {
 	content: '\2714';
-	font-size: 14px;
+	font-size: 18px;
 	position: absolute;
-	top: -5px;
-	left: 3px;
-	color: #1bb300;
+	top: -2px;
+	left: 2px;
+	color: #147c01;
 }

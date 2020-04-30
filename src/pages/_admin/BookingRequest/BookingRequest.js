@@ -54,8 +54,7 @@ const BookingRequest = () => {
     <div className="homepage-container">
       <Header />
       <div className="bol-instruction-container">
-        <UserList 
-          ind={currentBookingIndex}  
+        <UserList  
           setInd={setCurrentBookingIndex}
           opt={BOOKING_REQ} type="booking"
         />
