@@ -3,7 +3,7 @@ import './Input.css';
 import PropTypes from 'prop-types';
 
 const Input = (props) => {
-  const {type, name, displayErrors} = props;
+  const {type, name, displayErrors, placeholder = name} = props;
   const lcName = name.toLowerCase().replace(' ', '-');
   const errorClass = displayErrors ? 'display-errors' : '';
 
@@ -14,7 +14,7 @@ const Input = (props) => {
         type={type}
         name={lcName}
         className={'login-input ' + errorClass}
-        placeholder={name}
+        placeholder={placeholder}
         required />
     </div>
   );
@@ -26,4 +26,5 @@ Input.propTypes = {
   name: PropTypes.string,
   type: PropTypes.string,
   displayErrors: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
