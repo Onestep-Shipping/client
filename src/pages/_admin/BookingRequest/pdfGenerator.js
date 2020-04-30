@@ -9,6 +9,14 @@ const centeredText = (text, y) => {
 }
 
 const pdfGenerator = info => {
+  doc.setProperties({
+    title: 'Booking Confirmation #' + info.bookingNo,
+    subject: 'Info about PDF',
+    author: 'Scarlet Nguyen',
+    keywords: 'generated, javascript, web 2.0, ajax',
+    creator: 'OneStep Shipping'
+  });
+
   doc.setFont('helvatica');
   doc.setFontSize(16);
   doc.setFontType('bolditalic');
@@ -93,7 +101,9 @@ const pdfGenerator = info => {
   doc.text(50, 670, 'Best regards,');
   doc.text(50, 710, 'OneStep Shipping.');
 
-  window.open(doc.output('bloburl'), '_blank');
+  // window.open(doc.output('bloburl'), '_blank');
+
+  return doc.output('blob');
 }
 
 export default pdfGenerator;

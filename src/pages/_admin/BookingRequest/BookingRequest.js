@@ -18,42 +18,38 @@ const BookingRequest = () => {
   const [terminalDate, setTerminalDate] = useState(today);
   const [docDate, setDocDate] = useState(today);
   const [vgmDate, setVgmDate] = useState(today);
+  const [pdf, setPDF] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { bookingNo,
-            terminal,
-            doc,
-            vgm,
-            pickupLocationStreet,
-            pickupLocationCity,
-            pickupLocationCountry,
-            returnLocationStreet,
-            returnLocationCity,
-            returnLocationCountry 
+    const { bookingNo, terminal, doc, vgm,
+            pickupLocationStreet, pickupLocationCity, pickupLocationCountry,
+            returnLocationStreet, returnLocationCity, returnLocationCountry 
           } = e.target;
     
     const info = {
       company: BOOKING_REQ[currentBookingIndex].company,
       schedule: DATA[currentBookingIndex],
       booking: BOOKING_REQ[currentBookingIndex].booking,
-
       bookingNo: bookingNo.value,
-
       terminalDate: terminal.value,
       docDate: doc.value,
       vgmDate: vgm.value,
-
       pickupLine1: pickupLocationStreet.value,
       pickupLine2: pickupLocationCity.value,
       pickupLine3: pickupLocationCountry.value,
-
       returnLine1: returnLocationStreet.value,
       returnLine2: returnLocationCity.value,
       returnLine3: returnLocationCountry.value,
     }
 
-    pdfGenerator(info);
+    const blob = pdfGenerator(info);
+    setPDF(blob.title);
+
+    var formData = new FormData();
+    formData.append('pdf', blob);
+
+    // TODO: Fetch formData to server
   }
 
   return (
@@ -218,11 +214,12 @@ const BookingRequest = () => {
               </div>
             </div>
 
+            <div className="pdf-text">{pdf}</div>
             <div className="bol-button-form">
-              <button id="left-button" className="result-button">
-                Preview
+              <input id="left-button" type="submit" className="result-button" value="Generate PDF" />
+              <button  className="result-button">
+                Send to Customer
               </button>
-              <input type="submit" className="result-button" value="Send to Customer" />
             </div>
           </form>
         </div>
