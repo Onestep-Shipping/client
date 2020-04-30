@@ -7,9 +7,8 @@ import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js
 import styles from '../../../components/ScheduleForm/ScheduleFormMin.module.css';
 import BOOKING_REQ from '../../../data/BookingRequestData.js';
 import DATA from '../../../data/ScheduleDetailsData.js';
-import { InfoRow, ContainerDetail } from '../Helpers.js';
+import { InfoRow, ContainerDetail, Address, MiniDatePicker } from '../Helpers.js';
 import pdfGenerator from './pdfGenerator.js';
-import DatePicker from 'react-datepicker';
 
 const BookingRequest = () => {
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
@@ -122,93 +121,18 @@ const BookingRequest = () => {
               <text className={styles.scheduleLabel}>VGM Cut-off</text>
             </div>
             <div className="confirmation-info-container">
-              <div>
-                <DatePicker
-                  name="terminal"
-                  className={styles.fromDate}
-                  placeholderText="Select a day"
-                  selected={terminalDate}
-                  onSelect={setTerminalDate}
-                />
-              </div>
-              <div>
-                <DatePicker
-                  name="doc"
-                  className={styles.fromDate}
-                  placeholderText="Select a day"
-                  selected={docDate}
-                  onSelect={setDocDate}
-                />
-              </div>
-              <div>
-                <DatePicker
-                  name="vgm"
-                  className={styles.fromDate}
-                  placeholderText="Select a day"
-                  selected={vgmDate}
-                  onSelect={setVgmDate}
-                />
-              </div>
+              <MiniDatePicker name="terminal "value={terminalDate} action={setTerminalDate} />
+              <MiniDatePicker name="doc" value={docDate} action={setDocDate} />
+              <MiniDatePicker name="vgm" value={vgmDate} action={setVgmDate} />
             </div>
 
             <div className="confirmation-info-container">
               <text className={styles.scheduleLabel}>Empty Pickup Location</text>
               <text className={styles.scheduleLabel}>Return Location</text>  
             </div>
-            <div className="confirmation-info-container">
-              <div>
-                <input
-                  type="text"
-                  name="pickupLocationStreet"
-                  className="booking-confirmation-input"
-                  placeholder="i.e. 8237 Montcalm Street"
-                  required/>
-              </div>
-              <div>
-                <input
-                  type="text"
-                  name="returnLocationStreet"
-                  className="booking-confirmation-input"
-                  placeholder="i.e. 8237 Montcalm Street"
-                  required/>
-              </div>
-            </div>
-            <div className="confirmation-info-container">
-              <div>
-                <input
-                  type="text"
-                  name="pickupLocationCity"
-                  className="booking-confirmation-input"
-                  placeholder="i.e. Vancouver, BC, V6P 4P4"
-                  required/>
-              </div>
-              <div>
-                <input
-                  type="text"
-                  name="returnLocationCity"
-                  className="booking-confirmation-input"
-                  placeholder="i.e. Vancouver, BC, V6P 4P4"
-                  required/>
-              </div>
-            </div>
-            <div className="confirmation-info-container">
-              <div>
-                <input
-                  type="text"
-                  name="pickupLocationCountry"
-                  className="booking-confirmation-input"
-                  placeholder="i.e. Canada"
-                  required/>
-              </div>
-              <div>
-                <input
-                  type="text"
-                  name="returnLocationCountry"
-                  className="booking-confirmation-input"
-                  placeholder="i.e. Canada"
-                  required/>
-              </div>
-            </div>
+            <Address type="Street" />
+            <Address type="City" />
+            <Address type="Country" />
 
             <div className="bol-button-form">
               <input id="left-button" type="submit" className="result-button" value="Generate PDF" />
