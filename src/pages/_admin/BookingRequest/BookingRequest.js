@@ -7,7 +7,7 @@ import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js
 import styles from '../../../components/ScheduleForm/ScheduleFormMin.module.css';
 import BOOKING_REQ from '../../../data/BookingRequestData.js';
 import DATA from '../../../data/ScheduleDetailsData.js';
-import { InfoRow } from '../Helpers.js';
+import { InfoRow, ContainerDetail } from '../Helpers.js';
 import pdfGenerator from './pdfGenerator.js';
 import DatePicker from 'react-datepicker';
 
@@ -18,7 +18,6 @@ const BookingRequest = () => {
   const [terminalDate, setTerminalDate] = useState(today);
   const [docDate, setDocDate] = useState(today);
   const [vgmDate, setVgmDate] = useState(today);
-  const [pdf, setPDF] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,11 +42,9 @@ const BookingRequest = () => {
       returnLine3: returnLocationCountry.value,
     }
 
-    const blob = pdfGenerator(info);
-    setPDF(blob.title);
-
-    var formData = new FormData();
-    formData.append('pdf', blob);
+    const pdf = pdfGenerator(info);
+    var data = new FormData();
+    data.append('data', pdf);
 
     // TODO: Fetch formData to server
   }
@@ -83,6 +80,7 @@ const BookingRequest = () => {
             <h2>{BOOKING_REQ[currentBookingIndex].company.name}</h2>
           </div>
           <div className="customer-info-container">
+            <text>Contact: {BOOKING_REQ[currentBookingIndex].personInCharge}</text>
             <text>Email: {BOOKING_REQ[currentBookingIndex].email}</text>
             <text>{BOOKING_REQ[currentBookingIndex].dateSent}</text>
           </div>
@@ -97,14 +95,12 @@ const BookingRequest = () => {
             <div className="booking-details-container">
               <InfoRow label="Commodity" value={BOOKING_REQ[currentBookingIndex].booking.commodity} />
               <InfoRow label="HS Code" value={BOOKING_REQ[currentBookingIndex].booking.hsCode} />
-              <InfoRow label="Quantity / Container" value=
-              {
-                BOOKING_REQ[currentBookingIndex].booking.container.map((row, ind) => (
-                  <div className="info-row" key={ind}>
-                    <text className="schedule-result-text">{row.quantity} / {row.containerType}</text>
-                  </div>
-                ))
-              } />
+              <InfoRow label="Shipment Detail" value="" />
+              <div className="shipment-detail-row">
+                {BOOKING_REQ[currentBookingIndex].booking.container.map((row, ind) => (
+                 <ContainerDetail key={ind} container={row} ind={ind} />
+                ))}
+              </div>
               <InfoRow label="Payment Term" value={BOOKING_REQ[currentBookingIndex].booking.payment} />
             </div>
           </div>
@@ -214,7 +210,6 @@ const BookingRequest = () => {
               </div>
             </div>
 
-            <div className="pdf-text">{pdf}</div>
             <div className="bol-button-form">
               <input id="left-button" type="submit" className="result-button" value="Generate PDF" />
               <button  className="result-button">

@@ -1,6 +1,7 @@
 import jsPDF from 'jspdf';
+import moment from 'moment';
 
-let doc = new jsPDF("p", "pt", 'letter');
+const doc = new jsPDF("p", "pt", 'letter');
 
 const centeredText = (text, y) => {
     let textWidth = doc.getStringUnitWidth(text) * doc.internal.getFontSize() / doc.internal.scaleFactor;
@@ -39,7 +40,7 @@ const pdfGenerator = info => {
   doc.text(310, 145, "Contact          :              Rose Phan");
   doc.text(310, 160, "Tel              :      +1 (604) 500-4934");
   doc.text(310, 175, "Email            :   rosephan99@gmail.com");
-  doc.text(310, 190, "Issue Date       :             05/01/2020");
+  doc.text(310, 190, "Issue Date       :             " + moment().format("L"));
 
   doc.line(50, 200, 560, 200);
 
@@ -82,11 +83,11 @@ const pdfGenerator = info => {
   doc.text(80, 500, info.pickupLine1);
   doc.text(350, 500, info.returnLine1);
 
-  doc.text(80, 520, info.pickupLine2);
-  doc.text(350, 520, info.returnLine2);
+  doc.text(80, 515, info.pickupLine2);
+  doc.text(350, 515, info.returnLine2);
 
-  doc.text(80, 535, info.pickupLine3);
-  doc.text(350, 535, info.returnLine3);
+  doc.text(80, 530, info.pickupLine3);
+  doc.text(350, 530, info.returnLine3);
 
   doc.line(50, 560, 560, 560);
 
@@ -101,7 +102,7 @@ const pdfGenerator = info => {
   doc.text(50, 670, 'Best regards,');
   doc.text(50, 710, 'OneStep Shipping.');
 
-  // window.open(doc.output('bloburl'), '_blank');
+  window.open(doc.output('bloburl'), '_blank');
 
   return doc.output('blob');
 }

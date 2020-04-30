@@ -43,7 +43,25 @@ const ShipmentDetail = props => {
   );
 } 
 
-export {InfoRow, ShipmentDetail};
+const ContainerDetail = props => {
+  const { container, ind } = props;
+  
+  return (
+    <div className="shipment-detail-container">
+      <text className="schedule-result-text">{ind + 1}</text>
+      <div className="shipment-ind-row">
+        <text className="schedule-result-text">Quantity</text>
+        <text className="schedule-result-text">{container.quantity}</text>
+      </div>
+      <div className="shipment-ind-row">
+        <text className="schedule-result-text">Container Type</text>
+        <text className="schedule-result-text">{container.containerType}</text>
+      </div>
+    </div>
+  );
+} 
+
+export {InfoRow, ShipmentDetail, ContainerDetail};
 
 InfoRow.propTypes = {
   label: PropTypes.string,
@@ -51,6 +69,11 @@ InfoRow.propTypes = {
 };
 
 ShipmentDetail.propTypes = {
+  container: PropTypes.object,
+  ind: PropTypes.number
+};
+
+ContainerDetail.propTypes = {
   container: PropTypes.object,
   ind: PropTypes.number
 };
