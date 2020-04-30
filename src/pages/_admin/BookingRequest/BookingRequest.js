@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import './BookingRequest.css';
-import profileImg from '../../../assets/profile-placeholder.png';
 
 import Header from '../../../components/Header/Header.js';
 import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js';
+import UserList from '../../../components/UserList/UserList.js';
 import styles from '../../../components/ScheduleForm/ScheduleFormMin.module.css';
 import BOOKING_REQ from '../../../data/BookingRequestData.js';
 import DATA from '../../../data/ScheduleDetailsData.js';
@@ -52,28 +52,11 @@ const BookingRequest = () => {
     <div className="homepage-container">
       <Header />
       <div className="bol-instruction-container">
-          <ul className="booking-instruction-list"> 
-            {BOOKING_REQ.map((booking, ind) => (
-                <li id={(ind === currentBookingIndex ? 'selected-item' : '')}
-                    className={"bol-instruction-item" + (booking.isCompleted ? "-completed" : "-pending")}
-                    onClick={() => setCurrentBookingIndex(ind)} key={ind}>
-                  <div>
-                    <input 
-                      type="checkbox" id="checkbox-1-1" className="regular-checkbox" 
-                      checked={booking.isCompleted} 
-                    />
-                    <label htmlFor="checkbox-1-1"></label>
-                  </div>
-                  <img className="profile-image" src={profileImg} alt="" />
-                  <div className="item-header-container">
-                    <text className="booking-id-text">{booking.company.name}</text>
-                    <text className="customer-email-text">From: {booking.personInCharge}</text>
-                  </div>
-                  <text>Fri</text>
-                </li>
-              )
-            )}
-          </ul>
+        <UserList 
+          ind={currentBookingIndex}  
+          setInd={setCurrentBookingIndex}
+          opt={BOOKING_REQ} type="booking"
+        />
         <div className="booking-instruction-detail"> 
           <div className="booking-id-container">
             <h2>{BOOKING_REQ[currentBookingIndex].company.name}</h2>
