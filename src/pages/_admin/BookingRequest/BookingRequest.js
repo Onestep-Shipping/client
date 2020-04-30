@@ -18,20 +18,28 @@ const BookingRequest = () => {
   const [docDate, setDocDate] = useState(today);
   const [vgmDate, setVgmDate] = useState(today);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
+    const pdf = pdfGenerator(createInfoObject(e));
+    var data = new FormData();
+    data.append('data', pdf);
+
+    // TODO: Fetch formData to server
+  }
+
+  const createInfoObject = e => {
     const { bookingNo, terminal, doc, vgm,
             pickupLocationStreet, pickupLocationCity, pickupLocationCountry,
             returnLocationStreet, returnLocationCity, returnLocationCountry 
           } = e.target;
     
-    const info = {
+    return {
       company: BOOKING_REQ[currentBookingIndex].company,
       schedule: DATA[currentBookingIndex],
       booking: BOOKING_REQ[currentBookingIndex].booking,
       bookingNo: bookingNo.value,
-      terminalDate: terminal.value,
-      docDate: doc.value,
+      terminalDate: terminal.value, 
+      docDate: doc.value, 
       vgmDate: vgm.value,
       pickupLine1: pickupLocationStreet.value,
       pickupLine2: pickupLocationCity.value,
@@ -40,12 +48,6 @@ const BookingRequest = () => {
       returnLine2: returnLocationCity.value,
       returnLine3: returnLocationCountry.value,
     }
-
-    const pdf = pdfGenerator(info);
-    var data = new FormData();
-    data.append('data', pdf);
-
-    // TODO: Fetch formData to server
   }
 
   return (
