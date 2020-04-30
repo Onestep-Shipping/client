@@ -41,11 +41,22 @@ const RegisterForm = (props) => {
         <div className="all-texfield-register-container">
           <div className="company-info-container">
             <Input name="Company Name" type="text" displayErrors={displayErrors} />
-            <Input name="Address" type="address" displayErrors={displayErrors} />
+            <Input name="Address" type="address" 
+              displayErrors={displayErrors} 
+              placeholder="Line 1"
+            />
+            <Input name="" type="address" 
+              displayErrors={displayErrors} 
+              placeholder="Line 2"
+            />
+            <Input name="" type="address" 
+              displayErrors={displayErrors} 
+              placeholder="Line 3"
+            />
             <Input name="Telephone" type="phone" displayErrors={displayErrors} />
-            <Input name="Tax ID" type="text" displayErrors={displayErrors} />
           </div>
           <div>
+            <Input name="Tax ID" type="text" displayErrors={displayErrors} />
             <Input name="Person In-Charge" type="text" displayErrors={displayErrors} />
             <Input name="Position" type="text" displayErrors={displayErrors} />
             <Input name="Email" type="email" displayErrors={displayErrors} />

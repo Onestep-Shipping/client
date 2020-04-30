@@ -1,6 +1,13 @@
 const BOOKING_REQ = [
   {
-    company: 'Adidas',
+    company:  {
+      name: 'Adidas',
+      address: {
+        line1: '8237 Montcalm Street',
+        line2: 'Vancouver, BC, V6P 4P4',
+        line3: 'Canada',
+      }
+    },
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
     isCompleted: false,
@@ -8,13 +15,32 @@ const BOOKING_REQ = [
     booking: {
       commodity: 'Food',
       hsCode: '235266',
-      containerType: '40\' Dry',
-      quantity: 40,
+      container: [
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+      ],
       payment: 'Prepaid',
     }
   },
   {
-    company: 'Adidas',
+    company:  {
+      name: 'Adidas',
+      address: {
+        line1: '8237 Montcalm Street',
+        line2: 'Vancouver, BC, V6P 4P4',
+        line3: 'Canada',
+      }
+    },
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
     isCompleted: false,
@@ -22,13 +48,33 @@ const BOOKING_REQ = [
     booking: {
       commodity: 'Food',
       hsCode: '235266',
-      containerType: '40\' Dry',
-      quantity: 40,
+      container: [
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+      ],
       payment: 'Prepaid',
+
     }
   },
   {
-    company: 'Adidas',
+    company:  {
+      name: 'Adidas',
+      address: {
+        line1: '8237 Montcalm Street',
+        line2: 'Vancouver, BC, V6P 4P4',
+        line3: 'Canada',
+      }
+    },
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
     isCompleted: false,
@@ -36,13 +82,33 @@ const BOOKING_REQ = [
     booking: {
       commodity: 'Food',
       hsCode: '235266',
-      containerType: '40\' Dry',
-      quantity: 40,
+      container: [
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+      ],
       payment: 'Prepaid',
+
     }
   },
   {
-    company: 'Adidas',
+    company:  {
+      name: 'Adidas',
+      address: {
+        line1: '8237 Montcalm Street',
+        line2: 'Vancouver, BC, V6P 4P4',
+        line3: 'Canada',
+      }
+    },
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
     isCompleted: false,
@@ -50,13 +116,32 @@ const BOOKING_REQ = [
     booking: {
       commodity: 'Food',
       hsCode: '235266',
-      containerType: '40\' Dry',
-      quantity: 40,
+      container: [
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+      ],
       payment: 'Prepaid',
     }
   },
   {
-    company: 'Adidas',
+    company:  {
+      name: 'Adidas',
+      address: {
+        line1: '8237 Montcalm Street',
+        line2: 'Vancouver, BC, V6P 4P4',
+        line3: 'Canada',
+      }
+    },
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
     isCompleted: false,
@@ -64,13 +149,33 @@ const BOOKING_REQ = [
     booking: {
       commodity: 'Food',
       hsCode: '235266',
-      containerType: '40\' Dry',
-      quantity: 40,
+      container: [
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+      ],
       payment: 'Prepaid',
+
     }
   },
   {
-    company: 'Adidas',
+    company:  {
+      name: 'Adidas',
+      address: {
+        line1: '8237 Montcalm Street',
+        line2: 'Vancouver, BC, V6P 4P4',
+        line3: 'Canada',
+      }
+    },
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
     isCompleted: false,
@@ -78,13 +183,33 @@ const BOOKING_REQ = [
     booking: {
       commodity: 'Food',
       hsCode: '235266',
-      containerType: '40\' Dry',
-      quantity: 40,
+      container: [
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+      ],
       payment: 'Prepaid',
+
     }
   },
   {
-    company: 'Adidas',
+    company:  {
+      name: 'Adidas',
+      address: {
+        line1: '8237 Montcalm Street',
+        line2: 'Vancouver, BC, V6P 4P4',
+        line3: 'Canada',
+      }
+    },
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
     isCompleted: true,
@@ -92,13 +217,33 @@ const BOOKING_REQ = [
     booking: {
       commodity: 'Food',
       hsCode: '235266',
-      containerType: '40\' Dry',
-      quantity: 40,
+      container: [
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+      ],
       payment: 'Prepaid',
+
     }
   },
   {
-    company: 'Adidas',
+    company:  {
+      name: 'Adidas',
+      address: {
+        line1: '8237 Montcalm Street',
+        line2: 'Vancouver, BC, V6P 4P4',
+        line3: 'Canada',
+      }
+    },
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
     isCompleted: true,
@@ -106,13 +251,33 @@ const BOOKING_REQ = [
     booking: {
       commodity: 'Food',
       hsCode: '235266',
-      containerType: '40\' Dry',
-      quantity: 40,
+      container: [
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+      ],
       payment: 'Prepaid',
+
     }
   },
   {
-    company: 'Adidas',
+    company:  {
+      name: 'Adidas',
+      address: {
+        line1: '8237 Montcalm Street',
+        line2: 'Vancouver, BC, V6P 4P4',
+        line3: 'Canada',
+      }
+    },
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
     isCompleted: true,
@@ -120,13 +285,33 @@ const BOOKING_REQ = [
     booking: {
       commodity: 'Food',
       hsCode: '235266',
-      containerType: '40\' Dry',
-      quantity: 40,
+      container: [
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+      ],
       payment: 'Prepaid',
+
     }
   },
   {
-    company: 'Adidas',
+    company:  {
+      name: 'Adidas',
+      address: {
+        line1: '8237 Montcalm Street',
+        line2: 'Vancouver, BC, V6P 4P4',
+        line3: 'Canada',
+      }
+    },
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
     isCompleted: true,
@@ -134,9 +319,22 @@ const BOOKING_REQ = [
     booking: {
       commodity: 'Food',
       hsCode: '235266',
-      containerType: '40\' Dry',
-      quantity: 40,
+      container: [
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+      ],
       payment: 'Prepaid',
+
     }
   },
 ];

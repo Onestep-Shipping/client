@@ -37,6 +37,10 @@ const BookingDisplay = (props) => {
             {fields > 3 &&
               <div style={{width: '100%'}}>
                 <div className="info-row">
+                  <text className="info-label">Carrier: </text>
+                  <text className="schedule-result-text">{booking.carrier}</text>
+                </div>
+                <div className="info-row">
                   <div>
                     <text className="info-label">Transshipments: </text>
                     <text className="schedule-result-text">{booking.trans}</text>

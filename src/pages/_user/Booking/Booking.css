@@ -65,6 +65,15 @@
   text-align: end;
 }
 
+.booking-form-input-start {
+  outline: none;
+  border: none;
+  font-size: 16px;
+  background-color: #a0eec1;
+  text-align: start;
+  border-bottom: solid 1px rgb(49, 49, 49);
+}
+
 input[type=number]::-webkit-inner-spin-button {
   visibility: hidden;
   margin-left: -12px;

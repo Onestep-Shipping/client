@@ -14,6 +14,7 @@ const DATA = [
     bookingStatus: 'In Process',
     bolStatus: 'Not Ready',
     invoiceStatus: 'Not Ready',
+    carrier: 'Hapag-Lloyd',
   },
   { 
     from: 'Vancouver, BC | CA',
@@ -30,6 +31,7 @@ const DATA = [
     bookingStatus: 'In Process',
     bolStatus: 'Not Ready',
     invoiceStatus: 'Not Ready',
+    carrier: 'Hapag-Lloyd',
   },
   { 
     from: 'Vancouver, BC | CA',
@@ -46,6 +48,7 @@ const DATA = [
     bookingStatus: 'Received',
     bolStatus: 'Ready',
     invoiceStatus: 'Not Ready',
+    carrier: 'Hapag-Lloyd',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -62,6 +65,7 @@ const DATA = [
     bookingStatus: 'Received',
     bolStatus: 'Ready',
     invoiceStatus: 'Not Ready',
+    carrier: 'Hapag-Lloyd',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -78,6 +82,7 @@ const DATA = [
     bookingStatus: 'Received',
     bolStatus: 'In Process',
     invoiceStatus: 'Not Ready',
+    carrier: 'Hapag-Lloyd',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -94,6 +99,7 @@ const DATA = [
     bookingStatus: 'Received',
     bolStatus: 'In Process',
     invoiceStatus: 'Not Ready',
+    carrier: 'Hapag-Lloyd',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -110,6 +116,7 @@ const DATA = [
     bookingStatus: 'Received',
     bolStatus: 'Received',
     invoiceStatus: 'Not Ready',
+    carrier: 'Hapag-Lloyd',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -126,6 +133,7 @@ const DATA = [
     bookingStatus: 'Received',
     bolStatus: 'Received',
     invoiceStatus: 'Not Ready',
+    carrier: 'Hapag-Lloyd',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -142,6 +150,7 @@ const DATA = [
     bookingStatus: 'Received',
     bolStatus: 'Received',
     invoiceStatus: 'Received',
+    carrier: 'Hapag-Lloyd',
   },
   {
     from: 'Vancouver, BC | CA',
@@ -158,6 +167,7 @@ const DATA = [
     bookingStatus: 'Received',
     bolStatus: 'Received',
     invoiceStatus: 'Received',
+    carrier: 'Hapag-Lloyd',
   },
 ];
 

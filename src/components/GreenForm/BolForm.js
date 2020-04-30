@@ -39,7 +39,7 @@ const BolForm = (props) => {
           </div>
         );
       })}
-      <button className="add-button" onClick={(e) => addContainer(e)}>
+      <button className="add-button" onClick={addContainer}>
         Add Container
       </button>
 
