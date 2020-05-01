@@ -17,17 +17,6 @@
   margin-bottom: 30px;
 }
 
-.booking-instruction-list {
-  width: 25%;
-  height: 100%;
-  list-style-type: none;
-  background-color: white;
-  margin: 0;
-  padding: 0;
-  overflow: hidden; 
-  overflow-y: scroll;
-}
-
 .booking-instruction-detail {
   height: 100%;
   width: 75%;

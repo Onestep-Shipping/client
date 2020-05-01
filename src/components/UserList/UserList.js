@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './UserList.css';
 import PropTypes from 'prop-types';
 import profileImg from '../../assets/profile-placeholder.png';
 
