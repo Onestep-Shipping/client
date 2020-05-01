@@ -12,15 +12,12 @@
   user-select: none;
   cursor: pointer;
   font-size: 18px;
-  color: white;
+  color: #224DAA;
 }
 
 .indicator-container {
   padding: 7px 10px;
-  background-color: #224DAA;
-  border-radius: 5px;
-}
-
-.indicator-container:hover {
-  background-color: rgb(24, 56, 124);
+  border: solid 1px #224DAA;
+  transition: background-color 0.3s ease-out;
+  border-radius: 2px;
 }

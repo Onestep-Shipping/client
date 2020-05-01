@@ -10,6 +10,7 @@ import registerIcon from '../../assets/register-icon.svg';
 import loginIcon from '../../assets/login-icon.svg';
 import arrowDownIcon from '../../assets/arrow-down.svg';
 import notiIcon from '../../assets/noti-icon.svg';
+import PropTypes from 'prop-types';
 
 import NOTIFICATIONS from '../../data/NotificationData.js';
 
@@ -113,3 +114,7 @@ const Header = props => {
 };
 
 export default Header;
+
+Header.propTypes = {
+  style: PropTypes.string,
+};

@@ -16,17 +16,13 @@ const BolForm = (props) => {
 
   return (
     <form className="booking-form-container" onSubmit={props.action} noValidate>
-      {TEXTAREA_FIELDS.map((name, ind) => {
-        return (<Textarea name={name} key={ind}/>);
-      })}
+      {TEXTAREA_FIELDS.map((name, ind) => (<Textarea name={name} key={ind}/>))}
       <div className="schedule-result-header-row">
-        {TRACKING_HEADERS.map((header, ind) => {
-          return (
-            <div className="col2" key={ind}>
-              <text className="schedule-result-header-text">{header}</text>
-            </div>
-          );
-        })}
+        {TRACKING_HEADERS.map((header, ind) => 
+          <div className="col2" key={ind}>
+            <text className="schedule-result-header-text">{header}</text>
+          </div>
+        )}
       </div>
       {Array(row).fill().map((booking, ind) =>
         (
@@ -43,9 +39,7 @@ const BolForm = (props) => {
         Add Container
       </button>
 
-      {INPUT_FIELDS.map((name, ind) => {
-        return (<InfoRow name={name} key={ind} />);
-      })}
+      {INPUT_FIELDS.map((name, ind) => (<InfoRow name={name} key={ind} />))}
       <button className="result-button">Submit</button>
     </form>
   );

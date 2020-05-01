@@ -34,9 +34,7 @@ const RegisterForm = (props) => {
       <div className="header">Register</div>
       <form className="register-box" onSubmit={handleSignUp} noValidate>
         {errors.length > 0 &&
-          errors.map((err, ind) => {
-            return <small className="danger-error" key={ind}>{err}</small>;
-          })
+          errors.map((err, ind) => <small className="danger-error" key={ind}>{err}</small>)
         }
         <div className="all-texfield-register-container">
           <div className="company-info-container">

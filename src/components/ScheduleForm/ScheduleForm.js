@@ -76,11 +76,7 @@ const ScheduleForm = (props) => {
             value={schedule.carrier}
             className={styles.carrierSelector} 
             onChange={(e) => setCarrier(e.target.value)}>
-            {
-              CARRIERS.map((opt, ind) => {
-                return (<option value={opt} key={ind}>{opt}</option>);
-              })
-            }
+            {CARRIERS.map((opt, ind) => (<option value={opt} key={ind}>{opt}</option>))}
           </select>
         </div>
       </div>
