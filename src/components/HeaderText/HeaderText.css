@@ -5,12 +5,12 @@
 }
 
 .header-text-container:hover, .header-text-container:active {
-  border: 1px solid white;
+  border: 1px solid rgb(100, 100, 100);
 }
 
 .header-text {
-  font-size: 20px;
-  color: white;
+  font-size: 17px;
+  color: rgb(65, 65, 65);
   cursor: pointer;
   user-select: none;
   margin: 0px 10px;

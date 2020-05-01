@@ -4,14 +4,14 @@
 }
 
 .schedule-result-text-link {
-  color: rgb(25, 68, 161);
+  color: rgb(44, 93, 200);
   font-weight: 600;
   text-decoration: underline;
   cursor: pointer;
 }
 
 #red-link {
-  color: red !important;
+  color: rgb(224, 69, 69) !important;
   cursor: pointer;
   text-decoration: underline;
   font-weight: 600;
@@ -26,6 +26,7 @@
   justify-content: space-between;
   padding: 30px 0px;
   user-select: none;
-  border: 2px solid white;
+  border: 0.5px dashed rgb(100, 100, 100);
+  margin-bottom: 5px;
 }
 

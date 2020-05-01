@@ -34,27 +34,17 @@ const FixedSizeList = (props) => {
   return (
     <div>
       <div className="schedule-result-header-row">
-        {
-          headers.map((header, ind) => {
-            return (
-              <div className={"col" + (ind === 0 ? "-numb" : "")} key={ind}>
-                <text className="schedule-result-header-text">{header}</text>
-              </div>
-            );
-          })
-        }
+        {headers.map((header, ind) => 
+          <div className={"col" + (ind === 0 ? "-numb" : "")} key={ind}>
+            <text className="schedule-result-header-text">{header}</text>
+          </div>
+        )}
       </div>
-        
-      {
-        sliceArray().map((booking, ind) => {
-          return (
-            <div key={ind}>
-              {row(booking, ((currentPage - 1) * LIST_SIZE) + ind)}
-            </div>
-          );
-        })
-      }
-
+      {sliceArray().map((booking, ind) => 
+        <div key={ind}>
+          {row(booking, ((currentPage - 1) * LIST_SIZE) + ind)}
+        </div>
+      )}
       <div className="page-indicator-container">
         <div onClick={handlePrev} className="indicator-container">
           <text className="indicator-text">{'<< Previous'}</text>

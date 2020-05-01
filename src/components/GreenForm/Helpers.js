@@ -57,11 +57,7 @@ const Select = (props) => {
     <div className="info-row">
       <text className="info-label">{name}: </text>
       <select className="booking-form-input">
-        {options.map((type, ind) => {
-          return (
-            <option value={type} key={ind}>{type}</option>
-          )
-        })}
+        {options.map((type, ind) => (<option value={type} key={ind}>{type}</option>))}
       </select>
     </div>
   );

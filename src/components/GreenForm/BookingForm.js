@@ -26,33 +26,25 @@ const BookingForm = (props) => {
       <InfoRow name="Commodity" />
       <InfoRow name="HS Code" />
       <div className="schedule-result-header-row">
-        {CONTAINER_HEADERS.map((header, ind) => {
-          return (
-            <div key={ind}>
-              <text className="schedule-result-header-text">{header}</text>
-            </div>
-          );
-        })}
-      </div>
-      {Array(row).fill().map((booking, ind) => {
-        return (
-          <div className='instruction-result-row' key={ind}>
-            <input
-              type="text"
-              name="quantity"
-              className="booking-form-input-start"
-              placeholder="i.e. 420010"
-              required/>
-            <select className="booking-form-input">
-              {CONTAINER_TYPES.map((type, ind) => {
-                return (
-                  <option value={type} key={ind}>{type}</option>
-                )
-              })}
-            </select>
+        {CONTAINER_HEADERS.map((header, ind) => 
+          <div key={ind}>
+            <text className="schedule-result-header-text">{header}</text>
           </div>
-        );
-      })}
+        )}
+      </div>
+      {Array(row).fill().map((booking, ind) => 
+        <div className='instruction-result-row' key={ind}>
+          <input
+            type="text"
+            name="quantity"
+            className="booking-form-input-start"
+            placeholder="i.e. 420010"
+            required/>
+          <select className="booking-form-input">
+            {CONTAINER_TYPES.map((type, ind) => <option value={type} key={ind}>{type}</option>)}
+          </select>
+        </div>
+      )}
       <button className="add-button" onClick={addContainer}>
         Add Container
       </button>

@@ -33,10 +33,7 @@ const LoginForm = (props) => {
       <div className="header">Login</div>
       <form className="box" onSubmit={handleLogin} noValidate>
         {errors.length > 0 &&
-          errors.map((err, ind) => {
-            return <small className="danger-error" key={ind}>{err}</small>;
-          })
-        }
+          errors.map((err, ind) => <small className="danger-error" key={ind}>{err}</small>)}
         <Input name="Email" type="email" displayErrors={displayErrors} />
         <Input name="Password" type="password" displayErrors={displayErrors} />
         <button className="login-btn">Login</button>

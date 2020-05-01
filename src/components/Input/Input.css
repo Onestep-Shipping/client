@@ -14,14 +14,14 @@
 }
 
 .login-input {
-  height: 2.1em;
+  width: 230px;
   border-radius: 3px;
-  border: 1px solid #14B9D7;
+  border: 1px solid #474747;
   transition: border 0.4s ease-out;
   margin: 10px 0px 10px 0px;
-  padding: 5px 20px;
+  padding: 15px 20px;
   font-family: Oxygen, sans-serif;
-  font-size: 19px;
+  font-size: 16px;
   color: #3e3e42;
   background: rgba(15, 15, 15, 0.01);
   outline: none;

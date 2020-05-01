@@ -10,13 +10,15 @@ import registerIcon from '../../assets/register-icon.svg';
 import loginIcon from '../../assets/login-icon.svg';
 import arrowDownIcon from '../../assets/arrow-down.svg';
 import notiIcon from '../../assets/noti-icon.svg';
+import PropTypes from 'prop-types';
 
 import NOTIFICATIONS from '../../data/NotificationData.js';
 
 const ADMIN_OPTIONS = ["Companies", "Booking Request", "BOL Instruction", "Invoice", "Sign Out"];
 const USER_OPTIONS = ["My Booking", "Sign Out"];
 
-const Header = () => {
+const Header = props => {
+  const { style = "" } = props;
   const history = useHistory();
 
   const { currentUser, isAdmin } = useContext(AuthContext);
@@ -57,7 +59,7 @@ const Header = () => {
   }
 
   const userButton = (name, icon) => {return (
-    <div className="button-content">
+    <div className="button-content" id={name === "Login" ? "add-margin" : ""}>
       <img className="svg" src={icon} alt="User Icon" />
       <text>
       {currentUser ?
@@ -75,18 +77,13 @@ const Header = () => {
   );
 
   return (
-    <div className="header-container">
+    <div className="header-container" id={style}>
         <div onClick={() => history.push('/')}>
-          <text className="logo-text">OneStep Ocean</text>
+          <text className="logo-text">OneStep Shipping</text>
         </div>
 
         <div className="menu-container">
           <div className="login-container">
-            <Dropdown
-              type={'register'}
-              content={userButton('Register', registerIcon)}
-              onChange={val => handleLogin(val)}
-              isLoggedIn={isLoggedIn} isAlwaysVisible={!isLoggedIn} />
             <Dropdown
               content={userButton('Login', loginIcon)}
               type={'login'}
@@ -94,6 +91,12 @@ const Header = () => {
               options={isAdmin ? ADMIN_OPTIONS : USER_OPTIONS}
               isLoggedIn={isLoggedIn} />
             <Dropdown
+              type={'register'}
+              content={userButton('Register', registerIcon)}
+              onChange={val => handleLogin(val)}
+              isLoggedIn={isLoggedIn} isAlwaysVisible={!isLoggedIn} />
+            <Dropdown
+              type={'noti'}
               content={notificationButton}
               onChange={val => handleNotification(val)}
               options={NOTIFICATIONS.length > 0 ? NOTIFICATIONS : ["Notification is empty."]}
@@ -111,3 +114,7 @@ const Header = () => {
 };
 
 export default Header;
+
+Header.propTypes = {
+  style: PropTypes.string,
+};

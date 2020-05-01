@@ -75,7 +75,7 @@ const Companies = () => {
           <div className="filter-container">
             <h3>Filter:</h3>
             <div className="filter-box-container">
-              <text>Country</text>
+              <text className="filter-text">Country</text>
               <select className="duration-selector" onChange={handleCountryChange}>
                 {COUNTRIES.map((opt, ind) => 
                   (<option value={opt} key={ind}>{opt}</option>)
@@ -83,7 +83,7 @@ const Companies = () => {
               </select>
             </div>
             <div className="filter-box-container">
-              <text># of Orders</text>
+              <text className="filter-text"># of Orders</text>
               <select className="duration-selector" onChange={handleOrderChange}>
                 {ORDERS.map((opt, ind) => 
                   (<option value={opt} key={ind}>{opt}</option>)

@@ -37,13 +37,7 @@ const Profile = () => {
   const row = (booking, ind) => {
     return (
       <div key={ind}>
-        <div 
-          className='booking-profile-row' 
-          style={{
-            backgroundColor: chooseBackgrounColorFromStatus(
-              booking.bookingStatus, booking.bolStatus, booking.invoiceStatus
-            )
-          }} >
+        <div className='booking-profile-row'>
           <div className="col-numb">
             <text className="schedule-result-text">{ind + 1}</text>
           </div>
