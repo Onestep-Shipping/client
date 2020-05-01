@@ -19,6 +19,14 @@ const BookingRequest = () => {
   const [docDate, setDocDate] = useState(myToday);
   const [vgmDate, setVgmDate] = useState(myToday);
 
+  const handleIndexChange = newInd => {
+    setCurrentBookingIndex(newInd);
+    setTerminalDate(myToday);
+    setDocDate(myToday);
+    setVgmDate(myToday);
+    [...document.getElementsByTagName("input")].forEach(node => node.value = "");
+  }
+
   const handleSubmit = e => {
     e.preventDefault();
     const pdf = pdfGenerator(createInfoObject(e));
@@ -56,7 +64,7 @@ const BookingRequest = () => {
       <Header />
       <div className="bol-instruction-container">
         <UserList  
-          setInd={setCurrentBookingIndex}
+          setInd={handleIndexChange}
           opt={BOOKING_REQ} type="booking"
         />
         <div className="booking-instruction-detail"> 

@@ -6,6 +6,7 @@ import Header from '../../../components/Header/Header.js';
 import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js';
 import UserList from '../../../components/UserList/UserList.js';
 import INVOICE from '../../../data/InvoiceData.js';
+import DATA from '../../../data/ScheduleDetailsData.js';
 import { InfoRow } from '../Helpers.js';
 import pdfGenerator from './pdfGenerator.js';
 
@@ -19,12 +20,18 @@ const Invoice = () => {
     Array(INVOICE[currentIndex].booking.container.length + 2).fill(0)
   );
 
+  const handleIndexChange = newInd => {
+    setCurrentIndex(newInd);
+    setFees(Array(INVOICE[newInd].booking.container.length + 2).fill(0));
+    document.getElementsByName("price").forEach(node => node.value = "");
+  }
+
   const handleSubmit = e => {
     e.preventDefault();
     createInfoObject(e);
-    // const pdf = pdfGenerator(createInfoObject(e));
-    // var data = new FormData();
-    // data.append('data', pdf);
+    const pdf = pdfGenerator(createInfoObject(e));
+    var data = new FormData();
+    data.append('data', pdf);
 
     // TODO: Fetch formData to server
   }
@@ -41,10 +48,26 @@ const Invoice = () => {
 
   const createInfoObject = e => {
     const { price, total, subTotal } = e.target;
+    const priceList = toArray(price);
+    const totalList = toArray(total);
+    const combine = [];
+    priceList.map((p, ind) => combine.push({ price: p, total: totalList[ind] }))
+    
+    return { 
+      company: INVOICE[currentIndex].company,
+      schedule: DATA[currentIndex],
+      bookingNo: INVOICE[currentIndex].id,
+      booking: INVOICE[currentIndex].booking,
+      orderNo: INVOICE[currentIndex].bol.orderNo,
+      priceList: combine, 
+      subTotal: subTotal.value 
+    }
+  }
 
-    price.forEach(node => {
-      console.log("Price: " + node.value);
-    })
+  const toArray = nodelist => {
+    let list = [];
+    nodelist.forEach(node => list.push(node.value));
+    return list;
   }
 
   return (
@@ -52,7 +75,7 @@ const Invoice = () => {
       <Header />
       <div className="bol-instruction-container">
         <UserList 
-          setInd={setCurrentIndex}
+          setInd={handleIndexChange}
           opt={INVOICE} type="bol" />
         <div className="bol-instruction-detail"> 
           <div className="booking-id-container">
@@ -95,7 +118,7 @@ const Invoice = () => {
                 <text>{row.containerType}</text>
                 <div className="usd-input-container">
                 <input 
-                  type="text" name="price" className="usd-input" 
+                  type="number" name="price" className="usd-input" 
                   onChange={e => onFeeChange(e, ind)}
                 />
                 <input 
@@ -109,7 +132,7 @@ const Invoice = () => {
               <text>Document Fee</text>
               <div className="usd-input-container">
                 <input 
-                  type="text" name="price" className="usd-input" 
+                  type="number" name="price" className="usd-input" 
                   onChange={e => onFeeChange(e, fees.length - 2)}
                 />
                 <input 
@@ -122,7 +145,7 @@ const Invoice = () => {
               <text>Administration Fee</text>
               <div className="usd-input-container">
                 <input 
-                  type="text" name="price" className="usd-input" 
+                  type="number" name="price" className="usd-input" 
                   onChange={e => onFeeChange(e, fees.length - 1)}
                 />
                 <input 

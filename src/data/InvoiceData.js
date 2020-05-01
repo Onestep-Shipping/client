@@ -27,6 +27,14 @@ const INVOICE = [
           quantity: 40,
           containerType: '40\' Dry',
         },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
+        {
+          quantity: 40,
+          containerType: '40\' Dry',
+        },
       ],
     },
     bol: {
