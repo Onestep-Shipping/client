@@ -117,3 +117,7 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.filter-text {
+  margin: 10px 0px;
+}

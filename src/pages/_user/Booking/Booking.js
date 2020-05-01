@@ -26,11 +26,9 @@ const Booking = (props) => {
       <Header />
       <div className="body-container2">
         <div className="booking-container">
-          <div className="h1-container">
-            <h1>
-              {formBool ? 'Booking Information' : 'Bill Of Lading (BOL) Instruction'} 
-            </h1>
-          </div>
+          <h1>
+            {formBool ? 'Booking Information' : 'Bill Of Lading (BOL) Instruction'} 
+          </h1>
           <div className={"info-container" + (formBool ? "" : "2")}>
             <BookingDisplay id={id} fields={fieldNumber}/>
             {formBool ?

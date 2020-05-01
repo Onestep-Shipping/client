@@ -10,7 +10,7 @@ const UserList = props => {
     <ul className={type + "-instruction-list"}> 
       {opt.map((item, i) => (
         <li id={(i === currentIndex ? 'selected-item' : '')}
-            className={"bol-instruction-item" + (item.isCompleted ? "-completed" : "-pending")}
+            className="bol-instruction-item"
             onClick={() => {
               setInd(i);
               setIndex(i);
@@ -24,7 +24,9 @@ const UserList = props => {
             />
             <label htmlFor="checkbox-1-1"></label>
           </div>
-          <img className="profile-image" src={profileImg} alt="" />
+          <img id={"profile" + (item.isCompleted ? "-completed" : "-pending")}
+            className="profile-image" 
+            src={profileImg} alt="" />
           <div className="item-header-container">
             <text className="booking-id-text">
               {type === "booking" ? item.company.name : ("Booking #" + item.id)}

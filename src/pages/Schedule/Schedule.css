@@ -9,7 +9,7 @@
 
 .schedule-result-container {
   width: 90%;
-  border-top: solid #BF037A 1px;
+  border-top: solid rgb(170, 170, 170) 1px;
   padding-top: 30px;
 }
 
@@ -27,7 +27,7 @@
   margin-bottom: 20px;
 }
 
-.schedule-result-row {
+.schedule-result-row, .schedule-result-row-selected {
   width: 100%;
   height: auto;
   display: flex;
@@ -38,21 +38,13 @@
   padding: 20px 0px;
   user-select: none;
   border-radius: 10px;
+  cursor: pointer;
+  border: 1px transparent solid;
 }
 
 .schedule-result-row-selected {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 0px;
-  background-color: rgb(148, 223, 179);
+  background-color: rgb(236, 236, 236);
   border-radius: 10px;
-  user-select: none;
-  margin-bottom: 10px;
-  padding: 20px 0px;
 }
 
 .schedule-result-row-container {
@@ -62,24 +54,29 @@
   justify-content: center;
 }
 
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
 .quote-dropdown {
+  border: 2px #9c9c9c dashed;
   width: 50%;
-  background-color: rgb(160, 238, 193);
   margin-bottom: 10px;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   padding: 20px;
 
-  -webkit-transition: all 0.3s ease-in;
-  -moz-transition: all 0.3s ease-in;
-  -o-transition: all 0.3s ease-in;
-  transition: opaci 0.3s ease-in;
+  opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.4s;
   user-select: none;
-}
-
-.schedule-result-row:hover {
-  background-color: rgb(230, 230, 230);
-  border-radius: 10px;
 }
 
 .schedule-result-text {
@@ -118,7 +115,7 @@
 
 .result-button {
   padding: 10px 15px;
-  background-color: #BF037A;
+  background-color: #224DAA;
   border: none;
   outline: none;
   color: white;
@@ -128,7 +125,7 @@
 }
 
 .result-button:hover {
-  background-color: rgb(163, 0, 103);
+  background-color: rgb(20, 55, 131);
 }
 
 .schedule-button-container {
@@ -140,7 +137,7 @@
 }
 
 .warning-text {
-  color: #BF037A;
+  color: #224DAA;
   font-size: 25px;
   font-weight: bolder;
 }
