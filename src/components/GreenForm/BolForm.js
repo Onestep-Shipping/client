@@ -20,7 +20,7 @@ const BolForm = (props) => {
       <div className="schedule-result-header-row">
         {TRACKING_HEADERS.map((header, ind) => 
           <div className="col2" key={ind}>
-            <text className="schedule-result-header-text">{header}</text>
+            <text className="info-label-special">{header}</text>
           </div>
         )}
       </div>

@@ -3,7 +3,7 @@
   list-style-type: none;
   background-color: white;
   margin: 0;
-  padding: 0;
+  padding: 0px;
   overflow: hidden; 
   overflow-y: scroll;
 }
@@ -17,10 +17,12 @@
 }
 
 #selected-item {
-  background-color: #dae4fa;
+  background-color:rgb(236, 236, 236);
 }
 
 .bol-instruction-item {
+  margin: 5px 10px;
+  border-radius: 15px;
   padding: 10px 20px;
   line-height: 25px;
   display: flex;
@@ -87,8 +89,8 @@
 }
 
 .booking-id-text {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .customer-email-text {

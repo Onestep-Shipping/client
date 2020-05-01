@@ -36,7 +36,7 @@ const BOLInstruction = () => {
           opt={BOL} type="bol" />
         <div className="bol-instruction-detail"> 
           <div className="booking-id-container">
-            <h2>Booking #{BOL[currentBolIndex].id}</h2>
+            <h1>Booking #{BOL[currentBolIndex].id}</h1>
           </div>
           <div className="customer-info-container">
             <text>Email: {BOL[currentBolIndex].email}</text>

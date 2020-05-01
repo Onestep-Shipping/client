@@ -14,9 +14,10 @@ const BookingRequest = () => {
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
 
   const today = new Date();
-  const [terminalDate, setTerminalDate] = useState(today);
-  const [docDate, setDocDate] = useState(today);
-  const [vgmDate, setVgmDate] = useState(today);
+  const myToday = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0);
+  const [terminalDate, setTerminalDate] = useState(myToday);
+  const [docDate, setDocDate] = useState(myToday);
+  const [vgmDate, setVgmDate] = useState(myToday);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -60,7 +61,7 @@ const BookingRequest = () => {
         />
         <div className="booking-instruction-detail"> 
           <div className="booking-id-container">
-            <h2>{BOOKING_REQ[currentBookingIndex].company.name}</h2>
+            <h1>{BOOKING_REQ[currentBookingIndex].company.name}</h1>
           </div>
           <div className="customer-info-container">
             <text>Contact: {BOOKING_REQ[currentBookingIndex].personInCharge}</text>
@@ -112,8 +113,8 @@ const BookingRequest = () => {
             </div>
 
             <div className="confirmation-info-container">
-              <text className={styles.scheduleLabel}>Empty Pickup Location</text>
-              <text className={styles.scheduleLabel}>Return Location</text>  
+              <text className={styles.scheduleLabelSpecial}>Empty Pickup Location</text>
+              <text className={styles.scheduleLabelSpecial}>Return Location</text>  
             </div>
             <Address type="Street" />
             <Address type="City" />

@@ -69,9 +69,9 @@ const pdfGenerator = info => {
   doc.setFontType('normal');
   doc.text(80, 360, "Carrier Name: Hapag-Lloyd");
 
-  doc.text(80, 400, "Terminal Cut-off  : " + info.terminalDate);
-  doc.text(80, 420, "Document Cut-off  : " + info.docDate);
-  doc.text(80, 440, "VGM Cut-off       : " + info.vgmDate);
+  doc.text(80, 400, "Terminal Cut-off: " + info.terminalDate);
+  doc.text(80, 420, "Document Cut-off: " + info.docDate);
+  doc.text(80, 440, "VGM Cut-off     : " + info.vgmDate);
 
   doc.setFontSize(12);
   doc.setFontType('bold');

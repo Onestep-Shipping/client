@@ -10,15 +10,13 @@ import registerIcon from '../../assets/register-icon.svg';
 import loginIcon from '../../assets/login-icon.svg';
 import arrowDownIcon from '../../assets/arrow-down.svg';
 import notiIcon from '../../assets/noti-icon.svg';
-import PropTypes from 'prop-types';
 
 import NOTIFICATIONS from '../../data/NotificationData.js';
 
 const ADMIN_OPTIONS = ["Companies", "Booking Request", "BOL Instruction", "Invoice", "Sign Out"];
 const USER_OPTIONS = ["My Booking", "Sign Out"];
 
-const Header = props => {
-  const { style = "" } = props;
+const Header = () => {
   const history = useHistory();
 
   const { currentUser, isAdmin } = useContext(AuthContext);
@@ -77,7 +75,7 @@ const Header = props => {
   );
 
   return (
-    <div className="header-container" id={style}>
+    <div className="header-container">
         <div onClick={() => history.push('/')}>
           <text className="logo-text">OneStep Shipping</text>
         </div>
@@ -114,7 +112,3 @@ const Header = props => {
 };
 
 export default Header;
-
-Header.propTypes = {
-  style: PropTypes.string,
-};

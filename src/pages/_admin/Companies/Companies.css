@@ -28,9 +28,8 @@
 }
 
 .customer-number {
-  font-size: 23px;
+  font-size: 18px;
   color: rgb(66, 66, 66);
-  font-weight: bolder;
 }
 
 .duration-selector {
@@ -101,13 +100,12 @@
 .company-list-header-text {
   font-size: 14px;
   font-weight: 600;
-  color: rgb(24, 24, 24);
+  color: #224DAA;
 }
 
 .company-item-text {
-  font-size: 15px;
+  font-size: 16px;
   color: rgb(97, 97, 97);
-  font-weight: 500;
 }
 
 .company-result-header-row {

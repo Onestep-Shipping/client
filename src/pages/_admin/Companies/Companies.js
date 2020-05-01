@@ -73,7 +73,7 @@ const Companies = () => {
         </div>
         <div className="company-body-container">
           <div className="filter-container">
-            <h3>Filter:</h3>
+            <text className="info-label">Filter:</text>
             <div className="filter-box-container">
               <text className="filter-text">Country</text>
               <select className="duration-selector" onChange={handleCountryChange}>

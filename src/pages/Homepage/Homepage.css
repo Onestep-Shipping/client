@@ -4,8 +4,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: url("../../assets/background.jpg") center no-repeat;
-  background-size: cover;
+  background: url("../../assets/background.gif") right no-repeat;
+  background-size: contain;
   min-width: 645px;
 }
 
@@ -28,7 +28,7 @@
   background-color: white;
 }
 
-#schedule-header-text {
+.schedule-header-text {
   color: #474747;
-  font-size: 30px;
+  font-size: 35px;
 }

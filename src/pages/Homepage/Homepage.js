@@ -7,9 +7,9 @@ import styles from '../../components/ScheduleForm/ScheduleForm.module.css';
 const Homepage = () => {
   return (
     <div className="homepage-container">
-      <Header style="homepage-header"/>
+      <Header />
       <div className="body-container">
-        <text id="schedule-header-text">Find Schedule</text>
+        <text className="schedule-header-text">Find Schedule</text>
         <ScheduleForm styles={styles}/>
       </div>
     </div>

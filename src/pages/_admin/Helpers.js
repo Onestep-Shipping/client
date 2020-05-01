@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import styles from '../../components/ScheduleForm/ScheduleFormMin.module.css';
+import moment from 'moment';
 
 const InfoRow = props => {
   const { label, value } = props;
@@ -17,6 +18,14 @@ const InfoRow = props => {
 const MiniDatePicker = props => {
   const { name, value, action } = props;
 
+  const handleInputChangeRaw = e => {
+    const date = moment(e.target.value, "YYYY-MM-DD HH:mm" );
+
+    if( date.isValid() ) {
+      action(date);
+    }
+  }
+
   return (
     <div>
       <DatePicker
@@ -24,7 +33,12 @@ const MiniDatePicker = props => {
         className={styles.fromDate}
         placeholderText="Select a day"
         selected={value}
-        onSelect={action}
+        onChange={action}
+        onChangeRaw={handleInputChangeRaw}
+        showTimeSelect
+        timeFormat="HH:mm"
+        timeIntervals={30}
+        dateFormat="MM/dd/yyyy HH:mm"
       />
     </div>
   );

@@ -58,15 +58,15 @@ const Schedule = () => {
           (<div className="quote-dropdown">
             <div className="schedule-result-header-row">
               <div className="col3">
-                <text className="schedule-result-header-text">{QUOTE_HEADERS[0]}</text>
+                <text className="schedule-result-header-text">{QUOTE_HEADERS[0].toUpperCase()}</text>
                 <text className="schedule-result-text">${booking.oceanFreight}</text>
               </div>
               <div className="col3">
-                <text className="schedule-result-header-text">{QUOTE_HEADERS[1]}</text>
+                <text className="schedule-result-header-text">{QUOTE_HEADERS[1].toUpperCase()}</text>
                 <text className="schedule-result-text">${booking.docFee}</text>
               </div>
               <div className="col3">
-                <text className="schedule-result-header-text">{QUOTE_HEADERS[2]}</text>
+                <text className="schedule-result-header-text">{QUOTE_HEADERS[2].toUpperCase()}</text>
                 <text className="schedule-result-text">${booking.adFee}</text>
               </div>
             </div>
@@ -88,7 +88,7 @@ const Schedule = () => {
         <div className="schedule-result-container">
           <FixedSizeList headers={RESULT_HEADERS} data={DATA} row={row}/>
           {!currentUser &&
-            <h1>Please login to proceed.</h1>
+            <text className="schedule-header-text">Please login to proceed.</text>
           }
         </div>
       </div>

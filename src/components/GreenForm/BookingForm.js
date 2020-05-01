@@ -28,7 +28,7 @@ const BookingForm = (props) => {
       <div className="schedule-result-header-row">
         {CONTAINER_HEADERS.map((header, ind) => 
           <div key={ind}>
-            <text className="schedule-result-header-text">{header}</text>
+            <text className="info-label-special">{header}</text>
           </div>
         )}
       </div>

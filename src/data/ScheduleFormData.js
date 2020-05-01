@@ -1,7 +1,7 @@
 const CARRIERS = ['Hapag-Lloyd', 'Maersk', 'YangMing', 'ONE', 'MSC', 'APL'];
 
 const FROM_LOCATIONS = [
-  {label: 'Vancouve (BC), CANADA', value: 'CAVAN'},
+  {label: 'Vancouver (BC), CANADA', value: 'CAVAN'},
   {label: 'Toronto (ON), CANADA', value: 'CATOR'},
   {label: 'Montreal (QC), CANADA', value: 'CAMTR'},
   {label: 'Halifax (NS), CANADA', value: 'CAHAL'},
