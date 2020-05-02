@@ -6,33 +6,33 @@ import Header from '../../../components/Header/Header.js';
 import FixedSizeList from '../../../components/FixedSizeList/FixedSizeList.js';
 import DATA from '../../../data/ScheduleDetailsData.js';
 
+import bookingConfirmationPdf from './booking-confirmation.pdf';
+import bolPdf from './BOL.pdf';
+import invoicePdf from './invoice.pdf';
+
 const Profile = () => {
   const history = useHistory();
   const PROFILE_HEADERS = ['#', 'Date Booked', 'From', 'To', 'Vessel', 'Booking Status', 'BOL Status', 'Invoice Status'];
 
-  const chooseBackgrounColorFromStatus = (booking, bol, invoice) => {
-    if (booking === "In Process" && bol === "Not Ready") {
-      return "#f0f0f0"; // gray
-    } else if (booking === "Received" && bol === "Received" && invoice === "Received") {
-      return "#a0eec1"; // green
-    } else {
-      return "#f2e89d"; // yellow
-    }
-  };
-
   const handleBook = useCallback((status, id) => {
     if (status === "Received") {
-      history.push('/booking-confirmation/' + id);
+      window.open(bookingConfirmationPdf, '_blank');
     }
   }, [history]);
 
-  const handleBol = (status, id) => {
+  const handleBol = useCallback((status, id) => {
     if (status === "Ready") {
       history.push('/bill-of-lading-instruction/' + id);
     } else if (status === "Received") {
-      history.push('/bill-of-lading-confirmation/' + id);
+       window.open(bolPdf, '_blank');
     }
-  }
+  }, []);
+
+  const handleInvoice = useCallback((status, id) => {
+    if (status === "Received") {
+      window.open(invoicePdf, '_blank');
+    }
+  }, [history]);
 
   const row = (booking, ind) => {
     return (
@@ -70,7 +70,7 @@ const Profile = () => {
                 {booking.bolStatus}
             </text>
           </div>
-          <div className="col" onClick={() => handleBol(booking.invoiceStatus, ind)}>
+          <div className="col" onClick={() => handleInvoice(booking.invoiceStatus, ind)}>
             <text 
               id={booking.invoiceStatus === "Received" ? "red-link" : ""}
               className={"schedule-result-text"}>

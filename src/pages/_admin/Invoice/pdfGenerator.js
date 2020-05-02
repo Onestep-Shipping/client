@@ -11,7 +11,7 @@ const centeredText = (text, y) => {
 
 const pdfGenerator = info => {
   doc.setProperties({
-    title: 'Invoice #' + info.bookingNo,
+    title: 'Invoice for Booking #' + info.bookingNo,
     subject: 'Info about PDF',
     author: 'Scarlet Nguyen',
     keywords: 'generated, javascript, web 2.0, ajax',
