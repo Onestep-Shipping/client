@@ -359,7 +359,7 @@ const INVOICE = [
     id: '5764235',
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
-    isCompleted: false,
+    isCompleted: true,
     booking: {
       commodity: "Scrap paper",
       container: [
@@ -393,7 +393,7 @@ const INVOICE = [
     id: '5764235',
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
-    isCompleted: false,
+    isCompleted: true,
     booking: {
       commodity: "Scrap paper",
       container: [
@@ -427,7 +427,7 @@ const INVOICE = [
     id: '5764235',
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
-    isCompleted: false,
+    isCompleted: true,
     booking: {
       commodity: "Scrap paper",
       container: [
@@ -461,7 +461,7 @@ const INVOICE = [
     id: '5764235',
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
-    isCompleted: false,
+    isCompleted: true,
     booking: {
       commodity: "Scrap paper",
       container: [
@@ -495,7 +495,7 @@ const INVOICE = [
     id: '5764235',
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
-    isCompleted: false,
+    isCompleted: true,
     booking: {
       commodity: "Scrap paper",
       container: [
@@ -529,7 +529,7 @@ const INVOICE = [
     id: '5764235',
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
-    isCompleted: false,
+    isCompleted: true,
     booking: {
       commodity: "Scrap paper",
       container: [
@@ -563,7 +563,7 @@ const INVOICE = [
     id: '5764235',
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
-    isCompleted: false,
+    isCompleted: true,
     booking: {
       commodity: "Scrap paper",
       container: [
@@ -597,7 +597,7 @@ const INVOICE = [
     id: '5764235',
     personInCharge: 'Scarlet Nguyen',
     email: 'scarlet.nguyen01@gmail.com',
-    isCompleted: false,
+    isCompleted: true,
     booking: {
       commodity: "Scrap paper",
       container: [

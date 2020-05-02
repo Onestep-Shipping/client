@@ -79,7 +79,7 @@ const Invoice = () => {
           opt={INVOICE} type="bol" />
         <div className="bol-instruction-detail"> 
           <div className="booking-id-container">
-            <h1>Booking #{INVOICE[currentIndex].id}</h1>
+            <h1>Invoice</h1>
           </div>
           <div className="customer-info-container">
             <text>Company: {INVOICE[currentIndex].company.name}</text>
@@ -100,6 +100,7 @@ const Invoice = () => {
             </div>
           </div>
 
+          {!INVOICE[currentIndex].isCompleted &&
           <form className="invoice-form-container" onSubmit={handleSubmit}>
             <h2>Invoice</h2>
             <div className="invoice-row">
@@ -167,7 +168,7 @@ const Invoice = () => {
                 Send to Customer
               </button>
             </div>
-          </form>
+          </form>}
         </div>
       </div>
     </div>
