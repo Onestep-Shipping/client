@@ -6,13 +6,16 @@ import Header from '../../../components/Header/Header.js';
 import FixedSizeList from '../../../components/FixedSizeList/FixedSizeList.js';
 import DATA from '../../../data/ScheduleDetailsData.js';
 
-import bookingConfirmationPdf from './booking-confirmation.pdf';
-import bolPdf from './BOL.pdf';
-import invoicePdf from './invoice.pdf';
+import bookingConfirmationPdf from './pdf/booking-confirmation.pdf';
+import bolPdf from './pdf/BOL.pdf';
+import invoicePdf from './pdf/invoice.pdf';
 
 const Profile = () => {
   const history = useHistory();
-  const PROFILE_HEADERS = ['#', 'Date Booked', 'From', 'To', 'Vessel', 'Booking Status', 'BOL Status', 'Invoice Status'];
+  const PROFILE_HEADERS = [
+    '#', 'Date Booked', 'From', 'To', 'Vessel', 
+    'Booking Status', 'BOL Status', 'Invoice Status'
+  ];
 
   const handleBook = useCallback((status, id) => {
     if (status === "Received") {
