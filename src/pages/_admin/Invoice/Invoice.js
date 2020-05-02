@@ -121,6 +121,7 @@ const Invoice = () => {
                 <input 
                   type="number" name="price" className="usd-input" 
                   onChange={e => onFeeChange(e, ind)}
+                  required
                 />
                 <input 
                   type="text" name="total" className="usd-input" 
@@ -135,6 +136,7 @@ const Invoice = () => {
                 <input 
                   type="number" name="price" className="usd-input" 
                   onChange={e => onFeeChange(e, fees.length - 2)}
+                  required
                 />
                 <input 
                   type="text" name="total" className="usd-input" 
@@ -148,6 +150,7 @@ const Invoice = () => {
                 <input 
                   type="number" name="price" className="usd-input" 
                   onChange={e => onFeeChange(e, fees.length - 1)}
+                  required
                 />
                 <input 
                   type="text" name="total" className="usd-input" 
