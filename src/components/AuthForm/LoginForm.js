@@ -30,7 +30,9 @@ const LoginForm = (props) => {
 
   return (
     <div className="inner-container">
-      <div className="header">Login</div>
+      <div className="header">
+        <text className="schedule-header-text">Login</text>
+      </div>
       <form className="box" onSubmit={handleLogin} noValidate>
         {errors.length > 0 &&
           errors.map((err, ind) => <small className="danger-error" key={ind}>{err}</small>)}

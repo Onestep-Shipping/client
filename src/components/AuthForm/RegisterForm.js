@@ -31,7 +31,9 @@ const RegisterForm = (props) => {
 
   return (
     <div className="inner-container">
-      <div className="header">Register</div>
+      <div className="header">
+        <text className="schedule-header-text">Register</text>
+      </div>
       <form className="register-box" onSubmit={handleSignUp} noValidate>
         {errors.length > 0 &&
           errors.map((err, ind) => <small className="danger-error" key={ind}>{err}</small>)
