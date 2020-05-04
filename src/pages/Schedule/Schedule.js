@@ -7,9 +7,9 @@ import { AuthContext } from '../../context/AuthContext.js';
 import {useHistory} from 'react-router-dom';
 import styles from '../../components/ScheduleForm/ScheduleFormMin.module.css';
 import FixedSizeList from '../../components/FixedSizeList/FixedSizeList.js';
-import DATA from '../../data/ScheduleDetailsData.js';
+import DATA from '../../data/ScheduleFormData.js';
 
-const Schedule = () => {
+const Schedule = props => {
   const history = useHistory();
 
   const RESULT_HEADERS = ['#', 'Port of Loading', 'Transshipments',
@@ -26,7 +26,7 @@ const Schedule = () => {
     history.push('/booking/' + id);
   }, [history]);
 
-  const row = (booking, ind) => {
+  const row = (schedule, ind) => {
     return (
       <div className="schedule-result-row-container" key={ind}>
         <div
@@ -37,21 +37,21 @@ const Schedule = () => {
             <text className="schedule-result-text">{ind + 1}</text>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{booking.from}</text>
-            <text className="schedule-result-text-time">{booking.fromDate}</text>
+            <text className="schedule-result-text">{schedule.startLocation}</text>
+            <text className="schedule-result-text-time">{schedule.startDate}</text>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{booking.trans}</text>
+            <text className="schedule-result-text">{schedule.transshipment}</text>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{booking.ves}</text>
+            <text className="schedule-result-text">{schedule.vessels}</text>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{booking.to}</text>
-            <text className="schedule-result-text-time">{booking.toDate}</text>
+            <text className="schedule-result-text">{schedule.endLocation}</text>
+            <text className="schedule-result-text-time">{schedule.endDate}</text>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{booking.time}</text>
+            <text className="schedule-result-text">{schedule.transitTime}</text>
           </div>
         </div>
         {(ind === currentBookingIndex && !isAdmin && currentUser) &&
@@ -59,15 +59,15 @@ const Schedule = () => {
             <div className="schedule-result-header-row">
               <div className="col3">
                 <text className="schedule-result-header-text">{QUOTE_HEADERS[0].toUpperCase()}</text>
-                <text className="schedule-result-text">${booking.oceanFreight}</text>
+                <text className="schedule-result-text">${schedule.oceanFreight}</text>
               </div>
               <div className="col3">
                 <text className="schedule-result-header-text">{QUOTE_HEADERS[1].toUpperCase()}</text>
-                <text className="schedule-result-text">${booking.docFee}</text>
+                <text className="schedule-result-text">${schedule.docFee}</text>
               </div>
               <div className="col3">
                 <text className="schedule-result-header-text">{QUOTE_HEADERS[2].toUpperCase()}</text>
-                <text className="schedule-result-text">${booking.adFee}</text>
+                <text className="schedule-result-text">${schedule.adminFee}</text>
               </div>
             </div>
             <button
@@ -86,7 +86,7 @@ const Schedule = () => {
       <div className="schedule-body-container">
         <ScheduleForm styles={styles}/>
         <div className="schedule-result-container">
-          <FixedSizeList headers={RESULT_HEADERS} data={DATA} row={row}/>
+          <FixedSizeList headers={RESULT_HEADERS} data={props.location.state.detail} row={row}/>
           {!currentUser &&
             <text className="schedule-header-text">Please login to proceed.</text>
           }

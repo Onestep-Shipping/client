@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { CARRIERS } from '../data/ScheduleFormData.js'; 
+import DATA from '../data/ScheduleFormData.js'; 
 import PropTypes from 'prop-types';
 
 export const ScheduleFormContext = React.createContext();
@@ -10,7 +10,7 @@ const ScheduleFormProvider = ({ children }) => {
     fromDate: new Date(),
     toLocation: '',
     toDate: new Date(),
-    carrier: CARRIERS[0],
+    carrier: DATA.CARRIERS[0],
   });
 
   const setFromLocation = fromLocation => {
