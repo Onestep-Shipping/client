@@ -26,4 +26,4 @@ const TO_LOCATIONS = [
   {label: 'Taichung, TAIWAN', value: 'TWTXG'},
 ];
 
-export {FROM_LOCATIONS, TO_LOCATIONS, CARRIERS};
+export default {FROM_LOCATIONS, TO_LOCATIONS, CARRIERS};

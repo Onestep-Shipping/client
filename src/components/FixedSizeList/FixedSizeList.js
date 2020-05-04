@@ -20,8 +20,12 @@ const FixedSizeList = (props) => {
   }
 
   const sliceArray = () => {
-    const endIndex = currentPage === max ? data.length : (currentPage * LIST_SIZE);
-    return data.slice((currentPage - 1) * LIST_SIZE, endIndex);
+    if (data.length >= LIST_SIZE) {
+      const endIndex = currentPage === max ? data.length : (currentPage * LIST_SIZE);
+      return data.slice((currentPage - 1) * LIST_SIZE, endIndex);
+    }
+    console.log(data);
+    return data;
   }
 
   const handlePrev = () => {
@@ -40,14 +44,17 @@ const FixedSizeList = (props) => {
           </div>
         )}
       </div>
-      {sliceArray().map((booking, ind) => 
+      {sliceArray().length < 1 ?
+        <div>{row({vessels: "NO RESULTS"}, 0)}</div> 
+        :
+        sliceArray().map((booking, ind) => 
         <div key={ind}>
           {row(booking, ((currentPage - 1) * LIST_SIZE) + ind)}
         </div>
       )}
       <div className="page-indicator-container">
         <button className="result-button" onClick={handlePrev}>{'<< Previous'}</button>
-        <text>Page {currentPage} / {max}</text>
+        <text>Page {currentPage} / {max === 0 ? 1 : max}</text>
         <button className="result-button" onClick={handleNext}>{'Next >>'}</button>
       </div>
     </div>
