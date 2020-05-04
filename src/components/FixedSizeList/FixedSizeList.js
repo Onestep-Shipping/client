@@ -12,8 +12,6 @@ const FixedSizeList = (props) => {
 
   const handleNext = () => {
     const newPageVal = currentPage + 1;
-
-    console.log(data.slice(currentPage - 1, 3 + 1))
     if (newPageVal <= max) {
       setCurrentPage(newPageVal);
     }
@@ -45,7 +43,7 @@ const FixedSizeList = (props) => {
         )}
       </div>
       {sliceArray().length < 1 ?
-        <div>{row({vessels: "NO RESULTS"}, 0)}</div> 
+        <div className="empty-placeholder">NO RESULTS</div> 
         :
         sliceArray().map((booking, ind) => 
         <div key={ind}>
