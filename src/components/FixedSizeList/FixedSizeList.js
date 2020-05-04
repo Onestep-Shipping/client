@@ -44,7 +44,10 @@ const FixedSizeList = (props) => {
           </div>
         )}
       </div>
-      {sliceArray().map((booking, ind) => 
+      {sliceArray().length < 1 ?
+        <div>{row({vessels: "NO RESULTS"}, 0)}</div> 
+        :
+        sliceArray().map((booking, ind) => 
         <div key={ind}>
           {row(booking, ((currentPage - 1) * LIST_SIZE) + ind)}
         </div>
