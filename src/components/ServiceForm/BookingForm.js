@@ -7,6 +7,7 @@ const MAX_ROW = 5;
 
 const BookingForm = (props) => {
   const CONTAINER_TYPES = ['20\' Dry', '40\' Dry', '40\'HC Dry'];
+  const AUTO_FILLING = ['Yes', 'No'];
   const PAYMENT_TYPES = ['Prepaid', 'Collect'];
   const CONTAINER_HEADERS = ["Quantity", "Container Type"];
   const [row, setRow] = useState(1);
@@ -49,6 +50,7 @@ const BookingForm = (props) => {
         Add Container
       </button>
       <Select name="Payment Term" options={PAYMENT_TYPES} />
+      <Select name="CAED/AES filling by OneStep?" options={AUTO_FILLING} />
       <button className="result-button">Book</button>
     </form>
   );

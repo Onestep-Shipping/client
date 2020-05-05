@@ -8,7 +8,7 @@ const Textarea = (props) => {
   const lcName = name.toLowerCase().replace(' ', '-');
   return (
     <div className="info-row-with-textarea">
-      <text className="info-label">{name}: </text>
+      <text className="info-label">{name} </text>
       <textarea
         type="text"
         name={lcName}
@@ -40,7 +40,7 @@ const InfoRow = (props) => {
 
   return (
     <div className="info-row">
-      <text className="info-label">{name}: </text>
+      <text className="info-label">{name} </text>
       <input
         type="text"
         name={lcName}
@@ -55,7 +55,7 @@ const Select = (props) => {
   const { name, options } = props;
   return (
     <div className="info-row">
-      <text className="info-label">{name}: </text>
+      <text className="info-label">{name} </text>
       <select className="booking-form-input">
         {options.map((type, ind) => (<option value={type} key={ind}>{type}</option>))}
       </select>

@@ -94,6 +94,7 @@ const BookingRequest = () => {
                 ))}
               </div>
               <InfoRow label="Payment Term" value={BOOKING_REQ[currentBookingIndex].booking.payment} />
+              <InfoRow label="CAED/AES filling by OneStep" value={BOOKING_REQ[currentBookingIndex].booking.autoFilling} />
             </div>
           </div>
 

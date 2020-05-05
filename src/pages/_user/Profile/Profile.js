@@ -21,7 +21,7 @@ const Profile = () => {
     if (status === "Received") {
       window.open(bookingConfirmationPdf, '_blank');
     }
-  }, [history]);
+  }, []);
 
   const handleBol = useCallback((status, id) => {
     if (status === "Ready") {
@@ -29,13 +29,13 @@ const Profile = () => {
     } else if (status === "Received") {
        window.open(bolPdf, '_blank');
     }
-  }, []);
+  }, [history]);
 
   const handleInvoice = useCallback((status, id) => {
     if (status === "Received") {
       window.open(invoicePdf, '_blank');
     }
-  }, [history]);
+  }, []);
 
   const row = (booking, ind) => {
     return (

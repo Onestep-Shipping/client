@@ -30,6 +30,7 @@ const BOOKING_REQ = [
         },
       ],
       payment: 'Prepaid',
+      autoFilling: 'Yes',
     }
   },
   {
@@ -63,6 +64,7 @@ const BOOKING_REQ = [
         },
       ],
       payment: 'Prepaid',
+      autoFilling: 'Yes',
 
     }
   },
@@ -97,6 +99,7 @@ const BOOKING_REQ = [
         },
       ],
       payment: 'Prepaid',
+      autoFilling: 'Yes',
 
     }
   },
@@ -131,6 +134,7 @@ const BOOKING_REQ = [
         },
       ],
       payment: 'Prepaid',
+      autoFilling: 'Yes',
     }
   },
   {
@@ -164,6 +168,7 @@ const BOOKING_REQ = [
         },
       ],
       payment: 'Prepaid',
+      autoFilling: 'Yes',
 
     }
   },
@@ -198,6 +203,7 @@ const BOOKING_REQ = [
         },
       ],
       payment: 'Prepaid',
+      autoFilling: 'Yes',
 
     }
   },
@@ -232,6 +238,7 @@ const BOOKING_REQ = [
         },
       ],
       payment: 'Prepaid',
+      autoFilling: 'Yes',
 
     }
   },
@@ -266,6 +273,7 @@ const BOOKING_REQ = [
         },
       ],
       payment: 'Prepaid',
+      autoFilling: 'Yes',
 
     }
   },
@@ -300,6 +308,7 @@ const BOOKING_REQ = [
         },
       ],
       payment: 'Prepaid',
+      autoFilling: 'Yes',
 
     }
   },
@@ -334,6 +343,7 @@ const BOOKING_REQ = [
         },
       ],
       payment: 'Prepaid',
+      autoFilling: 'Yes',
 
     }
   },
