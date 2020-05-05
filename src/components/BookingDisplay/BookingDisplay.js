@@ -13,26 +13,26 @@ const BookingDisplay = (props) => {
             <div className="info-row">
               <div>
                 <text className="info-label">From: </text>
-                <text className="schedule-info-text-left">{booking.from}</text>
+                <text className="schedule-info-text-left">{booking.startLocation}</text>
               </div>
               <div>
                 <text className="info-label">Date: </text>
-                <text className="schedule-info-text">{booking.fromDate}</text>
+                <text className="schedule-info-text">{booking.startDate}</text>
               </div>
             </div>
             <div className="info-row">
               <div>
                 <text className="info-label">To: </text>
-                <text className="schedule-info-text-left">{booking.to}</text>
+                <text className="schedule-info-text-left">{booking.endLocation}</text>
               </div>
               <div>
                 <text className="info-label">Date: </text>
-                <text className="schedule-info-text">{booking.toDate}</text>
+                <text className="schedule-info-text">{booking.endDate}</text>
               </div>
             </div>
             <div className="info-row">
               <text className="info-label">Vessels / Services: </text>
-              <text className="schedule-result-text">{booking.ves}</text>
+              <text className="schedule-result-text">{booking.vessels}</text>
             </div>
             {fields > 3 &&
               <div style={{width: '100%'}}>
@@ -43,11 +43,11 @@ const BookingDisplay = (props) => {
                 <div className="info-row">
                   <div>
                     <text className="info-label">Transshipments: </text>
-                    <text className="schedule-result-text">{booking.trans}</text>
+                    <text className="schedule-result-text">{booking.transshipment}</text>
                   </div>
                   <div>
                     <text className="info-label">Transit Time: </text>
-                    <text className="schedule-result-text">{booking.time} days</text>
+                    <text className="schedule-result-text">{booking.transitTime} days</text>
                   </div>
                 </div>
 
@@ -56,6 +56,10 @@ const BookingDisplay = (props) => {
             {fields > 5 &&
               <div style={{width: '100%'}}>
                 <h2>Quote</h2>
+                <div className="info-row">
+                  <text className="info-label">Validity: </text>
+                  <text className="schedule-result-text">{booking.validity}</text>
+                </div>
                 <div className="info-row">
                   <text className="info-label">Ocean Freight (All-in): </text>
                   <text className="schedule-result-text">${booking.oceanFreight}</text>
@@ -66,7 +70,7 @@ const BookingDisplay = (props) => {
                 </div>
                 <div className="info-row">
                   <text className="info-label">Administration Fee: </text>
-                  <text className="schedule-result-text">${booking.adFee}</text>
+                  <text className="schedule-result-text">${booking.adminFee}</text>
                 </div>
               </div>
             }

@@ -145,3 +145,10 @@
 #login-to-proceed-button {
   margin-top: 50px;
 }
+
+.validity-container {
+  width: 100%;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 2px #9c9c9c dashed;;
+}

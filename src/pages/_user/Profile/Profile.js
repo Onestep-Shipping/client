@@ -48,15 +48,15 @@ const Profile = () => {
             <text className="schedule-result-text">{booking.bookedDate}</text>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{booking.from}</text>
-            <text className="schedule-result-text-time">{booking.fromDate}</text>
+            <text className="schedule-result-text">{booking.startLocation}</text>
+            <text className="schedule-result-text-time">{booking.startDate}</text>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{booking.to}</text>
-            <text className="schedule-result-text-time">{booking.toDate}</text>
+            <text className="schedule-result-text">{booking.endLocation}</text>
+            <text className="schedule-result-text-time">{booking.endDate}</text>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{booking.ves.substring(0, booking.ves.indexOf('/'))}</text>
+            <text className="schedule-result-text">{booking.vessels.substring(0, booking.vessels.indexOf('/'))}</text>
           </div>
           <div className="col" onClick={() => handleBook(booking.bookingStatus, ind)}>
             <text

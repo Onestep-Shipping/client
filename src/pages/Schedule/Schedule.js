@@ -7,7 +7,7 @@ import { AuthContext } from '../../context/AuthContext.js';
 import {useHistory} from 'react-router-dom';
 import styles from '../../components/ScheduleForm/ScheduleFormMin.module.css';
 import FixedSizeList from '../../components/FixedSizeList/FixedSizeList.js';
-import DATA from '../../data/ScheduleFormData.js';
+import DATA from '../../data/ScheduleDetailsData.js';
 
 const Schedule = props => {
   const history = useHistory();
@@ -56,6 +56,10 @@ const Schedule = props => {
         </div>
         {(ind === currentBookingIndex && !isAdmin && currentUser) &&
           (<div className="quote-dropdown">
+            <div className="validity-container">
+              <text className="schedule-result-header-text">VALIDITY: </text>
+              {schedule.validity}
+            </div>
             <div className="schedule-result-header-row">
               <div className="col3">
                 <text className="schedule-result-header-text">{QUOTE_HEADERS[0].toUpperCase()}</text>
@@ -86,7 +90,8 @@ const Schedule = props => {
       <div className="schedule-body-container">
         <ScheduleForm styles={styles}/>
         <div className="schedule-result-container">
-          <FixedSizeList headers={RESULT_HEADERS} data={props.location.state.detail} row={row}/>
+          {/* props.location.state.detail */}
+          <FixedSizeList headers={RESULT_HEADERS} data={DATA} row={row}/>
           {!currentUser &&
             <text className="schedule-header-text">Please login to proceed.</text>
           }
