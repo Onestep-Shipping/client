@@ -17,6 +17,13 @@
   font-weight: 600;
 }
 
+.booking-no-button {
+  color: #224DAA;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
 .booking-profile-row {
   width: 100%;
   height: auto;
@@ -30,4 +37,20 @@
   border: 0.5px dashed rgb(100, 100, 100);
   margin-bottom: 15px;
 }
+
+.tooltip-button {
+  width: 50%;
+  color: #224DAA;
+  padding: 5px;
+  background-color: white;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.tiptool-container {
+  width: 150px;
+}
+
 

@@ -88,7 +88,6 @@ const BookingRequest = () => {
           </div>
 
           <div className="form-container">
-            <h2>Booking Request</h2>
             <div className="booking-details-container">
               <InfoRow label="Commodity" value={BOOKING_REQ[currentBookingIndex].booking.commodity} />
               <InfoRow label="HS Code" value={BOOKING_REQ[currentBookingIndex].booking.hsCode} />
