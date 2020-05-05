@@ -7,7 +7,7 @@ import UserList from '../../../components/UserList/UserList.js';
 import styles from '../../../components/ScheduleForm/ScheduleFormMin.module.css';
 import BOOKING_REQ from '../../../data/BookingRequestData.js';
 import DATA from '../../../data/ScheduleDetailsData.js';
-import { InfoRow, ContainerDetail, Address, MiniDatePicker } from '../Helpers.js';
+import { InfoRow, ContainerDetail, Address, MiniDatePicker, MiniDatePickerTime } from '../Helpers.js';
 import pdfGenerator from './pdfGenerator.js';
 
 const BookingRequest = () => {
@@ -18,6 +18,8 @@ const BookingRequest = () => {
   const [terminalDate, setTerminalDate] = useState(myToday);
   const [docDate, setDocDate] = useState(myToday);
   const [vgmDate, setVgmDate] = useState(myToday);
+  const [etdDate, setEtdDate] = useState(DATA[currentBookingIndex].startDate);
+  const [etaDate, setEtaDate] = useState(DATA[currentBookingIndex].endDate);
 
   const handleIndexChange = newInd => {
     setCurrentBookingIndex(newInd);
@@ -37,7 +39,8 @@ const BookingRequest = () => {
   }
 
   const createInfoObject = e => {
-    const { bookingNo, terminal, doc, vgm,
+    const { bookingNo, 
+            etd, eta, terminal, doc, vgm,
             pickupLocationStreet, pickupLocationCity, pickupLocationCountry,
             returnLocationStreet, returnLocationCity, returnLocationCountry 
           } = e.target;
@@ -47,6 +50,8 @@ const BookingRequest = () => {
       schedule: DATA[currentBookingIndex],
       booking: BOOKING_REQ[currentBookingIndex].booking,
       bookingNo: bookingNo.value,
+      etd: etd.value,
+      eta: eta.value,
       terminalDate: terminal.value, 
       docDate: doc.value, 
       vgmDate: vgm.value,
@@ -111,14 +116,22 @@ const BookingRequest = () => {
                 required />
             </div>
             <div className="confirmation-info-container">
+              <text className={styles.scheduleLabel}>ETD</text>
+              <text className={styles.scheduleLabel}>ETA</text>
+            </div>
+            <div className="confirmation-info-container">
+              <MiniDatePicker name="etd" value={new Date(etdDate)} action={setEtdDate} />
+              <MiniDatePicker name="eta" value={new Date(etaDate)} action={setEtaDate} id="align-right"/>
+            </div>
+            <div className="confirmation-info-container">
               <text className={styles.scheduleLabel}>Terminal Cut-off</text>
               <text className={styles.scheduleLabel}>Document Cut-off</text>
               <text className={styles.scheduleLabel}>VGM Cut-off</text>
             </div>
             <div className="confirmation-info-container">
-              <MiniDatePicker name="terminal" value={terminalDate} action={setTerminalDate} />
-              <MiniDatePicker name="doc" value={docDate} action={setDocDate} />
-              <MiniDatePicker name="vgm" value={vgmDate} action={setVgmDate} />
+              <MiniDatePickerTime name="terminal" value={terminalDate} action={setTerminalDate} />
+              <MiniDatePickerTime name="doc" value={docDate} action={setDocDate} />
+              <MiniDatePickerTime name="vgm" value={vgmDate} action={setVgmDate} />
             </div>
 
             <div className="confirmation-info-container">

@@ -76,3 +76,7 @@
   justify-content: space-between;
   margin-bottom: 20px;
 }
+
+#align-right {
+  text-align: end;
+}

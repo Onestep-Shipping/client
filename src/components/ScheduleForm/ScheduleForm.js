@@ -17,27 +17,29 @@ const ScheduleForm = (props) => {
           setToLocation, setToDate, setCarrier  } = useContext(ScheduleFormContext);
 
   const handleSubmit = useCallback((e) => {
-    const { fromLocation, fromDate, toLocation, toDate, carrier } = e.target;
+    // const { fromLocation, fromDate, toLocation, toDate, carrier } = e.target;
     e.preventDefault();
     
-    const data = {
-      carrier: carrier.value,
-      startLocation: fromLocation.value,
-      startDate: fromDate.value,
-      endLocation: toLocation.value,
-      endDate: toDate.value,
-    }
+    // const data = {
+    //   carrier: carrier.value,
+    //   startLocation: fromLocation.value,
+    //   startDate: fromDate.value,
+    //   endLocation: toLocation.value,
+    //   endDate: toDate.value,
+    // }
 
-    ScheduleService.find(data)
-      .then(res => {
-        history.push({
-          pathname: '/schedule',
-          state: { detail: res.data }
-        });
-      })
-      .catch(e => {
-        console.log(e.response);
-      });
+    // ScheduleService.find(data)
+    //   .then(res => {
+    //     history.push({
+    //       pathname: '/schedule',
+    //       state: { detail: res.data }
+    //     });
+    //   })
+    //   .catch(e => {
+    //     console.log(e.response);
+    //   });
+
+    history.push("/schedule");
   
   }, [history]);
 

@@ -50,7 +50,7 @@ const BookingForm = (props) => {
         Add Container
       </button>
       <Select name="Payment Term" options={PAYMENT_TYPES} />
-      <Select name="CAED/AES filling by OneStep?" options={AUTO_FILLING} />
+      <Select name="CAED/AES filing by OneStep?" options={AUTO_FILLING} />
       <button className="result-button">Book</button>
     </form>
   );

@@ -14,7 +14,9 @@ const Success = () => {
       <Header />
       <div className="body-container2">
         <img className="gif" src={completedIcon} alt="Success!" />
-        <text className="success-text">Successfully sent!</text>
+        <text className="success-text">
+          Successfully {type.startsWith("booking") ? "booked" : "submitted"}!
+        </text>
         <text className="success-text-small">
           We will get back to you as soon as possible with {type.startsWith("booking") ? 
           "booking confirmation" : "bill of lading"} ☺

@@ -39,6 +39,7 @@
   font-weight: 500;
   color: #224DAA;
   margin-right: 20px;
+  text-align: start;
 }
 
 .info-label-special {
@@ -58,12 +59,14 @@
 }
 
 .booking-form-input {
+  width: 30%;
   outline: none;
   border: none;
   font-size: 16px;
   margin-left: 30px;
   background-color: white;
   text-align: end;
+  padding: 5px 10px;
 }
 
 .booking-form-input-start {
@@ -72,6 +75,7 @@
   font-size: 16px;
   background-color: white;
   text-align: start;
+  padding: 5px 10px;
   border-bottom: solid 1px rgb(49, 49, 49);
 }
 

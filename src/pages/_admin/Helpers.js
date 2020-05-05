@@ -15,12 +15,11 @@ const InfoRow = props => {
   );
 }
 
-const MiniDatePicker = props => {
+const MiniDatePickerTime = props => {
   const { name, value, action } = props;
 
   const handleInputChangeRaw = e => {
     const date = moment(e.target.value, "YYYY-MM-DD HH:mm" );
-
     if( date.isValid() ) {
       action(date);
     }
@@ -39,6 +38,23 @@ const MiniDatePicker = props => {
         timeFormat="HH:mm"
         timeIntervals={30}
         dateFormat="MM/dd/yyyy HH:mm"
+      />
+    </div>
+  );
+}
+
+const MiniDatePicker = props => {
+  const { name, value, action, id = "" } = props;
+
+  return (
+    <div>
+      <DatePicker
+        name={name}
+        id={id}
+        className={styles.fromDate}
+        placeholderText="Select a day"
+        selected={value}
+        onChange={action}
       />
     </div>
   );
@@ -128,12 +144,19 @@ const Address = (props) => {
 }
 
 
-export {InfoRow, ShipmentDetail, ContainerDetail, Address, MiniDatePicker};
+export {InfoRow, ShipmentDetail, ContainerDetail, Address, MiniDatePicker, MiniDatePickerTime};
 
 InfoRow.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.string,
+  id: PropTypes.string,
+};
+
+MiniDatePickerTime.propTypes = {
+  name: PropTypes.string,
+  value: PropTypes.string,
+  action: PropTypes.func,
 };
 
 MiniDatePicker.propTypes = {

@@ -22,10 +22,11 @@ const Textarea = (props) => {
 
 const ExtraInput = (props) => {
   const { name } = props;
+
   return (
     <div className="col2">
       <input
-        type="text"
+        type="number"
         name={name}
         className="instruction-extra-input"
         placeholder="i.e. 420010"

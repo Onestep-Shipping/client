@@ -45,11 +45,11 @@ const pdfGenerator = info => {
   doc.line(50, 200, 560, 200);
 
   doc.setFontSize(11);
-  doc.text(80, 230, "From: " + info.schedule.from);
-  doc.text(350, 230, "To: " + info.schedule.to);
+  doc.text(80, 230, "From: " + info.schedule.startLocation);
+  doc.text(350, 230, "To: " + info.schedule.endLocation);
 
-  doc.text(80, 250, "ETD: " + info.schedule.fromDate);
-  doc.text(350, 250, "ETA: " + info.schedule.toDate);
+  doc.text(80, 250, "ETD: " + info.etd);
+  doc.text(350, 250, "ETA: " + info.eta);
 
   doc.text(80, 290, "Commodity: " + info.booking.commodity);
 
