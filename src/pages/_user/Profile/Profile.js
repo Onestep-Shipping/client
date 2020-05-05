@@ -1,17 +1,40 @@
-import React, {useCallback} from 'react';
+import React, {useState, useCallback, useRef, useEffect} from 'react';
+import ToolTip from 'react-portal-tooltip'
 import './Profile.css';
 import { useHistory } from 'react-router-dom';
-
 import Header from '../../../components/Header/Header.js';
 import FixedSizeList from '../../../components/FixedSizeList/FixedSizeList.js';
 import DATA from '../../../data/ScheduleDetailsData.js';
-
 import bookingConfirmationPdf from './pdf/booking-confirmation.pdf';
 import bolPdf from './pdf/BOL.pdf';
 import invoicePdf from './pdf/invoice.pdf';
 
 const Profile = () => {
   const history = useHistory();
+  const [isTooltipActive, setIsTooltipActive] = useState(false);
+  const [currentBooking, setCurrentBooking] = useState(-1);
+
+  const node = useRef();
+
+  const measuredRef = useCallback((e) => {
+    if (node.current && !node.current.contains(e.target)) {
+      setIsTooltipActive(false); 
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('mousedown', measuredRef);
+
+    return () => {
+      document.removeEventListener('mousedown', measuredRef);
+    };
+  }, [measuredRef]);
+
+  const toggleToolTip = ind => { 
+    setCurrentBooking(ind);
+    setIsTooltipActive(true); 
+  }
+
   const PROFILE_HEADERS = [
     '#', 'Date Booked', 'From', 'To', 'Vessel', 
     'Booking Status', 'BOL Status', 'Invoice Status'
@@ -36,13 +59,27 @@ const Profile = () => {
       window.open(invoicePdf, '_blank');
     }
   }, []);
+  
+  const onRollClick = () => {
+    history.push("/rolling/" + currentBooking);
+  }
 
   const row = (booking, ind) => {
     return (
       <div key={ind}>
         <div className='booking-profile-row'>
           <div className="col-numb">
-            <text className="schedule-result-text">{ind + 1}</text>
+            <text id={"text" + ind} className="booking-no-button" onClick={() => toggleToolTip(ind)}>
+              {ind + 1}
+            </text>
+            <ToolTip 
+              tooltipTimeout={0} active={isTooltipActive} 
+              position="top" arrow="center" parent={"#text" + currentBooking}>
+                <div ref={node} className="tiptool-container">
+                  <button className="tooltip-button" onClick={onRollClick}>Roll</button>
+                  <button className="tooltip-button">Cancel</button>
+                </div>
+            </ToolTip>
           </div>
           <div className="col">
             <text className="schedule-result-text">{booking.bookedDate}</text>

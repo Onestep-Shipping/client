@@ -18,6 +18,7 @@ import Contact from './pages/Contact/Contact.js';
 import Booking from './pages/_user/Booking/Booking.js';
 import Success from './pages/_user/Success/Success.js';
 import Profile from './pages/_user/Profile/Profile.js';
+import Rolling from './pages/_user/Rolling/Rolling.js';
 
 import Companies from './pages/_admin/Companies/Companies.js';
 import BookingRequest from './pages/_admin/BookingRequest/BookingRequest.js';
@@ -44,6 +45,9 @@ const App = () => {
               </Route>
               <Route path="/profile">
                 <Profile />
+              </Route>
+              <Route path="/rolling/:id">
+                <Rolling />
               </Route>
 
               <Route path="/admin/companies" component={Companies} />
