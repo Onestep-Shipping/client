@@ -64,6 +64,13 @@ const Profile = () => {
     history.push("/rolling/" + currentBooking);
   }
 
+  const onCancelClick = () => {
+    const message = 'Are you sure you want to cancel booking request #' + currentBooking + '?';
+    if (window.confirm(message)) {
+      console.log("Remove!");
+    }
+  }
+
   const row = (booking, ind) => {
     return (
       <div key={ind}>
@@ -77,7 +84,7 @@ const Profile = () => {
               position="top" arrow="center" parent={"#text" + currentBooking}>
                 <div ref={node} className="tiptool-container">
                   <button className="tooltip-button" onClick={onRollClick}>Roll</button>
-                  <button className="tooltip-button">Cancel</button>
+                  <button className="tooltip-button" onClick={onCancelClick}>Cancel</button>
                 </div>
             </ToolTip>
           </div>
@@ -93,7 +100,9 @@ const Profile = () => {
             <text className="schedule-result-text-time">{booking.endDate}</text>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{booking.vessels.substring(0, booking.vessels.indexOf('/'))}</text>
+            <text className="schedule-result-text">
+              {booking.vessels.substring(0, booking.vessels.indexOf('/'))}
+            </text>
           </div>
           <div className="col" onClick={() => handleBook(booking.bookingStatus, ind)}>
             <text
