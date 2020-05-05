@@ -29,7 +29,7 @@ const FROM_LOCATIONS = [
   {label: 'Charleston (SC), US', value: 'USCHS'},
   {label: 'Norfolk (VA), US', value: 'USORF'},
   {label: 'Houston (TX), US', value: 'USHOU'},
-].sort(function(a,b) {return (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0);} );
+].sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
 
 const TO_LOCATIONS = [
   // Viet Nam
@@ -103,6 +103,6 @@ const TO_LOCATIONS = [
   {label: 'Shenzhen, CHINA', value: 'CNSZX'},
   {label: 'Xingang, CHINA', value: 'CNTXG'},
   {label: 'Xiamen, CHINA', value: 'CNXMN'},
-].sort(function(a,b) {return (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0);} );
+].sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
 
 export default {FROM_LOCATIONS, TO_LOCATIONS, CARRIERS};

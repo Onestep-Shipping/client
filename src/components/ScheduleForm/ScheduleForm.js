@@ -13,12 +13,8 @@ const ScheduleForm = (props) => {
   const { styles } = props;
   const history = useHistory();
 
-  const { schedule, 
-          setFromLocation, 
-          setFromDate, 
-          setToLocation, 
-          setToDate, 
-          setCarrier  } = useContext(ScheduleFormContext);
+  const { schedule, setFromLocation, setFromDate, 
+          setToLocation, setToDate, setCarrier  } = useContext(ScheduleFormContext);
 
   const handleSubmit = useCallback((e) => {
     const { fromLocation, fromDate, toLocation, toDate, carrier } = e.target;
