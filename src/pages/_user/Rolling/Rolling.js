@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import './Rolling.css';
 
 import {useParams, useHistory} from 'react-router-dom';
@@ -11,6 +11,7 @@ const Rolling = () => {
   const history = useHistory();
 
   const handleAccept = useCallback((id) => {
+    console.log(id);
     history.push('/profile');
   }, [history]);
 

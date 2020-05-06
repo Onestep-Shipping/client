@@ -40,7 +40,7 @@ const Profile = () => {
     'Booking Status', 'BOL Status', 'Invoice Status'
   ];
 
-  const handleBook = useCallback((status, id) => {
+  const handleBook = useCallback((status) => {
     if (status === "Received") {
       window.open(bookingConfirmationPdf, '_blank');
     }
@@ -54,7 +54,7 @@ const Profile = () => {
     }
   }, [history]);
 
-  const handleInvoice = useCallback((status, id) => {
+  const handleInvoice = useCallback((status) => {
     if (status === "Received") {
       window.open(invoicePdf, '_blank');
     }
@@ -104,14 +104,14 @@ const Profile = () => {
               {booking.vessels.substring(0, booking.vessels.indexOf('/'))}
             </text>
           </div>
-          <div className="col" onClick={() => handleBook(booking.bookingStatus, ind)}>
+          <div className="col" onClick={() => handleBook(booking.bookingStatus)}>
             <text
               id={booking.bookingStatus === "Received" ? "red-link" : ""}
               className={"schedule-result-text"}>
                 {booking.bookingStatus}
             </text>
           </div>
-          <div className="col" onClick={() => handleBol(booking.bolStatus, ind)}>
+          <div className="col" onClick={() => handleBol(booking.bolStatus)}>
             <text 
               id={booking.bolStatus === "Received" ? "red-link" : ""}
               className={"schedule-result-text" + 
@@ -119,7 +119,7 @@ const Profile = () => {
                 {booking.bolStatus}
             </text>
           </div>
-          <div className="col" onClick={() => handleInvoice(booking.invoiceStatus, ind)}>
+          <div className="col" onClick={() => handleInvoice(booking.invoiceStatus)}>
             <text 
               id={booking.invoiceStatus === "Received" ? "red-link" : ""}
               className={"schedule-result-text"}>

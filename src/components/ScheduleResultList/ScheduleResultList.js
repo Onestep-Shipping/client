@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import './ScheduleResultList.css';
+import PropTypes from 'prop-types';
 
 import FixedSizeList from '../FixedSizeList/FixedSizeList.js';
 import { AuthContext } from '../../context/AuthContext.js';
@@ -99,3 +100,7 @@ const ScheduleResultList = props => {
 };
 
 export default ScheduleResultList;
+
+ScheduleResultList.propTypes = {
+  action: PropTypes.func,
+};
