@@ -60,3 +60,7 @@
 #svg-reverse {
   transform: rotate(180deg);
 }
+
+.history-text {
+  margin-top: 20px;
+}
