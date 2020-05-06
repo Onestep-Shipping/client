@@ -47,7 +47,7 @@ const Profile = () => {
   }, []);
 
   const handleBol = useCallback((status, id) => {
-    if (status === "Ready") {
+    if (status === "Ready" ||  (status === "In Process")) {
       history.push('/bill-of-lading-instruction/' + id);
     } else if (status === "Received") {
        window.open(bolPdf, '_blank');
@@ -115,7 +115,7 @@ const Profile = () => {
             <text 
               id={booking.bolStatus === "Received" ? "red-link" : ""}
               className={"schedule-result-text" + 
-                (booking.bolStatus === "Ready" ? "-link" : "")}>
+                ((booking.bolStatus === "Ready" || booking.bolStatus === "In Process") ? "-link" : "")}>
                 {booking.bolStatus}
             </text>
           </div>

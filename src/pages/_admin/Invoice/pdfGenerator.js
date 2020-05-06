@@ -65,9 +65,9 @@ const pdfGenerator = info => {
   doc.setFontType('bold');
   doc.text(80, 360, "Description");
   doc.text(200, 360, "Q'ty");
-  doc.text(280, 360, "Container");
-  doc.text(405, 360, "Price");
-  doc.text(500, 360, "Total");
+  doc.text(250, 360, "Container");
+  doc.text(350, 360, "Price (USD)");
+  doc.text(450, 360, "Total (USD)");
 
   doc.setFontType('normal');
 
@@ -76,24 +76,24 @@ const pdfGenerator = info => {
     if (i < info.priceList.length - 2) {
       doc.text(80, height, "Ocean Freight");
       doc.text(200, height, "" + info.booking.container[i].quantity);
-      doc.text(280, height, info.booking.container[i].containerType);
+      doc.text(250, height, info.booking.container[i].containerType);
     } else if (i === info.priceList.length - 2) {
       doc.text(80, height, "Document");
       doc.text(200, height, "1");
     } else {
       doc.text(80, height, "Administration");
       doc.text(200, height, "1");
-      doc.line(280, height + 10, 560, height + 10);
-      doc.text(280, height + 24, "Sub Total: ");
-      doc.text(405, height + 24, "$" + info.subTotal);
+      doc.line(80, height + 10, 560, height + 10);
+      doc.text(350, height + 24, "Sub Total: ");
+      doc.text(450, height + 24, "$" + info.subTotal);
     }
-    doc.text(405, height, "$" + row.price);
-    doc.text(500, height, "$" + row.total);
+    doc.text(350, height, "$" + row.price);
+    doc.text(450, height, "$" + row.total);
   })
 
   doc.setFontSize(12);
   doc.setFontType('bold');
-  doc.text(80, 530, "Our Bank Information - RBC Bank");
+  doc.text(80, 530, "Bank Information - RBC Bank");
 
   doc.setFontSize(11);
   doc.setFontType('normal');

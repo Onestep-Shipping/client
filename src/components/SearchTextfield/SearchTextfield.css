@@ -10,13 +10,13 @@
   font-size: 16px;
   padding: 5px 15px;
   border-radius: 2px;
-  border: solid 1px rgb(226, 226, 226);
+  border: solid 1px rgb(240, 240, 240);
   outline: none;
   margin-right: -5px;
 }
 
 #search-button {
-  background-color: rgb(226, 226, 226);
+  background-color: rgb(240, 240, 240);
   width: 30px;
   height: 30px;
   border-radius: 2px;
