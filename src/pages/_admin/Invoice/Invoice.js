@@ -10,12 +10,33 @@ import DATA from '../../../data/ScheduleDetailsData.js';
 import { InfoRow } from '../Helpers.js';
 import pdfGenerator from './pdfGenerator.js';
 import { comma } from '../../../helpers/Helpers.js';
+import QUOTE_DATA from '../../../data/QuoteUpdateData';
+import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
+import { QuoteRow } from '../QuoteUpdate/Helpers';
+
+const initCost = ind => {
+  let finalCost = 0;
+  INVOICE[ind].booking.container.map(row => {
+    CONTAINER_TYPES.map((type, type_ind) => {
+      if (type === row.containerType) {
+        finalCost += (QUOTE_DATA[ind].buying.oceanFreight[type_ind] * row.quantity);
+      }
+    })
+  })
+  finalCost += QUOTE_DATA[ind].buying.docFee + QUOTE_DATA[ind].buying.adminFee;
+  
+  return finalCost;
+}
 
 const Invoice = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fees, setFees] = useState(
     Array(INVOICE[currentIndex].booking.container.length + 2).fill(0)
   );
+  const cost = initCost(currentIndex);
+  const revenue = fees.reduce((a, b) => a + b, 0);
+  const profit = revenue - cost;
+
 
   const handleIndexChange = newInd => {
     setCurrentIndex(newInd);
@@ -35,16 +56,16 @@ const Invoice = () => {
 
   const onFeeChange = (e, i) => {
     let newFees = [...fees]; 
-    let newVal = e.target.value;
+    let newVal = parseInt(e.target.value);
     if (i < fees.length - 2) {
-      newVal *=  INVOICE[currentIndex].booking.container[i].quantity;
+      newVal *= INVOICE[currentIndex].booking.container[i].quantity;
     }
     newFees[i] = newVal;
     setFees(newFees);
   }
 
   const createInfoObject = e => {
-    const { price, total, subTotal } = e.target;
+    const { price, total } = e.target;
     const priceList = toArray(price);
     const totalList = toArray(total);
     const combine = [];
@@ -57,7 +78,7 @@ const Invoice = () => {
       booking: INVOICE[currentIndex].booking,
       orderNo: INVOICE[currentIndex].bol.orderNo,
       priceList: combine, 
-      subTotal: subTotal.value 
+      subTotal: comma(revenue) 
     }
   }
 
@@ -109,24 +130,26 @@ const Invoice = () => {
                   <text className="info-label-special">Total (USD)</text>
                 </div>
             </div>
-            {INVOICE[currentIndex].booking.container.map((row, ind) => (
-              <div className="invoice-row" key={ind}>
-                <text>Ocean Freight</text>
-                <text>{row.quantity}</text>
-                <text>{row.containerType}</text>
-                <div className="usd-input-container">
-                <input 
-                  type="number" name="price" className="usd-input" 
-                  onChange={e => onFeeChange(e, ind)}
-                  required
-                />
-                <input 
-                  type="text" name="total" className="usd-input" 
-                  disabled={true} value={comma(fees[ind])}
-                />
-              </div>
-              </div>
-            ))}
+            {INVOICE[currentIndex].booking.container.map((row, ind) => {
+              const { quantity, containerType } = row;
+              return (
+                <div className="invoice-row" key={ind}>
+                  <text>Ocean Freight</text>
+                  <text>{quantity}</text>
+                  <text>{containerType}</text>
+                  <div className="usd-input-container">
+                    <input 
+                      type="number" name="price" className="usd-input" 
+                      onChange={e => onFeeChange(e, ind)}
+                      required
+                    />
+                    <input 
+                      type="text" name="total" className="usd-input" 
+                      disabled={true} value={comma(fees[ind])}
+                    />
+                  </div>
+                </div>
+            )})}
             <div className="invoice-row">
               <text>Document Fee</text>
               <div className="usd-input-container">
@@ -155,12 +178,21 @@ const Invoice = () => {
                 />
               </div>
             </div>
-            <div className="invoice-row-right">
-              <text>Subtotal</text>
-              <input 
-                type="text" name="subTotal" className="total-input" 
-                disabled={true} value={comma(fees.reduce((a, b) => a + b, 0))}
-              />
+            <div className="invoice-row-small">
+              <text className="info-label-special">Revenue: </text>
+              <text>${comma(revenue)}</text>
+            </div>
+            <div className="invoice-row-small">
+              <text className="info-label-special">Cost</text>
+              <text>${comma(cost)}</text>
+            </div>
+            <div className="invoice-row-small">
+              <text className="info-label-special">Profit</text>
+              <text>${comma(profit)}</text>
+            </div>
+            <div className="invoice-row">
+              <QuoteRow header="Buying" obj={QUOTE_DATA[currentIndex].buying} />
+              <QuoteRow header="Selling" obj={QUOTE_DATA[currentIndex].selling} />
             </div>
             <div className="bol-button-form">
               <input id="left-button" type="submit" className="result-button" value="Generate PDF" />
