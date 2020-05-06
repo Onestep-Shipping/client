@@ -7,10 +7,8 @@ import { AuthContext } from '../../context/AuthContext.js';
 import DATA from '../../data/ScheduleDetailsData.js';
 import arrowIcon from '../../assets/arrow-down.svg';
 import { CONTAINER_TYPES } from '../../constants/ServiceFormConstants.js';
+import { comma } from '../../helpers/Helpers.js';
 
-const comma = x => {
-  return Number(x).toLocaleString()
-}
 
 const ScheduleResultList = props => {
   const { action } = props;

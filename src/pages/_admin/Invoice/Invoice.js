@@ -9,10 +9,7 @@ import INVOICE from '../../../data/InvoiceData.js';
 import DATA from '../../../data/ScheduleDetailsData.js';
 import { InfoRow } from '../Helpers.js';
 import pdfGenerator from './pdfGenerator.js';
-
-const comma = x => {
-  return Number(x).toLocaleString()
-}
+import { comma } from '../../../helpers/Helpers.js';
 
 const Invoice = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
