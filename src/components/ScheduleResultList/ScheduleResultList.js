@@ -6,6 +6,11 @@ import FixedSizeList from '../FixedSizeList/FixedSizeList.js';
 import { AuthContext } from '../../context/AuthContext.js';
 import DATA from '../../data/ScheduleDetailsData.js';
 import arrowIcon from '../../assets/arrow-down.svg';
+import { CONTAINER_TYPES } from '../../data/ServiceFormData.js';
+
+const comma = x => {
+  return Number(x).toLocaleString()
+}
 
 const ScheduleResultList = props => {
   const { action } = props;
@@ -22,8 +27,8 @@ const ScheduleResultList = props => {
 
   
   const PRICES = [
-    { validity: "04/01/2020 - 04/30/2020", oceanFreight: 1000 }, 
-    { validity: "05/14/2020 - 05/27/2020", oceanFreight: 2000 },
+    { validity: "04/01/2020 - 04/30/2020", oceanFreight: [800, 1100, 1200] }, 
+    { validity: "05/14/2020 - 05/27/2020", oceanFreight: [900, 1500, 2000] },
   ]
 
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
@@ -69,18 +74,23 @@ const ScheduleResultList = props => {
               onClick={() => setValidity(validity === 0 ? 1 : 0)} 
             />}
           </div>
-          <div className="schedule-result-header-row">
+          <div className="quote-body">
             <div className="col3">
               <text className="schedule-result-header-text">{QUOTE_HEADERS[0].toUpperCase()}</text>
-              <text className="schedule-result-text">${PRICES[validity].oceanFreight}</text>
+              {CONTAINER_TYPES.map((container, ind) => 
+                <div key={ind} className="container-types-quote">
+                  <text className="schedule-result-text">{container}: </text>
+                  <text className="schedule-result-text">${comma(PRICES[validity].oceanFreight[ind])}</text>
+                </div>
+              )}
             </div>
             <div className="col3">
               <text className="schedule-result-header-text">{QUOTE_HEADERS[1].toUpperCase()}</text>
-              <text className="schedule-result-text">${schedule.docFee}</text>
+              <text className="schedule-result-text">${comma(schedule.docFee)}</text>
             </div>
             <div className="col3">
               <text className="schedule-result-header-text">{QUOTE_HEADERS[2].toUpperCase()}</text>
-              <text className="schedule-result-text">${schedule.adminFee}</text>
+              <text className="schedule-result-text">${comma(schedule.adminFee)}</text>
             </div>
           </div>
           <button className="result-button" onClick={() => action(ind)}>

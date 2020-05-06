@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
 import '../../pages/_user/Booking/Booking.css';
+import { 
+  CONTAINER_HEADERS, CONTAINER_TYPES, PAYMENT_TYPES, AUTO_FILLING 
+} from '../../data/ServiceFormData.js';
 import PropTypes from 'prop-types';
 import {InfoRow, Select} from './Helpers.js';
 
 const MAX_ROW = 5;
 
 const BookingForm = (props) => {
-  const CONTAINER_TYPES = ['20\' Dry', '40\' Dry', '40\'HC Dry'];
-  const AUTO_FILLING = ['Yes', 'No'];
-  const PAYMENT_TYPES = ['Prepaid', 'Collect'];
-  const CONTAINER_HEADERS = ["Quantity", "Container Type"];
   const [row, setRow] = useState(1);
 
   const addContainer = (e) => {

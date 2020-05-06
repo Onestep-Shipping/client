@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
 import '../../pages/_user/Booking/Booking.css';
+import { TEXTAREA_FIELDS, TRACKING_HEADERS, INPUT_FIELDS } from '../../data/ServiceFormData.js';
 import PropTypes from 'prop-types';
 import {Textarea, ExtraInput, InfoRow} from './Helpers.js';
 
 const BolForm = (props) => {
-  const TEXTAREA_FIELDS = ["Shipper", "Consignee", "Notify", "Description of Goods"];
-  const TRACKING_HEADERS = ["Container No.", "Seel No.", "Cargo Weight (kgs)", "Measurement (cbm)", "VGM"];
-  const INPUT_FIELDS = ["Order/PO Number", "HS Code", "CAED/AES Number", "Cargo Value"];
   const [row, setRow] = useState(1);
 
   const addContainer = (e) => {
