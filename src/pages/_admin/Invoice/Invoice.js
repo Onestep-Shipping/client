@@ -13,6 +13,7 @@ import { comma } from '../../../helpers/Helpers.js';
 import QUOTE_DATA from '../../../data/QuoteUpdateData';
 import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
 import { QuoteRow } from '../QuoteUpdate/Helpers';
+import { FinanceRow, NumberInput } from './Helpers';
 
 const initCost = ind => {
   let finalCost = 0;
@@ -135,59 +136,20 @@ const Invoice = () => {
                   <text>Ocean Freight</text>
                   <text>{row.quantity}</text>
                   <text>{row.containerType}</text>
-                  <div className="usd-input-container">
-                    <input 
-                      type="number" name="price" className="usd-input" 
-                      onChange={e => onFeeChange(e, ind)}
-                      required
-                    />
-                    <input 
-                      type="text" name="total" className="usd-input" 
-                      disabled={true} value={comma(fees[ind])}
-                    />
-                  </div>
+                  <NumberInput ind={ind} onChange={onFeeChange} fees={fees}/>
                 </div>
             )}
             <div className="invoice-row">
               <text>Document Fee</text>
-              <div className="usd-input-container">
-                <input 
-                  type="number" name="price" className="usd-input" 
-                  onChange={e => onFeeChange(e, fees.length - 2)}
-                  required
-                />
-                <input 
-                  type="text" name="total" className="usd-input" 
-                  disabled={true} value={comma(fees[fees.length - 2])}
-                />
-              </div>
+              <NumberInput ind={fees.length - 2} onChange={onFeeChange} fees={fees}/>
             </div>
             <div className="invoice-row">
               <text>Administration Fee</text>
-              <div className="usd-input-container">
-                <input 
-                  type="number" name="price" className="usd-input" 
-                  onChange={e => onFeeChange(e, fees.length - 1)}
-                  required
-                />
-                <input 
-                  type="text" name="total" className="usd-input" 
-                  disabled={true} value={comma(fees[fees.length - 1])}
-                />
-              </div>
+              <NumberInput ind={fees.length - 1} onChange={onFeeChange} fees={fees}/>
             </div>
-            <div className="invoice-row-small">
-              <text className="info-label-special">Revenue: </text>
-              <text>${comma(revenue)}</text>
-            </div>
-            <div className="invoice-row-small">
-              <text className="info-label-special">Cost</text>
-              <text>${comma(cost)}</text>
-            </div>
-            <div className="invoice-row-small">
-              <text className="info-label-special">Profit</text>
-              <text>${comma(profit)}</text>
-            </div>
+            <FinanceRow label="Revenue" value={revenue} />
+            <FinanceRow label="Cost" value={cost} />
+            <FinanceRow label="Profit" value={profit} />
             <div className="invoice-row">
               <QuoteRow header="Buying" obj={QUOTE_DATA[currentIndex].buying} />
               <QuoteRow header="Selling" obj={QUOTE_DATA[currentIndex].selling} />
