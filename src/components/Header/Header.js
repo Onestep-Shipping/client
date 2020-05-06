@@ -10,11 +10,9 @@ import registerIcon from '../../assets/register-icon.svg';
 import loginIcon from '../../assets/login-icon.svg';
 import arrowDownIcon from '../../assets/arrow-down.svg';
 import notiIcon from '../../assets/noti-icon.svg';
+import { ADMIN_OPTIONS, USER_OPTIONS } from '../../constants/DropdownConstants.js';
 
 import NOTIFICATIONS from '../../data/NotificationData.js';
-
-const ADMIN_OPTIONS = ["Companies", "Booking Request", "BOL Instruction", "Invoice", "Sign Out"];
-const USER_OPTIONS = ["My Booking", "Sign Out"];
 
 const Header = () => {
   const history = useHistory();

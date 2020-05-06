@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import '../../pages/_user/Booking/Booking.css';
 import { 
   CONTAINER_HEADERS, CONTAINER_TYPES, PAYMENT_TYPES, AUTO_FILLING 
-} from '../../data/ServiceFormData.js';
+} from '../../constants/ServiceFormConstants.js';
 import PropTypes from 'prop-types';
 import {InfoRow, Select} from './Helpers.js';
 

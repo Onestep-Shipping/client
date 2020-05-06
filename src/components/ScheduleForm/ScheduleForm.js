@@ -7,10 +7,10 @@ import DATA from '../../data/ScheduleFormData.js';
 import 'react-datepicker/dist/react-datepicker.css';
 import PropTypes from 'prop-types';
 import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
-import ScheduleService from '../../services/ScheduleService.js';
+// import ScheduleService from '../../services/ScheduleService.js';
 
 const ScheduleForm = (props) => {
-  const { styles } = props;
+  const { styles, action = null } = props;
   const history = useHistory();
 
   const { schedule, setFromLocation, setFromDate, 
@@ -44,7 +44,7 @@ const ScheduleForm = (props) => {
   }, [history]);
 
   return (
-    <form className={styles.formContainer} onSubmit={handleSubmit}>
+    <form className={styles.formContainer} onSubmit={action === null ? handleSubmit : action}>
       <div className={styles.infoContainer}>
         <text className={styles.scheduleLabel}>From</text>
         <div className={styles.textfieldContainer}>
@@ -105,4 +105,5 @@ export default ScheduleForm;
 
 ScheduleForm.propTypes = {
   styles: PropTypes.object,
+  action: PropTypes.func,
 };
