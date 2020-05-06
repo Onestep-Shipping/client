@@ -1,0 +1,62 @@
+.finance-display-form {
+  width: 100%;
+  margin: 30px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.finance-display-container {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 30px;
+}
+
+.finance-display-row {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px dashed #5c5c5c;
+  padding: 5px;
+}
+
+.buying-container {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px dashed #1f1e1e;
+  margin: 30px 0px;
+  border-radius: 15px;
+}
+
+.quote-history-list {
+  height: 100%;
+  list-style-type: none;
+  background-color: white;
+  margin: 0;
+  padding: 0px;
+  overflow: hidden; 
+  overflow-y: scroll;
+  width: 20%;
+}
+
+.quote-update-detail {
+  height: 100%;
+  width: 80%;
+  background-color: rgb(255, 255, 255);
+  border-left: 1px solid rgb(207, 207, 207);
+  overflow: hidden; 
+  overflow-y: scroll;
+}
+
+#svg-reverse {
+  transform: rotate(180deg);
+}

@@ -30,7 +30,7 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  cursor: pointer;
+  user-select: none;
 }
  
 .regular-checkbox {

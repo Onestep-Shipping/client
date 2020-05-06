@@ -24,6 +24,7 @@ import Companies from './pages/_admin/Companies/Companies.js';
 import BookingRequest from './pages/_admin/BookingRequest/BookingRequest.js';
 import BOLInstruction from './pages/_admin/BOLInstruction/BOLInstruction.js';
 import Invoice from './pages/_admin/Invoice/Invoice.js';
+import QuoteUpdate from './pages/_admin/QuoteUpdate/QuoteUpdate.js';
 
 import './App.css';
 
@@ -54,6 +55,7 @@ const App = () => {
               <Route path="/admin/booking-request" component={BookingRequest} />
               <Route path="/admin/bol-instruction" component={BOLInstruction} />
               <Route path="/admin/invoice" component={Invoice} />
+              <Route path="/admin/quote-update" component={QuoteUpdate} />
 
               <Route path="/about" component={About} />
               <Route path="/services" component={Services} />

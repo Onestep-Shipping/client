@@ -6,7 +6,7 @@ import FixedSizeList from '../FixedSizeList/FixedSizeList.js';
 import { AuthContext } from '../../context/AuthContext.js';
 import DATA from '../../data/ScheduleDetailsData.js';
 import arrowIcon from '../../assets/arrow-down.svg';
-import { CONTAINER_TYPES } from '../../data/ServiceFormData.js';
+import { CONTAINER_TYPES } from '../../constants/ServiceFormConstants.js';
 
 const comma = x => {
   return Number(x).toLocaleString()
