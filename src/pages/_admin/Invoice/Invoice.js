@@ -130,13 +130,11 @@ const Invoice = () => {
                   <text className="info-label-special">Total (USD)</text>
                 </div>
             </div>
-            {INVOICE[currentIndex].booking.container.map((row, ind) => {
-              const { quantity, containerType } = row;
-              return (
+            {INVOICE[currentIndex].booking.container.map((row, ind) => 
                 <div className="invoice-row" key={ind}>
                   <text>Ocean Freight</text>
-                  <text>{quantity}</text>
-                  <text>{containerType}</text>
+                  <text>{row.quantity}</text>
+                  <text>{row.containerType}</text>
                   <div className="usd-input-container">
                     <input 
                       type="number" name="price" className="usd-input" 
@@ -149,7 +147,7 @@ const Invoice = () => {
                     />
                   </div>
                 </div>
-            )})}
+            )}
             <div className="invoice-row">
               <text>Document Fee</text>
               <div className="usd-input-container">
