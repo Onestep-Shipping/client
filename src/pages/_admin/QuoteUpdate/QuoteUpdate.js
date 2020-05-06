@@ -4,54 +4,10 @@ import './QuoteUpdate.css';
 import Header from '../../../components/Header/Header.js';
 import ScheduleForm from '../../../components/ScheduleForm/ScheduleForm.js';
 import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
+import QUOTE_DATA from '../../../data/QuoteUpdateData';
 import styles from '../../../components/ScheduleForm/ScheduleFormMin.module.css';
 import arrowDownIcon from '../../../assets/arrow-down.svg';
 import moment from 'moment';
-
-const QUOTE_HISTORY = [
-  {
-    validityStart: "03/01/2020",
-    validityEnd: "03/31/2020",
-    buying: {
-      oceanFreight: [750, 1000, 1300],
-      docFee: 60,
-      adminFee: 0
-    },
-    selling: {
-      oceanFreight: [800, 1200, 1600],
-      docFee: 80,
-      adminFee: 30
-    }
-  },
-  {
-    validityStart: "02/01/2020",
-    validityEnd: "02/31/2020",
-    buying: {
-      oceanFreight: [750, 1000, 1300],
-      docFee: 60,
-      adminFee: 0
-    },
-    selling: {
-      oceanFreight: [800, 1200, 1600],
-      docFee: 80,
-      adminFee: 30
-    }
-  },
-  {
-    validityStart: "01/01/2020",
-    validityEnd: "01/31/2020",
-    buying: {
-      oceanFreight: [750, 1000, 1300],
-      docFee: 60,
-      adminFee: 0
-    },
-    selling: {
-      oceanFreight: [800, 1200, 1600],
-      docFee: 80,
-      adminFee: 30
-    }
-  },
-]
 
 const QuoteUpdate = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -67,7 +23,7 @@ const QuoteUpdate = () => {
       <Header />
       <div className="bol-instruction-container">
         <ul className="quote-history-list">
-          {QUOTE_HISTORY.map((item, ind) => (
+          {QUOTE_DATA.map((item, ind) => (
             <div key={ind}>
               <li id="selected-item"
                   className="bol-instruction-item"
@@ -81,45 +37,8 @@ const QuoteUpdate = () => {
               </li>
               {ind === currentIndex &&
               <div>
-                <div className="finance-display-form">
-                  <div className="finance-display-container">
-                    <text className={styles.scheduleLabel}>Buying</text>
-                  </div>
-                  {CONTAINER_TYPES.map((container, ind) =>
-                    <div className="finance-display-row" key={ind}>
-                      <text>O.F. - {container}:</text>
-                      <text>{QUOTE_HISTORY[currentIndex].buying.oceanFreight[ind]}</text>
-                    </div>
-                  )}
-                  <div className="finance-display-row" key={ind}>
-                    <text>Doc fee:</text>
-                    <text>{QUOTE_HISTORY[currentIndex].buying.docFee}</text>
-                  </div>
-                  <div className="finance-display-row" key={ind}>
-                    <text>Admin fee:</text>
-                    <text>{QUOTE_HISTORY[currentIndex].buying.adminFee}</text>
-                  </div>
-                </div>
-
-                 <div className="finance-display-form">
-                  <div className="finance-display-row">
-                    <text className={styles.scheduleLabel}>Selling</text>
-                  </div>
-                  {CONTAINER_TYPES.map((container, ind) =>
-                    <div className="finance-display-row" key={ind}>
-                      <text>O.F. - {container}:</text>
-                      <text>{QUOTE_HISTORY[currentIndex].buying.oceanFreight[ind]}</text>
-                    </div>
-                  )}
-                  <div className="finance-display-row" key={ind}>
-                    <text>Doc fee:</text>
-                    <text>{QUOTE_HISTORY[currentIndex].buying.docFee}</text>
-                  </div>
-                  <div className="finance-display-row" key={ind}>
-                    <text>Admin fee:</text>
-                    <text>{QUOTE_HISTORY[currentIndex].buying.adminFee}</text>
-                  </div>
-                </div>
+                <QuoteRow header="Buying" obj={QUOTE_DATA[currentIndex].buying} />
+                <QuoteRow header="Selling" obj={QUOTE_DATA[currentIndex].selling} />
               </div>}
             </div>
             )
@@ -166,4 +85,30 @@ const QuoteForm = props => {
       </div>
     </div>
   )
+}
+
+const QuoteRow = props => {
+  const { header, obj } = props;
+
+  return (
+    <div className="finance-display-form">
+      <div className="finance-display-container">
+        <text className={styles.scheduleLabel}>{header}</text>
+      </div>
+      {CONTAINER_TYPES.map((container, ind) =>
+        <div className="finance-display-row" key={ind}>
+          <text>O.F. - {container}:</text>
+          <text>{obj.oceanFreight[ind]}</text>
+        </div>
+      )}
+      <div className="finance-display-row">
+        <text>Doc fee:</text>
+        <text>{obj.docFee}</text>
+      </div>
+      <div className="finance-display-row">
+        <text>Admin fee:</text>
+        <text>{obj.adminFee}</text>
+      </div>
+    </div>
+  );
 }
