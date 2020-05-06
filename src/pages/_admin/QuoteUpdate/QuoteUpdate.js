@@ -10,11 +10,13 @@ import { QuoteForm, QuoteRow } from './Helpers';
 import moment from 'moment';
 
 const QuoteUpdate = () => {
+  const [history, setHistory] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setIndex] = useState(-1);
 
   const onSubmit = e => {
     e.preventDefault();
+    setHistory(QUOTE_DATA);
     setIsVisible(true);
   }
 
@@ -23,8 +25,8 @@ const QuoteUpdate = () => {
       <Header />
       <div className="bol-instruction-container">
         <ul className="quote-history-list">
-          {isVisible ?
-          QUOTE_DATA.map((item, ind) => (
+          {history.length > 0 ?
+          history.map((item, ind) => (
             <div key={ind}>
               <li id="selected-item" className="bol-instruction-item"
                   onClick={() => setIndex(ind === currentIndex ? -1 : ind)}>
@@ -37,8 +39,8 @@ const QuoteUpdate = () => {
               </li>
               {ind === currentIndex &&
               <div>
-                <QuoteRow header="Buying" obj={QUOTE_DATA[currentIndex].buying} />
-                <QuoteRow header="Selling" obj={QUOTE_DATA[currentIndex].selling} />
+                <QuoteRow header="Buying" obj={history[currentIndex].buying} />
+                <QuoteRow header="Selling" obj={history[currentIndex].selling} />
               </div>}
             </div>
             )
