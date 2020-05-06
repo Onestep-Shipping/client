@@ -17,13 +17,14 @@
   margin-bottom: 30px;
 }
 
-.invoice-row-right {
-  width: 80%;
+.invoice-row-small {
+  margin-top: 20px;
+  width: 70%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 30px;
+  border-bottom: #474747 dashed 1px;
 }
 
 .usd-input, .total-input {

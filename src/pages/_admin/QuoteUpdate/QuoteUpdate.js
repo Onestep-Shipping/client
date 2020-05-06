@@ -23,10 +23,10 @@ const QuoteUpdate = () => {
       <Header />
       <div className="bol-instruction-container">
         <ul className="quote-history-list">
-          {QUOTE_DATA.map((item, ind) => (
+          {isVisible ?
+          QUOTE_DATA.map((item, ind) => (
             <div key={ind}>
-              <li id="selected-item"
-                  className="bol-instruction-item"
+              <li id="selected-item" className="bol-instruction-item"
                   onClick={() => setIndex(ind === currentIndex ? -1 : ind)}>
                   <text>
                     {moment(new Date(item.validityStart)).format("YYYY | MMM DD")
@@ -42,7 +42,7 @@ const QuoteUpdate = () => {
               </div>}
             </div>
             )
-          )}
+          ) : <div className="history-text">No history.</div>}
         </ul>
         <div className="quote-update-detail"> 
           <div className="finance-display-form">
