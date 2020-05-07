@@ -51,6 +51,9 @@ const QuoteUpdate = () => {
           ) : <div className="history-text">No history.</div>}
         </ul>
         <div className="quote-update-detail"> 
+          <div className="booking-id-container">
+            <h1>Quote Update</h1>
+          </div>
           <div className="finance-display-form">
             <ScheduleForm styles={styles} action={onSubmit}/>
           </div>
