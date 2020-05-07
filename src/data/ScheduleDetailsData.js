@@ -16,7 +16,7 @@ const DATA = [
     bolStatus: 'Not Ready',
     invoiceStatus: 'Not Ready',
     carrier: 'Hapag-Lloyd',
-
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   { 
     startLocation: 'Vancouver, BC | CA',
@@ -35,6 +35,7 @@ const DATA = [
     bolStatus: 'Not Ready',
     invoiceStatus: 'Not Ready',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   { 
     startLocation: 'Vancouver, BC | CA',
@@ -53,6 +54,7 @@ const DATA = [
     bolStatus: 'Ready',
     invoiceStatus: 'Not Ready',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     startLocation: 'Vancouver, BC | CA',
@@ -71,6 +73,7 @@ const DATA = [
     bolStatus: 'Ready',
     invoiceStatus: 'Not Ready',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     startLocation: 'Vancouver, BC | CA',
@@ -89,6 +92,7 @@ const DATA = [
     bolStatus: 'In Process',
     invoiceStatus: 'Not Ready',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     startLocation: 'Vancouver, BC | CA',
@@ -107,6 +111,7 @@ const DATA = [
     bolStatus: 'In Process',
     invoiceStatus: 'Not Ready',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     startLocation: 'Vancouver, BC | CA',
@@ -125,6 +130,7 @@ const DATA = [
     bolStatus: 'Received',
     invoiceStatus: 'Not Ready',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     startLocation: 'Vancouver, BC | CA',
@@ -143,6 +149,7 @@ const DATA = [
     bolStatus: 'Received',
     invoiceStatus: 'Not Ready',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     startLocation: 'Vancouver, BC | CA',
@@ -161,6 +168,7 @@ const DATA = [
     bolStatus: 'Received',
     invoiceStatus: 'Received',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     startLocation: 'Vancouver, BC | CA',
@@ -179,6 +187,7 @@ const DATA = [
     bolStatus: 'Received',
     invoiceStatus: 'Received',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     startLocation: 'Vancouver, BC | CA',
@@ -197,6 +206,7 @@ const DATA = [
     bolStatus: 'Received',
     invoiceStatus: 'Received',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     startLocation: 'Vancouver, BC | CA',
@@ -215,6 +225,7 @@ const DATA = [
     bolStatus: 'Received',
     invoiceStatus: 'Received',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     startLocation: 'Vancouver, BC | CA',
@@ -233,6 +244,7 @@ const DATA = [
     bolStatus: 'Received',
     invoiceStatus: 'Received',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     startLocation: 'Vancouver, BC | CA',
@@ -251,6 +263,7 @@ const DATA = [
     bolStatus: 'Received',
     invoiceStatus: 'Received',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     startLocation: 'Vancouver, BC | CA',
@@ -269,6 +282,7 @@ const DATA = [
     bolStatus: 'Received',
     invoiceStatus: 'Received',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     startLocation: 'Vancouver, BC | CA',
@@ -287,6 +301,7 @@ const DATA = [
     bolStatus: 'Received',
     invoiceStatus: 'Received',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     startLocation: 'Vancouver, BC | CA',
@@ -305,6 +320,7 @@ const DATA = [
     bolStatus: 'Received',
     invoiceStatus: 'Received',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     startLocation: 'Vancouver, BC | CA',
@@ -323,6 +339,7 @@ const DATA = [
     bolStatus: 'Received',
     invoiceStatus: 'Received',
     carrier: 'Hapag-Lloyd',
+    except: "Garment, Waste, Agricural Products, etc.",
   },
 ];
 

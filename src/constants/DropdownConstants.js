@@ -1,5 +1,5 @@
 const ADMIN_OPTIONS = [
-  "Companies", "Booking Request", "BOL Instruction", "Invoice", "Quote Update", "Sign Out"
+  "Companies", "Quote Update", "Booking Request", "BOL Instruction", "Invoice", "Sign Out"
 ];
 const USER_OPTIONS = ["My Booking", "Sign Out"];
 

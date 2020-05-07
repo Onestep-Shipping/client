@@ -91,6 +91,9 @@ const ScheduleResultList = props => {
               <text className="schedule-result-text">${comma(schedule.adminFee)}</text>
             </div>
           </div>
+          <div className="finance-display-form">
+            Note: FAK Rates (Except {schedule.except})
+          </div>
           <button className="result-button" onClick={() => action(ind)}>
             Accept
           </button>

@@ -11,7 +11,8 @@ const QUOTE_DATA = [
       oceanFreight: [800, 1200, 1600],
       docFee: 80,
       adminFee: 30
-    }
+    },
+    except: "Garment, Waste, Agricural Products, etc.",
   },
   {
     validityStart: "08/01/2020",
@@ -25,7 +26,8 @@ const QUOTE_DATA = [
       oceanFreight: [800, 1200, 1600],
       docFee: 80,
       adminFee: 30
-    }
+    },
+    except: "Garment, Waste, Agricural Products, etc."
   },
   {
     validityStart: "07/01/2020",
@@ -39,7 +41,8 @@ const QUOTE_DATA = [
       oceanFreight: [800, 1200, 1600],
       docFee: 80,
       adminFee: 30
-    }
+    },
+    except: "Garment, Waste, Agricural Products, etc."
   },
   {
     validityStart: "06/01/2020",
@@ -53,7 +56,8 @@ const QUOTE_DATA = [
       oceanFreight: [800, 1200, 1600],
       docFee: 80,
       adminFee: 30
-    }
+    },
+    except: "Garment, Waste, Agricural Products, etc."
   },
   {
     validityStart: "05/01/2020",
@@ -67,7 +71,8 @@ const QUOTE_DATA = [
       oceanFreight: [800, 1200, 1600],
       docFee: 80,
       adminFee: 30
-    }
+    },
+    except: "Garment, Waste, Agricural Products, etc."
   },
   {
     validityStart: "04/01/2020",
@@ -81,7 +86,8 @@ const QUOTE_DATA = [
       oceanFreight: [800, 1200, 1600],
       docFee: 80,
       adminFee: 30
-    }
+    },
+    except: "Garment, Waste, Agricural Products, etc."
   },
   {
     validityStart: "03/01/2020",
@@ -95,7 +101,8 @@ const QUOTE_DATA = [
       oceanFreight: [800, 1200, 1600],
       docFee: 80,
       adminFee: 30
-    }
+    },
+    except: "Garment, Waste, Agricural Products, etc."
   },
   {
     validityStart: "02/01/2020",
@@ -109,7 +116,8 @@ const QUOTE_DATA = [
       oceanFreight: [800, 1200, 1600],
       docFee: 80,
       adminFee: 30
-    }
+    },
+    except: "Garment, Waste, Agricural Products, etc."
   },
   {
     validityStart: "01/01/2020",
@@ -123,7 +131,8 @@ const QUOTE_DATA = [
       oceanFreight: [800, 1200, 1600],
       docFee: 80,
       adminFee: 30
-    }
+    },
+    except: "Garment, Waste, Agricural Products, etc."
   },
 ];
 

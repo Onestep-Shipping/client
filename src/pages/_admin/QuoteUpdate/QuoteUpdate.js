@@ -8,6 +8,7 @@ import styles from '../../../components/ScheduleForm/ScheduleFormMin.module.css'
 import arrowDownIcon from '../../../assets/arrow-down.svg';
 import { QuoteForm, QuoteRow } from './Helpers';
 import moment from 'moment';
+import { Textarea } from '../../../components/ServiceForm/Helpers.js';
 
 const QuoteUpdate = () => {
   const [history, setHistory] = useState([]);
@@ -41,6 +42,9 @@ const QuoteUpdate = () => {
               <div>
                 <QuoteRow header="Buying" obj={history[currentIndex].buying} />
                 <QuoteRow header="Selling" obj={history[currentIndex].selling} />
+                <div className="finance-display-form">
+                  Note: FAK Rates (Except {history[currentIndex].except})
+                </div>
               </div>}
             </div>
             )
@@ -55,6 +59,10 @@ const QuoteUpdate = () => {
             <div className="finance-display-container">
               <QuoteForm header="Buying" />
               <QuoteForm header="Selling" />
+            </div>
+            <div>
+              <Textarea name="Note: FAK Rates - Except..." key={currentIndex}/>
+              <text></text>
             </div>
             <button className="result-button">Update</button>
           </form>}

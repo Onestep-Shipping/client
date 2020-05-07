@@ -23,7 +23,7 @@
   align-items: center;
   justify-content: space-between;
   line-height: 25px;
-  border: 1px dashed #5c5c5c;
+  border-bottom: 1px dashed #5c5c5c;
   padding: 5px;
 }
 
