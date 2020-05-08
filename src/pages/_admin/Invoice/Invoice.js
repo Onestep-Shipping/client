@@ -9,7 +9,7 @@ import INVOICE from '../../../data/InvoiceData.js';
 import DATA from '../../../data/ScheduleDetailsData.js';
 import { InfoRow } from '../Helpers.js';
 import pdfGenerator from './pdfGenerator.js';
-import { comma } from '../../../helpers/Helpers.js';
+import { comma } from '../../../utils/Helpers.js';
 import QUOTE_DATA from '../../../data/QuoteUpdateData';
 import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
 import { QuoteRow } from '../QuoteUpdate/Helpers';

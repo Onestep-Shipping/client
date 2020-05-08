@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
-import { comma } from '../../../helpers/Helpers.js';
+import { comma } from '../../../utils/Helpers.js';
 
 const QuoteForm = props => {
   const { header } = props; 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { comma } from '../../../helpers/Helpers.js';
+import { comma } from '../../../utils/Helpers.js';
 
 const FinanceRow = props => {
   const { label, value } = props;
