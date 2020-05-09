@@ -50,11 +50,12 @@ const FixedSizeList = (props) => {
           {row(booking, ((currentPage - 1) * LIST_SIZE) + ind)}
         </div>
       )}
+      {data.length > LIST_SIZE &&
       <div className="page-indicator-container">
         <button className="result-button" onClick={handlePrev}>{'<< Previous'}</button>
         <text>Page {currentPage} / {max === 0 ? 1 : max}</text>
         <button className="result-button" onClick={handleNext}>{'Next >>'}</button>
-      </div>
+      </div>}
     </div>
   );
 }
