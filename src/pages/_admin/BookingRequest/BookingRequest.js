@@ -8,7 +8,8 @@ import styles from '../../../components/ScheduleForm/ScheduleFormMin.module.css'
 import BOOKING_REQ from '../../../data/BookingRequestData.js';
 import DATA from '../../../data/ScheduleDetailsData.js';
 import { InfoRow, ContainerDetail, Address, MiniDatePicker, MiniDatePickerTime } from '../Helpers.js';
-import pdfGenerator from './pdfGenerator.js';
+import PdfGenerator from './PdfGenerator.js';
+import FileUploadService from '../../../services/FileUploadService.js';
 
 const BookingRequest = () => {
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
@@ -29,13 +30,29 @@ const BookingRequest = () => {
     [...document.getElementsByTagName("input")].forEach(node => node.value = "");
   }
 
-  const handleSubmit = e => {
+  const handlePreview = e => {
     e.preventDefault();
-    const pdf = pdfGenerator(createInfoObject(e));
-    var data = new FormData();
-    data.append('data', pdf);
+    PdfGenerator.preview(createInfoObject(e));
+  }
 
-    // TODO: Fetch formData to server
+  const handleUpload = e => {
+    e.preventDefault();
+    const blob = PdfGenerator.uploadToServer();
+    const pdf = new File(
+      [blob], 
+      'Booking Confirmation #' + document.getElementById("bookingNo").value + '.pdf', 
+      { type: 'application/pdf' } 
+    )
+    const formData = new FormData();
+    formData.append("file", pdf);
+
+    FileUploadService.uploadFile(formData)
+      .then(res => {
+        alert(res.data.fileLocation);
+      })
+      .catch(e => {
+        console.log(e.response);
+      });
   }
 
   const createInfoObject = e => {
@@ -103,12 +120,13 @@ const BookingRequest = () => {
           </div>
 
           {!BOOKING_REQ[currentBookingIndex].isCompleted &&
-          <form className="booking-confirmation-container" onSubmit={handleSubmit}>
+          <form className="booking-confirmation-container" onSubmit={handlePreview}>
             <h2>Booking Confirmation</h2>
             <div className="confirmation-info-container">
               <text className={styles.scheduleLabel}>Booking No.</text>
               <input
                 type="text"
+                id="bookingNo"
                 name="bookingNo"
                 className="commodity-input"
                 placeholder="i.e. 1234567"
@@ -143,7 +161,7 @@ const BookingRequest = () => {
 
             <div className="bol-button-form">
               <input id="left-button" type="submit" className="result-button" value="Generate PDF" />
-              <button  className="result-button">
+              <button  className="result-button" onClick={handleUpload}>
                 Send to Customer
               </button>
             </div>
