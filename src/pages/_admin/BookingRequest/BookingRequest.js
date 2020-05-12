@@ -9,6 +9,7 @@ import BOOKING_REQ from '../../../data/BookingRequestData.js';
 import DATA from '../../../data/ScheduleDetailsData.js';
 import { InfoRow, ContainerDetail, Address, MiniDatePicker, MiniDatePickerTime } from '../Helpers.js';
 import pdfGenerator from './pdfGenerator.js';
+import FileUploadService from '../../../services/FileUploadService.js';
 
 const BookingRequest = () => {
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
@@ -31,11 +32,23 @@ const BookingRequest = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const pdf = pdfGenerator(createInfoObject(e));
-    var data = new FormData();
-    data.append('data', pdf);
+    const blob = pdfGenerator(createInfoObject(e));
+    var pdf = new File(
+      [blob], 
+      'Booking Confirmation #' + document.getElementById("bookingNo").value + '.pdf', 
+      { type: 'application/pdf' } 
+    )
+    const formData = new FormData();
+    formData.append("file", pdf);
 
     // TODO: Fetch formData to server
+    FileUploadService.uploadFile(formData)
+      .then(res => {
+        alert(res);
+      })
+      .catch(e => {
+        console.log(e.response);
+      });
   }
 
   const createInfoObject = e => {
@@ -109,6 +122,7 @@ const BookingRequest = () => {
               <text className={styles.scheduleLabel}>Booking No.</text>
               <input
                 type="text"
+                id="bookingNo"
                 name="bookingNo"
                 className="commodity-input"
                 placeholder="i.e. 1234567"

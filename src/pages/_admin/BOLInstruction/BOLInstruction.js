@@ -6,6 +6,7 @@ import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js
 import UserList from '../../../components/UserList/UserList.js';
 import BOL from '../../../data/BOLInstructionData.js';
 import {InfoRow, ShipmentDetail} from '../Helpers.js';
+import FileUploadService from '../../../services/FileUploadService.js';
 
 const BOLInstruction = () => {
   const [currentBolIndex, setCurrentBolIndex] = useState(0);
@@ -25,6 +26,18 @@ const BOLInstruction = () => {
       setPDF("");
     }
     setCurrentBolIndex(ind);
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    FileUploadService.uploadFile(formData)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
   }
 
   return (
@@ -70,18 +83,22 @@ const BOLInstruction = () => {
 
           <div className="pdf-text">{pdf}</div>
           {!BOL[currentBolIndex].isCompleted &&
-            <div className="bol-button-form">
+            <form 
+              className="bol-button-form" 
+              encType="multipart/form-data"
+              onSubmit={handleSubmit}>
               <label htmlFor="file" className="file-label"> 
                 Choose a file
               </label>
               <input 
+                name="file"
                 type='file' id='file' ref={inputFile} 
                 className="inputfile" 
                 onChange={handleChange}
                 accept="application/pdf"
               />
-              <button className="result-button">Send to Customer</button>
-            </div>
+              <input type="submit" className="result-button" value="Send to Customer" />
+            </form>
           }
         </div>
       </div>
