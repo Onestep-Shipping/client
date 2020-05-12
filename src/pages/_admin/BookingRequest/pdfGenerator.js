@@ -102,7 +102,7 @@ const pdfGenerator = info => {
   doc.text(50, 670, 'Best regards,');
   doc.text(50, 710, 'OneStep Shipping.');
 
-  // window.open(doc.output('bloburl'), '_blank');
+  window.open(doc.output('bloburl'), '_blank');
 
   return doc.output('blob');
 }

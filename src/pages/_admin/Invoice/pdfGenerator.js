@@ -9,9 +9,9 @@ const centeredText = (text, y) => {
     doc.text(textOffset, y, text);
 }
 
-const pdfGenerator = info => {
+const preview = info => {
   doc.setProperties({
-    title: 'Invoice for Booking #' + info.bookingNo,
+    title: 'Invoice #' + info.bookingNo,
     subject: 'Info about PDF',
     author: 'Scarlet Nguyen',
     keywords: 'generated, javascript, web 2.0, ajax',
@@ -111,8 +111,10 @@ const pdfGenerator = info => {
   doc.text(50, 710, 'OneStep Shipping.');
 
   window.open(doc.output('bloburl'), '_blank');
+}
 
+const uploadToServer = () => {
   return doc.output('blob');
 }
 
-export default pdfGenerator;
+export default { preview, uploadToServer };

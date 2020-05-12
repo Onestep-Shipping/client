@@ -8,12 +8,13 @@ import UserList from '../../../components/UserList/UserList.js';
 import INVOICE from '../../../data/InvoiceData.js';
 import DATA from '../../../data/ScheduleDetailsData.js';
 import { InfoRow } from '../Helpers.js';
-import pdfGenerator from './pdfGenerator.js';
+import PdfGenerator from './pdfGenerator.js';
 import { comma } from '../../../utils/Helpers.js';
 import QUOTE_DATA from '../../../data/QuoteUpdateData';
 import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
 import { QuoteRow } from '../QuoteUpdate/Helpers';
 import { FinanceRow, NumberInput } from './Helpers';
+import FileUploadService from '../../../services/FileUploadService.js';
 
 const initCost = ind => {
   let finalCost = 0;
@@ -45,14 +46,29 @@ const Invoice = () => {
     document.getElementsByName("price").forEach(node => node.value = "");
   }
 
-  const handleSubmit = e => {
+  const handlePreview = e => {
     e.preventDefault();
-    createInfoObject(e);
-    const pdf = pdfGenerator(createInfoObject(e));
-    var data = new FormData();
-    data.append('data', pdf);
+    PdfGenerator.preview(createInfoObject(e));
+  }
 
-    // TODO: Fetch formData to server
+  const handleUpload = e => {
+    e.preventDefault();
+    const blob = PdfGenerator.uploadToServer();
+    var pdf = new File(
+      [blob], 
+      'Invoice #' + INVOICE[currentIndex].id + '.pdf', 
+      { type: 'application/pdf' } 
+    )
+    const formData = new FormData();
+    formData.append("file", pdf);
+
+    FileUploadService.uploadFile(formData)
+      .then(res => {
+        alert(res);
+      })
+      .catch(e => {
+        console.log(e.response);
+      });
   }
 
   const onFeeChange = (e, i) => {
@@ -120,7 +136,7 @@ const Invoice = () => {
           </div>
 
           {!INVOICE[currentIndex].isCompleted &&
-          <form className="invoice-form-container" onSubmit={handleSubmit}>
+          <form className="invoice-form-container" onSubmit={handlePreview}>
             <h2>Invoice</h2>
             <div className="invoice-row">
                 <text className="info-label-special">Description</text>
@@ -156,7 +172,7 @@ const Invoice = () => {
             </div>
             <div className="bol-button-form">
               <input id="left-button" type="submit" className="result-button" value="Generate PDF" />
-              <button  className="result-button">
+              <button  className="result-button" onClick={handleUpload}>
                 Send to Customer
               </button>
             </div>
