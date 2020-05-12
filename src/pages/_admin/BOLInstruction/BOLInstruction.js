@@ -33,7 +33,7 @@ const BOLInstruction = () => {
     const formData = new FormData(e.currentTarget);
     FileUploadService.uploadFile(formData)
       .then(res => {
-        console.log(res.data);
+        alert(res.data.fileLocation);
       })
       .catch(e => {
         console.log(e);
