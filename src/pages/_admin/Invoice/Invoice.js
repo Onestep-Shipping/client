@@ -8,7 +8,7 @@ import UserList from '../../../components/UserList/UserList.js';
 import INVOICE from '../../../data/InvoiceData.js';
 import DATA from '../../../data/ScheduleDetailsData.js';
 import { InfoRow } from '../Helpers.js';
-import PdfGenerator from './pdfGenerator.js';
+import PdfGenerator from './PdfGenerator.js';
 import { comma } from '../../../utils/Helpers.js';
 import QUOTE_DATA from '../../../data/QuoteUpdateData';
 import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
@@ -54,7 +54,7 @@ const Invoice = () => {
   const handleUpload = e => {
     e.preventDefault();
     const blob = PdfGenerator.uploadToServer();
-    var pdf = new File(
+    const pdf = new File(
       [blob], 
       'Invoice #' + INVOICE[currentIndex].id + '.pdf', 
       { type: 'application/pdf' } 
@@ -64,7 +64,7 @@ const Invoice = () => {
 
     FileUploadService.uploadFile(formData)
       .then(res => {
-        alert(res);
+        alert(res.data);
       })
       .catch(e => {
         console.log(e.response);
