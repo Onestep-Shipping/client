@@ -4,6 +4,10 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+
+import client from './apollo/index.js';
+import { ApolloProvider } from '@apollo/react-hooks';
+
 import PrivateRoute from './firebase/PrivateRoute.js';
 import AuthProvider from './context/AuthContext.js';
 import ScheduleFormProvider from "./context/ScheduleFormContext.js";
@@ -30,44 +34,46 @@ import './App.css';
 
 const App = () => {
   return (
-    <AuthProvider>
-      <ScheduleFormProvider>
-        <Router>
-          <div className="App">
-            <Switch>
-              <Route exact path="/success/:type">
-                <Success />
-              </Route>
-              <Route exact path="/booking/:id">
-                <Booking formType='booking'/>
-              </Route>
-              <Route exact path="/bill-of-lading-instruction/:id"> 
-                <Booking formType='bol'/>
-              </Route>
-              <Route path="/profile">
-                <Profile />
-              </Route>
-              <Route path="/rolling/:id">
-                <Rolling />
-              </Route>
+    <ApolloProvider client={client}>
+      <AuthProvider>
+        <ScheduleFormProvider>
+          <Router>
+            <div className="App">
+              <Switch>
+                <Route exact path="/success/:type">
+                  <Success />
+                </Route>
+                <Route exact path="/booking/:id">
+                  <Booking formType='booking'/>
+                </Route>
+                <Route exact path="/bill-of-lading-instruction/:id"> 
+                  <Booking formType='bol'/>
+                </Route>
+                <Route path="/profile">
+                  <Profile />
+                </Route>
+                <Route path="/rolling/:id">
+                  <Rolling />
+                </Route>
 
-              <Route path="/admin/companies" component={Companies} />
-              <Route path="/admin/booking-request" component={BookingRequest} />
-              <Route path="/admin/bol-instruction" component={BOLInstruction} />
-              <Route path="/admin/invoice" component={Invoice} />
-              <Route path="/admin/quote-update" component={QuoteUpdate} />
+                <Route path="/admin/companies" component={Companies} />
+                <Route path="/admin/booking-request" component={BookingRequest} />
+                <Route path="/admin/bol-instruction" component={BOLInstruction} />
+                <Route path="/admin/invoice" component={Invoice} />
+                <Route path="/admin/quote-update" component={QuoteUpdate} />
 
-              <Route path="/about" component={About} />
-              <Route path="/services" component={Services} />
-              <Route path="/schedule" component={Schedule} />
-              <Route path="/news" component={News} />
-              <Route path="/contact" component={Contact} />
-              <Route path="/" component={Homepage} />
-            </Switch>
-          </div>
-        </Router>
-      </ScheduleFormProvider>
-    </AuthProvider>
+                <Route path="/about" component={About} />
+                <Route path="/services" component={Services} />
+                <Route path="/schedule" component={Schedule} />
+                <Route path="/news" component={News} />
+                <Route path="/contact" component={Contact} />
+                <Route path="/" component={Homepage} />
+              </Switch>
+            </div>
+          </Router>
+        </ScheduleFormProvider>
+      </AuthProvider>
+    </ApolloProvider>
   );
 };
 

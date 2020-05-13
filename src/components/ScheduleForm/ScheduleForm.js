@@ -7,9 +7,20 @@ import DATA from '../../data/ScheduleFormData.js';
 import 'react-datepicker/dist/react-datepicker.css';
 import PropTypes from 'prop-types';
 import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
-// import ScheduleService from '../../services/ScheduleService.js';
+import { useLazyQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+
+const HELLO = gql`
+  query {
+    hello
+  }
+`;
 
 const ScheduleForm = (props) => {
+  const [
+    getHello, { loading, data }
+  ] = useLazyQuery(HELLO);
+  
   const { styles, action = null } = props;
   const history = useHistory();
 
@@ -17,9 +28,10 @@ const ScheduleForm = (props) => {
           setToLocation, setToDate, setCarrier  } = useContext(ScheduleFormContext);
 
   const handleSubmit = useCallback((e) => {
-    // const { fromLocation, fromDate, toLocation, toDate, carrier } = e.target;
     e.preventDefault();
-    
+    getHello();
+    alert(data ? data.hello : "no data");
+    // const { fromLocation, fromDate, toLocation, toDate, carrier } = e.target;
     // const data = {
     //   carrier: carrier.value,
     //   startLocation: fromLocation.value,
@@ -28,18 +40,7 @@ const ScheduleForm = (props) => {
     //   endDate: toDate.value,
     // }
 
-    // ScheduleService.find(data)
-    //   .then(res => {
-    //     history.push({
-    //       pathname: '/schedule',
-    //       state: { detail: res.data }
-    //     });
-    //   })
-    //   .catch(e => {
-    //     console.log(e.response);
-    //   });
-
-    history.push("/schedule");
+    // history.push("/schedule");
   
   }, [history]);
 
