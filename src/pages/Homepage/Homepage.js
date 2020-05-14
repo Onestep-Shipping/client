@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header.js';
 import ScheduleForm from '../../components/ScheduleForm/ScheduleForm.js';
 import styles from '../../components/ScheduleForm/ScheduleForm.module.css';
 import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
-import FIND_SCHEDULES from '../../apollo/queries/ScheduleQuery.js';
+import FIND_SCHEDULES from '../../apollo/queries/FindScheduleQuery.js';
 import client from '../../apollo/index.js';
 
 const Homepage = () => {
