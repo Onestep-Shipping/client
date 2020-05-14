@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import './Schedule.css';
+import PropTypes from 'prop-types';
 
 import Header from '../../components/Header/Header.js';
 import ScheduleForm from '../../components/ScheduleForm/ScheduleForm.js';
@@ -28,3 +29,7 @@ const Schedule = props => {
 };
 
 export default Schedule;
+
+Schedule.propTypes = {
+  location: PropTypes.object,
+};
