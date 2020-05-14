@@ -7,7 +7,7 @@ import ScheduleResultList from '../../components/ScheduleResultList/ScheduleResu
 import {useHistory} from 'react-router-dom';
 import styles from '../../components/ScheduleForm/ScheduleFormMin.module.css';
 
-const Schedule = () => {
+const Schedule = props => {
   const history = useHistory();
 
   const handleQuoteSubmit = useCallback((id) => {
@@ -19,7 +19,9 @@ const Schedule = () => {
       <Header />
       <div className="schedule-body-container">
         <ScheduleForm styles={styles}/>
-        <ScheduleResultList action={handleQuoteSubmit} />
+        <ScheduleResultList 
+          action={handleQuoteSubmit} 
+          scheduleList={props.location.state.schedules} />
       </div>
     </div>
   );

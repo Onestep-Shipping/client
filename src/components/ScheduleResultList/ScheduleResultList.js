@@ -5,14 +5,7 @@ import FixedSizeList from '../FixedSizeList/FixedSizeList.js';
 import { AuthContext } from '../../context/AuthContext.js';
 import arrowIcon from '../../assets/arrow-down.svg';
 import { comma } from '../../utils/Helpers.js';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import moment from 'moment';
-import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
-
-const convertDateToISO = date => {
-  return date.toISOString().substring(0, 10);
-}
 
 const formatValidity = validity => {
   return formatISOString(validity.startDate) + " - " + formatISOString(validity.endDate);
@@ -22,43 +15,10 @@ const formatISOString = iso => {
   return moment(iso).utc().format('MM/DD/YYYY');
 }
 
-const FIND_SCHEDULES = gql`
-  query findSchedules($routeId: String!, $carrier: String!, $startDate: Date!, $endDate: Date!) {
-    findSchedules(routeId: $routeId, carrier: $carrier, startDate: $startDate, endDate: $endDate) {
-      route {
-        startLocation
-        endLocation
-        carrier
-        quoteHistory {
-          validity {
-            startDate
-            endDate
-          }
-          selling {
-            oceanFreight {
-              containerType
-              price
-            }
-            docFee
-            adminFee
-          }
-          except
-        }
-      }
-      startDate
-      endDate
-      transitTime
-      transshipment
-      vessels
-    }
-  }
-`;
-
 const ScheduleResultList = props => {
-  const { action } = props;
+  const { action, scheduleList } = props;
   const [validity, setValidity] = useState(0);
   const { currentUser, isAdmin } = useContext(AuthContext);
-  const { schedule } = useContext(ScheduleFormContext);
 
   const RESULT_HEADERS = ['#', 'Port of Loading', 'Transshipments',
     'Vessels / Services', 'Port of Discharge', 'Transit Time'];
@@ -67,19 +27,6 @@ const ScheduleResultList = props => {
     'Documentation Fee', 'Administration Fee'];
 
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
-
-  const { loading, error, data } = useQuery(FIND_SCHEDULES, { 
-    variables: {
-      // routeId: schedule.fromLocation.value + "-" + schedule.toLocation.value,
-      // carrier: schedule.carrier,
-      // startDate: convertDateToISO(schedule.fromDate),
-      // endDate: convertDateToISO(schedule.toDate)
-      routeId: "CAVAN-SGSIN",
-      carrier: "OOCL",
-      startDate: "2020-07-01",
-      endDate: "2020-07-30"
-    }
-  });
 
   const row = (schedule, ind) => {
     const quotes =
@@ -163,12 +110,9 @@ const ScheduleResultList = props => {
     );
   }
 
-  if (loading) return null;
-  if (error) return `Error! ${error}`;
-
   return (
     <div className="schedule-result-container">
-      <FixedSizeList headers={RESULT_HEADERS} data={data.findSchedules} row={row}/>
+      <FixedSizeList headers={RESULT_HEADERS} data={scheduleList} row={row}/>
     </div>
   );
 };
@@ -176,5 +120,6 @@ const ScheduleResultList = props => {
 export default ScheduleResultList;
 
 ScheduleResultList.propTypes = {
+  scheduleList: PropTypes.array,
   action: PropTypes.func,
 };
