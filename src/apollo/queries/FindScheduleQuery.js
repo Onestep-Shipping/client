@@ -2,7 +2,9 @@ import { gql } from 'apollo-boost';
 
 const FIND_SCHEDULES = gql`
   query findSchedules($routeId: String!, $carrier: String!, $startDate: Date!, $endDate: Date!) {
-    findSchedules(routeId: $routeId, carrier: $carrier, startDate: $startDate, endDate: $endDate) {
+    findSchedules(
+      routeId: $routeId, carrier: $carrier, startDate: $startDate, endDate: $endDate
+    ) {
       route {
         startLocation
         endLocation

@@ -15,7 +15,8 @@ const GET_ALL_COMPANIES = gql`
         schedule {
           startDate
         }
-      }
+      },
+      createdAt
     }
   }
 `;
