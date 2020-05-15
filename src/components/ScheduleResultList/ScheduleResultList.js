@@ -1,20 +1,23 @@
 import React, { useState, useContext } from 'react';
 import './ScheduleResultList.css';
 import PropTypes from 'prop-types';
-
 import FixedSizeList from '../FixedSizeList/FixedSizeList.js';
 import { AuthContext } from '../../context/AuthContext.js';
-import DATA from '../../data/ScheduleDetailsData.js';
 import arrowIcon from '../../assets/arrow-down.svg';
-import { CONTAINER_TYPES } from '../../constants/ServiceFormConstants.js';
 import { comma } from '../../utils/Helpers.js';
+import moment from 'moment';
 
+const formatValidity = validity => {
+  return formatISOString(validity.startDate) + " - " + formatISOString(validity.endDate);
+}
+
+const formatISOString = iso => {
+  return moment(iso).utc().format('MM/DD/YYYY');
+}
 
 const ScheduleResultList = props => {
-  const { action } = props;
-
+  const { action, scheduleList } = props;
   const [validity, setValidity] = useState(0);
-
   const { currentUser, isAdmin } = useContext(AuthContext);
 
   const RESULT_HEADERS = ['#', 'Port of Loading', 'Transshipments',
@@ -23,15 +26,13 @@ const ScheduleResultList = props => {
   const QUOTE_HEADERS = ['Ocean Freight (All-in)',
     'Documentation Fee', 'Administration Fee'];
 
-  
-  const PRICES = [
-    { validity: "04/01/2020 - 04/30/2020", oceanFreight: [800, 1100, 1200] }, 
-    { validity: "05/14/2020 - 05/27/2020", oceanFreight: [900, 1500, 2000] },
-  ]
-
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
 
   const row = (schedule, ind) => {
+    const quotes =
+      schedule.route.quoteHistory
+        .filter(quote => Date.parse(quote.validity.startDate) <=  Date.parse(schedule.startDate))
+        .slice(0, 2)
     return (
       <div className="schedule-result-row-container" key={ind}>
         <div
@@ -42,8 +43,10 @@ const ScheduleResultList = props => {
             <text className="schedule-result-text">{ind + 1}</text>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{schedule.startLocation}</text>
-            <text className="schedule-result-text-time">{schedule.startDate}</text>
+            <text className="schedule-result-text">{schedule.route.startLocation}</text>
+            <text className="schedule-result-text-time">
+              {formatISOString(schedule.startDate)}
+            </text>
           </div>
           <div className="col">
             <text className="schedule-result-text">{schedule.transshipment}</text>
@@ -52,8 +55,10 @@ const ScheduleResultList = props => {
             <text className="schedule-result-text">{schedule.vessels}</text>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{schedule.endLocation}</text>
-            <text className="schedule-result-text-time">{schedule.endDate}</text>
+            <text className="schedule-result-text">{schedule.route.endLocation}</text>
+            <text className="schedule-result-text-time">
+              {formatISOString(schedule.endDate)}
+            </text>
           </div>
           <div className="col">
             <text className="schedule-result-text">{schedule.transitTime}</text>
@@ -63,9 +68,11 @@ const ScheduleResultList = props => {
         {(ind === currentBookingIndex && !isAdmin && currentUser) &&
         <div className="quote-dropdown">
           <div className="validity-container">
-            <text className="schedule-result-header-text">{validity === 0 ? "CURRENT" : "UPCOMING"} VALIDITY: </text>
-            {PRICES[validity].validity}
-            {PRICES.length > 1 && 
+            <text className="schedule-result-header-text">
+              {validity === 0 ? "CURRENT" : "UPCOMING"} VALIDITY: 
+            </text>
+            {formatValidity(quotes[validity].validity)}
+            {quotes > 1 && 
             <img 
               className={"arrow-icon-point-" + (validity === 0 ? "right" : "left")} 
               src={arrowIcon} alt="Arrow Icon" 
@@ -75,25 +82,26 @@ const ScheduleResultList = props => {
           <div className="quote-body">
             <div className="col3">
               <text className="schedule-result-header-text">{QUOTE_HEADERS[0].toUpperCase()}</text>
-              {CONTAINER_TYPES.map((container, ind) => 
+              {quotes[validity].selling.oceanFreight.map((container, ind) => 
                 <div key={ind} className="container-types-quote">
-                  <text className="schedule-result-text">{container}: </text>
-                  <text className="schedule-result-text">${comma(PRICES[validity].oceanFreight[ind])}</text>
+                  <text className="schedule-result-text">{container.containerType}: </text>
+                  <text className="schedule-result-text">${comma(container.price)}</text>
                 </div>
               )}
             </div>
             <div className="col3">
               <text className="schedule-result-header-text">{QUOTE_HEADERS[1].toUpperCase()}</text>
-              <text className="schedule-result-text">${comma(schedule.docFee)}</text>
+              <text className="schedule-result-text">${comma(quotes[validity].selling.docFee)}</text>
             </div>
             <div className="col3">
               <text className="schedule-result-header-text">{QUOTE_HEADERS[2].toUpperCase()}</text>
-              <text className="schedule-result-text">${comma(schedule.adminFee)}</text>
+              <text className="schedule-result-text">${comma(quotes[validity].selling.adminFee)}</text>
             </div>
           </div>
+          {quotes[validity].except &&
           <div className="finance-display-form">
-            Note: FAK Rates (Except {schedule.except})
-          </div>
+            Note: FAK Rates (Except {quotes[validity].except})
+          </div>}
           <button className="result-button" onClick={() => action(ind)}>
             Accept
           </button>
@@ -104,8 +112,7 @@ const ScheduleResultList = props => {
 
   return (
     <div className="schedule-result-container">
-      {/* props.location.state.detail */}
-      <FixedSizeList headers={RESULT_HEADERS} data={DATA} row={row}/>
+      <FixedSizeList headers={RESULT_HEADERS} data={scheduleList} row={row}/>
     </div>
   );
 };
@@ -113,5 +120,6 @@ const ScheduleResultList = props => {
 export default ScheduleResultList;
 
 ScheduleResultList.propTypes = {
+  scheduleList: PropTypes.array,
   action: PropTypes.func,
 };

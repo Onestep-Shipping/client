@@ -1,50 +1,20 @@
-import React, {useCallback, useContext} from 'react';
+import React, { useContext } from 'react';
 import './ScheduleForm.css';
-import {useHistory} from 'react-router-dom';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import DATA from '../../data/ScheduleFormData.js';
 import 'react-datepicker/dist/react-datepicker.css';
 import PropTypes from 'prop-types';
 import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
-// import ScheduleService from '../../services/ScheduleService.js';
 
 const ScheduleForm = (props) => {
-  const { styles, action = null } = props;
-  const history = useHistory();
+  const { styles, onSubmit } = props;
 
   const { schedule, setFromLocation, setFromDate, 
           setToLocation, setToDate, setCarrier  } = useContext(ScheduleFormContext);
 
-  const handleSubmit = useCallback((e) => {
-    // const { fromLocation, fromDate, toLocation, toDate, carrier } = e.target;
-    e.preventDefault();
-    
-    // const data = {
-    //   carrier: carrier.value,
-    //   startLocation: fromLocation.value,
-    //   startDate: fromDate.value,
-    //   endLocation: toLocation.value,
-    //   endDate: toDate.value,
-    // }
-
-    // ScheduleService.find(data)
-    //   .then(res => {
-    //     history.push({
-    //       pathname: '/schedule',
-    //       state: { detail: res.data }
-    //     });
-    //   })
-    //   .catch(e => {
-    //     console.log(e.response);
-    //   });
-
-    history.push("/schedule");
-  
-  }, [history]);
-
   return (
-    <form className={styles.formContainer} onSubmit={action === null ? handleSubmit : action}>
+    <form className={styles.formContainer} onSubmit={onSubmit}>
       <div className={styles.infoContainer}>
         <text className={styles.scheduleLabel}>From</text>
         <div className={styles.textfieldContainer}>
@@ -105,5 +75,5 @@ export default ScheduleForm;
 
 ScheduleForm.propTypes = {
   styles: PropTypes.object,
-  action: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
