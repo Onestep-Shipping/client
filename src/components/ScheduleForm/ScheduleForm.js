@@ -13,8 +13,17 @@ const ScheduleForm = (props) => {
   const { schedule, setFromLocation, setFromDate, 
           setToLocation, setToDate, setCarrier  } = useContext(ScheduleFormContext);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (schedule.fromLocation !== "" && schedule.toLocation) {
+      onSubmit();
+    } else {
+      alert("Please fill out the locations!");
+    }
+  }
+
   return (
-    <form className={styles.formContainer} onSubmit={onSubmit}>
+    <form className={styles.formContainer} onSubmit={handleSubmit}>
       <div className={styles.infoContainer}>
         <text className={styles.scheduleLabel}>From</text>
         <div className={styles.textfieldContainer}>

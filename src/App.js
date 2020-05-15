@@ -43,8 +43,7 @@ const App = () => {
                 <Route exact path="/success/:type">
                   <Success />
                 </Route>
-                <Route exact path="/booking/:id">
-                  <Booking formType='booking'/>
+                <Route exact path="/booking/:id" component={Booking}>
                 </Route>
                 <Route exact path="/bill-of-lading-instruction/:id"> 
                   <Booking formType='bol'/>

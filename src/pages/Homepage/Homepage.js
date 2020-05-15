@@ -17,8 +17,7 @@ const Homepage = () => {
 
   const { schedule } = useContext(ScheduleFormContext);
 
-  const handleSubmit = useCallback(async (e) => {
-    e.preventDefault();
+  const handleSubmit = useCallback(async () => {
     client.query({
       query: FIND_SCHEDULES,
       variables: { 

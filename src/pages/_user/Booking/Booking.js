@@ -15,11 +15,11 @@ const Booking = (props) => {
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
-    history.push('/success/' + formType + '-' + id);
+    history.push('/success/' + id);
   }, [history, id, formType]);
 
-  const formBool = formType === 'booking';
-  const fieldNumber = formBool ? 8 : 3;
+  const formBool = formType === 'bol';
+  const fieldNumber = formBool ? 3 : 8;
 
   return (
     <div className="homepage-container">
@@ -27,13 +27,13 @@ const Booking = (props) => {
       <div className="body-container2">
         <div className="booking-container">
           <text className="schedule-header-text">
-            {formBool ? 'Booking Request' : 'Bill Of Lading (BOL) Instruction'} 
+            {formBool ? 'Bill Of Lading (BOL) Instruction' : 'Booking Request'} 
           </text>
-          <div className={"info-container" + (formBool ? "" : "2")}>
-            <BookingDisplay id={id} fields={fieldNumber}/>
+          <div className={"info-container" + (formBool ? "2" : "")}>
+            <BookingDisplay schedule={props.location.state.schedule} fields={fieldNumber}/>
             {formBool ?
-              <BookingForm action={handleSubmit} /> :
-              <BolForm action={handleSubmit} />}
+              <BolForm action={handleSubmit} /> :
+              <BookingForm action={handleSubmit} />}
           </div>
         </div>
       </div>

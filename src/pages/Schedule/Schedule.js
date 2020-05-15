@@ -19,14 +19,16 @@ const Schedule = props => {
   const history = useHistory();
   const [scheduleList, setScheduleList] = useState(props.location.state.schedules); 
 
-  const handleQuoteSubmit = useCallback((id) => {
-    history.push('/booking/' + id);
+  const handleQuoteSubmit = useCallback((schedule) => {
+    history.push({
+      pathname: '/booking/' + schedule._id,
+      state: { schedule }
+    });
   }, [history]);
 
   const { schedule } = useContext(ScheduleFormContext);
 
-  const handleSubmit = useCallback(async (e) => {
-    e.preventDefault();
+  const handleSubmit = useCallback(async () => {
     client.query({
       query: FIND_SCHEDULES,
       variables: { 

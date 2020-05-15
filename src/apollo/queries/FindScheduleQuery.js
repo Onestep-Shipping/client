@@ -5,6 +5,7 @@ const FIND_SCHEDULES = gql`
     findSchedules(
       routeId: $routeId, carrier: $carrier, startDate: $startDate, endDate: $endDate
     ) {
+      _id
       route {
         startLocation
         endLocation
