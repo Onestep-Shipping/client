@@ -8,6 +8,10 @@ import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
 import FIND_SCHEDULES from '../../apollo/queries/FindScheduleQuery.js';
 import client from '../../apollo/index.js';
 
+const convertDateToISO = date => {
+    return date.toISOString().substring(0, 10);
+  }
+
 const Homepage = () => {
   const history = useHistory();
 
@@ -30,11 +34,7 @@ const Homepage = () => {
         state: { schedules: findSchedules }
       });
     })
-  }, [history]);
-
-  const convertDateToISO = date => {
-    return date.toISOString().substring(0, 10);
-  }
+  }, [history, schedule]);
 
   return (
     <div className="homepage-container">
