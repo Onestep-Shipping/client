@@ -3,6 +3,12 @@ import PropTypes from 'prop-types';
 
 const ROW_NUMBER = 5;
 
+function camelize(str) {
+  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
+    return index === 0 ? word.toLowerCase() : word.toUpperCase();
+  }).replace(/\s+/g, '');
+}
+
 const Textarea = (props) => {
   const { name } = props;
   const lcName = name.toLowerCase().replace(' ', '-');
@@ -36,15 +42,15 @@ const ExtraInput = (props) => {
 }
 
 const InfoRow = (props) => {
-  const { name } = props;
-  const lcName = name.toLowerCase().replace(' ', '-');
+  const { name, camelizeName = "" } = props;
+  const inputName = camelizeName === "" ? camelize(name) : camelizeName;
 
   return (
     <div className="info-row">
       <text className="info-label">{name} </text>
       <input
         type="text"
-        name={lcName}
+        name={inputName}
         className="booking-form-input"
         placeholder="i.e. 420010"
         required/>
@@ -53,11 +59,13 @@ const InfoRow = (props) => {
 }
 
 const Select = (props) => {
-  const { name, options } = props;
+  const { name, options, camelizeName } = props;
+  const inputName = camelizeName === "" ? camelize(name) : camelizeName;
+
   return (
     <div className="info-row">
       <text className="info-label">{name} </text>
-      <select className="booking-form-input">
+      <select className="booking-form-input" name={inputName}>
         {options.map((type, ind) => (<option value={type} key={ind}>{type}</option>))}
       </select>
     </div>
@@ -74,11 +82,13 @@ ExtraInput.propTypes = {
 
 InfoRow.propTypes = {
   name: PropTypes.string,
+  camelizeName: PropTypes.string
 };
 
 Select.propTypes = {
   name: PropTypes.string,
   options: PropTypes.array,
+  camelizeName: PropTypes.string
 };
 
 export {Textarea, ExtraInput, InfoRow, Select};

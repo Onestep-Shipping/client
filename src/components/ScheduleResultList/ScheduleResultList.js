@@ -102,7 +102,7 @@ const ScheduleResultList = props => {
           <div className="finance-display-form">
             Note: FAK Rates (Except {quotes[validity].except})
           </div>}
-          <button className="result-button" onClick={() => action(schedule)}>
+          <button className="result-button" onClick={() => action(schedule, quotes[0])}>
             Accept
           </button>
         </div>}

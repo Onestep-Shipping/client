@@ -7,27 +7,14 @@ const CREATE_BOOKING_REQUEST = gql`
     $companyId: String!, 
     $scheduleId: String!, 
     $quoteId: String!, 
-    $bookingRequest: BookingRequest!
+    $bookingRequest: BookingRequestInputType!
   ) {
     createBookingRequestAndInitShipment(
       companyId: $companyId, 
       scheduleId: $scheduleId, 
       quoteId: $quoteId, 
       bookingRequest: $bookingRequest
-    ) {
-      schedule {
-        route {
-          startLocation
-          endLocation
-          carrier
-        }
-        startDate
-        endDate
-        transitTime
-        transshipment
-        vessels
-      }
-    }
+    )
   }
 `;
 
