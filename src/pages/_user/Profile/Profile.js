@@ -48,7 +48,7 @@ const Profile = () => {
 
   const handleBol = useCallback((status, id) => {
     if (status === "Ready" ||  (status === "In Process")) {
-      history.push('/bill-of-lading-instruction/' + id);
+      history.push('/form/bill-of-lading-instruction/' + id);
     } else if (status === "Received") {
        window.open(bolPdf, '_blank');
     }

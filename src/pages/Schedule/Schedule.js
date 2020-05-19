@@ -22,7 +22,7 @@ const Schedule = props => {
   const handleQuoteSubmit = useCallback((schedule, quote) => {
     console.log(quote);
     history.push({
-      pathname: '/booking/' + schedule._id,
+      pathname: 'form/booking/' + schedule._id,
       state: { schedule, quote }
     });
   }, [history]);

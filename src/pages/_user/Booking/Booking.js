@@ -25,9 +25,8 @@ const getValuesOfNodeList = potentialList => {
 }
 
 const Booking = (props) => {
-  const { id } = useParams();
+  const { type, id } = useParams();
   const history = useHistory();
-  const { formType } = props;
   const { schedule, quote } = props.location.state;
 
   const handleSubmit = useCallback((e) => {
@@ -48,7 +47,7 @@ const Booking = (props) => {
         history.push('/success/' + id);
       } 
     })
-  }, [history, id, formType]);
+  }, [history, id, type]);
 
   const createBookingRequestFromForm = form => {
     const { commodity, hsCode, quantity, containerType, paymentTerm, autoFilling} = form;
@@ -74,8 +73,8 @@ const Booking = (props) => {
     }
   }
 
-  const formBool = formType === 'bol';
-  const fieldNumber = formBool ? 3 : 8;
+  const formBool = type === 'booking';
+  const fieldNumber = formBool ? 8 : 3;
 
   return (
     <div className="homepage-container">
@@ -83,13 +82,14 @@ const Booking = (props) => {
       <div className="body-container2">
         <div className="booking-container">
           <text className="schedule-header-text">
-            {formBool ? 'Bill Of Lading (BOL) Instruction' : 'Booking Request'} 
+            {formBool ? 'Booking Request' : 'Bill Of Lading (BOL) Instruction'} 
           </text>
-          <div className={"info-container" + (formBool ? "2" : "")}>
+          <div className={"info-container" + (formBool ? "" : "2")}>
             <BookingDisplay schedule={schedule} quote={quote} fields={fieldNumber}/>
             {formBool ?
-              <BolForm action={handleSubmit} /> :
-              <BookingForm action={handleSubmit} />}
+              <BookingForm action={handleSubmit} /> : 
+              <BolForm action={handleSubmit} />
+            }
           </div>
         </div>
       </div>
@@ -101,4 +101,5 @@ export default Booking;
 
 Booking.propTypes = {
   formType: PropTypes.string,
+  location: PropTypes.object,
 };
