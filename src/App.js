@@ -40,7 +40,7 @@ const App = () => {
           <Router>
             <div className="App">
               <Switch>
-                <Route exact path="/success/:type" component={Success} />
+                <Route exact path="/success/:type/:id" component={Success} />
                 <Route exact path="/form/:type/:id" component={Form} />
                 <Route path="/profile" component={Profile} />
                 <Route path="/rolling/:id" component={Rolling} />

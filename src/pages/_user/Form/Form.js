@@ -44,13 +44,13 @@ const Form = (props) => {
     }).then(res => {
       const { createBookingRequestAndInitShipment } = res.data;
       if (createBookingRequestAndInitShipment === "OK") {
-        history.push('/success/' + id);
+        history.push('/success/' + type + '/' + id);
       } 
     })
   }, [history, id, type]);
 
   const createBookingRequestFromForm = form => {
-    const { commodity, hsCode, quantity, containerType, paymentTerm, autoFilling} = form;
+    const { commodity, hsCode, quantity, containerType, paymentTerm, autoFilling } = form;
 
     const quantities = getValuesOfNodeList(quantity);
     const containerTypes = getValuesOfNodeList(containerType);
