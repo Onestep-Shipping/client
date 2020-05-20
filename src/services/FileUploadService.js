@@ -6,7 +6,8 @@ const uploadFile = file => {
 
 const downloadFile = url => {
   return http.get("/download", {
-    params: { url }
+    params: { url },
+    responseType: 'arraybuffer',
   });
 }
 

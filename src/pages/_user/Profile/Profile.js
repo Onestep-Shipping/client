@@ -4,7 +4,6 @@ import './Profile.css';
 import { useHistory } from 'react-router-dom';
 import Header from '../../../components/Header/Header.js';
 import FixedSizeList from '../../../components/FixedSizeList/FixedSizeList.js';
-import bolPdf from './pdf/BOL.pdf';
 import invoicePdf from './pdf/invoice.pdf';
 import { useQuery } from '@apollo/react-hooks';
 import GET_ALL_SHIPMENTS from '../../../apollo/queries/GetAllShipments.js';
@@ -20,6 +19,12 @@ const formatISOString = iso => {
 
 const findValue = (list, label) => {
   return list.filter(item => item.label === label)[0].value;
+}
+
+const openPdf = (data) => {
+  const file = new Blob([data], {type: 'application/pdf'});
+  const fileURL = URL.createObjectURL(file);
+  window.open(fileURL);
 }
 
 const Profile = () => {
@@ -59,11 +64,7 @@ const Profile = () => {
   const handleBook = useCallback((status, url) => {
     if (status === "Received" && url !== null) {
       FileUploadService.downloadFile(url)
-      .then(res => {
-        const file = new Blob([res.data], {type: 'application/pdf'});
-        var fileURL = URL.createObjectURL(file);
-        window.open(fileURL);
-      })
+      .then(res => openPdf(res.data))
       .catch(e => {
         console.log(e);
       });
@@ -76,8 +77,12 @@ const Profile = () => {
       pathname: '/form/bill-of-lading-instruction/' + shipment._id,
       state: { schedule: shipment.schedule }
     });
-    } else if (status === "Received") {
-       window.open(bolPdf, '_blank');
+    } else if (status === "Received" && shipment.billInstruction.pdf !== null) {
+       FileUploadService.downloadFile(shipment.billInstruction.pdf)
+        .then(res => openPdf(res.data))
+        .catch(e => {
+          console.log(e);
+        });
     }
   }, [history]);
 

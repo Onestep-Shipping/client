@@ -20,7 +20,7 @@ const GET_ALL_SHIPMENTS = gql`
         }
       },
       billInstruction {
-        status
+        status, pdf
       },
       invoice {
         status
