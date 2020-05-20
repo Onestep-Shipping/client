@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import '../../pages/_user/Booking/Booking.css';
+import '../../pages/_user/Form/Form.css';
 import { 
   CONTAINER_HEADERS, CONTAINER_TYPES, PAYMENT_TYPES, AUTO_FILLING 
 } from '../../constants/ServiceFormConstants.js';
@@ -24,7 +24,7 @@ const BookingForm = (props) => {
   return (
     <form className="booking-form-container" onSubmit={props.action} noValidate>
       <InfoRow name="Commodity" />
-      <InfoRow name="HS Code" />
+      <InfoRow name="HS Code" camelizeName="hsCode"/>
       <div className="schedule-result-header-row">
         {CONTAINER_HEADERS.map((header, ind) => 
           <div key={ind}>
@@ -35,12 +35,12 @@ const BookingForm = (props) => {
       {Array(row).fill().map((booking, ind) => 
         <div className='instruction-result-row' key={ind}>
           <input
-            type="text"
+            type="number"
             name="quantity"
             className="booking-form-input-start"
             placeholder="i.e. 420010"
             required/>
-          <select className="booking-form-input">
+          <select className="booking-form-input" name="containerType">
             {CONTAINER_TYPES.map((type, ind) => <option value={type} key={ind}>{type}</option>)}
           </select>
         </div>
@@ -48,8 +48,8 @@ const BookingForm = (props) => {
       <button className="add-button" onClick={addContainer}>
         Add Container
       </button>
-      <Select name="Payment Term" options={PAYMENT_TYPES} />
-      <Select name="CAED/AES filing by OneStep?" options={AUTO_FILLING} />
+      <Select name="Payment Term" options={PAYMENT_TYPES} camelizeName="paymentTerm"/>
+      <Select name="CAED/AES filing by OneStep?" options={AUTO_FILLING} camelizeName="autoFilling"/>
       <button className="result-button">Book</button>
     </form>
   );

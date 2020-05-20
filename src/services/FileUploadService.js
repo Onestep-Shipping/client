@@ -4,4 +4,11 @@ const uploadFile = file => {
   return http.post("/upload", file);
 };
 
-export default { uploadFile };
+const downloadFile = url => {
+  return http.get("/download", {
+    params: { url },
+    responseType: 'arraybuffer',
+  });
+}
+
+export default { uploadFile, downloadFile };

@@ -4,13 +4,11 @@ import { gql } from 'apollo-boost';
 
 const CREATE_BILL_INSTRUCTION = gql`
   mutation createBillInstruction(
-    $shipmentId: String!, $billInstruction: BillInstruction!
+    $shipmentId: String!, $billInstruction: BillInstructionInputType!
   ) {
     createBillInstruction(
       shipmentId: $shipmentId, billInstruction: $billInstruction
-    ) {
-      shipper
-    }
+    )
   }
 `;
 

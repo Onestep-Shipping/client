@@ -19,7 +19,7 @@ import Services from './pages/Services/Services.js';
 import News from './pages/News/News.js';
 import Contact from './pages/Contact/Contact.js';
 
-import Booking from './pages/_user/Booking/Booking.js';
+import Form from './pages/_user/Form/Form.js';
 import Success from './pages/_user/Success/Success.js';
 import Profile from './pages/_user/Profile/Profile.js';
 import Rolling from './pages/_user/Rolling/Rolling.js';
@@ -40,20 +40,10 @@ const App = () => {
           <Router>
             <div className="App">
               <Switch>
-                <Route exact path="/success/:type">
-                  <Success />
-                </Route>
-                <Route exact path="/booking/:id" component={Booking}>
-                </Route>
-                <Route exact path="/bill-of-lading-instruction/:id"> 
-                  <Booking formType='bol'/>
-                </Route>
-                <Route path="/profile">
-                  <Profile />
-                </Route>
-                <Route path="/rolling/:id">
-                  <Rolling />
-                </Route>
+                <Route exact path="/success/:type/:id" component={Success} />
+                <Route exact path="/form/:type/:id" component={Form} />
+                <Route path="/profile" component={Profile} />
+                <Route path="/rolling/:id" component={Rolling} />
 
                 <Route path="/admin/companies" component={Companies} />
                 <Route path="/admin/booking-request" component={BookingRequest} />

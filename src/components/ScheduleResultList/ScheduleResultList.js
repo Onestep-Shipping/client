@@ -16,7 +16,7 @@ const formatISOString = iso => {
 }
 
 const ScheduleResultList = props => {
-  const { action, scheduleList } = props;
+  const { action, scheduleList, remove = { _id: null } } = props;
   const [validity, setValidity] = useState(0);
   const { currentUser, isAdmin } = useContext(AuthContext);
 
@@ -102,7 +102,7 @@ const ScheduleResultList = props => {
           <div className="finance-display-form">
             Note: FAK Rates (Except {quotes[validity].except})
           </div>}
-          <button className="result-button" onClick={() => action(schedule)}>
+          <button className="result-button" onClick={() => action(schedule, quotes[0])}>
             Accept
           </button>
         </div>}
@@ -112,7 +112,11 @@ const ScheduleResultList = props => {
 
   return (
     <div className="schedule-result-container">
-      <FixedSizeList headers={RESULT_HEADERS} data={scheduleList} row={row}/>
+      <FixedSizeList 
+        headers={RESULT_HEADERS} 
+        data={scheduleList.filter(item => item._id !== remove._id)} 
+        row={row}
+      />
     </div>
   );
 };
@@ -122,4 +126,5 @@ export default ScheduleResultList;
 ScheduleResultList.propTypes = {
   scheduleList: PropTypes.array,
   action: PropTypes.func,
+  remove: PropTypes.object,
 };

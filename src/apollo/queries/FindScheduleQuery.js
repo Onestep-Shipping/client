@@ -11,6 +11,7 @@ const FIND_SCHEDULES = gql`
         endLocation
         carrier
         quoteHistory {
+          _id
           validity {
             startDate
             endDate

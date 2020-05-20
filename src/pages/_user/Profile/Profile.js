@@ -4,10 +4,28 @@ import './Profile.css';
 import { useHistory } from 'react-router-dom';
 import Header from '../../../components/Header/Header.js';
 import FixedSizeList from '../../../components/FixedSizeList/FixedSizeList.js';
-import DATA from '../../../data/ScheduleDetailsData.js';
-import bookingConfirmationPdf from './pdf/booking-confirmation.pdf';
-import bolPdf from './pdf/BOL.pdf';
 import invoicePdf from './pdf/invoice.pdf';
+import { useQuery } from '@apollo/react-hooks';
+import GET_ALL_SHIPMENTS from '../../../apollo/queries/GetAllShipments.js';
+import moment from 'moment';
+import FIND_SCHEDULES from '../../../apollo/queries/FindScheduleQuery.js';
+import client from '../../../apollo/index.js';
+import DATA from '../../../data/ScheduleFormData.js';
+import FileUploadService from '../../../services/FileUploadService.js';
+
+const formatISOString = iso => {
+  return moment(iso).utc().format('MM/DD/YYYY');
+}
+
+const findValue = (list, label) => {
+  return list.filter(item => item.label === label)[0].value;
+}
+
+const openPdf = (data) => {
+  const file = new Blob([data], {type: 'application/pdf'});
+  const fileURL = URL.createObjectURL(file);
+  window.open(fileURL);
+}
 
 const Profile = () => {
   const history = useHistory();
@@ -15,6 +33,10 @@ const Profile = () => {
   const [currentBooking, setCurrentBooking] = useState(-1);
 
   const node = useRef();
+
+  const { loading, error, data } = useQuery(GET_ALL_SHIPMENTS, {
+    fetchPolicy: 'cache-and-network'
+  });
 
   const measuredRef = useCallback((e) => {
     if (node.current && !node.current.contains(e.target)) {
@@ -36,33 +58,65 @@ const Profile = () => {
   }
 
   const PROFILE_HEADERS = [
-    '#', 'Date Booked', 'From', 'To', 'Vessel', 
-    'Booking Status', 'BOL Status', 'Invoice Status'
+    'Booking No.', 'From', 'To', 'Booking Status', 'BOL Status', 'Invoice Status'
   ];
 
-  const handleBook = useCallback((status) => {
-    if (status === "Received") {
-      window.open(bookingConfirmationPdf, '_blank');
+  const handleBook = useCallback((status, url) => {
+    if (status === "Received" && url !== null) {
+      FileUploadService.downloadFile(url)
+      .then(res => openPdf(res.data))
+      .catch(e => {
+        console.log(e);
+      });
     }
   }, []);
 
-  const handleBol = useCallback((status, id) => {
+  const handleBol = useCallback((status, shipment) => {
     if (status === "Ready" ||  (status === "In Process")) {
-      history.push('/bill-of-lading-instruction/' + id);
-    } else if (status === "Received") {
-       window.open(bolPdf, '_blank');
+      history.push({
+      pathname: '/form/bill-of-lading-instruction/' + shipment._id,
+      state: { schedule: shipment.schedule }
+    });
+    } else if (status === "Received" && shipment.billInstruction.pdf !== null) {
+       FileUploadService.downloadFile(shipment.billInstruction.pdf)
+        .then(res => openPdf(res.data))
+        .catch(e => {
+          console.log(e);
+        });
     }
   }, [history]);
 
-  const handleInvoice = useCallback((status) => {
-    if (status === "Received") {
-      window.open(invoicePdf, '_blank');
+  const handleInvoice = useCallback((invoice) => {
+    const { status, pdf } = invoice;
+    if (status === "Ready" && pdf !== null) {
+      FileUploadService.downloadFile(pdf)
+        .then(res => openPdf(res.data))
+        .catch(e => {
+          console.log(e);
+        });
     }
   }, []);
+
   
-  const onRollClick = () => {
-    history.push("/rolling/" + currentBooking);
-  }
+  const onRollClick = useCallback((id, schedule) => {
+    client.query({
+      query: FIND_SCHEDULES,
+      variables: { 
+        routeId: findValue(DATA.FROM_LOCATIONS, schedule.route.startLocation) + 
+                  "-" + 
+                  findValue(DATA.TO_LOCATIONS, schedule.route.endLocation),
+        carrier: schedule.route.carrier,
+        startDate: schedule.startDate,
+        endDate: schedule.endDate
+      }
+    }).then(res => {
+      const { findSchedules } = res.data;
+      history.push({
+        pathname: "/rolling/" + id,
+        state: { schedule, schedules: findSchedules }
+      });
+    })
+  }, []);
 
   const onCancelClick = () => {
     const message = 'Are you sure you want to cancel booking request #' + currentBooking + '?';
@@ -71,59 +125,67 @@ const Profile = () => {
     }
   }
 
-  const row = (booking, ind) => {
+  const row = (shipment, ind) => {
     return (
       <div key={ind}>
         <div className='booking-profile-row'>
-          <div className="col-numb">
+          <div className="col">
             <text id={"text" + ind} className="booking-no-button" onClick={() => toggleToolTip(ind)}>
-              {ind + 1}
+              {shipment.bookingRequest.confirmation.bookingNo || "N/A"}
             </text>
             <ToolTip 
               tooltipTimeout={0} active={isTooltipActive} 
               position="top" arrow="center" parent={"#text" + currentBooking}>
                 <div ref={node} className="tiptool-container">
-                  <button className="tooltip-button" onClick={onRollClick}>Roll</button>
+                  <button 
+                    className="tooltip-button" 
+                    onClick={() => onRollClick(shipment._id, shipment.schedule)}
+                  >
+                    Roll
+                  </button>
                   <button className="tooltip-button" onClick={onCancelClick}>Cancel</button>
                 </div>
             </ToolTip>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{booking.bookedDate}</text>
+            <text className="schedule-result-text">{shipment.schedule.route.startLocation}</text>
+            <text className="schedule-result-text-time">{shipment.schedule.startDate}</text>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{booking.startLocation}</text>
-            <text className="schedule-result-text-time">{booking.startDate}</text>
+            <text className="schedule-result-text">{shipment.schedule.route.endLocation}</text>
+            <text className="schedule-result-text-time">{shipment.schedule.endDate}</text>
           </div>
-          <div className="col">
-            <text className="schedule-result-text">{booking.endLocation}</text>
-            <text className="schedule-result-text-time">{booking.endDate}</text>
-          </div>
-          <div className="col">
-            <text className="schedule-result-text">
-              {booking.vessels.substring(0, booking.vessels.indexOf('/'))}
-            </text>
-          </div>
-          <div className="col" onClick={() => handleBook(booking.bookingStatus)}>
+          <div 
+            className="col" 
+            onClick={() => handleBook(
+              shipment.bookingRequest.status, 
+              shipment.bookingRequest.confirmation.pdf
+            )}>
             <text
-              id={booking.bookingStatus === "Received" ? "red-link" : ""}
+              id={shipment.bookingRequest.status === "Received" ? "red-link" : ""}
               className={"schedule-result-text"}>
-                {booking.bookingStatus}
+                {shipment.bookingRequest.status}
             </text>
           </div>
-          <div className="col" onClick={() => handleBol(booking.bolStatus)}>
+          <div 
+            className="col" 
+            onClick={() => handleBol(shipment.billInstruction.status, shipment)}>
             <text 
-              id={booking.bolStatus === "Received" ? "red-link" : ""}
+              id={shipment.billInstruction.status === "Received" ? "red-link" : ""}
               className={"schedule-result-text" + 
-                ((booking.bolStatus === "Ready" || booking.bolStatus === "In Process") ? "-link" : "")}>
-                {booking.bolStatus}
+                ((shipment.billInstruction.status === "Ready" || 
+                  shipment.billInstruction.status === "In Process") ? 
+                  "-link" : "")}>
+                {shipment.billInstruction.status}
             </text>
           </div>
-          <div className="col" onClick={() => handleInvoice(booking.invoiceStatus)}>
+          <div className="col" onClick={() => handleInvoice(shipment.invoice)}>
             <text 
-              id={booking.invoiceStatus === "Received" ? "red-link" : ""}
-              className={"schedule-result-text"}>
-                {booking.invoiceStatus}
+              id={shipment.invoice.status === "Received" ? "red-link" : ""}
+              className={"schedule-result-text" + 
+                ((shipment.invoice.status === "Ready") ? 
+                  "-link" : "")}>
+                {shipment.invoice.status}
             </text>
           </div>
         </div>
@@ -131,12 +193,19 @@ const Profile = () => {
     );
   };
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
   return (
     <div className="homepage-container">
       <Header />
       <div className="body-container2">
         <div className="profile-container">
-          <FixedSizeList headers={PROFILE_HEADERS} data={DATA} row={row}/>
+          <FixedSizeList 
+            headers={PROFILE_HEADERS} 
+            data={data.getMyShipments} 
+            row={row}
+          />
         </div>
       </div>
     </div>
