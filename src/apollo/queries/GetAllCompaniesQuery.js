@@ -3,8 +3,11 @@ import { gql } from 'apollo-boost';
 const GET_ALL_COMPANIES = gql`
   query {
     getAllCompanies {
+      createdAt,
       name, 
-      address, 
+      address {
+        country
+      }, 
       phone, 
       taxId,
       personInCharge { 
@@ -12,11 +15,8 @@ const GET_ALL_COMPANIES = gql`
       },
       email,
       shipments {
-        schedule {
-          startDate
-        }
+        createdAt
       },
-      createdAt
     }
   }
 `;

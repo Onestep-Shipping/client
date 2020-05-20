@@ -6,15 +6,28 @@ import COUNTRIES from '../../../data/CountryList.js';
 
 import Header from '../../../components/Header/Header.js';
 import SearchTextfield from '../../../components/SearchTextfield/SearchTextfield.js';
+import GET_ALL_COMPANIES from '../../../apollo/queries/GetAllCompaniesQuery.js';
+import { useQuery } from '@apollo/react-hooks';
 
 const DURATION = ["All", "Last 3 days", "This week", "This month", "This year"]; 
-const COMPANY_HEADERS = ["Company", "Orders", "Contact", "Email", "Account"];
+const COMPANY_HEADERS = ["Company", "Orders", "Contact", "Email", "Created"];
 const ORDERS = ["All", "≤ 10", "> 10", "> 50", "> 100", "> 1000"];
 
+const formatISOString = iso => {
+  return moment(iso).utc().format('MM/DD/YYYY');
+}
+
 const Companies = () => {
+  const { loading, error, data } = useQuery(GET_ALL_COMPANIES, {
+    fetchPolicy: 'cache-and-network'
+  });
+
   const [registerRange, setRegisterRange] = useState(0);
   const [country, setCountry] = useState(0);
   const [orders, setOrders] = useState(0);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
 
   const handleRegisterRangeChange = e => {
     setRegisterRange(e.target.selectedIndex);
@@ -49,10 +62,11 @@ const Companies = () => {
   }
 
   const fileredList = () => {
-    return COMPANIES.filter(company => 
-      filterDateCreated(new Date(company.registerDate)) &&
-      (country === 0 ? true : company.address[2] === COUNTRIES[country]) &&
-      filterOrders(company.bookings.length)
+    const list = data.getAllCompanies || [];
+    return list.filter(company => 
+      filterDateCreated(new Date(company.createdAt)) &&
+      (country === 0 ? true : company.address.country === COUNTRIES[country]) &&
+      filterOrders(company.shipments.length)
     );
   }
 
@@ -111,16 +125,16 @@ const Companies = () => {
                   <text className="company-item-text">{company.name}</text>
                 </div>
                 <div className="col-numb">
-                  <text className="company-item-text">{company.bookings.length}</text>
+                  <text className="company-item-text">{company.shipments.length}</text>
                 </div>
                 <div className="company-col">
-                  <text className="company-item-text">{company.person}</text>
+                  <text className="company-item-text">{company.personInCharge.name}</text>
                 </div>
                 <div className="company-col">
                   <text className="company-item-text">{company.email}</text>
                 </div>
                 <div className="company-col">
-                  <text className="company-item-text">{company.registerDate}</text>
+                  <text className="company-item-text">{formatISOString(company.createdAt)}</text>
                 </div>
               </li>
             )}

@@ -9,8 +9,8 @@ import FIND_SCHEDULES from '../../apollo/queries/FindScheduleQuery.js';
 import client from '../../apollo/index.js';
 
 const convertDateToISO = date => {
-    return date.toISOString().substring(0, 10);
-  }
+  return date.toISOString().substring(0, 10);
+}
 
 const Homepage = () => {
   const history = useHistory();

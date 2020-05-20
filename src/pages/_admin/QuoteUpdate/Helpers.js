@@ -34,10 +34,10 @@ const QuoteRow = props => {
       <div className="finance-display-container">
         <text className="info-label">{header}</text>
       </div>
-      {CONTAINER_TYPES.map((container, ind) =>
+      {obj.oceanFreight.map((of, ind) =>
         <div className="finance-display-row" key={ind}>
-          <text>O.F. - {container}:</text>
-          <text>${comma(obj.oceanFreight[ind])}</text>
+          <text>O.F. - {of.containerType}:</text>
+          <text>${comma(of.price)}</text>
         </div>
       )}
       <div className="finance-display-row">

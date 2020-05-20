@@ -1,24 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './QuoteUpdate.css';
 
 import Header from '../../../components/Header/Header.js';
 import ScheduleForm from '../../../components/ScheduleForm/ScheduleForm.js';
-import QUOTE_DATA from '../../../data/QuoteUpdateData';
 import styles from '../../../components/ScheduleForm/ScheduleFormMin.module.css';
 import arrowDownIcon from '../../../assets/arrow-down.svg';
 import { QuoteForm, QuoteRow } from './Helpers';
 import moment from 'moment';
 import { Textarea } from '../../../components/ServiceForm/Helpers.js';
+import GET_QUOTE_HISTORY from '../../../apollo/queries/GetQuoteHistoryQuery.js'
+import client from '../../../apollo/index.js';
+import { ScheduleFormContext } from "../../../context/ScheduleFormContext.js";
+
+const convertDateToISO = date => {
+  return date.toISOString().substring(0, 10);
+}
 
 const QuoteUpdate = () => {
   const [history, setHistory] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
-  const [currentIndex, setIndex] = useState(-1);
+  const [currentIndex, setIndex] = useState(0);
 
-  const onSubmit = e => {
-    e.preventDefault();
-    setHistory(QUOTE_DATA);
-    setIsVisible(true);
+  const { schedule } = useContext(ScheduleFormContext);
+
+  const handleSubmit = () => {
+    client.query({
+      query: GET_QUOTE_HISTORY,
+      variables: { 
+        routeId: schedule.fromLocation.value + "-" + schedule.toLocation.value,
+        carrier: schedule.carrier,
+        startDate: convertDateToISO(schedule.fromDate),
+        endDate: convertDateToISO(schedule.toDate)
+      }
+    }).then(res => {
+      const { getQuoteHistory } = res.data;
+      setHistory(getQuoteHistory);
+      setIsVisible(true);
+    })
   }
 
   return (
@@ -32,8 +50,8 @@ const QuoteUpdate = () => {
               <li id="selected-item" className="bol-instruction-item"
                   onClick={() => setIndex(ind === currentIndex ? -1 : ind)}>
                   <text>
-                    {moment(new Date(item.validityStart)).format("YYYY | MMM DD")
-                    } - {moment(new Date(item.validityEnd)).format("MMM DD")}
+                    {moment(new Date(item.validity.startDate)).format("YYYY | MMM DD")
+                    } - {moment(new Date(item.validity.endDate)).format("MMM DD")}
                   </text>
                   <img id={ind === currentIndex ? "svg-reverse" : ""}
                     className="svg-arrow" src={arrowDownIcon} alt="Dropdown Icon" />
@@ -43,7 +61,7 @@ const QuoteUpdate = () => {
                 <QuoteRow header="Buying" obj={history[currentIndex].buying} />
                 <QuoteRow header="Selling" obj={history[currentIndex].selling} />
                 <div className="finance-display-form">
-                  Note: FAK Rates (Except {history[currentIndex].except})
+                  Note: FAK Rates (Except {history[currentIndex].except || "Nothing"})
                 </div>
               </div>}
             </div>
@@ -55,7 +73,7 @@ const QuoteUpdate = () => {
             <h1>Quote Update</h1>
           </div>
           <div className="finance-display-form">
-            <ScheduleForm styles={styles} action={onSubmit}/>
+            <ScheduleForm styles={styles} onSubmit={handleSubmit}/>
           </div>
           {isVisible &&
           <form className="finance-display-form">
