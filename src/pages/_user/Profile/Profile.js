@@ -72,7 +72,7 @@ const Profile = () => {
   const handleBol = useCallback((status, shipment) => {
     if (status === "Ready" ||  (status === "In Process")) {
       history.push({
-      pathname: '/form/bill-of-lading-instruction/' + shipment.schedule._id,
+      pathname: '/form/bill-of-lading-instruction/' + shipment._id,
       state: { schedule: shipment.schedule }
     });
     } else if (status === "Received") {

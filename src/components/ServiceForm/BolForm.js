@@ -26,9 +26,9 @@ const BolForm = (props) => {
         (
           <div className='instruction-result-row' key={ind}>
             {TRACKING_HEADERS.map((header, i) => {
-              const lcName = header.toLowerCase().replace(' ', '-');
-              const finalName = lcName.substring(0, lcName.indexOf('(')); 
-              return ( <ExtraInput name={finalName} key={i}/> )
+              const name = header.indexOf('(') === -1 ? 
+                header : header.substring(0, header.indexOf('('));
+              return ( <ExtraInput name={name} key={i}/> )
             })}
           </div>
         )

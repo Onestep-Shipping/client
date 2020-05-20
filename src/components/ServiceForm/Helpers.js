@@ -6,18 +6,17 @@ const ROW_NUMBER = 5;
 function camelize(str) {
   return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
     return index === 0 ? word.toLowerCase() : word.toUpperCase();
-  }).replace(/\s+/g, '');
+  }).replace(/\s+|\/|\./g, '');
 }
 
 const Textarea = (props) => {
   const { name } = props;
-  const lcName = name.toLowerCase().replace(' ', '-');
   return (
     <div className="info-row-with-textarea">
       <text className="info-label">{name} </text>
       <textarea
         type="text"
-        name={lcName}
+        name={camelize(name)}
         className="booking-form-textarea"
         placeholder="i.e. Food, Clothes, etc."
         rows={ROW_NUMBER}
@@ -28,15 +27,17 @@ const Textarea = (props) => {
 
 const ExtraInput = (props) => {
   const { name } = props;
+  const camelizedName = camelize(name);
 
   return (
     <div className="col2">
       <input
-        type="number"
-        name={name}
+        type={(camelizedName === "containerNo" || camelizedName === "seelNo") ? 
+              "text" : "number"}
+        name={camelizedName}
         className="instruction-extra-input"
         placeholder="i.e. 420010"
-        required/>
+        required />
     </div>
   );
 }
