@@ -20,7 +20,6 @@ const Schedule = props => {
   const [scheduleList, setScheduleList] = useState(props.location.state.schedules); 
 
   const handleQuoteSubmit = useCallback((schedule, quote) => {
-    console.log(quote);
     history.push({
       pathname: 'form/booking/' + schedule._id,
       state: { schedule, quote }

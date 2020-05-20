@@ -4,10 +4,15 @@ const GET_ALL_SHIPMENTS = gql`
   query {
     getMyShipments(companyId: "5ebb4f56b6a43ab1f1500127") {
       shipments {
+        _id,
         schedule {
-          route { startLocation, endLocation }
+          _id,
+          route { startLocation, endLocation, carrier }
           startDate, 
-          endDate
+          endDate,
+          transshipment,
+          vessels,
+          transitTime
         },
         bookingRequest {
           status
@@ -18,7 +23,7 @@ const GET_ALL_SHIPMENTS = gql`
         invoice {
           status
         },
-        createdAt
+        createdAt,
       }
     }
   }

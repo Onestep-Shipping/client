@@ -10,9 +10,16 @@ import invoicePdf from './pdf/invoice.pdf';
 import { useQuery } from '@apollo/react-hooks';
 import GET_ALL_SHIPMENTS from '../../../apollo/queries/GetAllShipments.js';
 import moment from 'moment';
+import FIND_SCHEDULES from '../../../apollo/queries/FindScheduleQuery.js';
+import client from '../../../apollo/index.js';
+import DATA from '../../../data/ScheduleFormData.js';
 
 const formatISOString = iso => {
   return moment(iso).utc().format('MM/DD/YYYY');
+}
+
+const findValue = (list, label) => {
+  return list.filter(item => item.label === label)[0].value;
 }
 
 const Profile = () => {
@@ -66,10 +73,27 @@ const Profile = () => {
       window.open(invoicePdf, '_blank');
     }
   }, []);
+
   
-  const onRollClick = () => {
-    history.push("/rolling/" + currentBooking);
-  }
+  const onRollClick = useCallback((id, schedule) => {
+    client.query({
+      query: FIND_SCHEDULES,
+      variables: { 
+        routeId: findValue(DATA.FROM_LOCATIONS, schedule.route.startLocation) + 
+                  "-" + 
+                  findValue(DATA.TO_LOCATIONS, schedule.route.endLocation),
+        carrier: schedule.route.carrier,
+        startDate: schedule.startDate,
+        endDate: schedule.endDate
+      }
+    }).then(res => {
+      const { findSchedules } = res.data;
+      history.push({
+        pathname: "/rolling/" + id,
+        state: { schedule, schedules: findSchedules }
+      });
+    })
+  }, []);
 
   const onCancelClick = () => {
     const message = 'Are you sure you want to cancel booking request #' + currentBooking + '?';
@@ -90,7 +114,12 @@ const Profile = () => {
               tooltipTimeout={0} active={isTooltipActive} 
               position="top" arrow="center" parent={"#text" + currentBooking}>
                 <div ref={node} className="tiptool-container">
-                  <button className="tooltip-button" onClick={onRollClick}>Roll</button>
+                  <button 
+                    className="tooltip-button" 
+                    onClick={() => onRollClick(shipment._id, shipment.schedule)}
+                  >
+                    Roll
+                  </button>
                   <button className="tooltip-button" onClick={onCancelClick}>Cancel</button>
                 </div>
             </ToolTip>

@@ -40,16 +40,10 @@ const App = () => {
           <Router>
             <div className="App">
               <Switch>
-                <Route exact path="/success/:type">
-                  <Success />
-                </Route>
+                <Route exact path="/success/:type" component={Success} />
                 <Route exact path="/form/:type/:id" component={Booking} />
-                <Route path="/profile">
-                  <Profile />
-                </Route>
-                <Route path="/rolling/:id">
-                  <Rolling />
-                </Route>
+                <Route path="/profile" component={Profile} />
+                <Route path="/rolling/:id" component={Rolling} />
 
                 <Route path="/admin/companies" component={Companies} />
                 <Route path="/admin/booking-request" component={BookingRequest} />

@@ -17,7 +17,7 @@ const BookingDisplay = (props) => {
       <div className="info-row">
         <div>
           <text className="info-label">From: </text>
-          <text className="schedule-info-text-left">{schedule.startLocation}</text>
+          <text className="schedule-info-text-left">{schedule.route.startLocation}</text>
         </div>
         <div>
           <text className="info-label">Date: </text>
@@ -27,7 +27,7 @@ const BookingDisplay = (props) => {
       <div className="info-row">
         <div>
           <text className="info-label">To: </text>
-          <text className="schedule-info-text-left">{schedule.endLocation}</text>
+          <text className="schedule-info-text-left">{schedule.route.endLocation}</text>
         </div>
         <div>
           <text className="info-label">Date: </text>
