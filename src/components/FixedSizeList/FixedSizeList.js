@@ -37,7 +37,7 @@ const FixedSizeList = (props) => {
     <div>
       <div className="schedule-result-header-row">
         {headers.map((header, ind) => 
-          <div className={"col" + (ind === 0 ? "-numb" : "")} key={ind}>
+          <div className={"col" + (header === "#" ? "-numb" : "")} key={ind}>
             <text className="schedule-result-header-text">{header.toUpperCase()}</text>
           </div>
         )}

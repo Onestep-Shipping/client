@@ -58,7 +58,7 @@ const Profile = () => {
   }
 
   const PROFILE_HEADERS = [
-    '#', 'Date Booked', 'From', 'To', 'Booking Status', 'BOL Status', 'Invoice Status'
+    'Booking No.', 'From', 'To', 'Booking Status', 'BOL Status', 'Invoice Status'
   ];
 
   const handleBook = useCallback((status, url) => {
@@ -86,9 +86,14 @@ const Profile = () => {
     }
   }, [history]);
 
-  const handleInvoice = useCallback((status) => {
-    if (status === "Received") {
-      window.open(invoicePdf, '_blank');
+  const handleInvoice = useCallback((invoice) => {
+    const { status, pdf } = invoice;
+    if (status === "Ready" && pdf !== null) {
+      FileUploadService.downloadFile(pdf)
+        .then(res => openPdf(res.data))
+        .catch(e => {
+          console.log(e);
+        });
     }
   }, []);
 
@@ -124,9 +129,9 @@ const Profile = () => {
     return (
       <div key={ind}>
         <div className='booking-profile-row'>
-          <div className="col-numb">
+          <div className="col">
             <text id={"text" + ind} className="booking-no-button" onClick={() => toggleToolTip(ind)}>
-              {ind + 1}
+              {shipment.bookingRequest.confirmation.bookingNo || "N/A"}
             </text>
             <ToolTip 
               tooltipTimeout={0} active={isTooltipActive} 
@@ -141,9 +146,6 @@ const Profile = () => {
                   <button className="tooltip-button" onClick={onCancelClick}>Cancel</button>
                 </div>
             </ToolTip>
-          </div>
-          <div className="col">
-            <text className="schedule-result-text">{formatISOString(shipment.createdAt)}</text>
           </div>
           <div className="col">
             <text className="schedule-result-text">{shipment.schedule.route.startLocation}</text>
@@ -177,10 +179,12 @@ const Profile = () => {
                 {shipment.billInstruction.status}
             </text>
           </div>
-          <div className="col" onClick={() => handleInvoice(shipment.invoice.status)}>
+          <div className="col" onClick={() => handleInvoice(shipment.invoice)}>
             <text 
               id={shipment.invoice.status === "Received" ? "red-link" : ""}
-              className={"schedule-result-text"}>
+              className={"schedule-result-text" + 
+                ((shipment.invoice.status === "Ready") ? 
+                  "-link" : "")}>
                 {shipment.invoice.status}
             </text>
           </div>

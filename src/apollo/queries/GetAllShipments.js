@@ -16,14 +16,14 @@ const GET_ALL_SHIPMENTS = gql`
       bookingRequest {
         status,
         confirmation {
-          pdf
+          pdf, bookingNo
         }
       },
       billInstruction {
         status, pdf
       },
       invoice {
-        status
+        status, pdf
       },
       createdAt,
     }
