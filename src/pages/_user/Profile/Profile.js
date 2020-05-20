@@ -4,7 +4,6 @@ import './Profile.css';
 import { useHistory } from 'react-router-dom';
 import Header from '../../../components/Header/Header.js';
 import FixedSizeList from '../../../components/FixedSizeList/FixedSizeList.js';
-import invoicePdf from './pdf/invoice.pdf';
 import { useQuery } from '@apollo/react-hooks';
 import GET_ALL_SHIPMENTS from '../../../apollo/queries/GetAllShipments.js';
 import moment from 'moment';
@@ -149,11 +148,15 @@ const Profile = () => {
           </div>
           <div className="col">
             <text className="schedule-result-text">{shipment.schedule.route.startLocation}</text>
-            <text className="schedule-result-text-time">{shipment.schedule.startDate}</text>
+            <text className="schedule-result-text-time">
+              {formatISOString(shipment.schedule.startDate)}
+            </text>
           </div>
           <div className="col">
             <text className="schedule-result-text">{shipment.schedule.route.endLocation}</text>
-            <text className="schedule-result-text-time">{shipment.schedule.endDate}</text>
+            <text className="schedule-result-text-time">
+              {formatISOString(shipment.schedule.endDate)}
+            </text>
           </div>
           <div 
             className="col" 

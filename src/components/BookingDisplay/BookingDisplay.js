@@ -1,6 +1,7 @@
 import React from 'react';
 import './BookingDisplay.css';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 const formatValidity = validity => {
   return formatISOString(validity.startDate) + " - " + formatISOString(validity.endDate);
@@ -85,3 +86,9 @@ const BookingDisplay = (props) => {
 };
 
 export default BookingDisplay;
+
+BookingDisplay.propTypes = {
+  schedule: PropTypes.object, 
+  quote: PropTypes.object, 
+  fields: PropTypes.number
+};
