@@ -4,7 +4,6 @@ import './Profile.css';
 import { useHistory } from 'react-router-dom';
 import Header from '../../../components/Header/Header.js';
 import FixedSizeList from '../../../components/FixedSizeList/FixedSizeList.js';
-import bookingConfirmationPdf from './pdf/booking-confirmation.pdf';
 import bolPdf from './pdf/BOL.pdf';
 import invoicePdf from './pdf/invoice.pdf';
 import { useQuery } from '@apollo/react-hooks';

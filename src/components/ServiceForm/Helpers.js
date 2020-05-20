@@ -10,11 +10,12 @@ function camelize(str) {
 }
 
 const Textarea = (props) => {
-  const { name } = props;
+  const { name, defaultValue = "" } = props;
   return (
     <div className="info-row-with-textarea">
       <text className="info-label">{name} </text>
       <textarea
+        defaultValue={defaultValue}
         type="text"
         name={camelize(name)}
         className="booking-form-textarea"
@@ -26,12 +27,13 @@ const Textarea = (props) => {
 }
 
 const ExtraInput = (props) => {
-  const { name } = props;
+  const { name, defaultValue = "" } = props;
   const camelizedName = camelize(name);
 
   return (
     <div className="col2">
       <input
+        defaultValue={defaultValue}
         type={(camelizedName === "containerNo" || camelizedName === "seelNo") ? 
               "text" : "number"}
         name={camelizedName}
@@ -43,13 +45,14 @@ const ExtraInput = (props) => {
 }
 
 const InfoRow = (props) => {
-  const { name, camelizeName = "" } = props;
+  const { name, camelizeName = "", defaultValue = "" } = props;
   const inputName = camelizeName === "" ? camelize(name) : camelizeName;
 
   return (
     <div className="info-row">
       <text className="info-label">{name} </text>
       <input
+        defaultValue={defaultValue}
         type="text"
         name={inputName}
         className="booking-form-input"
@@ -75,15 +78,18 @@ const Select = (props) => {
 
 Textarea.propTypes = {
   name: PropTypes.string,
+  defaultValue: PropTypes.string,
 };
 
 ExtraInput.propTypes = {
   name: PropTypes.string,
+  defaultValue: PropTypes.string,
 };
 
 InfoRow.propTypes = {
   name: PropTypes.string,
-  camelizeName: PropTypes.string
+  camelizeName: PropTypes.string,
+  defaultValue: PropTypes.string,
 };
 
 Select.propTypes = {

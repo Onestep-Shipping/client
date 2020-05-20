@@ -48,7 +48,7 @@ const Form = (props) => {
             <BookingDisplay schedule={schedule} quote={quote} fields={fieldNumber}/>
             {formBool ?
               <BookingForm action={handleSubmit} /> : 
-              <BolForm action={handleSubmit} />
+              <BolForm action={handleSubmit} shipmentId={id} />
             }
           </div>
         </div>
