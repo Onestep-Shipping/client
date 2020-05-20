@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import '../../pages/_user/Booking/Booking.css';
+import '../../pages/_user/Form/Form.css';
 import { 
   CONTAINER_HEADERS, CONTAINER_TYPES, PAYMENT_TYPES, AUTO_FILLING 
 } from '../../constants/ServiceFormConstants.js';

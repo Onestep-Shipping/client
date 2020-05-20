@@ -69,9 +69,12 @@ const Profile = () => {
     }
   }, []);
 
-  const handleBol = useCallback((status, id) => {
+  const handleBol = useCallback((status, shipment) => {
     if (status === "Ready" ||  (status === "In Process")) {
-      history.push('/form/bill-of-lading-instruction/' + id);
+      history.push({
+      pathname: '/form/bill-of-lading-instruction/' + shipment.schedule._id,
+      state: { schedule: shipment.schedule }
+    });
     } else if (status === "Received") {
        window.open(bolPdf, '_blank');
     }
@@ -156,7 +159,9 @@ const Profile = () => {
                 {shipment.bookingRequest.status}
             </text>
           </div>
-          <div className="col" onClick={() => handleBol(shipment.billInstruction.status)}>
+          <div 
+            className="col" 
+            onClick={() => handleBol(shipment.billInstruction.status, shipment)}>
             <text 
               id={shipment.billInstruction.status === "Received" ? "red-link" : ""}
               className={"schedule-result-text" + 

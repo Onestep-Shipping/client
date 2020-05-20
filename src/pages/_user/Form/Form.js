@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import './Booking.css';
+import './Form.css';
 import PropTypes from 'prop-types';
 
 import {useParams, useHistory} from 'react-router-dom';
@@ -24,7 +24,7 @@ const getValuesOfNodeList = potentialList => {
   return result;
 }
 
-const Booking = (props) => {
+const Form = (props) => {
   const { type, id } = useParams();
   const history = useHistory();
   const { schedule, quote } = props.location.state;
@@ -97,9 +97,9 @@ const Booking = (props) => {
   );
 };
 
-export default Booking;
+export default Form;
 
-Booking.propTypes = {
+Form.propTypes = {
   formType: PropTypes.string,
   location: PropTypes.object,
 };
