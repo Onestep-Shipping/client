@@ -29,7 +29,9 @@ const Profile = () => {
 
   const node = useRef();
 
-  const { loading, error, data } = useQuery(GET_ALL_SHIPMENTS);
+  const { loading, error, data } = useQuery(GET_ALL_SHIPMENTS, {
+    fetchPolicy: 'cache-and-network'
+  });
 
   const measuredRef = useCallback((e) => {
     if (node.current && !node.current.contains(e.target)) {
@@ -192,7 +194,7 @@ const Profile = () => {
         <div className="profile-container">
           <FixedSizeList 
             headers={PROFILE_HEADERS} 
-            data={data.getMyShipments.shipments} 
+            data={data.getMyShipments} 
             row={row}
           />
         </div>

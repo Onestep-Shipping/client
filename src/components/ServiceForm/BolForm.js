@@ -10,7 +10,8 @@ const BolForm = (props) => {
   const { action, shipmentId } = props;
   
   const { loading, error, data } = useQuery(GET_BILL_FORM, {
-    variables: { shipmentId }
+    variables: { shipmentId },
+    fetchPolicy: 'cache-and-network'
   });
   const [row, setRow] = useState(1);
 
@@ -23,19 +24,24 @@ const BolForm = (props) => {
   if (error) return <p>Error :(</p>;
 
   const form = data.getBillForm;
+  let textAreaValues = Array(TEXTAREA_FIELDS).fill("");
+  let containerValues = Array(row).fill(Array(TRACKING_HEADERS.length).fill(""));
+  let inputValues = Array(INPUT_FIELDS).fill("");
 
-  const textAreaValues = [form.shipper, form.consignee, form.notify, form.description];
-  const inputValues = [form.orderNo, form.hsCode, form.caedNo, form.cargoValue];
-  const containerValues = [];
-  form.containers.map(container => {
-    const { containerNo, seelNo, weight, measurement, vgm } = container;
-    containerValues.push([containerNo, seelNo, weight, measurement, vgm]);
-  })
+  if (form !== null) {
+    textAreaValues = [form.shipper, form.consignee, form.notify, form.description];
+    inputValues = [form.orderNo, form.hsCode, form.caedNo, form.cargoValue];
+    containerValues = [];
+    form.containers.map(container => {
+      const { containerNo, seelNo, weight, measurement, vgm } = container;
+      containerValues.push([containerNo, seelNo, weight, measurement, vgm]);
+    })
+  }
 
   return (
     <form className="booking-form-container" onSubmit={action} noValidate>
       {TEXTAREA_FIELDS.map((name, ind) => 
-        (<Textarea name={name} defaultValue={textAreaValues[ind]} key={ind}/>))}
+        (<Textarea name={name} defaultValue={textAreaValues[ind] || ""} key={ind}/>))}
       <div className="schedule-result-header-row">
         {TRACKING_HEADERS.map((header, ind) => 
           <div className="col2" key={ind}>
@@ -43,14 +49,14 @@ const BolForm = (props) => {
           </div>
         )}
       </div>
-      {Array(form.containers.length || row).fill().map((booking, ind) =>
+      {Array(containerValues.length).fill().map((booking, ind) =>
         (
           <div className='instruction-result-row' key={ind}>
             {TRACKING_HEADERS.map((header, i) => {
               const name = header.indexOf('(') === -1 ? 
                 header : header.substring(0, header.indexOf('('));
               return ( 
-                <ExtraInput name={name} defaultValue={containerValues[ind][i]} key={i}/> 
+                <ExtraInput name={name} defaultValue={containerValues[ind][i] || ""} key={i}/> 
               )
             })}
           </div>
@@ -61,7 +67,7 @@ const BolForm = (props) => {
       </button>
 
       {INPUT_FIELDS.map((name, ind) => 
-        (<InfoRow name={name} defaultValue={inputValues[ind]} key={ind} />))}
+        (<InfoRow name={name} defaultValue={inputValues[ind] || ""} key={ind} />))}
       <button className="result-button">Submit</button>
     </form>
   );

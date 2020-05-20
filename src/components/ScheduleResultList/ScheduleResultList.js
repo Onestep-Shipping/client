@@ -16,7 +16,7 @@ const formatISOString = iso => {
 }
 
 const ScheduleResultList = props => {
-  const { action, scheduleList, remove = null } = props;
+  const { action, scheduleList, remove = { _id: null } } = props;
   const [validity, setValidity] = useState(0);
   const { currentUser, isAdmin } = useContext(AuthContext);
 
