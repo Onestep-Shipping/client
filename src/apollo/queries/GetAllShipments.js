@@ -15,7 +15,10 @@ const GET_ALL_SHIPMENTS = gql`
           transitTime
         },
         bookingRequest {
-          status
+          status,
+          confirmation {
+            pdf
+          }
         },
         billInstruction {
           status

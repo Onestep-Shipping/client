@@ -13,6 +13,7 @@ import moment from 'moment';
 import FIND_SCHEDULES from '../../../apollo/queries/FindScheduleQuery.js';
 import client from '../../../apollo/index.js';
 import DATA from '../../../data/ScheduleFormData.js';
+import FileUploadService from '../../../services/FileUploadService.js';
 
 const formatISOString = iso => {
   return moment(iso).utc().format('MM/DD/YYYY');
@@ -54,9 +55,17 @@ const Profile = () => {
     '#', 'Date Booked', 'From', 'To', 'Booking Status', 'BOL Status', 'Invoice Status'
   ];
 
-  const handleBook = useCallback((status) => {
-    if (status === "Received") {
-      window.open(bookingConfirmationPdf, '_blank');
+  const handleBook = useCallback((status, url) => {
+    if (status === "Received" && url !== null) {
+      FileUploadService.downloadFile(url)
+      .then(res => {
+        const file = new Blob([res.data], {type: 'application/pdf'});
+        var fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      })
+      .catch(e => {
+        console.log(e);
+      });
     }
   }, []);
 
@@ -135,7 +144,12 @@ const Profile = () => {
             <text className="schedule-result-text">{shipment.schedule.route.endLocation}</text>
             <text className="schedule-result-text-time">{shipment.schedule.endDate}</text>
           </div>
-          <div className="col" onClick={() => handleBook(shipment.bookingRequest.status)}>
+          <div 
+            className="col" 
+            onClick={() => handleBook(
+              shipment.bookingRequest.status, 
+              shipment.bookingRequest.confirmation.pdf
+            )}>
             <text
               id={shipment.bookingRequest.status === "Received" ? "red-link" : ""}
               className={"schedule-result-text"}>
