@@ -6,6 +6,7 @@ const LIST_SIZE = 5;
 
 const FixedSizeList = (props) => {
   const { headers, data, row } = props;
+  console.log(data);
   const [currentPage, setCurrentPage] = useState(1);
 
   const max = Math.ceil(data.length / LIST_SIZE);
@@ -22,7 +23,6 @@ const FixedSizeList = (props) => {
       const endIndex = currentPage === max ? data.length : (currentPage * LIST_SIZE);
       return data.slice((currentPage - 1) * LIST_SIZE, endIndex);
     }
-    console.log(data);
     return data;
   }
 
@@ -43,13 +43,12 @@ const FixedSizeList = (props) => {
         )}
       </div>
       {sliceArray().length < 1 ?
-        <div className="empty-placeholder">NO RESULTS</div> 
-        :
+        <div className="empty-placeholder">NO RESULTS</div> :
         sliceArray().map((booking, ind) => 
         <div key={ind}>
           {row(booking, ((currentPage - 1) * LIST_SIZE) + ind)}
-        </div>
-      )}
+        </div>)
+      }
       {data.length > LIST_SIZE &&
       <div className="page-indicator-container">
         <button className="result-button" onClick={handlePrev}>{'<< Previous'}</button>

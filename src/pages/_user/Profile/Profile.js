@@ -4,10 +4,16 @@ import './Profile.css';
 import { useHistory } from 'react-router-dom';
 import Header from '../../../components/Header/Header.js';
 import FixedSizeList from '../../../components/FixedSizeList/FixedSizeList.js';
-import DATA from '../../../data/ScheduleDetailsData.js';
 import bookingConfirmationPdf from './pdf/booking-confirmation.pdf';
 import bolPdf from './pdf/BOL.pdf';
 import invoicePdf from './pdf/invoice.pdf';
+import { useQuery } from '@apollo/react-hooks';
+import GET_ALL_SHIPMENTS from '../../../apollo/queries/GetAllShipments.js';
+import moment from 'moment';
+
+const formatISOString = iso => {
+  return moment(iso).utc().format('MM/DD/YYYY');
+}
 
 const Profile = () => {
   const history = useHistory();
@@ -15,6 +21,8 @@ const Profile = () => {
   const [currentBooking, setCurrentBooking] = useState(-1);
 
   const node = useRef();
+
+  const { loading, error, data } = useQuery(GET_ALL_SHIPMENTS);
 
   const measuredRef = useCallback((e) => {
     if (node.current && !node.current.contains(e.target)) {
@@ -36,8 +44,7 @@ const Profile = () => {
   }
 
   const PROFILE_HEADERS = [
-    '#', 'Date Booked', 'From', 'To', 'Vessel', 
-    'Booking Status', 'BOL Status', 'Invoice Status'
+    '#', 'Date Booked', 'From', 'To', 'Booking Status', 'BOL Status', 'Invoice Status'
   ];
 
   const handleBook = useCallback((status) => {
@@ -71,7 +78,7 @@ const Profile = () => {
     }
   }
 
-  const row = (booking, ind) => {
+  const row = (shipment, ind) => {
     return (
       <div key={ind}>
         <div className='booking-profile-row'>
@@ -89,41 +96,38 @@ const Profile = () => {
             </ToolTip>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{booking.bookedDate}</text>
+            <text className="schedule-result-text">{formatISOString(shipment.createdAt)}</text>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{booking.startLocation}</text>
-            <text className="schedule-result-text-time">{booking.startDate}</text>
+            <text className="schedule-result-text">{shipment.schedule.route.startLocation}</text>
+            <text className="schedule-result-text-time">{shipment.schedule.startDate}</text>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{booking.endLocation}</text>
-            <text className="schedule-result-text-time">{booking.endDate}</text>
+            <text className="schedule-result-text">{shipment.schedule.route.endLocation}</text>
+            <text className="schedule-result-text-time">{shipment.schedule.endDate}</text>
           </div>
-          <div className="col">
-            <text className="schedule-result-text">
-              {booking.vessels.substring(0, booking.vessels.indexOf('/'))}
-            </text>
-          </div>
-          <div className="col" onClick={() => handleBook(booking.bookingStatus)}>
+          <div className="col" onClick={() => handleBook(shipment.bookingRequest.status)}>
             <text
-              id={booking.bookingStatus === "Received" ? "red-link" : ""}
+              id={shipment.bookingRequest.status === "Received" ? "red-link" : ""}
               className={"schedule-result-text"}>
-                {booking.bookingStatus}
+                {shipment.bookingRequest.status}
             </text>
           </div>
-          <div className="col" onClick={() => handleBol(booking.bolStatus)}>
+          <div className="col" onClick={() => handleBol(shipment.billInstruction.status)}>
             <text 
-              id={booking.bolStatus === "Received" ? "red-link" : ""}
+              id={shipment.billInstruction.status === "Received" ? "red-link" : ""}
               className={"schedule-result-text" + 
-                ((booking.bolStatus === "Ready" || booking.bolStatus === "In Process") ? "-link" : "")}>
-                {booking.bolStatus}
+                ((shipment.billInstruction.status === "Ready" || 
+                  shipment.billInstruction.status === "In Process") ? 
+                  "-link" : "")}>
+                {shipment.billInstruction.status}
             </text>
           </div>
-          <div className="col" onClick={() => handleInvoice(booking.invoiceStatus)}>
+          <div className="col" onClick={() => handleInvoice(shipment.invoice.status)}>
             <text 
-              id={booking.invoiceStatus === "Received" ? "red-link" : ""}
+              id={shipment.invoice.status === "Received" ? "red-link" : ""}
               className={"schedule-result-text"}>
-                {booking.invoiceStatus}
+                {shipment.invoice.status}
             </text>
           </div>
         </div>
@@ -131,12 +135,19 @@ const Profile = () => {
     );
   };
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
   return (
     <div className="homepage-container">
       <Header />
       <div className="body-container2">
         <div className="profile-container">
-          <FixedSizeList headers={PROFILE_HEADERS} data={DATA} row={row}/>
+          <FixedSizeList 
+            headers={PROFILE_HEADERS} 
+            data={data.getMyShipments.shipments} 
+            row={row}
+          />
         </div>
       </div>
     </div>
