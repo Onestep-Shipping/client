@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './UserList.css';
 import PropTypes from 'prop-types';
 import profileImg from '../../assets/profile-placeholder.png';
+import moment from 'moment';
 
 const UserList = props => {
   const [currentIndex, setIndex] = useState(0);
@@ -36,7 +37,14 @@ const UserList = props => {
               From: {shipment.bookedBy.personInCharge.name}
             </text>
           </div>
-          <text>Fri</text>
+          <text>
+            {moment(shipment.bookingRequest.form.createdAt).calendar(null, {
+              sameDay : 'HH:mm',
+              lastDay : 'ddd',
+              lastWeek : 'ddd',
+              sameElse : 'ddd'
+            })}
+          </text>
         </li>
         )
       )}
