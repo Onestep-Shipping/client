@@ -1,16 +1,17 @@
-import React, { useCallback, useState, useContext } from 'react';
 import './Schedule.css';
-import PropTypes from 'prop-types';
 
-import Header from '../../components/Header/Header.js';
-import ScheduleForm from '../../components/ScheduleForm/ScheduleForm.js';
-import ScheduleResultList from '../../components/ScheduleResultList/ScheduleResultList.js';
-import {useHistory} from 'react-router-dom';
-import styles from '../../components/ScheduleForm/ScheduleFormMin.module.css';
-import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
+import React, { useCallback, useContext, useState } from 'react';
+
 import FIND_SCHEDULES from '../../apollo/queries/FindScheduleQuery.js';
-import client from '../../apollo/index.js';
+import Header from '../../components/Header/Header.js';
+import PropTypes from 'prop-types';
+import ScheduleForm from '../../components/ScheduleForm/ScheduleForm.js';
+import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
+import ScheduleResultList from '../../components/ScheduleResultList/ScheduleResultList.js';
 import Utils from '../../utils/Helpers.js';
+import client from '../../apollo/index.js';
+import styles from '../../components/ScheduleForm/ScheduleFormMin.module.css';
+import {useHistory} from 'react-router-dom';
 
 const Schedule = props => {
   const history = useHistory();

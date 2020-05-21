@@ -1,18 +1,19 @@
-import React, {useContext, useCallback} from 'react';
 import './Header.css';
-import SearchTextfield from '../SearchTextfield/SearchTextfield.js';
+
+import { ADMIN_OPTIONS, USER_OPTIONS } from '../../constants/DropdownConstants.js';
+import React, {useCallback, useContext} from 'react';
+
+import { AuthContext } from '../../context/AuthContext.js';
 import Dropdown from '../Dropdown/Dropdown.js';
 import HeaderText from '../HeaderText/HeaderText.js';
-import { useHistory } from 'react-router-dom';
-import app from '../../firebase/base.js';
-import { AuthContext } from '../../context/AuthContext.js';
-import registerIcon from '../../assets/register-icon.svg';
-import loginIcon from '../../assets/login-icon.svg';
-import arrowDownIcon from '../../assets/arrow-down.svg';
-import notiIcon from '../../assets/noti-icon.svg';
-import { ADMIN_OPTIONS, USER_OPTIONS } from '../../constants/DropdownConstants.js';
-
 import NOTIFICATIONS from '../../data/NotificationData.js';
+import SearchTextfield from '../SearchTextfield/SearchTextfield.js';
+import app from '../../firebase/base.js';
+import arrowDownIcon from '../../assets/arrow-down.svg';
+import loginIcon from '../../assets/login-icon.svg';
+import notiIcon from '../../assets/noti-icon.svg';
+import registerIcon from '../../assets/register-icon.svg';
+import { useHistory } from 'react-router-dom';
 
 const Header = () => {
   const history = useHistory();

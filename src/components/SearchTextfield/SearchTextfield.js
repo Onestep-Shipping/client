@@ -1,7 +1,8 @@
-import React from 'react';
 import './SearchTextfield.css';
-import searchIcon from '../../assets/search-icon.png';
+
 import PropTypes from 'prop-types';
+import React from 'react';
+import searchIcon from '../../assets/search-icon.png';
 
 const SearchTextfield = props => {
   const { placeholder = "Search" } = props;

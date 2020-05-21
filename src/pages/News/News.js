@@ -1,7 +1,7 @@
-import React from 'react';
 import './News.css';
 
 import Header from '../../components/Header/Header.js';
+import React from 'react';
 
 const News = () => {
   return (

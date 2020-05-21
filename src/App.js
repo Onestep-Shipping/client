@@ -1,36 +1,32 @@
-import React from 'react';
+import './App.css';
+
 import {
+  Route,
   BrowserRouter as Router,
   Switch,
-  Route,
 } from 'react-router-dom';
 
-import client from './apollo/index.js';
-import { ApolloProvider } from '@apollo/react-hooks';
-
-import PrivateRoute from './firebase/PrivateRoute.js';
-import AuthProvider from './context/AuthContext.js';
-import ScheduleFormProvider from "./context/ScheduleFormContext.js";
-
-import Homepage from './pages/Homepage/Homepage.js';
-import Schedule from './pages/Schedule/Schedule.js';
 import About from './pages/About/About.js';
-import Services from './pages/Services/Services.js';
-import News from './pages/News/News.js';
-import Contact from './pages/Contact/Contact.js';
-
-import Form from './pages/_user/Form/Form.js';
-import Success from './pages/_user/Success/Success.js';
-import Profile from './pages/_user/Profile/Profile.js';
-import Rolling from './pages/_user/Rolling/Rolling.js';
-
-import Companies from './pages/_admin/Companies/Companies.js';
-import BookingRequest from './pages/_admin/BookingRequest/BookingRequest.js';
+import { ApolloProvider } from '@apollo/react-hooks';
+import AuthProvider from './context/AuthContext.js';
 import BOLInstruction from './pages/_admin/BOLInstruction/BOLInstruction.js';
+import BookingRequest from './pages/_admin/BookingRequest/BookingRequest.js';
+import Companies from './pages/_admin/Companies/Companies.js';
+import Contact from './pages/Contact/Contact.js';
+import Form from './pages/_user/Form/Form.js';
+import Homepage from './pages/Homepage/Homepage.js';
 import Invoice from './pages/_admin/Invoice/Invoice.js';
+import News from './pages/News/News.js';
+import PrivateRoute from './firebase/PrivateRoute.js';
+import Profile from './pages/_user/Profile/Profile.js';
 import QuoteUpdate from './pages/_admin/QuoteUpdate/QuoteUpdate.js';
-
-import './App.css';
+import React from 'react';
+import Rolling from './pages/_user/Rolling/Rolling.js';
+import Schedule from './pages/Schedule/Schedule.js';
+import ScheduleFormProvider from "./context/ScheduleFormContext.js";
+import Services from './pages/Services/Services.js';
+import Success from './pages/_user/Success/Success.js';
+import client from './apollo/index.js';
 
 const App = () => {
   return (

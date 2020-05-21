@@ -1,10 +1,12 @@
-import React, { useState, useContext } from 'react';
 import './ScheduleResultList.css';
-import PropTypes from 'prop-types';
-import FixedSizeList from '../FixedSizeList/FixedSizeList.js';
+
+import React, { useContext, useState } from 'react';
+
 import { AuthContext } from '../../context/AuthContext.js';
-import arrowIcon from '../../assets/arrow-down.svg';
+import FixedSizeList from '../FixedSizeList/FixedSizeList.js';
+import PropTypes from 'prop-types';
 import Utils from '../../utils/Helpers.js';
+import arrowIcon from '../../assets/arrow-down.svg';
 
 const ScheduleResultList = props => {
   const { action, scheduleList, remove = { _id: null } } = props;

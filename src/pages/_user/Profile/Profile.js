@@ -1,16 +1,18 @@
-import React, {useState, useCallback, useRef, useEffect} from 'react';
-import ToolTip from 'react-portal-tooltip'
 import './Profile.css';
-import { useHistory } from 'react-router-dom';
-import Header from '../../../components/Header/Header.js';
-import FixedSizeList from '../../../components/FixedSizeList/FixedSizeList.js';
-import { useQuery } from '@apollo/react-hooks';
-import GET_ALL_SHIPMENTS from '../../../apollo/queries/GetAllShipments.js';
-import Utils from '../../../utils/Helpers.js';
-import FIND_SCHEDULES from '../../../apollo/queries/FindScheduleQuery.js';
-import client from '../../../apollo/index.js';
+
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+
 import DATA from '../../../data/ScheduleFormData.js';
+import FIND_SCHEDULES from '../../../apollo/queries/FindScheduleQuery.js';
 import FileUploadService from '../../../services/FileUploadService.js';
+import FixedSizeList from '../../../components/FixedSizeList/FixedSizeList.js';
+import GET_ALL_SHIPMENTS from '../../../apollo/queries/GetAllShipments.js';
+import Header from '../../../components/Header/Header.js';
+import ToolTip from 'react-portal-tooltip'
+import Utils from '../../../utils/Helpers.js';
+import client from '../../../apollo/index.js';
+import { useHistory } from 'react-router-dom';
+import { useQuery } from '@apollo/react-hooks';
 
 const Profile = () => {
   const history = useHistory();

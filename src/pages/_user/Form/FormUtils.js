@@ -1,5 +1,5 @@
-import CREATE_BOOKING_REQUEST from '../../../apollo/mutations/CreateBookingRequestMutation.js';
 import CREATE_BILL_INSTRUCTION from '../../../apollo/mutations/CreateBillInstructionMutation.js';
+import CREATE_BOOKING_REQUEST from '../../../apollo/mutations/CreateBookingRequestMutation.js';
 import Utils from '../../../utils/Helpers.js';
 
 const handleBookingRequest = (form, scheduleId, quoteId) => {

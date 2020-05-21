@@ -1,12 +1,13 @@
-import React, {useState, useRef} from 'react';
 import './BOLInstruction.css';
 
-import Header from '../../../components/Header/Header.js';
-import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js';
-import UserList from '../../../components/UserList/UserList.js';
-import BOL from '../../../data/BOLInstructionData.js';
 import {InfoRow, ShipmentDetail} from '../Helpers.js';
+import React, {useRef, useState} from 'react';
+
+import BOL from '../../../data/BOLInstructionData.js';
+import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js';
 import FileUploadService from '../../../services/FileUploadService.js';
+import Header from '../../../components/Header/Header.js';
+import UserList from '../../../components/UserList/UserList.js';
 
 const BOLInstruction = () => {
   const [currentBolIndex, setCurrentBolIndex] = useState(0);

@@ -1,6 +1,6 @@
+import Utils from '../../../utils/Helpers.js';
 import jsPDF from 'jspdf';
 import moment from 'moment';
-import Utils from '../../../utils/Helpers.js';
 
 const doc = new jsPDF("p", "pt", 'letter');
 

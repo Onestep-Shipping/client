@@ -1,18 +1,19 @@
-import React, {useState} from 'react';
 import './BookingRequest.css';
 
-import Header from '../../../components/Header/Header.js';
+import { Address, ContainerDetail, InfoRow, MiniDatePicker, MiniDatePickerTime } from '../Helpers.js';
+import React, {useState} from 'react';
+
 import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js';
-import UserList from '../../../components/UserList/UserList.js';
-import styles from '../../../components/ScheduleForm/ScheduleFormMin.module.css';
-import { InfoRow, ContainerDetail, Address, MiniDatePicker, MiniDatePickerTime } from '../Helpers.js';
-import PdfGenerator from './PdfGenerator.js';
+import CREATE_BOOKING_CONFIRMATION from '../../../apollo/mutations/CreateBookingConfirmation.js';
 import FileUploadService from '../../../services/FileUploadService.js';
 import GET_BOOKING_REQUEST from '../../../apollo/queries/GetBookingRequestQuery.js';
-import CREATE_BOOKING_CONFIRMATION from '../../../apollo/mutations/CreateBookingConfirmation.js';
-import { useQuery } from '@apollo/react-hooks';
-import client from '../../../apollo/index.js';
+import Header from '../../../components/Header/Header.js';
+import PdfGenerator from './PdfGenerator.js';
+import UserList from '../../../components/UserList/UserList.js';
 import Utils from '../../../utils/Helpers.js';
+import client from '../../../apollo/index.js';
+import styles from '../../../components/ScheduleForm/ScheduleFormMin.module.css';
+import { useQuery } from '@apollo/react-hooks';
 
 const BookingRequest = () => {
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);

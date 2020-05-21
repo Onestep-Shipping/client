@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Utils from '../../../utils/Helpers.js';
 
 const QuoteForm = props => {

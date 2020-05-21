@@ -1,10 +1,11 @@
-/* eslint-disable no-unused-vars */
-import React, {useState, useCallback} from 'react';
 import './AuthForm.css';
 
+/* eslint-disable no-unused-vars */
+import React, {useCallback, useState} from 'react';
+
 import Input from '../Input/Input';
-import app from '../../firebase/base.js';
 import PropTypes from 'prop-types';
+import app from '../../firebase/base.js';
 
 const LoginForm = (props) => {
   const { closeModal } = props;

@@ -1,10 +1,15 @@
-import React, {useState} from 'react';
 import '../../pages/_user/Form/Form.css';
-import { 
-  CONTAINER_HEADERS, CONTAINER_TYPES, PAYMENT_TYPES, AUTO_FILLING 
+
+import {
+  AUTO_FILLING,
+  CONTAINER_HEADERS,
+  CONTAINER_TYPES,
+  PAYMENT_TYPES
 } from '../../constants/ServiceFormConstants.js';
-import PropTypes from 'prop-types';
 import {InfoRow, Select} from './Helpers.js';
+import React, {useState} from 'react';
+
+import PropTypes from 'prop-types';
 
 const MAX_ROW = 5;
 

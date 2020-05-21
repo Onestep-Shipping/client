@@ -1,6 +1,7 @@
-import React from 'react';
 import './BookingDisplay.css';
+
 import PropTypes from 'prop-types';
+import React from 'react';
 import Utils from '../../utils/Helpers.js';
 
 const BookingDisplay = (props) => {

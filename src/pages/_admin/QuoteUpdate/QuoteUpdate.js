@@ -1,19 +1,20 @@
-import React, { useState, useContext } from 'react';
 import './QuoteUpdate.css';
 
+import { QuoteForm, QuoteRow } from './Helpers';
+import React, { useContext, useState } from 'react';
+
+import ADD_QUOTE from '../../../apollo/mutations/AddQuoteMutation.js';
+import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
+import GET_QUOTE_HISTORY from '../../../apollo/queries/GetQuoteHistoryQuery.js';
 import Header from '../../../components/Header/Header.js';
 import ScheduleForm from '../../../components/ScheduleForm/ScheduleForm.js';
-import styles from '../../../components/ScheduleForm/ScheduleFormMin.module.css';
-import arrowDownIcon from '../../../assets/arrow-down.svg';
-import { QuoteForm, QuoteRow } from './Helpers';
-import moment from 'moment';
-import { Textarea } from '../../../components/ServiceForm/Helpers.js';
-import GET_QUOTE_HISTORY from '../../../apollo/queries/GetQuoteHistoryQuery.js';
-import ADD_QUOTE from '../../../apollo/mutations/AddQuoteMutation.js';
-import client from '../../../apollo/index.js';
 import { ScheduleFormContext } from "../../../context/ScheduleFormContext.js";
-import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
+import { Textarea } from '../../../components/ServiceForm/Helpers.js';
 import Utils from '../../../utils/Helpers.js';
+import arrowDownIcon from '../../../assets/arrow-down.svg';
+import client from '../../../apollo/index.js';
+import moment from 'moment';
+import styles from '../../../components/ScheduleForm/ScheduleFormMin.module.css';
 
 const QuoteUpdate = () => {
   const [history, setHistory] = useState([]);

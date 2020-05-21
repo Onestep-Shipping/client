@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
 import './Companies.css';
-import moment from 'moment';
+
+import React, { useState } from 'react';
+
 import COMPANIES from '../../../data/CompanyList.js';
 import COUNTRIES from '../../../data/CountryList.js';
-
+import GET_ALL_COMPANIES from '../../../apollo/queries/GetAllCompaniesQuery.js';
 import Header from '../../../components/Header/Header.js';
 import SearchTextfield from '../../../components/SearchTextfield/SearchTextfield.js';
-import GET_ALL_COMPANIES from '../../../apollo/queries/GetAllCompaniesQuery.js';
-import { useQuery } from '@apollo/react-hooks';
 import Utils from '../../../utils/Helpers.js';
+import moment from 'moment';
+import { useQuery } from '@apollo/react-hooks';
 
 const DURATION = ["All", "Last 3 days", "This week", "This month", "This year"]; 
 const COMPANY_HEADERS = ["Company", "Orders", "Contact", "Email", "Created"];

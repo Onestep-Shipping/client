@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
 import './Invoice.css';
 
-import Header from '../../../components/Header/Header.js';
+import { FinanceRow, NumberInput } from './Helpers';
+import React, { useState } from 'react';
 
 import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js';
-import UserList from '../../../components/UserList/UserList.js';
-import INVOICE from '../../../data/InvoiceData.js';
+import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
 import DATA from '../../../data/ScheduleDetailsData.js';
+import FileUploadService from '../../../services/FileUploadService.js';
+import Header from '../../../components/Header/Header.js';
+import INVOICE from '../../../data/InvoiceData.js';
 import { InfoRow } from '../Helpers.js';
 import PdfGenerator from './PdfGenerator.js';
-import Utils from '../../../utils/Helpers.js';
 import QUOTE_DATA from '../../../data/QuoteUpdateData';
-import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
 import { QuoteRow } from '../QuoteUpdate/Helpers';
-import { FinanceRow, NumberInput } from './Helpers';
-import FileUploadService from '../../../services/FileUploadService.js';
+import UserList from '../../../components/UserList/UserList.js';
+import Utils from '../../../utils/Helpers.js';
 
 const initCost = ind => {
   let finalCost = 0;

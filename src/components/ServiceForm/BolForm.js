@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
 import '../../pages/_user/Form/Form.css';
-import { TEXTAREA_FIELDS, TRACKING_HEADERS, INPUT_FIELDS } from '../../constants/ServiceFormConstants.js';
-import PropTypes from 'prop-types';
-import {Textarea, ExtraInput, InfoRow} from './Helpers.js';
+
+import {ExtraInput, InfoRow, Textarea} from './Helpers.js';
+import { INPUT_FIELDS, TEXTAREA_FIELDS, TRACKING_HEADERS } from '../../constants/ServiceFormConstants.js';
+import React, {useState} from 'react';
+
 import GET_BILL_FORM from '../../apollo/queries/GetBillFormQuery.js';
+import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
 const BolForm = (props) => {

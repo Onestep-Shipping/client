@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
 import './ScheduleForm.css';
-import Select from 'react-select';
-import DatePicker from 'react-datepicker';
-import DATA from '../../data/ScheduleFormData.js';
 import 'react-datepicker/dist/react-datepicker.css';
+
+import React, { useContext } from 'react';
+
+import DATA from '../../data/ScheduleFormData.js';
+import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
 import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
+import Select from 'react-select';
 
 const ScheduleForm = (props) => {
   const { styles, onSubmit } = props;

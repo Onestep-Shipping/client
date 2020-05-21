@@ -1,7 +1,9 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
 import './Dropdown.css';
-import PropTypes from 'prop-types';
+
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+
 import AuthModal from '../AuthModal/AuthModal.js';
+import PropTypes from 'prop-types';
 
 const Dropdown = (props) => {
   const node = useRef();

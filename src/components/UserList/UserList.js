@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
 import './UserList.css';
+
+import React, { useState } from 'react';
+
 import PropTypes from 'prop-types';
-import profileImg from '../../assets/profile-placeholder.png';
 import moment from 'moment';
+import profileImg from '../../assets/profile-placeholder.png';
 
 const UserList = props => {
   const [currentIndex, setIndex] = useState(0);
