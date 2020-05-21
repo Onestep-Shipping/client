@@ -1,15 +1,7 @@
 import React from 'react';
 import './BookingDisplay.css';
-import moment from 'moment';
 import PropTypes from 'prop-types';
-
-const formatValidity = validity => {
-  return formatISOString(validity.startDate) + " - " + formatISOString(validity.endDate);
-}
-
-const formatISOString = iso => {
-  return moment(iso).utc().format('MM/DD/YYYY');
-}
+import Utils from '../../utils/Helpers.js';
 
 const BookingDisplay = (props) => {
   const { schedule, quote, fields } = props;
@@ -63,7 +55,7 @@ const BookingDisplay = (props) => {
           <h2>Quote</h2>
           <div className="info-row">
             <text className="info-label">Validity: </text>
-            <text className="schedule-result-text">{formatValidity(quote.validity)}</text>
+            <text className="schedule-result-text">{Utils.formatValidity(quote.validity)}</text>
           </div>
           {quote.selling.oceanFreight.map((container, ind) => 
              <div className="info-row" key={ind}>

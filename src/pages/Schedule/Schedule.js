@@ -10,11 +10,7 @@ import styles from '../../components/ScheduleForm/ScheduleFormMin.module.css';
 import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
 import FIND_SCHEDULES from '../../apollo/queries/FindScheduleQuery.js';
 import client from '../../apollo/index.js';
-import moment from 'moment';
-
-const convertDateToISO = date => {
-  return moment(date).format("YYYY-MM-DD");
-}
+import Utils from '../../utils/Helpers.js';
 
 const Schedule = props => {
   const history = useHistory();
@@ -35,14 +31,14 @@ const Schedule = props => {
       variables: { 
         routeId: schedule.fromLocation.value + "-" + schedule.toLocation.value,
         carrier: schedule.carrier,
-        startDate: convertDateToISO(schedule.fromDate),
-        endDate: convertDateToISO(schedule.toDate)
+        startDate: Utils.convertDateToISO(schedule.fromDate),
+        endDate: Utils.convertDateToISO(schedule.toDate)
       }
     }).then(res => {
       const { findSchedules } = res.data;
       setScheduleList(findSchedules);
     })
-  }, [history, schedule]);
+  }, [schedule]);
 
   return (
     <div className="homepage-container">

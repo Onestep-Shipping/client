@@ -9,7 +9,7 @@ import INVOICE from '../../../data/InvoiceData.js';
 import DATA from '../../../data/ScheduleDetailsData.js';
 import { InfoRow } from '../Helpers.js';
 import PdfGenerator from './PdfGenerator.js';
-import { comma } from '../../../utils/Helpers.js';
+import Utils from '../../../utils/Helpers.js';
 import QUOTE_DATA from '../../../data/QuoteUpdateData';
 import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
 import { QuoteRow } from '../QuoteUpdate/Helpers';
@@ -18,13 +18,13 @@ import FileUploadService from '../../../services/FileUploadService.js';
 
 const initCost = ind => {
   let finalCost = 0;
-  INVOICE[ind].booking.container.map(row => {
-    CONTAINER_TYPES.map((type, type_ind) => {
+  INVOICE[ind].booking.container.map(row => 
+    CONTAINER_TYPES.map((type, type_ind) => function() { 
       if (type === row.containerType) {
         finalCost += (QUOTE_DATA[ind].buying.oceanFreight[type_ind] * row.quantity);
       }
     })
-  })
+  )
   finalCost += QUOTE_DATA[ind].buying.docFee + QUOTE_DATA[ind].buying.adminFee;
   
   return finalCost;
@@ -95,7 +95,7 @@ const Invoice = () => {
       booking: INVOICE[currentIndex].booking,
       orderNo: INVOICE[currentIndex].bol.orderNo,
       priceList: combine, 
-      subTotal: comma(revenue) 
+      subTotal: Utils.comma(revenue) 
     }
   }
 

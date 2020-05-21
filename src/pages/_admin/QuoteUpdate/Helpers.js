@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
-import { comma } from '../../../utils/Helpers.js';
+import Utils from '../../../utils/Helpers.js';
 
 const QuoteForm = props => {
   const { header } = props; 
@@ -53,16 +53,16 @@ const QuoteRow = props => {
       {obj.oceanFreight.map((of, ind) =>
         <div className="finance-display-row" key={ind}>
           <text>O.F. - {of.containerType}:</text>
-          <text>${comma(of.price)}</text>
+          <text>${Utils.comma(of.price)}</text>
         </div>
       )}
       <div className="finance-display-row">
         <text>Doc fee:</text>
-        <text>${comma(obj.docFee)}</text>
+        <text>${Utils.comma(obj.docFee)}</text>
       </div>
       <div className="finance-display-row">
         <text>Admin fee:</text>
-        <text>${comma(obj.adminFee)}</text>
+        <text>${Utils.comma(obj.adminFee)}</text>
       </div>
     </div>
   );

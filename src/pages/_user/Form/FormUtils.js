@@ -1,5 +1,6 @@
 import CREATE_BOOKING_REQUEST from '../../../apollo/mutations/CreateBookingRequestMutation.js';
 import CREATE_BILL_INSTRUCTION from '../../../apollo/mutations/CreateBillInstructionMutation.js';
+import Utils from '../../../utils/Helpers.js';
 
 const handleBookingRequest = (form, scheduleId, quoteId) => {
   const bookingRequest = (createBookingRequestFromForm(form));
@@ -16,8 +17,8 @@ const handleBookingRequest = (form, scheduleId, quoteId) => {
 
 const createBookingRequestFromForm = form => {
   const { commodity, hsCode, quantity, containerType, paymentTerm, autoFilling } = form;
-  const quantities = getValuesOfNodeList(quantity);
-  const containerTypes = getValuesOfNodeList(containerType);
+  const quantities = Utils.getValuesOfNodeList(quantity);
+  const containerTypes = Utils.getValuesOfNodeList(containerType);
 
   const containers = [];
   for (let i = 0; i < quantities.length; i++) {
@@ -55,11 +56,11 @@ const createBillInstructionFromForm = form => {
     orderPONumber, hSCode, cAEDAESNumber, cargoValue
   } = form;
   
-  const containerNos = getValuesOfNodeList(containerNo);
-  const seelNos = getValuesOfNodeList(seelNo);
-  const cargoWeights = getValuesOfNodeList(cargoWeight);
-  const measurements = getValuesOfNodeList(measurement);
-  const vgms = getValuesOfNodeList(vGM);
+  const containerNos = Utils.getValuesOfNodeList(containerNo);
+  const seelNos = Utils.getValuesOfNodeList(seelNo);
+  const cargoWeights = Utils.getValuesOfNodeList(cargoWeight);
+  const measurements = Utils.getValuesOfNodeList(measurement);
+  const vgms = Utils.getValuesOfNodeList(vGM);
 
   const containers = [];
   for (let i = 0; i < containerNos.length; i++) {
@@ -83,20 +84,6 @@ const createBillInstructionFromForm = form => {
     caedNo: cAEDAESNumber.value,
     cargoValue: cargoValue.value
   }
-}
-
-const getValuesOfNodeList = potentialList => {
-  const result = [];
-  if (potentialList.value === "") { // has a list of values
-    potentialList.forEach(input => {
-      if (input.value !== "") {
-        result.push(input.value);
-      }
-    });
-  } else { // only has one value
-    result.push(potentialList.value);
-  }
-  return result;
 }
 
 export { handleBookingRequest, handleBillInstruction }

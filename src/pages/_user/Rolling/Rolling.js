@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import './Rolling.css';
+import PropTypes from 'prop-types';
 
 import {useParams, useHistory} from 'react-router-dom';
 import Header from '../../../components/Header/Header.js';
@@ -29,7 +30,7 @@ const Rolling = props => {
         alert("Some errors have occured. Please try again!");
       }
     })
-  }, [history]);
+  }, [history, id]);
 
   return (
     <div className="homepage-container">
@@ -46,3 +47,7 @@ const Rolling = props => {
 };
 
 export default Rolling;
+
+Rolling.propTypes = {
+  location: PropTypes.object,
+};

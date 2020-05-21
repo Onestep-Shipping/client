@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { comma } from '../../../utils/Helpers.js';
+import Utils from '../../../utils/Helpers.js';
 
 const FinanceRow = props => {
   const { label, value } = props;
@@ -8,7 +8,7 @@ const FinanceRow = props => {
   return (
     <div className="invoice-row-small">
       <text className="info-label-special">{label}: </text>
-      <text>${comma(value)}</text>
+      <text>${Utils.comma(value)}</text>
     </div>
   ) 
 }
@@ -23,7 +23,7 @@ const NumberInput = props => {
         onChange={e => onChange(e, ind)} required />
       <input 
         type="text" name="total" className="usd-input" 
-        disabled={true} value={comma(fees[ind])}
+        disabled={true} value={Utils.comma(fees[ind])}
       />
     </div>
   );

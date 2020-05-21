@@ -13,24 +13,7 @@ import ADD_QUOTE from '../../../apollo/mutations/AddQuoteMutation.js';
 import client from '../../../apollo/index.js';
 import { ScheduleFormContext } from "../../../context/ScheduleFormContext.js";
 import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
-
-const convertDateToISO = date => {
-  return moment(date).format("YYYY-MM-DD");
-}
-
-const getValuesOfNodeList = potentialList => {
-  const result = [];
-  if (potentialList.value === "") { // has a list of values
-    potentialList.forEach(input => {
-      if (input.value !== "") {
-        result.push(input.value);
-      }
-    });
-  } else { // only has one value
-    result.push(potentialList.value);
-  }
-  return result;
-}
+import Utils from '../../../utils/Helpers.js';
 
 const QuoteUpdate = () => {
   const [history, setHistory] = useState([]);
@@ -43,8 +26,8 @@ const QuoteUpdate = () => {
   const scheduleVariables = { 
     routeId: schedule.fromLocation.value + "-" + schedule.toLocation.value,
     carrier: schedule.carrier,
-    startDate: convertDateToISO(schedule.fromDate),
-    endDate: convertDateToISO(schedule.toDate)
+    startDate: Utils.convertDateToISO(schedule.fromDate),
+    endDate: Utils.convertDateToISO(schedule.toDate)
   }
 
   const handleFindQuoteHistory = () => {
@@ -55,7 +38,7 @@ const QuoteUpdate = () => {
       const { getQuoteHistory } = res.data;
       setHistory(getQuoteHistory);
       setIsOverLapped(false);
-      getQuoteHistory.map(quote => {
+      getQuoteHistory.map(quote => function() {
         if (isDateRangeOverlapped(quote.validity)) { 
           setIsOverLapped(true); 
         }
@@ -101,13 +84,13 @@ const QuoteUpdate = () => {
       except
     } = form;
 
-    const buyingOceanFreightPrices = getValuesOfNodeList(buyingOceanFreight);
-    const sellingOceanFreightPrices = getValuesOfNodeList(sellingOceanFreight);
+    const buyingOceanFreightPrices = Utils.getValuesOfNodeList(buyingOceanFreight);
+    const sellingOceanFreightPrices = Utils.getValuesOfNodeList(sellingOceanFreight);
 
     const buyingOceanFreights = [];
     const sellingOceanFreights = [];
 
-    CONTAINER_TYPES.map((type, ind) => {
+    CONTAINER_TYPES.map((type, ind) => function() {
       buyingOceanFreights.push({ 
         containerType: type, price: parseFloat(buyingOceanFreightPrices[ind]) 
       });
@@ -118,8 +101,8 @@ const QuoteUpdate = () => {
 
     return {
       validity: {
-        startDate: convertDateToISO(schedule.fromDate),
-        endDate: convertDateToISO(schedule.toDate)
+        startDate: Utils.convertDateToISO(schedule.fromDate),
+        endDate: Utils.convertDateToISO(schedule.toDate)
       },
       buying: {
         oceanFreight: buyingOceanFreights,

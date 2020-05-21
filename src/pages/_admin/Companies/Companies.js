@@ -8,14 +8,11 @@ import Header from '../../../components/Header/Header.js';
 import SearchTextfield from '../../../components/SearchTextfield/SearchTextfield.js';
 import GET_ALL_COMPANIES from '../../../apollo/queries/GetAllCompaniesQuery.js';
 import { useQuery } from '@apollo/react-hooks';
+import Utils from '../../../utils/Helpers.js';
 
 const DURATION = ["All", "Last 3 days", "This week", "This month", "This year"]; 
 const COMPANY_HEADERS = ["Company", "Orders", "Contact", "Email", "Created"];
 const ORDERS = ["All", "≤ 10", "> 10", "> 50", "> 100", "> 1000"];
-
-const formatISOString = iso => {
-  return moment(iso).utc().format('MM/DD/YYYY');
-}
 
 const Companies = () => {
   const { loading, error, data } = useQuery(GET_ALL_COMPANIES, {
@@ -134,7 +131,9 @@ const Companies = () => {
                   <text className="company-item-text">{company.email}</text>
                 </div>
                 <div className="company-col">
-                  <text className="company-item-text">{formatISOString(company.createdAt)}</text>
+                  <text className="company-item-text">
+                    {Utils.formatISOString(company.createdAt)}
+                  </text>
                 </div>
               </li>
             )}

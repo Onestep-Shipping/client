@@ -1,22 +1,8 @@
 import jsPDF from 'jspdf';
 import moment from 'moment';
+import Utils from '../../../utils/Helpers.js';
 
 const doc = new jsPDF("p", "pt", 'letter');
-
-function ordinalSuffixOf(i) {
-    var j = i % 10,
-        k = i % 100;
-    if (j == 1 && k != 11) {
-        return i + "st";
-    }
-    if (j == 2 && k != 12) {
-        return i + "nd";
-    }
-    if (j == 3 && k != 13) {
-        return i + "rd";
-    }
-    return i + "th";
-}
 
 const centeredText = (text, y) => {
     let textWidth = doc.getStringUnitWidth(text) * doc.internal.getFontSize() / doc.internal.scaleFactor;
@@ -42,7 +28,7 @@ const preview = info => {
   doc.setFontSize(20);
   doc.setFontType('bold');
   centeredText(
-    ordinalSuffixOf(info.confirmation.timeReceived) + 
+    Utils.ordinalSuffixOf(info.confirmation.timeReceived) + 
     ' Booking Confirmation', 
     100
   );
@@ -75,7 +61,7 @@ const preview = info => {
   doc.text(350, 290, "Q'ty");
   doc.text(420, 290, "Container Type");
 
-  info.booking.containers.map((row, i) => {
+  info.booking.containers.map((row, i) => function() {
     doc.text(350, 307 + (i * 17), "" + row.quantity);
     doc.text(420, 307 + (i * 17), row.containerType);
   })

@@ -71,7 +71,7 @@ const preview = info => {
 
   doc.setFontType('normal');
 
-  info.priceList.map((row, i) => {
+  info.priceList.map((row, i) => function() {
     const height = 377 + (i * 17);
     if (i < info.priceList.length - 2) {
       doc.text(80, height, "Ocean Freight");

@@ -4,16 +4,7 @@ import PropTypes from 'prop-types';
 import FixedSizeList from '../FixedSizeList/FixedSizeList.js';
 import { AuthContext } from '../../context/AuthContext.js';
 import arrowIcon from '../../assets/arrow-down.svg';
-import { comma } from '../../utils/Helpers.js';
-import moment from 'moment';
-
-const formatValidity = validity => {
-  return formatISOString(validity.startDate) + " - " + formatISOString(validity.endDate);
-}
-
-const formatISOString = iso => {
-  return moment(iso).utc().format('MM/DD/YYYY');
-}
+import Utils from '../../utils/Helpers.js';
 
 const ScheduleResultList = props => {
   const { action, scheduleList, remove = { _id: null } } = props;
@@ -45,7 +36,7 @@ const ScheduleResultList = props => {
           <div className="col">
             <text className="schedule-result-text">{schedule.route.startLocation}</text>
             <text className="schedule-result-text-time">
-              {formatISOString(schedule.startDate)}
+              {Utils.formatISOString(schedule.startDate)}
             </text>
           </div>
           <div className="col">
@@ -57,7 +48,7 @@ const ScheduleResultList = props => {
           <div className="col">
             <text className="schedule-result-text">{schedule.route.endLocation}</text>
             <text className="schedule-result-text-time">
-              {formatISOString(schedule.endDate)}
+              {Utils.formatISOString(schedule.endDate)}
             </text>
           </div>
           <div className="col">
@@ -71,7 +62,7 @@ const ScheduleResultList = props => {
             <text className="schedule-result-header-text">
               {validity === 0 ? "CURRENT" : "UPCOMING"} VALIDITY: 
             </text>
-            {formatValidity(quotes[validity].validity)}
+            {Utils.formatValidity(quotes[validity].validity)}
             {quotes > 1 && 
             <img 
               className={"arrow-icon-point-" + (validity === 0 ? "right" : "left")} 
@@ -85,17 +76,17 @@ const ScheduleResultList = props => {
               {quotes[validity].selling.oceanFreight.map((container, ind) => 
                 <div key={ind} className="container-types-quote">
                   <text className="schedule-result-text">{container.containerType}: </text>
-                  <text className="schedule-result-text">${comma(container.price)}</text>
+                  <text className="schedule-result-text">${Utils.comma(container.price)}</text>
                 </div>
               )}
             </div>
             <div className="col3">
               <text className="schedule-result-header-text">{QUOTE_HEADERS[1].toUpperCase()}</text>
-              <text className="schedule-result-text">${comma(quotes[validity].selling.docFee)}</text>
+              <text className="schedule-result-text">${Utils.comma(quotes[validity].selling.docFee)}</text>
             </div>
             <div className="col3">
               <text className="schedule-result-header-text">{QUOTE_HEADERS[2].toUpperCase()}</text>
-              <text className="schedule-result-text">${comma(quotes[validity].selling.adminFee)}</text>
+              <text className="schedule-result-text">${Utils.comma(quotes[validity].selling.adminFee)}</text>
             </div>
           </div>
           {quotes[validity].except &&

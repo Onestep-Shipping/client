@@ -12,40 +12,7 @@ import GET_BOOKING_REQUEST from '../../../apollo/queries/GetBookingRequestQuery.
 import CREATE_BOOKING_CONFIRMATION from '../../../apollo/mutations/CreateBookingConfirmation.js';
 import { useQuery } from '@apollo/react-hooks';
 import client from '../../../apollo/index.js';
-import moment from 'moment';
-
-const formatISOString = iso => {
-  return moment(iso).utc().format('MM/DD/YYYY');
-}
-
-const convertDateToISO = date => {
-  return moment(date).format("YYYY-MM-DD");
-}
-
-const convertDateTimeToISO = date => {
-  return moment(date).format();
-}
-
-function ordinalSuffixOf(i) {
-    var j = i % 10,
-        k = i % 100;
-    if (j == 1 && k != 11) {
-        return i + "st";
-    }
-    if (j == 2 && k != 12) {
-        return i + "nd";
-    }
-    if (j == 3 && k != 13) {
-        return i + "rd";
-    }
-    return i + "th";
-}
-
-const openPdf = (data) => {
-  const file = new Blob([data], {type: 'application/pdf'});
-  const fileURL = URL.createObjectURL(file);
-  window.open(fileURL);
-}
+import Utils from '../../../utils/Helpers.js';
 
 const BookingRequest = () => {
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
@@ -118,11 +85,11 @@ const BookingRequest = () => {
 
   const finalizeBookingConfirmation = pdfPath => {
     const bookingConfirmation = finalBookingConfirmation;
-    bookingConfirmation.etd = convertDateToISO(bookingConfirmation.etd);
-    bookingConfirmation.eta = convertDateToISO(bookingConfirmation.eta);
-    bookingConfirmation.terminaCutoff = convertDateTimeToISO(bookingConfirmation.terminaCutoff);
-    bookingConfirmation.docCutoff = convertDateTimeToISO(bookingConfirmation.docCutoff);
-    bookingConfirmation.vgmCutoff = convertDateTimeToISO(bookingConfirmation.vgmCutoff);
+    bookingConfirmation.etd = Utils.convertDateToISO(bookingConfirmation.etd);
+    bookingConfirmation.eta = Utils.convertDateToISO(bookingConfirmation.eta);
+    bookingConfirmation.terminaCutoff = Utils.convertDateTimeToISO(bookingConfirmation.terminaCutoff);
+    bookingConfirmation.docCutoff = Utils.convertDateTimeToISO(bookingConfirmation.docCutoff);
+    bookingConfirmation.vgmCutoff = Utils.convertDateTimeToISO(bookingConfirmation.vgmCutoff);
     bookingConfirmation.pdf = pdfPath;
     return bookingConfirmation;
   }
@@ -166,7 +133,7 @@ const BookingRequest = () => {
 
   const handlePDFOpen = () => {
     FileUploadService.downloadFile(bookingRequest.confirmation.pdf)
-      .then(res => openPdf(res.data))
+      .then(res => Utils.openPdf(res.data))
       .catch(e => {
         console.log(e);
       });
@@ -188,13 +155,13 @@ const BookingRequest = () => {
             <text>Contact: {bookedBy.personInCharge.name}</text>
             <text>Email: {bookedBy.email}</text>
             <text>
-              {formatISOString(bookingRequest.form.createdAt)}
+              {Utils.formatISOString(bookingRequest.form.createdAt)}
             </text>
           </div>
 
           {bookingRequest.status === "Received" && 
           <text className="schedule-result-text-link" onClick={handlePDFOpen}>
-            {ordinalSuffixOf(bookingRequest.confirmation.timeReceived)} Booking 
+            {Utils.ordinalSuffixOf(bookingRequest.confirmation.timeReceived)} Booking 
             Confirmation has been sent.
           </text>}
 

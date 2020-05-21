@@ -7,11 +7,7 @@ import styles from '../../components/ScheduleForm/ScheduleForm.module.css';
 import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
 import FIND_SCHEDULES from '../../apollo/queries/FindScheduleQuery.js';
 import client from '../../apollo/index.js';
-import moment from 'moment';
-
-const convertDateToISO = date => {
-  return moment(date).format("YYYY-MM-DD");
-}
+import Utils from '../../utils/Helpers.js';
 
 const Homepage = () => {
   const history = useHistory();
@@ -24,8 +20,8 @@ const Homepage = () => {
       variables: { 
         routeId: schedule.fromLocation.value + "-" + schedule.toLocation.value,
         carrier: schedule.carrier,
-        startDate: convertDateToISO(schedule.fromDate),
-        endDate: convertDateToISO(schedule.toDate)
+        startDate: Utils.convertDateToISO(schedule.fromDate),
+        endDate: Utils.convertDateToISO(schedule.toDate)
       }
     }).then(res => {
       const { findSchedules } = res.data;
