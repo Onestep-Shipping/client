@@ -5,16 +5,46 @@ import Header from '../../../components/Header/Header.js';
 import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js';
 import UserList from '../../../components/UserList/UserList.js';
 import styles from '../../../components/ScheduleForm/ScheduleFormMin.module.css';
-import DATA from '../../../data/ScheduleDetailsData.js';
 import { InfoRow, ContainerDetail, Address, MiniDatePicker, MiniDatePickerTime } from '../Helpers.js';
 import PdfGenerator from './PdfGenerator.js';
 import FileUploadService from '../../../services/FileUploadService.js';
 import GET_BOOKING_REQUEST from '../../../apollo/queries/GetBookingRequestQuery.js';
+import CREATE_BOOKING_CONFIRMATION from '../../../apollo/mutations/CreateBookingConfirmation.js';
 import { useQuery } from '@apollo/react-hooks';
+import client from '../../../apollo/index.js';
 import moment from 'moment';
 
 const formatISOString = iso => {
   return moment(iso).utc().format('MM/DD/YYYY');
+}
+
+const convertDateToISO = date => {
+  return moment(date).format("YYYY-MM-DD");
+}
+
+const convertDateTimeToISO = date => {
+  return moment(date).format();
+}
+
+function ordinalSuffixOf(i) {
+    var j = i % 10,
+        k = i % 100;
+    if (j == 1 && k != 11) {
+        return i + "st";
+    }
+    if (j == 2 && k != 12) {
+        return i + "nd";
+    }
+    if (j == 3 && k != 13) {
+        return i + "rd";
+    }
+    return i + "th";
+}
+
+const openPdf = (data) => {
+  const file = new Blob([data], {type: 'application/pdf'});
+  const fileURL = URL.createObjectURL(file);
+  window.open(fileURL);
 }
 
 const BookingRequest = () => {
@@ -29,8 +59,9 @@ const BookingRequest = () => {
   const [terminalDate, setTerminalDate] = useState(myToday);
   const [docDate, setDocDate] = useState(myToday);
   const [vgmDate, setVgmDate] = useState(myToday);
-  const [etdDate, setEtdDate] = useState(DATA[currentBookingIndex].startDate);
-  const [etaDate, setEtaDate] = useState(DATA[currentBookingIndex].endDate);
+  const [etdDate, setEtdDate] = useState(today);
+  const [etaDate, setEtaDate] = useState(today);
+  const [finalBookingConfirmation, setFinalBookingConfirmation] = useState(null);
 
   const handleIndexChange = newInd => {
     setCurrentBookingIndex(newInd);
@@ -42,27 +73,7 @@ const BookingRequest = () => {
 
   const handlePreview = e => {
     e.preventDefault();
-    PdfGenerator.preview(createInfoObject(e));
-  }
-
-  const handleUpload = e => {
-    e.preventDefault();
-    const blob = PdfGenerator.uploadToServer();
-    const pdf = new File(
-      [blob], 
-      'Booking Confirmation #' + document.getElementById("bookingNo").value + '.pdf', 
-      { type: 'application/pdf' } 
-    )
-    const formData = new FormData();
-    formData.append("file", pdf);
-
-    FileUploadService.uploadFile(formData)
-      .then(res => {
-        alert(res.data.fileLocation);
-      })
-      .catch(e => {
-        console.log(e.response);
-      });
+    PdfGenerator.preview(createInfoObject(e.target));
   }
 
   if (loading) return <p>Loading...</p>;
@@ -76,30 +87,89 @@ const BookingRequest = () => {
     .filter(quote => Date.parse(quote.validity.startDate) <=  Date.parse(schedule.startDate))
     .slice(0, 1)[0];
 
-  const createInfoObject = e => {
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    const blob = PdfGenerator.uploadToServer();
+    const pdf = new File(
+      [blob], 
+      'Booking Confirmation #' + document.getElementById("bookingNo").value + '.pdf', 
+      { type: 'application/pdf' } 
+    )
+    const formData = new FormData();
+    formData.append("file", pdf);
+
+    const uploadedResponse = await FileUploadService.uploadFile(formData);
+    const { fileLocation } = uploadedResponse.data;
+
+    client.mutate({
+      mutation: CREATE_BOOKING_CONFIRMATION,
+      variables: { 
+        shipmentId: shipments[currentBookingIndex]._id,
+        bookingConfirmation: finalizeBookingConfirmation(fileLocation)
+      },
+      refetchQueries: [{ query: GET_BOOKING_REQUEST }]
+    }).then(response => {
+      const { createBookingConfirmation } = response.data;
+      if (createBookingConfirmation === "OK") {
+        alert("Booking Confirmation has been sent!");
+      }
+    })
+  }
+
+  const finalizeBookingConfirmation = pdfPath => {
+    const bookingConfirmation = finalBookingConfirmation;
+    bookingConfirmation.etd = convertDateToISO(bookingConfirmation.etd);
+    bookingConfirmation.eta = convertDateToISO(bookingConfirmation.eta);
+    bookingConfirmation.terminaCutoff = convertDateTimeToISO(bookingConfirmation.terminaCutoff);
+    bookingConfirmation.docCutoff = convertDateTimeToISO(bookingConfirmation.docCutoff);
+    bookingConfirmation.vgmCutoff = convertDateTimeToISO(bookingConfirmation.vgmCutoff);
+    bookingConfirmation.pdf = pdfPath;
+    return bookingConfirmation;
+  }
+
+  const createInfoObject = form => {
     const { bookingNo, 
             etd, eta, terminal, doc, vgm,
             pickupLocationStreet, pickupLocationCity, pickupLocationCountry,
             returnLocationStreet, returnLocationCity, returnLocationCountry 
-          } = e.target;
+          } = form;
     
-    return {
-      company: bookedBy,
-      schedule: DATA[currentBookingIndex],
-      booking: bookingRequest,
+    const pdfInfo = {
+      company: bookedBy, 
+      schedule,
+      booking: bookingRequest.form,
       bookingNo: bookingNo.value,
-      etd: etd.value,
-      eta: eta.value,
-      terminalDate: terminal.value, 
-      docDate: doc.value, 
-      vgmDate: vgm.value,
-      pickupLine1: pickupLocationStreet.value,
-      pickupLine2: pickupLocationCity.value,
-      pickupLine3: pickupLocationCountry.value,
-      returnLine1: returnLocationStreet.value,
-      returnLine2: returnLocationCity.value,
-      returnLine3: returnLocationCountry.value,
+      confirmation: {
+        timeReceived: bookingRequest.status === "Received" ? 
+          (bookingRequest.confirmation.timeReceived + 1) : 1,
+        bookingNo: bookingNo.value,
+        etd: etd.value,
+        eta: eta.value,
+        terminaCutoff: terminal.value,
+        docCutoff: doc.value,
+        vgmCutoff: vgm.value,
+        pickUpLocation: {
+          street: pickupLocationStreet.value,
+          city: pickupLocationCity.value,
+          country: pickupLocationCountry.value,
+        },
+        returnLocation: {
+          street: returnLocationStreet.value,
+          city: returnLocationCity.value,
+          country: returnLocationCountry.value,
+        },
+      }
     }
+    setFinalBookingConfirmation(pdfInfo.confirmation);
+    return pdfInfo;
+  }
+
+  const handlePDFOpen = () => {
+    FileUploadService.downloadFile(bookingRequest.confirmation.pdf)
+      .then(res => openPdf(res.data))
+      .catch(e => {
+        console.log(e);
+      });
   }
 
   return (
@@ -121,6 +191,12 @@ const BookingRequest = () => {
               {formatISOString(bookingRequest.form.createdAt)}
             </text>
           </div>
+
+          {bookingRequest.status === "Received" && 
+          <text className="schedule-result-text-link" onClick={handlePDFOpen}>
+            {ordinalSuffixOf(bookingRequest.confirmation.timeReceived)} Booking 
+            Confirmation has been sent.
+          </text>}
 
           <div className="form-container">
             <h2>Schedule</h2>
@@ -145,7 +221,6 @@ const BookingRequest = () => {
             </div>
           </div>
 
-          {!bookingRequest.status === "Received" &&
           <form className="booking-confirmation-container" onSubmit={handlePreview}>
             <h2>Booking Confirmation</h2>
             <div className="confirmation-info-container">
@@ -163,8 +238,15 @@ const BookingRequest = () => {
               <text className={styles.scheduleLabel}>ETA</text>
             </div>
             <div className="confirmation-info-container">
-              <MiniDatePicker name="etd" value={new Date(etdDate)} action={setEtdDate} />
-              <MiniDatePicker name="eta" value={new Date(etaDate)} action={setEtaDate} id="align-right"/>
+              <MiniDatePicker 
+                name="etd" 
+                value={new Date(schedule.startDate) || new Date(etdDate)} 
+                action={setEtdDate} />
+              <MiniDatePicker 
+                name="eta" 
+                value={new Date(schedule.endDate) || new Date(etaDate)} 
+                action={setEtaDate} 
+                id="align-right"/>
             </div>
             <div className="confirmation-info-container">
               <text className={styles.scheduleLabel}>Terminal Cut-off</text>
@@ -187,11 +269,12 @@ const BookingRequest = () => {
 
             <div className="bol-button-form">
               <input id="left-button" type="submit" className="result-button" value="Generate PDF" />
+              {finalBookingConfirmation &&
               <button  className="result-button" onClick={handleUpload}>
                 Send to Customer
-              </button>
+              </button>}
             </div>
-          </form>}
+          </form>
         </div>
       </div>
     </div>

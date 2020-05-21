@@ -4,13 +4,11 @@ import { gql } from 'apollo-boost';
 
 const CREATE_BOOKING_CONFIRMATION = gql`
   mutation createBookingConfirmation(
-    $shipmentId: String!, $bookingConfirmation: BookingConfirmation!
+    $shipmentId: String!, $bookingConfirmation: BookingConfirmationInputType!
   ) {
     createBookingConfirmation(
       shipmentId: $shipmentId, bookingConfirmation: $bookingConfirmation
-    ) {
-      timeReceived
-    }
+    )
   }
 `;
 

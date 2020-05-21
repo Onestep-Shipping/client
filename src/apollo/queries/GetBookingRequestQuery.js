@@ -28,6 +28,9 @@ const GET_BOOKING_REQUEST = gql`
       },
       bookedBy {
         name,
+        address {
+          street, city, country
+        },
         personInCharge {
           name
         },
@@ -41,6 +44,9 @@ const GET_BOOKING_REQUEST = gql`
           },
           paymentTerm, autoFilling, createdAt
         }, 
+        confirmation { 
+          timeReceived , pdf
+        },
         status
       },
     }

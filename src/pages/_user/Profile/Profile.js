@@ -77,7 +77,7 @@ const Profile = () => {
       state: { schedule: shipment.schedule }
     });
     } else if (status === "Received" && shipment.billInstruction.pdf !== null) {
-       FileUploadService.downloadFile(shipment.billInstruction.pdf)
+      FileUploadService.downloadFile(shipment.billInstruction.pdf)
         .then(res => openPdf(res.data))
         .catch(e => {
           console.log(e);
@@ -107,7 +107,7 @@ const Profile = () => {
         startDate: schedule.startDate,
         endDate: schedule.endDate
       },
-      refetchQueries: [`getMyShipments`]
+      refetchQueries: [{ query: GET_ALL_SHIPMENTS }]
     }).then(res => {
       const { findSchedules } = res.data;
       history.push({
@@ -130,7 +130,8 @@ const Profile = () => {
         <div className='booking-profile-row'>
           <div className="col">
             <text id={"text" + ind} className="booking-no-button" onClick={() => toggleToolTip(ind)}>
-              {shipment.bookingRequest.confirmation.bookingNo || "N/A"}
+              {shipment.bookingRequest.status === "In Process" ? 
+              "N/A" : shipment.bookingRequest.confirmation.bookingNo}
             </text>
             <ToolTip 
               tooltipTimeout={0} active={isTooltipActive} 
