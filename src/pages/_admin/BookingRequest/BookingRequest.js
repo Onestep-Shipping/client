@@ -154,7 +154,7 @@ const BookingRequest = () => {
             <span>Contact: {bookedBy.personInCharge.name}</span>
             <span>Email: {bookedBy.email}</span>
             <span>
-              {Utils.formatISOString(bookingRequest.form.createdAt)}
+              {Utils.formatISOString(bookingRequest.form.updatedAt)}
             </span>
           </div>
 

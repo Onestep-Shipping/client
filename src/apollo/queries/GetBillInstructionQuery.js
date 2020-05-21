@@ -44,7 +44,7 @@ const GET_BILL_INSTRUCTION = gql`
           hsCode,
           caedNo,
           cargoValue,
-          createdAt
+          updatedAt
         },
         pdf,
         status
