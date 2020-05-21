@@ -34,7 +34,7 @@ const BolForm = (props) => {
     textAreaValues = [form.shipper, form.consignee, form.notify, form.description];
     inputValues = [form.orderNo, form.hsCode, form.caedNo, form.cargoValue];
     containerValues = [];
-    form.containers.map(container => function() {
+    form.containers.map(container => {
       const { containerNo, seelNo, weight, measurement, vgm } = container;
       containerValues.push([containerNo, seelNo, weight, measurement, vgm]);
     })

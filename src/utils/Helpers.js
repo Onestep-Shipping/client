@@ -1,3 +1,4 @@
+import FileUploadService from '../services/FileUploadService.js';
 import moment from 'moment';
 
 const comma = x => {
@@ -59,6 +60,14 @@ const findValue = (list, label) => {
   return list.filter(item => item.label === label)[0].value;
 }
 
+const handlePDFOpen = pdf => {
+  FileUploadService.downloadFile(pdf)
+    .then(res => openPdf(res.data))
+    .catch(e => {
+      console.log(e);
+    });
+}
+
 
 export default { 
   comma,
@@ -69,5 +78,6 @@ export default {
   openPdf,
   formatValidity,
   getValuesOfNodeList,
-  findValue
+  findValue,
+  handlePDFOpen
 };

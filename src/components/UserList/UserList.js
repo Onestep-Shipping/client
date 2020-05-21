@@ -12,8 +12,10 @@ const UserList = props => {
   return (
     <ul className={type + "-instruction-list"}> 
       {opt.map((shipment, i) => {
-        const { status, form } = type === "booking" ? 
+        console.log(shipment.billInstruction);
+        const { status, form, pdf } = type === "booking" ? 
           shipment.bookingRequest : shipment.billInstruction;
+        const condition = status === "Received" || pdf !== null;
         
         return (
         <li id={(i === currentIndex ? 'selected-item' : '')}
@@ -27,11 +29,11 @@ const UserList = props => {
               type="checkbox" id="checkbox-1-1" 
               className="regular-checkbox" 
               disabled={true}
-              checked={status === "Received"} 
+              checked={condition} 
             />
             <label htmlFor="checkbox-1-1"></label>
           </div>
-          <img id={"profile" + (status === "Received" ? "-completed" : "-pending")}
+          <img id={"profile" + (condition ? "-completed" : "-pending")}
             className="profile-image" 
             src={profileImg} alt="" />
           <div className="item-header-container">

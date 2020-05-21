@@ -130,14 +130,6 @@ const BookingRequest = () => {
     return pdfInfo;
   }
 
-  const handlePDFOpen = () => {
-    FileUploadService.downloadFile(bookingRequest.confirmation.pdf)
-      .then(res => Utils.openPdf(res.data))
-      .catch(e => {
-        console.log(e);
-      });
-  }
-
   return (
     <div className="homepage-container">
       <Header />
@@ -159,7 +151,9 @@ const BookingRequest = () => {
           </div>
 
           {bookingRequest.status === "Received" && 
-          <text className="schedule-result-text-link" onClick={handlePDFOpen}>
+          <text 
+            className="schedule-result-text-link" 
+            onClick={() => Utils.handlePDFOpen(bookingRequest.confirmation.pdf)}>
             {Utils.ordinalSuffixOf(bookingRequest.confirmation.timeReceived)} Booking 
             Confirmation has been sent.
           </text>}

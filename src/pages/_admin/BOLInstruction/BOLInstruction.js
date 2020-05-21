@@ -69,14 +69,6 @@ const BOLInstruction = () => {
     })
   }
 
-  const handlePDFOpen = () => {
-    FileUploadService.downloadFile(billInstruction.pdf)
-      .then(res => Utils.openPdf(res.data))
-      .catch(e => {
-        console.log(e);
-      });
-  }
-
   return (
     <div className="homepage-container">
       <Header />
@@ -97,7 +89,9 @@ const BOLInstruction = () => {
           </div>
 
           {billInstruction.status === "Received" && 
-          <text className="schedule-result-text-link" onClick={handlePDFOpen}>
+          <text 
+            className="schedule-result-text-link" 
+            onClick={() => Utils.handlePDFOpen(billInstruction.pdf)}>
             BOL has been sent.
           </text>}
 
