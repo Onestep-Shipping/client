@@ -22,8 +22,10 @@ const NumberInput = props => {
         type="number" name="price" className="usd-input" 
         onChange={e => onChange(e, ind)} required />
       <input 
-        type="text" name="total" className="usd-input" 
-        disabled={true} value={Utils.comma(fees[ind])}
+        type="text" name="total" 
+        className="usd-input" 
+        disabled={true} 
+        value={parseFloat(fees[ind]) ? Utils.comma(fees[ind]) : 0}
       />
     </div>
   );

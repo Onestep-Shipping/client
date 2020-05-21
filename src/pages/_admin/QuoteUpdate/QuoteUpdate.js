@@ -39,7 +39,7 @@ const QuoteUpdate = () => {
       const { getQuoteHistory } = res.data;
       setHistory(getQuoteHistory);
       setIsOverLapped(false);
-      getQuoteHistory.map(quote => function() {
+      getQuoteHistory.map(quote => {
         if (isDateRangeOverlapped(quote.validity)) { 
           setIsOverLapped(true); 
         }
@@ -91,7 +91,7 @@ const QuoteUpdate = () => {
     const buyingOceanFreights = [];
     const sellingOceanFreights = [];
 
-    CONTAINER_TYPES.map((type, ind) => function() {
+    CONTAINER_TYPES.map((type, ind) => {
       buyingOceanFreights.push({ 
         containerType: type, price: parseFloat(buyingOceanFreightPrices[ind]) 
       });
