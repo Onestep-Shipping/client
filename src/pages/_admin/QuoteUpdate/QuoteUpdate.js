@@ -8,8 +8,8 @@ import arrowDownIcon from '../../../assets/arrow-down.svg';
 import { QuoteForm, QuoteRow } from './Helpers';
 import moment from 'moment';
 import { Textarea } from '../../../components/ServiceForm/Helpers.js';
-import GET_QUOTE_HISTORY from '../../../apollo/queries/GetQuoteHistoryQuery.js'
-import ADD_QUOTE from '../../../apollo/mutations/AddQuoteMutation.js'
+import GET_QUOTE_HISTORY from '../../../apollo/queries/GetQuoteHistoryQuery.js';
+import ADD_QUOTE from '../../../apollo/mutations/AddQuoteMutation.js';
 import client from '../../../apollo/index.js';
 import { ScheduleFormContext } from "../../../context/ScheduleFormContext.js";
 import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
@@ -35,20 +35,22 @@ const getValuesOfNodeList = potentialList => {
 const QuoteUpdate = () => {
   const [history, setHistory] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
-  const [currentIndex, setIndex] = useState(0);
+  const [currentIndex, setIndex] = useState(-1);
   const [isOverlapped, setIsOverLapped] = useState(false);
 
   const { schedule } = useContext(ScheduleFormContext);
 
+  const scheduleVariables = { 
+    routeId: schedule.fromLocation.value + "-" + schedule.toLocation.value,
+    carrier: schedule.carrier,
+    startDate: convertDateToISO(schedule.fromDate),
+    endDate: convertDateToISO(schedule.toDate)
+  }
+
   const handleFindQuoteHistory = () => {
     client.query({
       query: GET_QUOTE_HISTORY,
-      variables: { 
-        routeId: schedule.fromLocation.value + "-" + schedule.toLocation.value,
-        carrier: schedule.carrier,
-        startDate: convertDateToISO(schedule.fromDate),
-        endDate: convertDateToISO(schedule.toDate)
-      }
+      variables: scheduleVariables
     }).then(res => {
       const { getQuoteHistory } = res.data;
       setHistory(getQuoteHistory);
@@ -81,12 +83,7 @@ const QuoteUpdate = () => {
       awaitRefetchQueries: true,
       refetchQueries: [{
         query: GET_QUOTE_HISTORY,
-        variables: { 
-          routeId: schedule.fromLocation.value + "-" + schedule.toLocation.value,
-          carrier: schedule.carrier,
-          startDate: convertDateToISO(schedule.fromDate),
-          endDate: convertDateToISO(schedule.toDate)
-        },
+        variables: scheduleVariables,
       }],
     }).then(res => {
       const { addQuoteToSchedules } = res.data;

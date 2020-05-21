@@ -9,7 +9,7 @@ const UserList = props => {
 
   return (
     <ul className={type + "-instruction-list"}> 
-      {opt.map((item, i) => (
+      {opt.map((shipment, i) => (
         <li id={(i === currentIndex ? 'selected-item' : '')}
             className="bol-instruction-item"
             onClick={() => {
@@ -21,19 +21,19 @@ const UserList = props => {
               type="checkbox" id="checkbox-1-1" 
               className="regular-checkbox" 
               disabled={true}
-              checked={item.isCompleted} 
+              checked={shipment.bookingRequest.status === "Received"} 
             />
             <label htmlFor="checkbox-1-1"></label>
           </div>
-          <img id={"profile" + (item.isCompleted ? "-completed" : "-pending")}
+          <img id={"profile" + (shipment.bookingRequest.status === "Received" ? "-completed" : "-pending")}
             className="profile-image" 
             src={profileImg} alt="" />
           <div className="item-header-container">
             <text className="booking-id-text">
-              {type === "booking" ? item.company.name : ("Booking #" + item.id)}
+              {type === "booking" ? shipment.bookedBy.name : ("Booking #" + shipment._id)}
             </text>
             <text className="customer-email-text">
-              From: {type === "booking" ? item.personInCharge : item.email}
+              From: {shipment.bookedBy.personInCharge.name}
             </text>
           </div>
           <text>Fri</text>

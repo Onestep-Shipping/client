@@ -5,14 +5,24 @@ import Header from '../../../components/Header/Header.js';
 import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js';
 import UserList from '../../../components/UserList/UserList.js';
 import styles from '../../../components/ScheduleForm/ScheduleFormMin.module.css';
-import BOOKING_REQ from '../../../data/BookingRequestData.js';
 import DATA from '../../../data/ScheduleDetailsData.js';
 import { InfoRow, ContainerDetail, Address, MiniDatePicker, MiniDatePickerTime } from '../Helpers.js';
 import PdfGenerator from './PdfGenerator.js';
 import FileUploadService from '../../../services/FileUploadService.js';
+import GET_BOOKING_REQUEST from '../../../apollo/queries/GetBookingRequestQuery.js';
+import { useQuery } from '@apollo/react-hooks';
+import moment from 'moment';
+
+const formatISOString = iso => {
+  return moment(iso).utc().format('MM/DD/YYYY');
+}
 
 const BookingRequest = () => {
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);
+
+  const { loading, error, data } = useQuery(GET_BOOKING_REQUEST, {
+    fetchPolicy: 'cache-and-network'
+  });
 
   const today = new Date();
   const myToday = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0);
@@ -55,6 +65,17 @@ const BookingRequest = () => {
       });
   }
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  const shipments = data.getAllShipments;
+
+  const  { bookingRequest, schedule, bookedBy } = shipments[currentBookingIndex];
+
+  const quote = schedule.route.quoteHistory
+    .filter(quote => Date.parse(quote.validity.startDate) <=  Date.parse(schedule.startDate))
+    .slice(0, 1)[0];
+
   const createInfoObject = e => {
     const { bookingNo, 
             etd, eta, terminal, doc, vgm,
@@ -63,9 +84,9 @@ const BookingRequest = () => {
           } = e.target;
     
     return {
-      company: BOOKING_REQ[currentBookingIndex].company,
+      company: bookedBy,
       schedule: DATA[currentBookingIndex],
-      booking: BOOKING_REQ[currentBookingIndex].booking,
+      booking: bookingRequest,
       bookingNo: bookingNo.value,
       etd: etd.value,
       eta: eta.value,
@@ -87,39 +108,44 @@ const BookingRequest = () => {
       <div className="bol-instruction-container">
         <UserList  
           setInd={handleIndexChange}
-          opt={BOOKING_REQ} type="booking"
+          opt={shipments} type="booking"
         />
         <div className="booking-instruction-detail"> 
           <div className="booking-id-container">
             <h1>Booking Request</h1>
           </div>
           <div className="customer-info-container">
-            <text>Contact: {BOOKING_REQ[currentBookingIndex].personInCharge}</text>
-            <text>Email: {BOOKING_REQ[currentBookingIndex].email}</text>
-            <text>{BOOKING_REQ[currentBookingIndex].dateSent}</text>
+            <text>Contact: {bookedBy.personInCharge.name}</text>
+            <text>Email: {bookedBy.email}</text>
+            <text>
+              {formatISOString(bookingRequest.form.createdAt)}
+            </text>
           </div>
 
           <div className="form-container">
             <h2>Schedule</h2>
-            <BookingDisplay id={'' + currentBookingIndex} fields={8}/>
+            <BookingDisplay  schedule={schedule} quote={quote} fields={8} />
           </div>
 
           <div className="form-container">
             <div className="booking-details-container">
-              <InfoRow label="Commodity" value={BOOKING_REQ[currentBookingIndex].booking.commodity} />
-              <InfoRow label="HS Code" value={BOOKING_REQ[currentBookingIndex].booking.hsCode} />
+              <InfoRow label="Commodity" value={bookingRequest.form.commodity} />
+              <InfoRow label="HS Code" value={bookingRequest.form.hsCode} />
               <InfoRow label="Shipment Detail" value="" />
               <div className="shipment-detail-row">
-                {BOOKING_REQ[currentBookingIndex].booking.container.map((row, ind) => (
+                {bookingRequest.form.containers.map((row, ind) => (
                  <ContainerDetail key={ind} container={row} ind={ind} />
                 ))}
               </div>
-              <InfoRow label="Payment Term" value={BOOKING_REQ[currentBookingIndex].booking.payment} />
-              <InfoRow label="CAED/AES filling by OneStep" value={BOOKING_REQ[currentBookingIndex].booking.autoFilling} />
+              <InfoRow label="Payment Term" value={bookingRequest.form.paymentTerm} />
+              <InfoRow 
+                label="CAED/AES filling by OneStep" 
+                value={bookingRequest.form.autoFilling ? "Yes" : "No"} 
+              />
             </div>
           </div>
 
-          {!BOOKING_REQ[currentBookingIndex].isCompleted &&
+          {!bookingRequest.status === "Received" &&
           <form className="booking-confirmation-container" onSubmit={handlePreview}>
             <h2>Booking Confirmation</h2>
             <div className="confirmation-info-container">
