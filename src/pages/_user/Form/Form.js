@@ -1,13 +1,14 @@
-import React, {useCallback} from 'react';
 import './Form.css';
-import { handleBookingRequest, handleBillInstruction } from './FormUtils.js';
-import PropTypes from 'prop-types';
 
-import {useParams, useHistory} from 'react-router-dom';
-import Header from '../../../components/Header/Header.js';
+import React, {useCallback} from 'react';
+import { handleBillInstruction, handleBookingRequest } from './FormUtils.js';
+import {useHistory, useParams} from 'react-router-dom';
+
+import BolForm from '../../../components/ServiceForm/BolForm.js';
 import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js';
 import BookingForm from '../../../components/ServiceForm/BookingForm.js';
-import BolForm from '../../../components/ServiceForm/BolForm.js';
+import Header from '../../../components/Header/Header.js';
+import PropTypes from 'prop-types';
 import client from '../../../apollo/index.js';
 
 const Form = (props) => {
@@ -31,7 +32,7 @@ const Form = (props) => {
           history.push('/success/' + type + '/' + id);
         }  
       })
-  }, [history, id, type]);
+  }, [history, id, type, schedule._id, quote._id]);
 
   const formBool = type === 'booking';
   const fieldNumber = formBool ? 8 : 3;

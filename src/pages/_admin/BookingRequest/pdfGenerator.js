@@ -1,3 +1,4 @@
+import Utils from '../../../utils/Helpers.js';
 import jsPDF from 'jspdf';
 import moment from 'moment';
 
@@ -11,7 +12,7 @@ const centeredText = (text, y) => {
 
 const preview = info => {
   doc.setProperties({
-    title: 'Booking Confirmation #' + info.bookingNo,
+    title: 'Booking Confirmation #' + info.confirmation.bookingNo,
     subject: 'Info about PDF',
     author: 'Scarlet Nguyen',
     keywords: 'generated, javascript, web 2.0, ajax',
@@ -26,14 +27,18 @@ const preview = info => {
   doc.setFont('courier');
   doc.setFontSize(20);
   doc.setFontType('bold');
-  centeredText('Booking Confirmation', 100);
+  centeredText(
+    Utils.ordinalSuffixOf(info.confirmation.timeReceived) + 
+    ' Booking Confirmation', 
+    100
+  );
 
   doc.setFontSize(12);
   doc.setFontType('normal');
   doc.text(50, 140, "TO: " + info.company.name);
-  doc.text(50, 158, "    " + info.company.address.line1);
-  doc.text(50, 173, "    " + info.company.address.line2);
-  doc.text(50, 188, "    " + info.company.address.line3);
+  doc.text(50, 158, "    " + info.company.address.street);
+  doc.text(50, 173, "    " + info.company.address.city);
+  doc.text(50, 188, "    " + info.company.address.country);
 
   doc.setFontSize(10);
   doc.text(310, 130, "Our Reference No.:                1234567");
@@ -45,33 +50,33 @@ const preview = info => {
   doc.line(50, 200, 560, 200);
 
   doc.setFontSize(11);
-  doc.text(80, 230, "From: " + info.schedule.startLocation);
-  doc.text(350, 230, "To: " + info.schedule.endLocation);
+  doc.text(80, 230, "From: " + info.schedule.route.startLocation);
+  doc.text(350, 230, "To: " + info.schedule.route.endLocation);
 
-  doc.text(80, 250, "ETD: " + info.etd);
-  doc.text(350, 250, "ETA: " + info.eta);
+  doc.text(80, 250, "ETD: " + info.confirmation.etd);
+  doc.text(350, 250, "ETA: " + info.confirmation.eta);
 
   doc.text(80, 290, "Commodity: " + info.booking.commodity);
 
   doc.text(350, 290, "Q'ty");
   doc.text(420, 290, "Container Type");
 
-  info.booking.container.map((row, i) => {
+  info.booking.containers.map((row, i) => function() {
     doc.text(350, 307 + (i * 17), "" + row.quantity);
     doc.text(420, 307 + (i * 17), row.containerType);
   })
 
   doc.setFontSize(12);
   doc.setFontType('bold');
-  doc.text(80, 330, "Booking No.: " + info.bookingNo);
+  doc.text(80, 330, "Booking No.: " + info.confirmation.bookingNo);
 
   doc.setFontSize(11);
   doc.setFontType('normal');
-  doc.text(80, 360, "Carrier Name: Hapag-Lloyd");
+  doc.text(80, 360, "Carrier: " + info.schedule.route.carrier);
 
-  doc.text(80, 400, "Terminal Cut-off: " + info.terminalDate);
-  doc.text(80, 420, "Document Cut-off: " + info.docDate);
-  doc.text(80, 440, "VGM Cut-off     : " + info.vgmDate);
+  doc.text(80, 400, "Terminal Cut-off: " + info.confirmation.terminaCutoff);
+  doc.text(80, 420, "Document Cut-off: " + info.confirmation.docCutoff);
+  doc.text(80, 440, "VGM Cut-off     : " + info.confirmation.vgmCutoff);
 
   doc.setFontSize(12);
   doc.setFontType('bold');
@@ -80,14 +85,14 @@ const preview = info => {
 
   doc.setFontType('normal');
   doc.setFontSize(10);
-  doc.text(80, 500, info.pickupLine1);
-  doc.text(350, 500, info.returnLine1);
+  doc.text(80, 500, info.confirmation.pickUpLocation.street);
+  doc.text(350, 500, info.confirmation.returnLocation.street);
 
-  doc.text(80, 515, info.pickupLine2);
-  doc.text(350, 515, info.returnLine2);
+  doc.text(80, 515, info.confirmation.pickUpLocation.city);
+  doc.text(350, 515, info.confirmation.returnLocation.city);
 
-  doc.text(80, 530, info.pickupLine3);
-  doc.text(350, 530, info.returnLine3);
+  doc.text(80, 530, info.confirmation.pickUpLocation.country);
+  doc.text(350, 530, info.confirmation.returnLocation.country);
 
   doc.line(50, 560, 560, 560);
 

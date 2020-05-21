@@ -1,8 +1,8 @@
-import React from 'react';
-import Modal from 'react-modal';
 import LoginForm from '../AuthForm/LoginForm.js';
-import RegisterForm from '../AuthForm/RegisterForm.js';
+import Modal from 'react-modal';
 import PropTypes from 'prop-types';
+import React from 'react';
+import RegisterForm from '../AuthForm/RegisterForm.js';
 
 const customStyles = {
   content : {

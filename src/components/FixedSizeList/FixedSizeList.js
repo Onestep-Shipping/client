@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
 import './FixedSizeList.css';
+
+import React, {useState} from 'react';
+
 import PropTypes from 'prop-types';
 
 const LIST_SIZE = 5;

@@ -1,19 +1,17 @@
-import React, { useCallback, useState, useContext } from 'react';
 import './Schedule.css';
-import PropTypes from 'prop-types';
 
-import Header from '../../components/Header/Header.js';
-import ScheduleForm from '../../components/ScheduleForm/ScheduleForm.js';
-import ScheduleResultList from '../../components/ScheduleResultList/ScheduleResultList.js';
-import {useHistory} from 'react-router-dom';
-import styles from '../../components/ScheduleForm/ScheduleFormMin.module.css';
-import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
+import React, { useCallback, useContext, useState } from 'react';
+
 import FIND_SCHEDULES from '../../apollo/queries/FindScheduleQuery.js';
+import Header from '../../components/Header/Header.js';
+import PropTypes from 'prop-types';
+import ScheduleForm from '../../components/ScheduleForm/ScheduleForm.js';
+import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
+import ScheduleResultList from '../../components/ScheduleResultList/ScheduleResultList.js';
+import Utils from '../../utils/Helpers.js';
 import client from '../../apollo/index.js';
-
-const convertDateToISO = date => {
-    return date.toISOString().substring(0, 10);
-  }
+import styles from '../../components/ScheduleForm/ScheduleFormMin.module.css';
+import {useHistory} from 'react-router-dom';
 
 const Schedule = props => {
   const history = useHistory();
@@ -34,14 +32,14 @@ const Schedule = props => {
       variables: { 
         routeId: schedule.fromLocation.value + "-" + schedule.toLocation.value,
         carrier: schedule.carrier,
-        startDate: convertDateToISO(schedule.fromDate),
-        endDate: convertDateToISO(schedule.toDate)
+        startDate: Utils.convertDateToISO(schedule.fromDate),
+        endDate: Utils.convertDateToISO(schedule.toDate)
       }
     }).then(res => {
       const { findSchedules } = res.data;
       setScheduleList(findSchedules);
     })
-  }, [history, schedule]);
+  }, [schedule]);
 
   return (
     <div className="homepage-container">

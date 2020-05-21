@@ -1,8 +1,9 @@
 import { gql } from 'apollo-boost';
 
 const GET_BOOKING_REQUEST = gql`
-  query getBookingRequest($sortBy: String!) {
+  query {
     getAllShipments(sortBy: "bookingRequest") {
+      _id,
       schedule {
         route {
           startLocation, endLocation, carrier, 
@@ -27,6 +28,9 @@ const GET_BOOKING_REQUEST = gql`
       },
       bookedBy {
         name,
+        address {
+          street, city, country
+        },
         personInCharge {
           name
         },
@@ -40,6 +44,9 @@ const GET_BOOKING_REQUEST = gql`
           },
           paymentTerm, autoFilling, createdAt
         }, 
+        confirmation { 
+          timeReceived , pdf
+        },
         status
       },
     }

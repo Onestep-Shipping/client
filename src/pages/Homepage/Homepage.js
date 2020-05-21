@@ -1,16 +1,15 @@
-import React, { useCallback, useContext } from 'react';
 import './Homepage.css';
-import {useHistory} from 'react-router-dom';
+
+import React, { useCallback, useContext } from 'react';
+
+import FIND_SCHEDULES from '../../apollo/queries/FindScheduleQuery.js';
 import Header from '../../components/Header/Header.js';
 import ScheduleForm from '../../components/ScheduleForm/ScheduleForm.js';
-import styles from '../../components/ScheduleForm/ScheduleForm.module.css';
 import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
-import FIND_SCHEDULES from '../../apollo/queries/FindScheduleQuery.js';
+import Utils from '../../utils/Helpers.js';
 import client from '../../apollo/index.js';
-
-const convertDateToISO = date => {
-    return date.toISOString().substring(0, 10);
-  }
+import styles from '../../components/ScheduleForm/ScheduleForm.module.css';
+import {useHistory} from 'react-router-dom';
 
 const Homepage = () => {
   const history = useHistory();
@@ -23,8 +22,8 @@ const Homepage = () => {
       variables: { 
         routeId: schedule.fromLocation.value + "-" + schedule.toLocation.value,
         carrier: schedule.carrier,
-        startDate: convertDateToISO(schedule.fromDate),
-        endDate: convertDateToISO(schedule.toDate)
+        startDate: Utils.convertDateToISO(schedule.fromDate),
+        endDate: Utils.convertDateToISO(schedule.toDate)
       }
     }).then(res => {
       const { findSchedules } = res.data;

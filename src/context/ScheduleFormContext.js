@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import DATA from '../data/ScheduleFormData.js'; 
+
+import DATA from '../data/ScheduleFormData.js';
 import PropTypes from 'prop-types';
 
 export const ScheduleFormContext = React.createContext();

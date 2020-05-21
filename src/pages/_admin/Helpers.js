@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
-import styles from '../../components/ScheduleForm/ScheduleFormMin.module.css';
+import PropTypes from 'prop-types';
+import React from 'react';
 import moment from 'moment';
+import styles from '../../components/ScheduleForm/ScheduleFormMin.module.css';
 
 const InfoRow = props => {
   const { label, value } = props;
@@ -163,6 +163,7 @@ MiniDatePicker.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
   action: PropTypes.func,
+  id: PropTypes.string,
 };
 
 ShipmentDetail.propTypes = {

@@ -1,6 +1,7 @@
-import React from 'react';
 import './HeaderText.css';
+
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const HeaderText = (props) => {
   const {value, action} = props;

@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
 import './UserList.css';
+
+import React, { useState } from 'react';
+
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import profileImg from '../../assets/profile-placeholder.png';
 
 const UserList = props => {
@@ -9,7 +12,7 @@ const UserList = props => {
 
   return (
     <ul className={type + "-instruction-list"}> 
-      {opt.map((item, i) => (
+      {opt.map((shipment, i) => (
         <li id={(i === currentIndex ? 'selected-item' : '')}
             className="bol-instruction-item"
             onClick={() => {
@@ -21,22 +24,29 @@ const UserList = props => {
               type="checkbox" id="checkbox-1-1" 
               className="regular-checkbox" 
               disabled={true}
-              checked={item.isCompleted} 
+              checked={shipment.bookingRequest.status === "Received"} 
             />
             <label htmlFor="checkbox-1-1"></label>
           </div>
-          <img id={"profile" + (item.isCompleted ? "-completed" : "-pending")}
+          <img id={"profile" + (shipment.bookingRequest.status === "Received" ? "-completed" : "-pending")}
             className="profile-image" 
             src={profileImg} alt="" />
           <div className="item-header-container">
             <text className="booking-id-text">
-              {type === "booking" ? item.company.name : ("Booking #" + item.id)}
+              {type === "booking" ? shipment.bookedBy.name : ("Booking #" + shipment._id)}
             </text>
             <text className="customer-email-text">
-              From: {type === "booking" ? item.personInCharge : item.email}
+              From: {shipment.bookedBy.personInCharge.name}
             </text>
           </div>
-          <text>Fri</text>
+          <text>
+            {moment(shipment.bookingRequest.form.createdAt).calendar(null, {
+              sameDay : 'HH:mm',
+              lastDay : 'ddd',
+              lastWeek : 'ddd',
+              sameElse : 'ddd'
+            })}
+          </text>
         </li>
         )
       )}

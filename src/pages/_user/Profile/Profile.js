@@ -1,30 +1,18 @@
-import React, {useState, useCallback, useRef, useEffect} from 'react';
-import ToolTip from 'react-portal-tooltip'
 import './Profile.css';
-import { useHistory } from 'react-router-dom';
-import Header from '../../../components/Header/Header.js';
-import FixedSizeList from '../../../components/FixedSizeList/FixedSizeList.js';
-import { useQuery } from '@apollo/react-hooks';
-import GET_ALL_SHIPMENTS from '../../../apollo/queries/GetAllShipments.js';
-import moment from 'moment';
-import FIND_SCHEDULES from '../../../apollo/queries/FindScheduleQuery.js';
-import client from '../../../apollo/index.js';
+
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+
 import DATA from '../../../data/ScheduleFormData.js';
+import FIND_SCHEDULES from '../../../apollo/queries/FindScheduleQuery.js';
 import FileUploadService from '../../../services/FileUploadService.js';
-
-const formatISOString = iso => {
-  return moment(iso).utc().format('MM/DD/YYYY');
-}
-
-const findValue = (list, label) => {
-  return list.filter(item => item.label === label)[0].value;
-}
-
-const openPdf = (data) => {
-  const file = new Blob([data], {type: 'application/pdf'});
-  const fileURL = URL.createObjectURL(file);
-  window.open(fileURL);
-}
+import FixedSizeList from '../../../components/FixedSizeList/FixedSizeList.js';
+import GET_ALL_SHIPMENTS from '../../../apollo/queries/GetAllShipments.js';
+import Header from '../../../components/Header/Header.js';
+import ToolTip from 'react-portal-tooltip'
+import Utils from '../../../utils/Helpers.js';
+import client from '../../../apollo/index.js';
+import { useHistory } from 'react-router-dom';
+import { useQuery } from '@apollo/react-hooks';
 
 const Profile = () => {
   const history = useHistory();
@@ -63,7 +51,7 @@ const Profile = () => {
   const handleBook = useCallback((status, url) => {
     if (status === "Received" && url !== null) {
       FileUploadService.downloadFile(url)
-      .then(res => openPdf(res.data))
+      .then(res => Utils.openPdf(res.data))
       .catch(e => {
         console.log(e);
       });
@@ -77,8 +65,8 @@ const Profile = () => {
       state: { schedule: shipment.schedule }
     });
     } else if (status === "Received" && shipment.billInstruction.pdf !== null) {
-       FileUploadService.downloadFile(shipment.billInstruction.pdf)
-        .then(res => openPdf(res.data))
+      FileUploadService.downloadFile(shipment.billInstruction.pdf)
+        .then(res => Utils.openPdf(res.data))
         .catch(e => {
           console.log(e);
         });
@@ -89,25 +77,25 @@ const Profile = () => {
     const { status, pdf } = invoice;
     if (status === "Ready" && pdf !== null) {
       FileUploadService.downloadFile(pdf)
-        .then(res => openPdf(res.data))
+        .then(res => Utils.openPdf(res.data))
         .catch(e => {
           console.log(e);
         });
     }
   }, []);
-
   
   const onRollClick = useCallback((id, schedule) => {
     client.query({
       query: FIND_SCHEDULES,
       variables: { 
-        routeId: findValue(DATA.FROM_LOCATIONS, schedule.route.startLocation) + 
+        routeId: Utils.findValue(DATA.FROM_LOCATIONS, schedule.route.startLocation) + 
                   "-" + 
-                  findValue(DATA.TO_LOCATIONS, schedule.route.endLocation),
+                  Utils.findValue(DATA.TO_LOCATIONS, schedule.route.endLocation),
         carrier: schedule.route.carrier,
         startDate: schedule.startDate,
         endDate: schedule.endDate
-      }
+      },
+      refetchQueries: [{ query: GET_ALL_SHIPMENTS }]
     }).then(res => {
       const { findSchedules } = res.data;
       history.push({
@@ -115,7 +103,7 @@ const Profile = () => {
         state: { schedule, schedules: findSchedules }
       });
     })
-  }, []);
+  }, [history]);
 
   const onCancelClick = () => {
     const message = 'Are you sure you want to cancel booking request #' + currentBooking + '?';
@@ -130,7 +118,8 @@ const Profile = () => {
         <div className='booking-profile-row'>
           <div className="col">
             <text id={"text" + ind} className="booking-no-button" onClick={() => toggleToolTip(ind)}>
-              {shipment.bookingRequest.confirmation.bookingNo || "N/A"}
+              {shipment.bookingRequest.status === "In Process" ? 
+              "N/A" : shipment.bookingRequest.confirmation.bookingNo}
             </text>
             <ToolTip 
               tooltipTimeout={0} active={isTooltipActive} 
@@ -149,13 +138,13 @@ const Profile = () => {
           <div className="col">
             <text className="schedule-result-text">{shipment.schedule.route.startLocation}</text>
             <text className="schedule-result-text-time">
-              {formatISOString(shipment.schedule.startDate)}
+              {Utils.formatISOString(shipment.schedule.startDate)}
             </text>
           </div>
           <div className="col">
             <text className="schedule-result-text">{shipment.schedule.route.endLocation}</text>
             <text className="schedule-result-text-time">
-              {formatISOString(shipment.schedule.endDate)}
+              {Utils.formatISOString(shipment.schedule.endDate)}
             </text>
           </div>
           <div 
