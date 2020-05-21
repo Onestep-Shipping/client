@@ -5,22 +5,38 @@ import { comma } from '../../../utils/Helpers.js';
 
 const QuoteForm = props => {
   const { header } = props; 
+  const lcHeader = header.toLowerCase();
   return (
     <div className="buying-container">
       <h2>{header}</h2>
       {CONTAINER_TYPES.map((container, ind) =>
         <div className="invoice-row" key={ind}>
           <text className="info-label">O.F. - {container}</text>
-          <input type="number" name="oceanFreight" className="usd-input" required />
+          <input 
+            type="number" 
+            name={lcHeader + "OceanFreight"} 
+            className="usd-input" 
+            required 
+          />
         </div>
       )}
       <div className="invoice-row">
         <text className="info-label">Document Fee</text>
-        <input type="number" name="docFee" className="usd-input" required />
+        <input 
+          type="number" 
+          name={lcHeader + "DocFee"} 
+          className="usd-input" 
+          required 
+        />
       </div>
       <div className="invoice-row">
         <text className="info-label">Administration Fee</text>
-        <input type="number" name="adminFee" className="usd-input" required />
+        <input 
+          type="number" 
+          name={lcHeader + "AdminFee"} 
+          className="usd-input" 
+          required 
+        />
       </div>
     </div>
   )

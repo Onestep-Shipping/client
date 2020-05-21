@@ -95,7 +95,6 @@ const Profile = () => {
         });
     }
   }, []);
-
   
   const onRollClick = useCallback((id, schedule) => {
     client.query({
@@ -107,7 +106,8 @@ const Profile = () => {
         carrier: schedule.route.carrier,
         startDate: schedule.startDate,
         endDate: schedule.endDate
-      }
+      },
+      refetchQueries: [`getMyShipments`]
     }).then(res => {
       const { findSchedules } = res.data;
       history.push({

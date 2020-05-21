@@ -7,9 +7,10 @@ import styles from '../../components/ScheduleForm/ScheduleForm.module.css';
 import { ScheduleFormContext } from "../../context/ScheduleFormContext.js";
 import FIND_SCHEDULES from '../../apollo/queries/FindScheduleQuery.js';
 import client from '../../apollo/index.js';
+import moment from 'moment';
 
 const convertDateToISO = date => {
-  return date.toISOString().substring(0, 10);
+  return moment(date).format("YYYY-MM-DD");
 }
 
 const Homepage = () => {
