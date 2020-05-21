@@ -25,7 +25,7 @@ const GET_ALL_SHIPMENTS = gql`
       invoice {
         status, pdf
       },
-      createdAt,
+      updatedAt,
     }
   }
 `;

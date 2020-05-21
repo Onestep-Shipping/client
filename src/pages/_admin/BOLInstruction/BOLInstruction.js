@@ -92,7 +92,7 @@ const BOLInstruction = () => {
             <text>Contact: {bookedBy.personInCharge.name}</text>
             <text>Email: {bookedBy.email}</text>
             <text>
-              {Utils.formatISOString(billInstruction.form.createdAt)}
+              {Utils.formatISOString(billInstruction.form.updatedAt)}
             </text>
           </div>
 

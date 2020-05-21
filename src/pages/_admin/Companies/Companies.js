@@ -62,7 +62,7 @@ const Companies = () => {
   const fileredList = () => {
     const list = data.getAllCompanies || [];
     return list.filter(company => 
-      filterDateCreated(new Date(company.createdAt)) &&
+      filterDateCreated(new Date(company.updatedAt)) &&
       (country === 0 ? true : company.address.country === COUNTRIES[country]) &&
       filterOrders(company.shipments.length)
     );

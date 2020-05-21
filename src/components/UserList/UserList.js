@@ -41,7 +41,7 @@ const UserList = props => {
             </text>
           </div>
           <text>
-            {moment(form.createdAt).calendar(null, {
+            {moment(form.updatedAt).calendar(null, {
               sameDay : 'HH:mm',
               lastDay : 'ddd',
               lastWeek : 'ddd',
