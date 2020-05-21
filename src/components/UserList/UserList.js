@@ -9,10 +9,13 @@ import profileImg from '../../assets/profile-placeholder.png';
 const UserList = props => {
   const [currentIndex, setIndex] = useState(0);
   const { setInd, opt, type } = props;
-
   return (
     <ul className={type + "-instruction-list"}> 
-      {opt.map((shipment, i) => (
+      {opt.map((shipment, i) => {
+        const { status, form } = type === "booking" ? 
+          shipment.bookingRequest : shipment.billInstruction;
+        
+        return (
         <li id={(i === currentIndex ? 'selected-item' : '')}
             className="bol-instruction-item"
             onClick={() => {
@@ -24,31 +27,29 @@ const UserList = props => {
               type="checkbox" id="checkbox-1-1" 
               className="regular-checkbox" 
               disabled={true}
-              checked={shipment.bookingRequest.status === "Received"} 
+              checked={status === "Received"} 
             />
             <label htmlFor="checkbox-1-1"></label>
           </div>
-          <img id={"profile" + (shipment.bookingRequest.status === "Received" ? "-completed" : "-pending")}
+          <img id={"profile" + (status === "Received" ? "-completed" : "-pending")}
             className="profile-image" 
             src={profileImg} alt="" />
           <div className="item-header-container">
-            <text className="booking-id-text">
-              {type === "booking" ? shipment.bookedBy.name : ("Booking #" + shipment._id)}
-            </text>
+            <text className="booking-id-text">{shipment.bookedBy.name}</text>
             <text className="customer-email-text">
               From: {shipment.bookedBy.personInCharge.name}
             </text>
           </div>
           <text>
-            {moment(shipment.bookingRequest.form.createdAt).calendar(null, {
+            {moment(form.createdAt).calendar(null, {
               sameDay : 'HH:mm',
               lastDay : 'ddd',
               lastWeek : 'ddd',
               sameElse : 'ddd'
             })}
           </text>
-        </li>
-        )
+        </li>)
+      }
       )}
     </ul>
   );

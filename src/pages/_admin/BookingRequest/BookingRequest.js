@@ -8,7 +8,7 @@ import CREATE_BOOKING_CONFIRMATION from '../../../apollo/mutations/CreateBooking
 import FileUploadService from '../../../services/FileUploadService.js';
 import GET_BOOKING_REQUEST from '../../../apollo/queries/GetBookingRequestQuery.js';
 import Header from '../../../components/Header/Header.js';
-import PdfGenerator from './PdfGenerator.js';
+import PdfGenerator from './pdfGenerator.js';
 import UserList from '../../../components/UserList/UserList.js';
 import Utils from '../../../utils/Helpers.js';
 import client from '../../../apollo/index.js';
@@ -48,9 +48,7 @@ const BookingRequest = () => {
   if (error) return <p>Error :(</p>;
 
   const shipments = data.getAllShipments;
-
   const  { bookingRequest, schedule, bookedBy } = shipments[currentBookingIndex];
-
   const quote = schedule.route.quoteHistory
     .filter(quote => Date.parse(quote.validity.startDate) <=  Date.parse(schedule.startDate))
     .slice(0, 1)[0];
@@ -168,7 +166,7 @@ const BookingRequest = () => {
 
           <div className="form-container">
             <h2>Schedule</h2>
-            <BookingDisplay  schedule={schedule} quote={quote} fields={8} />
+            <BookingDisplay schedule={schedule} quote={quote} fields={8} />
           </div>
 
           <div className="form-container">
