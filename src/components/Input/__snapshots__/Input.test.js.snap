@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input should render the Input Component correctly 1`] = `
+<div
+  className="input-group"
+>
+  <label
+    className="login-label"
+    htmlFor="userEmail"
+  >
+    User Email
+  </label>
+  <input
+    className="login-input "
+    name="userEmail"
+    placeholder="User Email"
+    required={true}
+    type="email"
+  />
+</div>
+`;

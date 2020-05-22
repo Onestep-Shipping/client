@@ -4,6 +4,12 @@ const comma = x => {
   return Number(x).toLocaleString()
 }
 
+const camelize = str => {
+  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
+    return index === 0 ? word.toLowerCase() : word.toUpperCase();
+  }).replace(/\s+|\/|\./g, '');
+}
+
 const ordinalSuffixOf = i => {
     var j = i % 10,
         k = i % 100;
@@ -69,5 +75,6 @@ export default {
   openPdf,
   formatValidity,
   getValuesOfNodeList,
-  findValue
+  findValue,
+  camelize
 };
