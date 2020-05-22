@@ -8,7 +8,7 @@ import CREATE_BOOKING_CONFIRMATION from '../../../apollo/mutations/CreateBooking
 import FileUploadService from '../../../services/FileUploadService.js';
 import GET_BOOKING_REQUEST from '../../../apollo/queries/GetBookingRequestQuery.js';
 import Header from '../../../components/Header/Header.js';
-import PdfGenerator from './PdfGenerator.js';
+import PdfGenerator from './pdfGenerator.js';
 import UserList from '../../../components/UserList/UserList.js';
 import Utils from '../../../utils/Helpers.js';
 import client from '../../../apollo/index.js';

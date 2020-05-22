@@ -10,7 +10,7 @@ import FileUploadService from '../../../services/FileUploadService.js';
 import Header from '../../../components/Header/Header.js';
 import INVOICE from '../../../data/InvoiceData.js';
 import { InfoRow } from '../Helpers.js';
-import PdfGenerator from './PdfGenerator.js';
+import PdfGenerator from './pdfGenerator.js';
 import QUOTE_DATA from '../../../data/QuoteUpdateData';
 import { QuoteRow } from '../QuoteUpdate/Helpers';
 import UserList from '../../../components/UserList/UserList.js';
