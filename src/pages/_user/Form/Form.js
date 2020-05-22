@@ -32,7 +32,7 @@ const Form = (props) => {
           history.push('/success/' + type + '/' + id);
         }  
       })
-  }, [history, id, type, schedule._id, quote._id]);
+  }, [history, id, type]);
 
   const formBool = type === 'booking';
   const fieldNumber = formBool ? 8 : 3;
