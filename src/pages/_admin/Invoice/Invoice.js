@@ -117,8 +117,8 @@ const Invoice = () => {
             <h1>Invoice</h1>
           </div>
           <div className="customer-info-container">
-            <text>Company: {INVOICE[currentIndex].company.name}</text>
-            <text>Email: {INVOICE[currentIndex].email}</text>
+            <span>Company: {INVOICE[currentIndex].company.name}</span>
+            <span>Email: {INVOICE[currentIndex].email}</span>
           </div>
 
           <div className="form-container">
@@ -139,28 +139,28 @@ const Invoice = () => {
           <form className="invoice-form-container" onSubmit={handlePreview}>
             <h2>Invoice</h2>
             <div className="invoice-row">
-                <text className="info-label-special">Description</text>
-                <text className="info-label-special">Quantity</text>
-                <text className="info-label-special">Container</text>
+                <span className="info-label-special">Description</span>
+                <span className="info-label-special">Quantity</span>
+                <span className="info-label-special">Container</span>
                 <div className="usd-input-container">
-                  <text className="info-label-special">Price (USD)</text>
-                  <text className="info-label-special">Total (USD)</text>
+                  <span className="info-label-special">Price (USD)</span>
+                  <span className="info-label-special">Total (USD)</span>
                 </div>
             </div>
             {INVOICE[currentIndex].booking.container.map((row, ind) => 
                 <div className="invoice-row" key={ind}>
-                  <text>Ocean Freight</text>
-                  <text>{row.quantity}</text>
-                  <text>{row.containerType}</text>
+                  <span>Ocean Freight</span>
+                  <span>{row.quantity}</span>
+                  <span>{row.containerType}</span>
                   <NumberInput ind={ind} onChange={onFeeChange} fees={fees}/>
                 </div>
             )}
             <div className="invoice-row">
-              <text>Document Fee</text>
+              <span>Document Fee</span>
               <NumberInput ind={fees.length - 2} onChange={onFeeChange} fees={fees}/>
             </div>
             <div className="invoice-row">
-              <text>Administration Fee</text>
+              <span>Administration Fee</span>
               <NumberInput ind={fees.length - 1} onChange={onFeeChange} fees={fees}/>
             </div>
             <FinanceRow label="Revenue" value={revenue} />

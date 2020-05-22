@@ -129,10 +129,10 @@ const QuoteUpdate = () => {
             (<div key={ind}>
               <li id="selected-item" className="bol-instruction-item"
                   onClick={() => setIndex(ind === currentIndex ? -1 : ind)}>
-                  <text>
+                  <span>
                     {moment(item.validity.startDate).format("YYYY | MMM DD")
                     } - {moment(item.validity.endDate).format("MMM DD")}
-                  </text>
+                  </span>
                   <img id={ind === currentIndex ? "svg-reverse" : ""}
                     className="svg-arrow" src={arrowDownIcon} alt="Dropdown Icon" />
               </li>
@@ -156,9 +156,9 @@ const QuoteUpdate = () => {
             <ScheduleForm styles={styles} onSubmit={handleFindQuoteHistory}/>
           </div>
           {isOverlapped &&
-            <text className="schedule-result-text-link">
+            <span className="schedule-result-text-link">
               Validity is overlapped with history.
-            </text>
+            </span>
           }
           {isVisible && !isOverlapped &&
           <form className="finance-display-form" onSubmit={handleQuoteUpdate}>
@@ -168,7 +168,7 @@ const QuoteUpdate = () => {
             </div>
             <div>
               <Textarea name="Except" key={currentIndex}/>
-              <text></text>
+              <span></span>
             </div>
             <button className="result-button">Update</button>
           </form>}

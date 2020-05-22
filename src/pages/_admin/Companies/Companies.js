@@ -75,7 +75,7 @@ const Companies = () => {
       <Header />
       <div className="company-all-container">
         <div className="company-header">
-          <text className="customer-number">Companies ({COMPANIES.length})</text>
+          <span className="customer-number">Companies ({COMPANIES.length})</span>
           <select className="duration-selector" onChange={handleRegisterRangeChange}>
             {DURATION.map((opt, ind) => 
               (<option value={opt} key={ind}>{opt}</option>)
@@ -85,9 +85,9 @@ const Companies = () => {
         </div>
         <div className="company-body-container">
           <div className="filter-container">
-            <text className="info-label">Filter:</text>
+            <span className="info-label">Filter:</span>
             <div className="filter-box-container">
-              <text className="filter-text">Country</text>
+              <span className="filter-text">Country</span>
               <select className="duration-selector" onChange={handleCountryChange}>
                 {COUNTRIES.map((opt, ind) => 
                   (<option value={opt} key={ind}>{opt}</option>)
@@ -95,7 +95,7 @@ const Companies = () => {
               </select>
             </div>
             <div className="filter-box-container">
-              <text className="filter-text"># of Orders</text>
+              <span className="filter-text"># of Orders</span>
               <select className="duration-selector" onChange={handleOrderChange}>
                 {ORDERS.map((opt, ind) => 
                   (<option value={opt} key={ind}>{opt}</option>)
@@ -106,35 +106,35 @@ const Companies = () => {
           <ul className="company-list-container">
             <li className="company-row" id="company-header-row">
               <div className="col-numb">
-                <text className="company-list-header-text">#</text>
+                <span className="company-list-header-text">#</span>
               </div>
               {COMPANY_HEADERS.map((header, ind) => 
                 <div className={ind === 1 ? "col-numb" : "company-col"} key={ind}>
-                  <text className="company-list-header-text">{header.toUpperCase()}</text>
+                  <span className="company-list-header-text">{header.toUpperCase()}</span>
                 </div>
               )}
             </li>
             {fileredList().map((company, ind) => 
               <li className="company-row" key={ind}>
                 <div className="col-numb">
-                  <text className="company-item-text">{ind + 1}</text>
+                  <span className="company-item-text">{ind + 1}</span>
                 </div>
                 <div className="company-col">
-                  <text className="company-item-text">{company.name}</text>
+                  <span className="company-item-text">{company.name}</span>
                 </div>
                 <div className="col-numb">
-                  <text className="company-item-text">{company.shipments.length}</text>
+                  <span className="company-item-text">{company.shipments.length}</span>
                 </div>
                 <div className="company-col">
-                  <text className="company-item-text">{company.personInCharge.name}</text>
+                  <span className="company-item-text">{company.personInCharge.name}</span>
                 </div>
                 <div className="company-col">
-                  <text className="company-item-text">{company.email}</text>
+                  <span className="company-item-text">{company.email}</span>
                 </div>
                 <div className="company-col">
-                  <text className="company-item-text">
+                  <span className="company-item-text">
                     {Utils.formatISOString(company.createdAt)}
-                  </text>
+                  </span>
                 </div>
               </li>
             )}

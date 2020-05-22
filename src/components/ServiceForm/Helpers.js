@@ -13,8 +13,8 @@ const Textarea = (props) => {
   const { name, defaultValue = "" } = props;
   return (
     <div className="info-row-with-textarea">
-      <text className="info-label">{name} </text>
-      <textarea
+      <span className="info-label">{name} </span>
+      <spanarea
         defaultValue={defaultValue}
         type="text"
         name={camelize(name)}
@@ -50,7 +50,7 @@ const InfoRow = (props) => {
 
   return (
     <div className="info-row">
-      <text className="info-label">{name} </text>
+      <span className="info-label">{name} </span>
       <input
         defaultValue={defaultValue}
         type="text"
@@ -68,7 +68,7 @@ const Select = (props) => {
 
   return (
     <div className="info-row">
-      <text className="info-label">{name} </text>
+      <span className="info-label">{name} </span>
       <select className="booking-form-input" name={inputName}>
         {options.map((type, ind) => (<option value={type} key={ind}>{type}</option>))}
       </select>

@@ -32,7 +32,7 @@ const LoginForm = (props) => {
   return (
     <div className="inner-container">
       <div className="header">
-        <text className="schedule-header-text">Login</text>
+        <span className="schedule-header-text">Login</span>
       </div>
       <form className="box" onSubmit={handleLogin} noValidate>
         {errors.length > 0 &&

@@ -9,8 +9,8 @@ const InfoRow = props => {
 
   return (
     <div className="info-row">
-      <text className="info-label">{label}: </text>
-      <text className="schedule-result-text">{value}</text>
+      <span className="info-label">{label}: </span>
+      <span className="schedule-result-text">{value}</span>
     </div>
   );
 }
@@ -66,26 +66,26 @@ const ShipmentDetail = props => {
   
   return (
      <div className="shipment-detail-container">
-        <text className="schedule-result-text">{ind + 1}</text>
+        <span className="schedule-result-text">{ind + 1}</span>
         <div className="shipment-ind-row">
-          <text className="schedule-result-text">Container No.</text>
-          <text className="schedule-result-text">{container.containerNo}</text>
+          <span className="schedule-result-text">Container No.</span>
+          <span className="schedule-result-text">{container.containerNo}</span>
         </div>
         <div className="shipment-ind-row">
-          <text className="schedule-result-text">Seel No. </text>
-          <text className="schedule-result-text">{container.seelNo}</text>
+          <span className="schedule-result-text">Seel No. </span>
+          <span className="schedule-result-text">{container.seelNo}</span>
         </div>
         <div className="shipment-ind-row">
-          <text className="schedule-result-text">Cargo Weight (kgs)</text>
-          <text className="schedule-result-text">{container.weight}</text>
+          <span className="schedule-result-text">Cargo Weight (kgs)</span>
+          <span className="schedule-result-text">{container.weight}</span>
         </div>
         <div className="shipment-ind-row">
-          <text className="schedule-result-text">Measurement (cbm)</text>
-          <text className="schedule-result-text">{container.measurement}</text>
+          <span className="schedule-result-text">Measurement (cbm)</span>
+          <span className="schedule-result-text">{container.measurement}</span>
         </div>
         <div className="shipment-ind-row">
-          <text className="schedule-result-text">VGM</text>
-          <text className="schedule-result-text">{container.vgm}</text>
+          <span className="schedule-result-text">VGM</span>
+          <span className="schedule-result-text">{container.vgm}</span>
         </div>
       </div>
   );
@@ -96,14 +96,14 @@ const ContainerDetail = props => {
   
   return (
     <div className="shipment-detail-container">
-      <text className="schedule-result-text">{ind + 1}</text>
+      <span className="schedule-result-text">{ind + 1}</span>
       <div className="shipment-ind-row">
-        <text className="schedule-result-text">Quantity</text>
-        <text className="schedule-result-text">{container.quantity}</text>
+        <span className="schedule-result-text">Quantity</span>
+        <span className="schedule-result-text">{container.quantity}</span>
       </div>
       <div className="shipment-ind-row">
-        <text className="schedule-result-text">Container Type</text>
-        <text className="schedule-result-text">{container.containerType}</text>
+        <span className="schedule-result-text">Container Type</span>
+        <span className="schedule-result-text">{container.containerType}</span>
       </div>
     </div>
   );

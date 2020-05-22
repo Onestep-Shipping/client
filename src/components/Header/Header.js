@@ -58,10 +58,10 @@ const Header = () => {
   const userButton = (name, icon) => {return (
     <div className="button-content" id={name === "Login" ? "add-margin" : ""}>
       <img className="svg" src={icon} alt="User Icon" />
-      <text>
+      <span>
       {currentUser ?
         currentUser.email.substring(0, currentUser.email.indexOf('@')) : name}
-      </text>
+      </span>
       {currentUser && <img className="svg-arrow" src={arrowDownIcon} alt="Dropdown Icon" />}
     </div>
   )};
@@ -76,7 +76,7 @@ const Header = () => {
   return (
     <div className="header-container">
         <div onClick={() => history.push('/')}>
-          <text className="logo-text">OneStep Shipping</text>
+          <span className="logo-text">OneStep Shipping</span>
         </div>
 
         <div className="menu-container">

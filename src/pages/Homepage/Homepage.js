@@ -38,7 +38,7 @@ const Homepage = () => {
     <div className="homepage-container">
       <Header />
       <div className="body-container">
-        <text className="schedule-header-text">Find Schedule</text>
+        <span className="schedule-header-text">Find Schedule</span>
         <ScheduleForm styles={styles} onSubmit={handleSubmit}/>
       </div>
     </div>

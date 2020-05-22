@@ -10,42 +10,42 @@ const BookingDisplay = (props) => {
     <div className="booking-details-container">
       <div className="info-row">
         <div>
-          <text className="info-label">From: </text>
-          <text className="schedule-info-text-left">{schedule.route.startLocation}</text>
+          <span className="info-label">From: </span>
+          <span className="schedule-info-text-left">{schedule.route.startLocation}</span>
         </div>
         <div>
-          <text className="info-label">Date: </text>
-          <text className="schedule-info-text">{schedule.startDate}</text>
+          <span className="info-label">Date: </span>
+          <span className="schedule-info-text">{schedule.startDate}</span>
         </div>
       </div>
       <div className="info-row">
         <div>
-          <text className="info-label">To: </text>
-          <text className="schedule-info-text-left">{schedule.route.endLocation}</text>
+          <span className="info-label">To: </span>
+          <span className="schedule-info-text-left">{schedule.route.endLocation}</span>
         </div>
         <div>
-          <text className="info-label">Date: </text>
-          <text className="schedule-info-text">{schedule.endDate}</text>
+          <span className="info-label">Date: </span>
+          <span className="schedule-info-text">{schedule.endDate}</span>
         </div>
       </div>
       <div className="info-row">
-        <text className="info-label">Vessels / Services: </text>
-        <text className="schedule-result-text">{schedule.vessels}</text>
+        <span className="info-label">Vessels / Services: </span>
+        <span className="schedule-result-text">{schedule.vessels}</span>
       </div>
       {fields > 3 &&
         <div style={{width: '100%'}}>
           <div className="info-row">
-            <text className="info-label">Carrier: </text>
-            <text className="schedule-result-text">{schedule.route.carrier}</text>
+            <span className="info-label">Carrier: </span>
+            <span className="schedule-result-text">{schedule.route.carrier}</span>
           </div>
           <div className="info-row">
             <div>
-              <text className="info-label">Transshipments: </text>
-              <text className="schedule-result-text">{schedule.transshipment}</text>
+              <span className="info-label">Transshipments: </span>
+              <span className="schedule-result-text">{schedule.transshipment}</span>
             </div>
             <div>
-              <text className="info-label">Transit Time: </text>
-              <text className="schedule-result-text">{schedule.transitTime} days</text>
+              <span className="info-label">Transit Time: </span>
+              <span className="schedule-result-text">{schedule.transitTime} days</span>
             </div>
           </div>
 
@@ -55,22 +55,22 @@ const BookingDisplay = (props) => {
         <div style={{width: '100%'}}>
           <h2>Quote</h2>
           <div className="info-row">
-            <text className="info-label">Validity: </text>
-            <text className="schedule-result-text">{Utils.formatValidity(quote.validity)}</text>
+            <span className="info-label">Validity: </span>
+            <span className="schedule-result-text">{Utils.formatValidity(quote.validity)}</span>
           </div>
           {quote.selling.oceanFreight.map((container, ind) => 
              <div className="info-row" key={ind}>
-               <text className="info-label">{ind === 0 && "Ocean Freight (All-in): "}</text>
-              <text className="schedule-result-text">{container.containerType} - ${container.price}</text>
+               <span className="info-label">{ind === 0 && "Ocean Freight (All-in): "}</span>
+              <span className="schedule-result-text">{container.containerType} - ${container.price}</span>
             </div>
           )}
           <div className="info-row">
-            <text className="info-label">Documentation Fee: </text>
-            <text className="schedule-result-text">${quote.selling.docFee}</text>
+            <span className="info-label">Documentation Fee: </span>
+            <span className="schedule-result-text">${quote.selling.docFee}</span>
           </div>
           <div className="info-row">
-            <text className="info-label">Administration Fee: </text>
-            <text className="schedule-result-text">${quote.selling.adminFee}</text>
+            <span className="info-label">Administration Fee: </span>
+            <span className="schedule-result-text">${quote.selling.adminFee}</span>
           </div>
         </div>
       }

@@ -8,7 +8,7 @@ const HeaderText = (props) => {
 
   return (
     <div className="header-text-container" onClick={action}>
-      <text className="header-text">{value}</text>
+      <span className="header-text">{value}</span>
     </div>
   );
 };

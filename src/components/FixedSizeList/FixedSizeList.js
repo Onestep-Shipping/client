@@ -40,7 +40,7 @@ const FixedSizeList = (props) => {
       <div className="schedule-result-header-row">
         {headers.map((header, ind) => 
           <div className={"col" + (header === "#" ? "-numb" : "")} key={ind}>
-            <text className="schedule-result-header-text">{header.toUpperCase()}</text>
+            <span className="schedule-result-header-text">{header.toUpperCase()}</span>
           </div>
         )}
       </div>
@@ -54,7 +54,7 @@ const FixedSizeList = (props) => {
       {data.length > LIST_SIZE &&
       <div className="page-indicator-container">
         <button className="result-button" onClick={handlePrev}>{'<< Previous'}</button>
-        <text>Page {currentPage} / {max === 0 ? 1 : max}</text>
+        <span>Page {currentPage} / {max === 0 ? 1 : max}</span>
         <button className="result-button" onClick={handleNext}>{'Next >>'}</button>
       </div>}
     </div>
