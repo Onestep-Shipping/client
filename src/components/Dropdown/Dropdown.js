@@ -16,8 +16,7 @@ const Dropdown = (props) => {
     options = [], 
     onChange, 
     isLoggedIn = false, 
-    isAlwaysVisible = true,
-    customStyle = {},
+    customStyle = null,
   } = props;
 
   const openModal = () => {
@@ -55,10 +54,6 @@ const Dropdown = (props) => {
     }
   }
 
-  if (!isAlwaysVisible) {
-    return <div />;
-  }
-
   return (
     <div ref={node} className="login-container">
       <button className="user-button" onClick={handleAuth}>
@@ -90,7 +85,6 @@ Dropdown.propTypes = {
   options: PropTypes.array,
   onChange: PropTypes.func,
   isLoggedIn: PropTypes.bool,
-  isAlwaysVisible: PropTypes.bool,
   customStyle: PropTypes.object,
 };
 

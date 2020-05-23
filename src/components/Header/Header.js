@@ -75,37 +75,41 @@ const Header = () => {
 
   return (
     <div className="header-container">
-        <div onClick={() => history.push('/')}>
-          <span className="logo-text">OneStep Shipping</span>
-        </div>
+      <div onClick={() => history.push('/')}>
+        <span className="logo-text">OneStep Shipping</span>
+      </div>
 
-        <div className="menu-container">
-          <div className="login-container">
-            <Dropdown
-              content={userButton('Login', loginIcon)}
-              type={'login'}
-              onChange={val => handleLogin(val)}
-              options={isAdmin ? ADMIN_OPTIONS : USER_OPTIONS}
-              isLoggedIn={isLoggedIn} />
-            <Dropdown
-              type={'register'}
-              content={userButton('Register', registerIcon)}
-              onChange={val => handleLogin(val)}
-              isLoggedIn={isLoggedIn} isAlwaysVisible={!isLoggedIn} />
-            <Dropdown
-              type={'noti'}
-              content={notificationButton}
-              onChange={val => handleNotification(val)}
-              options={NOTIFICATIONS.length > 0 ? NOTIFICATIONS : ["Notification is empty."]}
-              isLoggedIn={isLoggedIn} isAlwaysVisible={isLoggedIn} 
-              customStyle={notificationCustomStyle} />
-          </div>
-          <SearchTextfield />
-          <HeaderText value="Contact" action={() => history.push('/contact')} />
-          <HeaderText value="News" action={() => history.push('/news')} />
-          <HeaderText value="Services" action={() => history.push('/services')} />
-          <HeaderText value="About" action={() => history.push('/about')} />
+      <div className="menu-container">
+        <div className="login-container">
+          <Dropdown
+            content={userButton('Login', loginIcon)}
+            type={'login'}
+            onChange={val => handleLogin(val)}
+            options={isAdmin ? ADMIN_OPTIONS : USER_OPTIONS}
+            isLoggedIn={isLoggedIn} />
+          {!isLoggedIn &&
+          <Dropdown
+            type={'register'}
+            content={userButton('Register', registerIcon)}
+            onChange={val => handleLogin(val)}
+            isLoggedIn={isLoggedIn} 
+          />}
+          {isLoggedIn &&
+          <Dropdown
+            type={'noti'}
+            content={notificationButton}
+            onChange={val => handleNotification(val)}
+            options={NOTIFICATIONS.length > 0 ? NOTIFICATIONS : ["Notification is empty."]}
+            isLoggedIn={isLoggedIn}
+            customStyle={notificationCustomStyle} 
+          />}
         </div>
+        <SearchTextfield />
+        <HeaderText value="Contact" action={() => history.push('/contact')} />
+        <HeaderText value="News" action={() => history.push('/news')} />
+        <HeaderText value="Services" action={() => history.push('/services')} />
+        <HeaderText value="About" action={() => history.push('/about')} />
+      </div>
     </div>
   );
 };
