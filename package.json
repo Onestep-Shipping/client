@@ -11,6 +11,7 @@
     "axios": "^0.19.2",
     "firebase": "^7.14.1",
     "graphql": "^15.0.0",
+    "jest-enzyme": "^7.1.2",
     "jspdf": "^1.5.3",
     "moment": "^2.24.0",
     "react": "^16.13.1",
@@ -55,8 +56,16 @@
     "react-test-renderer": "^16.13.1"
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"],
-    "collectCoverageFrom": ["src/**/*.js", "!src/index.js"],
-    "coverageReporters": ["text"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ],
+    "coverageReporters": [
+      "text"
+    ],
+    "clearMocks": true
   }
 }

@@ -3,12 +3,39 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 const label = 'User Email';
-let wrapped = shallow(<Input name={label} type="email" displayErrors={false} />);
+const camelizedLabel = 'userEmail';
+const placeholder = "Email";
+const type = "email";
+
+let wrappedNoPlaceholder = shallow(
+  <Input name={label} type={type} displayErrors={false} />
+);
+let wrappedWithPlaceholder = shallow(
+  <Input name={label} type={type} placeholder={placeholder} displayErrors={false} />
+);
+
 describe('Input', () => {
   it('should render the Input Component correctly', () => {   
-    expect(wrapped).toMatchSnapshot();
+    expect(wrappedNoPlaceholder).toMatchSnapshot();
   });
   it('should renders the Input label', () => { 
-    expect(wrapped.find('label').text()).toEqual(label);
+    expect(wrappedNoPlaceholder.find('label').text()).toEqual(label);
+  });
+  it('should contains a label and an input', () => { 
+    expect(wrappedNoPlaceholder).toContainReact(
+      <label htmlFor={camelizedLabel} className="login-label">{label}</label>
+    );
+  });
+  it('should have the props specified type', () => { 
+    expect(wrappedWithPlaceholder.find('input').props().type).toEqual(type);
+  });
+  it('should have correct input\'s camelized name', () => { 
+    expect(wrappedNoPlaceholder.find('input').props().name).toEqual(camelizedLabel);
+  });
+  it('should have the same placeholder value as label when placeholder props is empty', () => { 
+    expect(wrappedNoPlaceholder.find('input').props().placeholder).toEqual(label);
+  });
+  it('should have the different placeholder value when placeholder props is filled', () => { 
+    expect(wrappedWithPlaceholder.find('input').props().placeholder).toEqual(placeholder);
   });
 });
