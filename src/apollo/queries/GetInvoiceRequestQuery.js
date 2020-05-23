@@ -1,8 +1,9 @@
 import { gql } from 'apollo-boost';
 
 const GET_INVOICE_REQUEST = gql`
-  query getInvoiceRequest($sortBy: String!) {
+  query {
     getAllShipments(sortBy: "billInstruction") {
+      _id,
       schedule {
         route {
           startLocation, endLocation, carrier, 
@@ -34,20 +35,30 @@ const GET_INVOICE_REQUEST = gql`
       },
       bookedBy {
         name,
+        address {
+          street, city, country
+        },
         personInCharge {
           name
         },
         email
       },
       bookingRequest {
-        confirmation { bookingNo },
-        form { commodity },
+        confirmation { bookingNo, etd },
+        form { 
+          commodity, 
+          containers {
+            containerType,
+            quantity
+          }
+        },
       },
       billInstruction {
-        form { orderNo }
-      }
+        form { orderNo, updatedAt }
+      },
       invoice {
-        tempCost
+        tempCost, pdf,
+        form { cost, revenue, profit }
       }
     }
   }

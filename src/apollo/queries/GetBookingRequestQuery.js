@@ -42,7 +42,7 @@ const GET_BOOKING_REQUEST = gql`
           containers {
             containerType, quantity
           },
-          paymentTerm, autoFilling, createdAt
+          paymentTerm, autoFilling, updatedAt
         }, 
         confirmation { 
           timeReceived , pdf

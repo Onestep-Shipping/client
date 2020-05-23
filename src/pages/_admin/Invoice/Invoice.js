@@ -4,78 +4,100 @@ import { FinanceRow, NumberInput } from './Helpers';
 import React, { useState } from 'react';
 
 import BookingDisplay from '../../../components/BookingDisplay/BookingDisplay.js';
-import { CONTAINER_TYPES } from '../../../constants/ServiceFormConstants';
-import DATA from '../../../data/ScheduleDetailsData.js';
+import CREATE_INVOICE from '../../../apollo/mutations/CreateInvoiceMutation.js';
 import FileUploadService from '../../../services/FileUploadService.js';
+import GET_INVOICE_REQUEST from '../../../apollo/queries/GetInvoiceRequestQuery.js';
 import Header from '../../../components/Header/Header.js';
-import INVOICE from '../../../data/InvoiceData.js';
 import { InfoRow } from '../Helpers.js';
 import PdfGenerator from './pdfGenerator.js';
-import QUOTE_DATA from '../../../data/QuoteUpdateData';
 import { QuoteRow } from '../QuoteUpdate/Helpers';
 import UserList from '../../../components/UserList/UserList.js';
 import Utils from '../../../utils/Helpers.js';
-
-const initCost = ind => {
-  let finalCost = 0;
-  INVOICE[ind].booking.container.map(row => 
-    CONTAINER_TYPES.map((type, type_ind) => function() { 
-      if (type === row.containerType) {
-        finalCost += (QUOTE_DATA[ind].buying.oceanFreight[type_ind] * row.quantity);
-      }
-    })
-  )
-  finalCost += QUOTE_DATA[ind].buying.docFee + QUOTE_DATA[ind].buying.adminFee;
-  
-  return finalCost;
-}
+import client from '../../../apollo/index.js';
+import { useQuery } from '@apollo/react-hooks';
 
 const Invoice = () => {
+  const { loading, error, data } = useQuery(GET_INVOICE_REQUEST, {
+    fetchPolicy: 'cache-and-network'
+  });
+  
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [fees, setFees] = useState(
-    Array(INVOICE[currentIndex].booking.container.length + 2).fill(0)
-  );
-  const cost = initCost(currentIndex);
-  const revenue = fees.reduce((a, b) => a + b, 0);
-  const profit = revenue - cost;
+  const [fees, setFees] = useState([]);
+  const [hasGeneratedPDF, setHasGeneratedPDF] = useState(false);
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  const shipments = data.getAllShipments.filter(
+    shipment => shipment.billInstruction.form !== null
+  );
+  const  { bookingRequest, billInstruction, invoice, schedule, bookedBy } = shipments[currentIndex];
+  const quote = schedule.route.quoteHistory
+    .filter(quote => Date.parse(quote.validity.startDate) <=  Date.parse(schedule.startDate))
+    .slice(0, 1)[0];
+
+  let cost = 0;
+  let revenue = 0;
+
+  if (invoice.form === null) {
+    cost =  invoice.tempCost;
+    revenue = fees.reduce((a, b) => a + b, 0);
+  } else {
+    cost = invoice.form.cost;
+    revenue = invoice.form.revenue;
+  }
+
+  
+  const profit = revenue - cost;
 
   const handleIndexChange = newInd => {
     setCurrentIndex(newInd);
-    setFees(Array(INVOICE[newInd].booking.container.length + 2).fill(0));
+    setFees(Array(bookingRequest.form.containers.length + 2).fill(0));
+    setHasGeneratedPDF(false);
     document.getElementsByName("price").forEach(node => node.value = "");
   }
 
   const handlePreview = e => {
     e.preventDefault();
     PdfGenerator.preview(createInfoObject(e));
+    setHasGeneratedPDF(true);
   }
 
-  const handleUpload = e => {
+  const handleUpload = async (e) => {
     e.preventDefault();
     const blob = PdfGenerator.uploadToServer();
     const pdf = new File(
       [blob], 
-      'Invoice #' + INVOICE[currentIndex].id + '.pdf', 
+      'Invoice #' + bookingRequest.confirmation.bookingNo + '.pdf', 
       { type: 'application/pdf' } 
     )
     const formData = new FormData();
     formData.append("file", pdf);
 
-    FileUploadService.uploadFile(formData)
-      .then(res => {
-        alert(res.data.fileLocation);
-      })
-      .catch(e => {
-        console.log(e.response);
-      });
+    const uploadedResponse = await FileUploadService.uploadFile(formData);
+    const { fileLocation } = uploadedResponse.data;
+
+    client.mutate({
+      mutation: CREATE_INVOICE,
+      variables: { 
+        shipmentId: shipments[currentIndex]._id,
+        pdf: fileLocation, 
+        invoice: { cost, revenue, profit }
+      },
+      refetchQueries: [{ query: GET_INVOICE_REQUEST }]
+    }).then(response => {
+      const { createInvoice } = response.data;
+      if (createInvoice === "OK") {
+        alert("Invoice has been sent!");
+      }
+    })
   }
 
   const onFeeChange = (e, i) => {
     let newFees = [...fees]; 
     let newVal = parseInt(e.target.value);
     if (i < fees.length - 2) {
-      newVal *= INVOICE[currentIndex].booking.container[i].quantity;
+      newVal *= bookingRequest.form.containers[i].quantity;
     }
     newFees[i] = newVal;
     setFees(newFees);
@@ -89,11 +111,11 @@ const Invoice = () => {
     priceList.map((p, ind) => combine.push({ price: p, total: totalList[ind] }))
     
     return { 
-      company: INVOICE[currentIndex].company,
-      schedule: DATA[currentIndex],
-      bookingNo: INVOICE[currentIndex].id,
-      booking: INVOICE[currentIndex].booking,
-      orderNo: INVOICE[currentIndex].bol.orderNo,
+      company: bookedBy,
+      schedule,
+      bookingNo: bookingRequest.confirmation.bookingNo,
+      booking: bookingRequest.form,
+      orderNo: billInstruction.form.orderNo,
       priceList: combine, 
       subTotal: Utils.comma(revenue) 
     }
@@ -111,47 +133,56 @@ const Invoice = () => {
       <div className="bol-instruction-container">
         <UserList 
           setInd={handleIndexChange}
-          opt={INVOICE} type="bol" />
+          opt={shipments} type="bol" />
         <div className="bol-instruction-detail"> 
           <div className="booking-id-container">
             <h1>Invoice</h1>
           </div>
           <div className="customer-info-container">
-            <span>Company: {INVOICE[currentIndex].company.name}</span>
-            <span>Email: {INVOICE[currentIndex].email}</span>
+            <span>Contact: {bookedBy.personInCharge.name}</span>
+            <span>Email: {bookedBy.email}</span>
+            <span>
+              ETD: {Utils.formatISOString(bookingRequest.confirmation.etd)}
+            </span>
           </div>
+
+          {invoice.pdf !== null && 
+          <span 
+            className="schedule-result-text-link" 
+            onClick={() => Utils.handlePDFOpen(invoice.pdf)}>
+              Invoice has been sent.
+          </span>}
 
           <div className="form-container">
             <h2>Schedule</h2>
-            <BookingDisplay id={'' + currentIndex} fields={8}/>
+            <BookingDisplay schedule={schedule} quote={quote} fields={8}/>
           </div>
 
           <div className="form-container">
             <h2>Information</h2>
             <div className="booking-details-container">
-              <InfoRow label="Booking Number" value={INVOICE[currentIndex].id} />
-              <InfoRow label="Commodity" value={INVOICE[currentIndex].booking.commodity} />
-              <InfoRow label="Order/PO Number" value={INVOICE[currentIndex].bol.orderNo} />
+              <InfoRow label="Booking Number" value={bookingRequest.confirmation.bookingNo} />
+              <InfoRow label="Commodity" value={bookingRequest.form.commodity} />
+              <InfoRow label="Order/PO Number" value={billInstruction.form.orderNo} />
             </div>
           </div>
 
-          {!INVOICE[currentIndex].isCompleted &&
           <form className="invoice-form-container" onSubmit={handlePreview}>
             <h2>Invoice</h2>
             <div className="invoice-row">
                 <span className="info-label-special">Description</span>
-                <span className="info-label-special">Quantity</span>
-                <span className="info-label-special">Container</span>
+                <div className="col2"><span className="info-label-special">Quantity</span></div>
+                <div className="col2"><span className="info-label-special">Container</span></div>
                 <div className="usd-input-container">
                   <span className="info-label-special">Price (USD)</span>
                   <span className="info-label-special">Total (USD)</span>
                 </div>
             </div>
-            {INVOICE[currentIndex].booking.container.map((row, ind) => 
+            {bookingRequest.form.containers.map((row, ind) => 
                 <div className="invoice-row" key={ind}>
                   <span>Ocean Freight</span>
-                  <span>{row.quantity}</span>
-                  <span>{row.containerType}</span>
+                  <div className="col2"><span>{row.quantity}</span></div>
+                  <div className="col2"><span>{row.containerType}</span></div>
                   <NumberInput ind={ind} onChange={onFeeChange} fees={fees}/>
                 </div>
             )}
@@ -167,16 +198,17 @@ const Invoice = () => {
             <FinanceRow label="Cost" value={cost} />
             <FinanceRow label="Profit" value={profit} />
             <div className="invoice-row">
-              <QuoteRow header="Buying" obj={QUOTE_DATA[currentIndex].buying} />
-              <QuoteRow header="Selling" obj={QUOTE_DATA[currentIndex].selling} />
+              <QuoteRow header="Buying" obj={quote.buying} />
+              <QuoteRow header="Selling" obj={quote.selling} />
             </div>
             <div className="bol-button-form">
               <input id="left-button" type="submit" className="result-button" value="Generate PDF" />
+              {hasGeneratedPDF &&
               <button  className="result-button" onClick={handleUpload}>
                 Send to Customer
-              </button>
+              </button>}
             </div>
-          </form>}
+          </form>
         </div>
       </div>
     </div>
