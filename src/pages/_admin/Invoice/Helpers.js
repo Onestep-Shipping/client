@@ -7,8 +7,8 @@ const FinanceRow = props => {
 
   return (
     <div className="invoice-row-small">
-      <text className="info-label-special">{label}: </text>
-      <text>${Utils.comma(value)}</text>
+      <span className="info-label-special">{label}: </span>
+      <span>${Utils.comma(value)}</span>
     </div>
   ) 
 }

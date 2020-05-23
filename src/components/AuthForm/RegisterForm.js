@@ -33,7 +33,7 @@ const RegisterForm = (props) => {
   return (
     <div className="inner-container">
       <div className="header">
-        <text className="schedule-header-text">Register</text>
+        <span className="schedule-header-text">Register</span>
       </div>
       <form className="register-box" onSubmit={handleSignUp} noValidate>
         {errors.length > 0 &&

@@ -153,18 +153,18 @@ const BookingRequest = () => {
             <h1>Booking Request</h1>
           </div>
           <div className="customer-info-container">
-            <text>Contact: {bookedBy.personInCharge.name}</text>
-            <text>Email: {bookedBy.email}</text>
-            <text>
+            <span>Contact: {bookedBy.personInCharge.name}</span>
+            <span>Email: {bookedBy.email}</span>
+            <span>
               {Utils.formatISOString(bookingRequest.form.createdAt)}
-            </text>
+            </span>
           </div>
 
           {bookingRequest.status === "Received" && 
-          <text className="schedule-result-text-link" onClick={handlePDFOpen}>
+          <span className="schedule-result-text-link" onClick={handlePDFOpen}>
             {Utils.ordinalSuffixOf(bookingRequest.confirmation.timeReceived)} Booking 
             Confirmation has been sent.
-          </text>}
+          </span>}
 
           <div className="form-container">
             <h2>Schedule</h2>
@@ -192,7 +192,7 @@ const BookingRequest = () => {
           <form className="booking-confirmation-container" onSubmit={handlePreview}>
             <h2>Booking Confirmation</h2>
             <div className="confirmation-info-container">
-              <text className={styles.scheduleLabel}>Booking No.</text>
+              <span className={styles.scheduleLabel}>Booking No.</span>
               <input
                 type="text"
                 id="bookingNo"
@@ -202,8 +202,8 @@ const BookingRequest = () => {
                 required />
             </div>
             <div className="confirmation-info-container">
-              <text className={styles.scheduleLabel}>ETD</text>
-              <text className={styles.scheduleLabel}>ETA</text>
+              <span className={styles.scheduleLabel}>ETD</span>
+              <span className={styles.scheduleLabel}>ETA</span>
             </div>
             <div className="confirmation-info-container">
               <MiniDatePicker 
@@ -217,9 +217,9 @@ const BookingRequest = () => {
                 id="align-right"/>
             </div>
             <div className="confirmation-info-container">
-              <text className={styles.scheduleLabel}>Terminal Cut-off</text>
-              <text className={styles.scheduleLabel}>Document Cut-off</text>
-              <text className={styles.scheduleLabel}>VGM Cut-off</text>
+              <span className={styles.scheduleLabel}>Terminal Cut-off</span>
+              <span className={styles.scheduleLabel}>Document Cut-off</span>
+              <span className={styles.scheduleLabel}>VGM Cut-off</span>
             </div>
             <div className="confirmation-info-container">
               <MiniDatePickerTime name="terminal" value={terminalDate} action={setTerminalDate} />
@@ -228,8 +228,8 @@ const BookingRequest = () => {
             </div>
 
             <div className="confirmation-info-container">
-              <text className={styles.scheduleLabelSpecial}>Empty Pickup Location</text>
-              <text className={styles.scheduleLabelSpecial}>Return Location</text>  
+              <span className={styles.scheduleLabelSpecial}>Empty Pickup Location</span>
+              <span className={styles.scheduleLabelSpecial}>Return Location</span>  
             </div>
             <Address type="Street" />
             <Address type="City" />

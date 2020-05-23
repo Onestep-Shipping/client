@@ -1,23 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Utils from '../../utils/Helpers.js';
 
 const ROW_NUMBER = 5;
-
-function camelize(str) {
-  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
-    return index === 0 ? word.toLowerCase() : word.toUpperCase();
-  }).replace(/\s+|\/|\./g, '');
-}
 
 const Textarea = (props) => {
   const { name, defaultValue = "" } = props;
   return (
     <div className="info-row-with-textarea">
-      <text className="info-label">{name} </text>
-      <textarea
+      <span className="info-label">{name} </span>
+      <spanarea
         defaultValue={defaultValue}
         type="text"
-        name={camelize(name)}
+        name={Utils.camelize(name)}
         className="booking-form-textarea"
         placeholder="i.e. Food, Clothes, etc."
         rows={ROW_NUMBER}
@@ -28,7 +23,7 @@ const Textarea = (props) => {
 
 const ExtraInput = (props) => {
   const { name, defaultValue = "" } = props;
-  const camelizedName = camelize(name);
+  const camelizedName = Utils.camelize(name);
 
   return (
     <div className="col2">
@@ -46,11 +41,11 @@ const ExtraInput = (props) => {
 
 const InfoRow = (props) => {
   const { name, camelizeName = "", defaultValue = "" } = props;
-  const inputName = camelizeName === "" ? camelize(name) : camelizeName;
+  const inputName = camelizeName === "" ? Utils.camelize(name) : camelizeName;
 
   return (
     <div className="info-row">
-      <text className="info-label">{name} </text>
+      <span className="info-label">{name} </span>
       <input
         defaultValue={defaultValue}
         type="text"
@@ -64,11 +59,11 @@ const InfoRow = (props) => {
 
 const Select = (props) => {
   const { name, options, camelizeName } = props;
-  const inputName = camelizeName === "" ? camelize(name) : camelizeName;
+  const inputName = camelizeName === "" ? Utils.camelize(name) : camelizeName;
 
   return (
     <div className="info-row">
-      <text className="info-label">{name} </text>
+      <span className="info-label">{name} </span>
       <select className="booking-form-input" name={inputName}>
         {options.map((type, ind) => (<option value={type} key={ind}>{type}</option>))}
       </select>

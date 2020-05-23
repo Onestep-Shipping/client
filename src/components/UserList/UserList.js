@@ -32,21 +32,21 @@ const UserList = props => {
             className="profile-image" 
             src={profileImg} alt="" />
           <div className="item-header-container">
-            <text className="booking-id-text">
+            <span className="booking-id-text">
               {type === "booking" ? shipment.bookedBy.name : ("Booking #" + shipment._id)}
-            </text>
-            <text className="customer-email-text">
+            </span>
+            <span className="customer-email-text">
               From: {shipment.bookedBy.personInCharge.name}
-            </text>
+            </span>
           </div>
-          <text>
+          <span>
             {moment(shipment.bookingRequest.form.createdAt).calendar(null, {
               sameDay : 'HH:mm',
               lastDay : 'ddd',
               lastWeek : 'ddd',
               sameElse : 'ddd'
             })}
-          </text>
+          </span>
         </li>
         )
       )}

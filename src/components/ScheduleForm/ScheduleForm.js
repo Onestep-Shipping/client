@@ -27,7 +27,7 @@ const ScheduleForm = (props) => {
   return (
     <form className={styles.formContainer} onSubmit={handleSubmit}>
       <div className={styles.infoContainer}>
-        <text className={styles.scheduleLabel}>From</text>
+        <span className={styles.scheduleLabel}>From</span>
         <div className={styles.textfieldContainer}>
           <Select
             name="fromLocation"
@@ -46,7 +46,7 @@ const ScheduleForm = (props) => {
         </div>
       </div>
       <div className={styles.infoContainer}>
-        <text className={styles.scheduleLabel}>To</text>
+        <span className={styles.scheduleLabel}>To</span>
         <div className={styles.textfieldContainer}>
           <Select 
             name="toLocation"
@@ -65,7 +65,7 @@ const ScheduleForm = (props) => {
         </div>
       </div>
       <div className={styles.infoContainer}>
-        <text className={styles.scheduleLabel}>Carrier</text>
+        <span className={styles.scheduleLabel}>Carrier</span>
         <div className={styles.textfieldContainer}>
           <select 
             name="carrier"

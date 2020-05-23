@@ -11,7 +11,7 @@ const QuoteForm = props => {
       <h2>{header}</h2>
       {CONTAINER_TYPES.map((container, ind) =>
         <div className="invoice-row" key={ind}>
-          <text className="info-label">O.F. - {container}</text>
+          <span className="info-label">O.F. - {container}</span>
           <input 
             type="number" 
             name={lcHeader + "OceanFreight"} 
@@ -21,7 +21,7 @@ const QuoteForm = props => {
         </div>
       )}
       <div className="invoice-row">
-        <text className="info-label">Document Fee</text>
+        <span className="info-label">Document Fee</span>
         <input 
           type="number" 
           name={lcHeader + "DocFee"} 
@@ -30,7 +30,7 @@ const QuoteForm = props => {
         />
       </div>
       <div className="invoice-row">
-        <text className="info-label">Administration Fee</text>
+        <span className="info-label">Administration Fee</span>
         <input 
           type="number" 
           name={lcHeader + "AdminFee"} 
@@ -48,21 +48,21 @@ const QuoteRow = props => {
   return (
     <div className="finance-display-form">
       <div className="finance-display-container">
-        <text className="info-label">{header}</text>
+        <span className="info-label">{header}</span>
       </div>
       {obj.oceanFreight.map((of, ind) =>
         <div className="finance-display-row" key={ind}>
-          <text>O.F. - {of.containerType}:</text>
-          <text>${Utils.comma(of.price)}</text>
+          <span>O.F. - {of.containerType}:</span>
+          <span>${Utils.comma(of.price)}</span>
         </div>
       )}
       <div className="finance-display-row">
-        <text>Doc fee:</text>
-        <text>${Utils.comma(obj.docFee)}</text>
+        <span>Doc fee:</span>
+        <span>${Utils.comma(obj.docFee)}</span>
       </div>
       <div className="finance-display-row">
-        <text>Admin fee:</text>
-        <text>${Utils.comma(obj.adminFee)}</text>
+        <span>Admin fee:</span>
+        <span>${Utils.comma(obj.adminFee)}</span>
       </div>
     </div>
   );

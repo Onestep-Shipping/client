@@ -9,8 +9,10 @@
     "@testing-library/user-event": "^7.1.2",
     "apollo-boost": "^0.4.8",
     "axios": "^0.19.2",
+    "cypress": "^4.6.0",
     "firebase": "^7.14.1",
     "graphql": "^15.0.0",
+    "jest-enzyme": "^7.1.2",
     "jspdf": "^1.5.3",
     "moment": "^2.24.0",
     "react": "^16.13.1",
@@ -26,6 +28,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:e2e": "cypress open",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -44,8 +47,27 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "^25.2.3",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.4.4",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-plugin-react": "^7.19.0"
+    "eslint-plugin-react": "^7.19.0",
+    "jest-canvas-mock": "^2.2.0",
+    "react-test-renderer": "^16.13.1"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ],
+    "coverageReporters": [
+      "text"
+    ],
+    "clearMocks": true
   }
 }

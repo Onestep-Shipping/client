@@ -33,37 +33,37 @@ const ScheduleResultList = props => {
             (ind === currentBookingIndex ? '-selected' : '')}
           onClick={() => setCurrentBookingIndex(ind)}>
           <div className="col-numb">
-            <text className="schedule-result-text">{ind + 1}</text>
+            <span className="schedule-result-text">{ind + 1}</span>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{schedule.route.startLocation}</text>
-            <text className="schedule-result-text-time">
+            <span className="schedule-result-text">{schedule.route.startLocation}</span>
+            <span className="schedule-result-text-time">
               {Utils.formatISOString(schedule.startDate)}
-            </text>
+            </span>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{schedule.transshipment}</text>
+            <span className="schedule-result-text">{schedule.transshipment}</span>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{schedule.vessels}</text>
+            <span className="schedule-result-text">{schedule.vessels}</span>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{schedule.route.endLocation}</text>
-            <text className="schedule-result-text-time">
+            <span className="schedule-result-text">{schedule.route.endLocation}</span>
+            <span className="schedule-result-text-time">
               {Utils.formatISOString(schedule.endDate)}
-            </text>
+            </span>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{schedule.transitTime}</text>
+            <span className="schedule-result-text">{schedule.transitTime}</span>
           </div>
         </div>
 
         {(ind === currentBookingIndex && !isAdmin && currentUser) &&
         <div className="quote-dropdown">
           <div className="validity-container">
-            <text className="schedule-result-header-text">
+            <span className="schedule-result-header-text">
               {validity === 0 ? "CURRENT" : "UPCOMING"} VALIDITY: 
-            </text>
+            </span>
             {Utils.formatValidity(quotes[validity].validity)}
             {quotes > 1 && 
             <img 
@@ -74,21 +74,21 @@ const ScheduleResultList = props => {
           </div>
           <div className="quote-body">
             <div className="col3">
-              <text className="schedule-result-header-text">{QUOTE_HEADERS[0].toUpperCase()}</text>
+              <span className="schedule-result-header-text">{QUOTE_HEADERS[0].toUpperCase()}</span>
               {quotes[validity].selling.oceanFreight.map((container, ind) => 
                 <div key={ind} className="container-types-quote">
-                  <text className="schedule-result-text">{container.containerType}: </text>
-                  <text className="schedule-result-text">${Utils.comma(container.price)}</text>
+                  <span className="schedule-result-text">{container.containerType}: </span>
+                  <span className="schedule-result-text">${Utils.comma(container.price)}</span>
                 </div>
               )}
             </div>
             <div className="col3">
-              <text className="schedule-result-header-text">{QUOTE_HEADERS[1].toUpperCase()}</text>
-              <text className="schedule-result-text">${Utils.comma(quotes[validity].selling.docFee)}</text>
+              <span className="schedule-result-header-text">{QUOTE_HEADERS[1].toUpperCase()}</span>
+              <span className="schedule-result-text">${Utils.comma(quotes[validity].selling.docFee)}</span>
             </div>
             <div className="col3">
-              <text className="schedule-result-header-text">{QUOTE_HEADERS[2].toUpperCase()}</text>
-              <text className="schedule-result-text">${Utils.comma(quotes[validity].selling.adminFee)}</text>
+              <span className="schedule-result-header-text">{QUOTE_HEADERS[2].toUpperCase()}</span>
+              <span className="schedule-result-text">${Utils.comma(quotes[validity].selling.adminFee)}</span>
             </div>
           </div>
           {quotes[validity].except &&

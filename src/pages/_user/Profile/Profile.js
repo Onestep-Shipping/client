@@ -117,10 +117,10 @@ const Profile = () => {
       <div key={ind}>
         <div className='booking-profile-row'>
           <div className="col">
-            <text id={"text" + ind} className="booking-no-button" onClick={() => toggleToolTip(ind)}>
+            <span id={"text" + ind} className="booking-no-button" onClick={() => toggleToolTip(ind)}>
               {shipment.bookingRequest.status === "In Process" ? 
               "N/A" : shipment.bookingRequest.confirmation.bookingNo}
-            </text>
+            </span>
             <ToolTip 
               tooltipTimeout={0} active={isTooltipActive} 
               position="top" arrow="center" parent={"#text" + currentBooking}>
@@ -136,16 +136,16 @@ const Profile = () => {
             </ToolTip>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{shipment.schedule.route.startLocation}</text>
-            <text className="schedule-result-text-time">
+            <span className="schedule-result-text">{shipment.schedule.route.startLocation}</span>
+            <span className="schedule-result-text-time">
               {Utils.formatISOString(shipment.schedule.startDate)}
-            </text>
+            </span>
           </div>
           <div className="col">
-            <text className="schedule-result-text">{shipment.schedule.route.endLocation}</text>
-            <text className="schedule-result-text-time">
+            <span className="schedule-result-text">{shipment.schedule.route.endLocation}</span>
+            <span className="schedule-result-text-time">
               {Utils.formatISOString(shipment.schedule.endDate)}
-            </text>
+            </span>
           </div>
           <div 
             className="col" 
@@ -153,32 +153,32 @@ const Profile = () => {
               shipment.bookingRequest.status, 
               shipment.bookingRequest.confirmation.pdf
             )}>
-            <text
+            <span
               id={shipment.bookingRequest.status === "Received" ? "red-link" : ""}
               className={"schedule-result-text"}>
                 {shipment.bookingRequest.status}
-            </text>
+            </span>
           </div>
           <div 
             className="col" 
             onClick={() => handleBol(shipment.billInstruction.status, shipment)}>
-            <text 
+            <span 
               id={shipment.billInstruction.status === "Received" ? "red-link" : ""}
               className={"schedule-result-text" + 
                 ((shipment.billInstruction.status === "Ready" || 
                   shipment.billInstruction.status === "In Process") ? 
                   "-link" : "")}>
                 {shipment.billInstruction.status}
-            </text>
+            </span>
           </div>
           <div className="col" onClick={() => handleInvoice(shipment.invoice)}>
-            <text 
+            <span 
               id={shipment.invoice.status === "Received" ? "red-link" : ""}
               className={"schedule-result-text" + 
                 ((shipment.invoice.status === "Ready") ? 
                   "-link" : "")}>
                 {shipment.invoice.status}
-            </text>
+            </span>
           </div>
         </div>
       </div>

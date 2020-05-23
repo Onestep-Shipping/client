@@ -53,8 +53,8 @@ const BOLInstruction = () => {
             <h1>BOL Instruction</h1>
           </div>
           <div className="customer-info-container">
-            <text>Email: {BOL[currentBolIndex].email}</text>
-            <text>{BOL[currentBolIndex].dateSent}</text>
+            <span>Email: {BOL[currentBolIndex].email}</span>
+            <span>{BOL[currentBolIndex].dateSent}</span>
           </div>
 
           <div className="form-container">

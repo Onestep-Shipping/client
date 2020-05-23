@@ -42,9 +42,9 @@ const Form = (props) => {
       <Header />
       <div className="body-container2">
         <div className="booking-container">
-          <text className="schedule-header-text">
+          <span className="schedule-header-text">
             {formBool ? 'Booking Request' : 'Bill Of Lading (BOL) Instruction'} 
-          </text>
+          </span>
           <div className={"info-container" + (formBool ? "" : "2")}>
             <BookingDisplay schedule={schedule} quote={quote} fields={fieldNumber}/>
             {formBool ?
