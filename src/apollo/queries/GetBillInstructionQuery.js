@@ -1,8 +1,9 @@
 import { gql } from 'apollo-boost';
 
 const GET_BILL_INSTRUCTION = gql`
-  query getBillInstruction($sortBy: String!) {
+  query {
     getAllShipments(sortBy: "billInstruction") {
+      _id,
       schedule {
         route {
           startLocation, endLocation, 
@@ -43,8 +44,9 @@ const GET_BILL_INSTRUCTION = gql`
           hsCode,
           caedNo,
           cargoValue,
-          createdAt
-        }
+          updatedAt
+        },
+        pdf,
         status
       }
     }

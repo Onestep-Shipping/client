@@ -61,7 +61,7 @@ const preview = info => {
   doc.text(350, 290, "Q'ty");
   doc.text(420, 290, "Container Type");
 
-  info.booking.containers.map((row, i) => function() {
+  info.booking.containers.map((row, i) => {
     doc.text(350, 307 + (i * 17), "" + row.quantity);
     doc.text(420, 307 + (i * 17), row.containerType);
   })

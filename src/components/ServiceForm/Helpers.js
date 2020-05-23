@@ -9,7 +9,7 @@ const Textarea = (props) => {
   return (
     <div className="info-row-with-textarea">
       <span className="info-label">{name} </span>
-      <spanarea
+      <textarea
         defaultValue={defaultValue}
         type="text"
         name={Utils.camelize(name)}

@@ -48,9 +48,7 @@ const BookingRequest = () => {
   if (error) return <p>Error :(</p>;
 
   const shipments = data.getAllShipments;
-
   const  { bookingRequest, schedule, bookedBy } = shipments[currentBookingIndex];
-
   const quote = schedule.route.quoteHistory
     .filter(quote => Date.parse(quote.validity.startDate) <=  Date.parse(schedule.startDate))
     .slice(0, 1)[0];
@@ -132,14 +130,6 @@ const BookingRequest = () => {
     return pdfInfo;
   }
 
-  const handlePDFOpen = () => {
-    FileUploadService.downloadFile(bookingRequest.confirmation.pdf)
-      .then(res => Utils.openPdf(res.data))
-      .catch(e => {
-        console.log(e);
-      });
-  }
-
   return (
     <div className="homepage-container">
       <Header />
@@ -156,19 +146,21 @@ const BookingRequest = () => {
             <span>Contact: {bookedBy.personInCharge.name}</span>
             <span>Email: {bookedBy.email}</span>
             <span>
-              {Utils.formatISOString(bookingRequest.form.createdAt)}
+              {Utils.formatISOString(bookingRequest.form.updatedAt)}
             </span>
           </div>
 
           {bookingRequest.status === "Received" && 
-          <span className="schedule-result-text-link" onClick={handlePDFOpen}>
+          <span 
+            className="schedule-result-text-link" 
+            onClick={() => Utils.handlePDFOpen(bookingRequest.confirmation.pdf)}>
             {Utils.ordinalSuffixOf(bookingRequest.confirmation.timeReceived)} Booking 
             Confirmation has been sent.
           </span>}
 
           <div className="form-container">
             <h2>Schedule</h2>
-            <BookingDisplay  schedule={schedule} quote={quote} fields={8} />
+            <BookingDisplay schedule={schedule} quote={quote} fields={8} />
           </div>
 
           <div className="form-container">

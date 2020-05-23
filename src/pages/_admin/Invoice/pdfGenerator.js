@@ -1,3 +1,4 @@
+import Utils from '../../../utils/Helpers.js';
 import jsPDF from 'jspdf';
 import moment from 'moment';
 
@@ -31,9 +32,9 @@ const preview = info => {
   doc.setFontSize(12);
   doc.setFontType('normal');
   doc.text(50, 130, "TO: " + info.company.name);
-  doc.text(50, 148, "    " + info.company.address.line1);
-  doc.text(50, 163, "    " + info.company.address.line2);
-  doc.text(50, 178, "    " + info.company.address.line3);
+  doc.text(50, 148, "    " + info.company.address.street);
+  doc.text(50, 163, "    " + info.company.address.city);
+  doc.text(50, 178, "    " + info.company.address.country);
 
   doc.setFontSize(10);
   doc.text(310, 115, "Invoice No.      :                3242356");
@@ -53,11 +54,11 @@ const preview = info => {
   doc.setFontType('normal');
 
   doc.setFontSize(11);
-  doc.text(80, 260, "From: " + info.schedule.from);
-  doc.text(350, 260, "To: " + info.schedule.to);
+  doc.text(80, 260, "From: " + info.schedule.route.startLocation);
+  doc.text(350, 260, "To: " + info.schedule.route.endLocation);
 
-  doc.text(80, 280, "ETD: " + info.schedule.fromDate);
-  doc.text(350, 280, "ETA: " + info.schedule.toDate);
+  doc.text(80, 280, "ETD: " + Utils.formatISOString(info.schedule.startDate));
+  doc.text(350, 280, "ETA: " + Utils.formatISOString(info.schedule.endDate));
 
   doc.text(80, 320, "Commodity: " + info.booking.commodity);
   doc.text(350, 320, "Order Number: " + info.orderNo);
@@ -71,12 +72,12 @@ const preview = info => {
 
   doc.setFontType('normal');
 
-  info.priceList.map((row, i) => function() {
+  info.priceList.map((row, i) => {
     const height = 377 + (i * 17);
     if (i < info.priceList.length - 2) {
       doc.text(80, height, "Ocean Freight");
-      doc.text(200, height, "" + info.booking.container[i].quantity);
-      doc.text(250, height, info.booking.container[i].containerType);
+      doc.text(200, height, "" + info.booking.containers[i].quantity);
+      doc.text(250, height, info.booking.containers[i].containerType);
     } else if (i === info.priceList.length - 2) {
       doc.text(80, height, "Document");
       doc.text(200, height, "1");

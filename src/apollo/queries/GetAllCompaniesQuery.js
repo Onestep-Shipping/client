@@ -15,7 +15,7 @@ const GET_ALL_COMPANIES = gql`
       },
       email,
       shipments {
-        createdAt
+        updatedAt
       },
     }
   }

@@ -1,4 +1,5 @@
 .booking-instruction-list, .bol-instruction-list {
+  width: 30%;
   height: 100%;
   list-style-type: none;
   background-color: white;
@@ -6,14 +7,6 @@
   padding: 0px;
   overflow: hidden; 
   overflow-y: scroll;
-}
-
-.booking-instruction-list {
-  width: 30%;
-}
-
-.bol-instruction-list {
-  width: 35%;
 }
 
 #selected-item {
