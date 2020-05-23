@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "apollo-boost": "^0.4.8",
     "axios": "^0.19.2",
+    "cypress": "^4.6.0",
     "firebase": "^7.14.1",
     "graphql": "^15.0.0",
     "jest-enzyme": "^7.1.2",
@@ -27,6 +28,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:e2e": "cypress open",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
