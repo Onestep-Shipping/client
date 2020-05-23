@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown should render the Dropdown Component correctly 1`] = `
+<div
+  className="login-container"
+>
+  <button
+    className="user-button"
+    onClick={[Function]}
+  >
+    <div />
+  </button>
+  <AuthModal
+    closeModal={[Function]}
+    isModalOpen={false}
+    type="login"
+  />
+</div>
+`;

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should render the Header Component correctly 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "currentUser": null,
+      "isAdmin": false,
+    }
+  }
+>
+  <Header />
+</ContextProvider>
+`;

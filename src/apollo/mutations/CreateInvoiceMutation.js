@@ -6,4 +6,4 @@ const CREATE_INVOICE = gql`
   }
 `;
 
-export default CREATE_INVOICE;gi 
+export default CREATE_INVOICE;

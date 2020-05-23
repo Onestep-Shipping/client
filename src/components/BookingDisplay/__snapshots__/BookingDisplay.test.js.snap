@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookingDisplay should render the BookingDisplay Component correctly 1`] = `
+<div
+  className="booking-details-container"
+>
+  <div
+    className="info-row"
+  >
+    <div>
+      <span
+        className="info-label"
+      >
+        From: 
+      </span>
+      <span
+        className="schedule-info-text-left"
+      >
+        Vancouver, BC | CA
+      </span>
+    </div>
+    <div>
+      <span
+        className="info-label"
+      >
+        Date: 
+      </span>
+      <span
+        className="schedule-info-text"
+      >
+        04/21/2020
+      </span>
+    </div>
+  </div>
+  <div
+    className="info-row"
+  >
+    <div>
+      <span
+        className="info-label"
+      >
+        To: 
+      </span>
+      <span
+        className="schedule-info-text-left"
+      >
+        Vung Tau | VN
+      </span>
+    </div>
+    <div>
+      <span
+        className="info-label"
+      >
+        Date: 
+      </span>
+      <span
+        className="schedule-info-text"
+      >
+        04/21/2020
+      </span>
+    </div>
+  </div>
+  <div
+    className="info-row"
+  >
+    <span
+      className="info-label"
+    >
+      Vessels / Services: 
+    </span>
+    <span
+      className="schedule-result-text"
+    >
+      YM UPSURGENCE / 043W / PN2
+    </span>
+  </div>
+</div>
+`;

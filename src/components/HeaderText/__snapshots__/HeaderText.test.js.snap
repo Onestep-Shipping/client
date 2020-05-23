@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderText should render the HeaderText Component correctly 1`] = `
+<div
+  className="header-text-container"
+  onClick={[MockFunction]}
+>
+  <span
+    className="header-text"
+  >
+    Contact
+  </span>
+</div>
+`;

@@ -9,31 +9,25 @@ const registerType = 'register';
 const isModalOpen = false;
 const closeModal = () => {}
 
-let wrappedLogin = shallow( 
+let wrapper = shallow( 
   <AuthModal
     isModalOpen={isModalOpen}
     closeModal={closeModal}
     type={loginType} />
 );
 
-let wrappedRegister = shallow( 
-  <AuthModal
-    isModalOpen={isModalOpen}
-    closeModal={closeModal}
-    type={registerType} />
-);
-
 describe('AuthModal', () => {
   it('should render the AuthModal Component correctly', () => {   
-    expect(wrappedLogin).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
   it('should contains Login Form if type is login', () => { 
-    expect(wrappedLogin).toContainReact(
+    expect(wrapper).toContainReact(
       <LoginForm closeModal={closeModal} />
     );
   });
   it('should contains Register Form if type is not login', () => { 
-    expect(wrappedRegister).toContainReact(
+    wrapper.setProps({ type: registerType });
+    expect(wrapper).toContainReact(
       <RegisterForm closeModal={closeModal} />
     );
   });
