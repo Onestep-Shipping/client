@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FixedSizeList should render the FixedSizeList Component correctly 1`] = `
+<div>
+  <div
+    className="schedule-result-header-row"
+  />
+  <div
+    className="empty-placeholder"
+  >
+    NO RESULTS
+  </div>
+</div>
+`;

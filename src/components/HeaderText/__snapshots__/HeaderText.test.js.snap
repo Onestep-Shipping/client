@@ -1,14 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HeaderText should render the HeaderText Component correctly 1`] = `
-<div
-  className="header-text-container"
-  onClick={[MockFunction]}
+<HeaderText
+  value="Contact"
 >
-  <span
-    className="header-text"
+  <div
+    className="header-text-container"
+    onClick={[Function]}
   >
-    Contact
-  </span>
-</div>
+    <span
+      className="header-text"
+    >
+      Contact
+    </span>
+  </div>
+</HeaderText>
 `;

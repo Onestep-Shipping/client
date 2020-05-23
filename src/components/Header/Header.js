@@ -15,6 +15,8 @@ import notiIcon from '../../assets/noti-icon.svg';
 import registerIcon from '../../assets/register-icon.svg';
 import { useHistory } from 'react-router-dom';
 
+const HEADERS = ["Contact", "News", "Services", "About"];
+
 const Header = () => {
   const history = useHistory();
 
@@ -105,10 +107,9 @@ const Header = () => {
           />}
         </div>
         <SearchTextfield />
-        <HeaderText value="Contact" action={() => history.push('/contact')} />
-        <HeaderText value="News" action={() => history.push('/news')} />
-        <HeaderText value="Services" action={() => history.push('/services')} />
-        <HeaderText value="About" action={() => history.push('/about')} />
+        {HEADERS.map((value, ind) => 
+          <HeaderText key={ind} value={value} />
+        )}
       </div>
     </div>
   );

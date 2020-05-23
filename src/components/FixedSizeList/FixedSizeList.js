@@ -8,10 +8,16 @@ const LIST_SIZE = 5;
 
 const FixedSizeList = (props) => {
   const { headers, data, row } = props;
-  console.log(data);
   const [currentPage, setCurrentPage] = useState(1);
 
   const max = Math.ceil(data.length / LIST_SIZE);
+
+  const handlePrev = () => {
+    const newPageVal = currentPage - 1;
+    if (newPageVal > 0) {
+      setCurrentPage(newPageVal);
+    }
+  }
 
   const handleNext = () => {
     const newPageVal = currentPage + 1;
@@ -26,13 +32,6 @@ const FixedSizeList = (props) => {
       return data.slice((currentPage - 1) * LIST_SIZE, endIndex);
     }
     return data;
-  }
-
-  const handlePrev = () => {
-    const newPageVal = currentPage - 1;
-    if (newPageVal > 0) {
-      setCurrentPage(newPageVal);
-    }
   }
 
   return (
