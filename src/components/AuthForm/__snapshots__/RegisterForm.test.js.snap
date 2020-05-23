@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegisterForm should render the RegisterForm Component correctly 1`] = `
+<div
+  className="inner-container"
+>
+  <div
+    className="header"
+  >
+    <span
+      className="schedule-header-text"
+    >
+      Register
+    </span>
+  </div>
+  <form
+    className="register-box"
+    noValidate={true}
+    onSubmit={[Function]}
+  >
+    <div
+      className="all-texfield-register-container"
+    >
+      <div
+        className="company-info-container"
+      >
+        <Input
+          displayErrors={false}
+          name="Company Name"
+          type="text"
+        />
+        <Input
+          displayErrors={false}
+          name="Address"
+          placeholder="Street"
+          type="address"
+        />
+        <Input
+          displayErrors={false}
+          name=""
+          placeholder="City, Province & Postal Code"
+          type="address"
+        />
+        <Input
+          displayErrors={false}
+          name=""
+          placeholder="Country"
+          type="address"
+        />
+        <Input
+          displayErrors={false}
+          name="Telephone"
+          type="phone"
+        />
+      </div>
+      <div>
+        <Input
+          displayErrors={false}
+          name="Tax ID"
+          type="text"
+        />
+        <Input
+          displayErrors={false}
+          name="Person In-Charge"
+          type="text"
+        />
+        <Input
+          displayErrors={false}
+          name="Position"
+          type="text"
+        />
+        <Input
+          displayErrors={false}
+          name="Email"
+          type="email"
+        />
+        <Input
+          displayErrors={false}
+          name="Password"
+          type="password"
+        />
+      </div>
+    </div>
+    <button
+      className="login-btn"
+    >
+      Sign Up
+    </button>
+  </form>
+</div>
+`;

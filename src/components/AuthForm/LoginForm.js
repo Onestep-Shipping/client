@@ -20,8 +20,8 @@ const LoginForm = (props) => {
     if (email.length > 0 && password.length > 0) {
       try {
         await app
-            .auth()
-            .signInWithEmailAndPassword(email, password);
+          .auth()
+          .signInWithEmailAndPassword(email, password);
         closeModal();
       } catch (error) {
         alert(error);

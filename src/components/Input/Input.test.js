@@ -11,7 +11,7 @@ let wrappedNoPlaceholder = shallow(
   <Input name={label} type={type} displayErrors={false} />
 );
 let wrappedWithPlaceholder = shallow(
-  <Input name={label} type={type} placeholder={placeholder} displayErrors={false} />
+  <Input name={label} type={type} placeholder={placeholder} displayErrors={true} />
 );
 
 describe('Input', () => {
@@ -37,5 +37,9 @@ describe('Input', () => {
   });
   it('should have the different placeholder value when placeholder props is filled', () => { 
     expect(wrappedWithPlaceholder.find('input').props().placeholder).toEqual(placeholder);
+  });
+  it('should have correct classname', () => { 
+    expect(wrappedNoPlaceholder.find('input').props().className).toEqual('login-input ');
+    expect(wrappedWithPlaceholder.find('input').props().className).toEqual('login-input display-errors');
   });
 });
