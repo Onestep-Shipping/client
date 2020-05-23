@@ -36,8 +36,18 @@ const Invoice = () => {
     .filter(quote => Date.parse(quote.validity.startDate) <=  Date.parse(schedule.startDate))
     .slice(0, 1)[0];
 
-  const cost = invoice.form.cost || invoice.tempCost;
-  const revenue = fees.reduce((a, b) => a + b, 0) || invoice.form.revenue;
+  let cost = 0;
+  let revenue = 0;
+
+  if (invoice.form === null) {
+    cost =  invoice.tempCost;
+    revenue = fees.reduce((a, b) => a + b, 0);
+  } else {
+    cost = invoice.form.cost;
+    revenue = invoice.form.revenue;
+  }
+
+  
   const profit = revenue - cost;
 
   const handleIndexChange = newInd => {
@@ -137,11 +147,11 @@ const Invoice = () => {
           </div>
 
           {invoice.pdf !== null && 
-          <text 
+          <span 
             className="schedule-result-text-link" 
             onClick={() => Utils.handlePDFOpen(invoice.pdf)}>
               Invoice has been sent.
-          </text>}
+          </span>}
 
           <div className="form-container">
             <h2>Schedule</h2>

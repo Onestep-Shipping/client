@@ -89,11 +89,11 @@ const BOLInstruction = () => {
           </div>
 
           {billInstruction.status === "Received" && 
-          <text 
+          <span 
             className="schedule-result-text-link" 
             onClick={() => Utils.handlePDFOpen(billInstruction.pdf)}>
             BOL has been sent.
-          </text>}
+          </span>}
 
           <div className="form-container">
             <h2>Schedule</h2>
