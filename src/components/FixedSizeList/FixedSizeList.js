@@ -1,6 +1,6 @@
 import './FixedSizeList.css';
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -52,9 +52,13 @@ const FixedSizeList = (props) => {
       }
       {data.length > LIST_SIZE &&
       <div className="page-indicator-container">
-        <button className="result-button" onClick={handlePrev}>{'<< Previous'}</button>
-        <span>Page {currentPage} / {max === 0 ? 1 : max}</span>
-        <button className="result-button" onClick={handleNext}>{'Next >>'}</button>
+        <button className="result-button" onClick={handlePrev} id="prev-button">
+          {'<< Previous'}
+        </button>
+        <span id="current-page">Page {currentPage} / {max === 0 ? 1 : max}</span>
+        <button className="result-button" onClick={handleNext} id="next-button">
+          {'Next >>'}
+        </button>
       </div>}
     </div>
   );
@@ -65,5 +69,5 @@ export default FixedSizeList;
 FixedSizeList.propTypes = {
   headers: PropTypes.array,
   data: PropTypes.array,
-  row: PropTypes.element,
+  row: PropTypes.func,
 };

@@ -7,7 +7,6 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 const mockHistoryPush = jest.fn();
-const mockLoginHandle = jest.fn();
 
 const wrapper = mount(
   <AuthProvider>
@@ -38,9 +37,9 @@ describe('Header', () => {
     expect(mockHistoryPush).toHaveBeenCalledWith('/');
   });
   it('should alway have only 2 dropdowns', () => {
-    expect(wrapper.find(Dropdown).length).toBe(2); 
+    expect(wrapper.find(Dropdown)).toHaveLength(2); 
   });
   it('should alway have only 4 options on nav bar', () => {
-    expect(wrapper.find(HeaderText).length).toBe(4); 
+    expect(wrapper.find(HeaderText)).toHaveLength(4); 
   });
 });

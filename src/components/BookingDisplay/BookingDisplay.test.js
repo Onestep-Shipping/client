@@ -59,7 +59,7 @@ describe('BookingDisplay', () => {
         expectedFields = originalFields
       }
       wrapper.setProps({ fields: i });
-      expect(wrapper.find('.info-row').length).toBe(expectedFields);
+      expect(wrapper.find('.info-row')).toHaveLength(expectedFields);
     }
   });
 });
