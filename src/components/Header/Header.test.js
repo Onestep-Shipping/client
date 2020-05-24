@@ -2,7 +2,6 @@ import AuthProvider from '../../context/AuthContext.js';
 import Dropdown from '../Dropdown/Dropdown.js';
 import Header from './Header';
 import HeaderText from '../HeaderText/HeaderText.js';
-import { MemoryRouter } from 'react-router-dom'
 import React from 'react';
 import { mount } from 'enzyme';
 
@@ -10,9 +9,7 @@ const mockHistoryPush = jest.fn();
 
 const wrapper = mount(
   <AuthProvider>
-    <MemoryRouter>
-      <Header />
-    </MemoryRouter>
+    <Header />
   </AuthProvider>
 );
 

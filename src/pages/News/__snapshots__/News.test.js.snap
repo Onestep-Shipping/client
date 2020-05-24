@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`News should render the News Component correctly 1`] = `
+<div
+  className="homepage-container"
+>
+  <Header />
+  <div
+    className="body-container2"
+  >
+    News
+  </div>
+</div>
+`;

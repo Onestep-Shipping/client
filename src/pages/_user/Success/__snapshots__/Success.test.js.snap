@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Success should render the Success Component correctly 1`] = `
+<div
+  className="homepage-container"
+>
+  <Header />
+  <div
+    className="body-container2"
+  >
+    <img
+      alt="Success!"
+      className="gif"
+      src="success-icon.gif"
+    />
+    <span
+      className="success-text"
+    >
+      Successfully 
+      booked
+      !
+    </span>
+    <span
+      className="success-text-small"
+    >
+      We will get back to you as soon as possible with 
+      booking confirmation
+       ☺
+    </span>
+    <div>
+      <button
+        className="result-button"
+        id="left-button"
+        onClick={[Function]}
+      >
+        Book More
+      </button>
+      <button
+        className="result-button"
+        onClick={[Function]}
+      >
+        Track Process
+      </button>
+    </div>
+  </div>
+</div>
+`;
