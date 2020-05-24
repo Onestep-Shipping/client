@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Contact should render the Contact Component correctly 1`] = `
+<div
+  className="homepage-container"
+>
+  <Header />
+  <div
+    className="body-container2"
+  >
+    Contact
+  </div>
+</div>
+`;

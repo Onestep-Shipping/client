@@ -27,7 +27,7 @@ const ordinalSuffixOf = i => {
 }
 
 const formatISOString = iso => {
-  return moment(iso).utc().format('MM/DD/YYYY');
+  return moment(iso, "MM-DD-YYYY").utc().format('MM/DD/YYYY');
 }
 
 const convertDateToISO = date => {

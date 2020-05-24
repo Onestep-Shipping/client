@@ -1,0 +1,393 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should render the Header Component correctly 1`] = `
+<Header>
+  <div
+    className="header-container"
+  >
+    <div
+      onClick={[Function]}
+    >
+      <span
+        className="logo-text"
+      >
+        OneStep Shipping
+      </span>
+    </div>
+    <div
+      className="menu-container"
+    >
+      <div
+        className="login-container"
+      >
+        <Dropdown
+          content={
+            <div
+              className="button-content"
+              id="add-margin"
+            >
+              <img
+                alt="User Icon"
+                className="svg"
+                src="login-icon.svg"
+              />
+              <span>
+                Login
+              </span>
+            </div>
+          }
+          isLoggedIn={false}
+          onChange={[Function]}
+          options={
+            Array [
+              "My Booking",
+              "Sign Out",
+            ]
+          }
+          type="login"
+        >
+          <div
+            className="login-container"
+          >
+            <button
+              className="user-button"
+              onClick={[Function]}
+            >
+              <div
+                className="button-content"
+                id="add-margin"
+              >
+                <img
+                  alt="User Icon"
+                  className="svg"
+                  src="login-icon.svg"
+                />
+                <span>
+                  Login
+                </span>
+              </div>
+            </button>
+            <AuthModal
+              closeModal={[Function]}
+              isModalOpen={false}
+              type="login"
+            >
+              <Modal
+                ariaHideApp={true}
+                bodyOpenClassName="ReactModal__Body--open"
+                closeTimeoutMS={0}
+                isOpen={false}
+                onRequestClose={[Function]}
+                parentSelector={[Function]}
+                portalClassName="ReactModalPortal"
+                role="dialog"
+                shouldCloseOnEsc={true}
+                shouldCloseOnOverlayClick={true}
+                shouldFocusAfterRender={true}
+                shouldReturnFocusAfterClose={true}
+                style={
+                  Object {
+                    "content": Object {
+                      "border": "none",
+                      "borderRadius": "10px",
+                      "bottom": "auto",
+                      "left": "50%",
+                      "padding": "0px",
+                      "right": "auto",
+                      "top": "50%",
+                      "transform": "translate(-50%, -50%)",
+                    },
+                  }
+                }
+              >
+                <Portal
+                  containerInfo={
+                    <div
+                      class="ReactModalPortal"
+                    />
+                  }
+                >
+                  <ModalPortal
+                    ariaHideApp={true}
+                    bodyOpenClassName="ReactModal__Body--open"
+                    closeTimeoutMS={0}
+                    defaultStyles={
+                      Object {
+                        "content": Object {
+                          "WebkitOverflowScrolling": "touch",
+                          "background": "#fff",
+                          "border": "1px solid #ccc",
+                          "borderRadius": "4px",
+                          "bottom": "40px",
+                          "left": "40px",
+                          "outline": "none",
+                          "overflow": "auto",
+                          "padding": "20px",
+                          "position": "absolute",
+                          "right": "40px",
+                          "top": "40px",
+                        },
+                        "overlay": Object {
+                          "backgroundColor": "rgba(255, 255, 255, 0.75)",
+                          "bottom": 0,
+                          "left": 0,
+                          "position": "fixed",
+                          "right": 0,
+                          "top": 0,
+                        },
+                      }
+                    }
+                    isOpen={false}
+                    onRequestClose={[Function]}
+                    parentSelector={[Function]}
+                    portalClassName="ReactModalPortal"
+                    role="dialog"
+                    shouldCloseOnEsc={true}
+                    shouldCloseOnOverlayClick={true}
+                    shouldFocusAfterRender={true}
+                    shouldReturnFocusAfterClose={true}
+                    style={
+                      Object {
+                        "content": Object {
+                          "border": "none",
+                          "borderRadius": "10px",
+                          "bottom": "auto",
+                          "left": "50%",
+                          "padding": "0px",
+                          "right": "auto",
+                          "top": "50%",
+                          "transform": "translate(-50%, -50%)",
+                        },
+                      }
+                    }
+                  />
+                </Portal>
+              </Modal>
+            </AuthModal>
+          </div>
+        </Dropdown>
+        <Dropdown
+          content={
+            <div
+              className="button-content"
+              id=""
+            >
+              <img
+                alt="User Icon"
+                className="svg"
+                src="register-icon.svg"
+              />
+              <span>
+                Register
+              </span>
+            </div>
+          }
+          isLoggedIn={false}
+          onChange={[Function]}
+          type="register"
+        >
+          <div
+            className="login-container"
+          >
+            <button
+              className="user-button"
+              onClick={[Function]}
+            >
+              <div
+                className="button-content"
+                id=""
+              >
+                <img
+                  alt="User Icon"
+                  className="svg"
+                  src="register-icon.svg"
+                />
+                <span>
+                  Register
+                </span>
+              </div>
+            </button>
+            <AuthModal
+              closeModal={[Function]}
+              isModalOpen={false}
+              type="register"
+            >
+              <Modal
+                ariaHideApp={true}
+                bodyOpenClassName="ReactModal__Body--open"
+                closeTimeoutMS={0}
+                isOpen={false}
+                onRequestClose={[Function]}
+                parentSelector={[Function]}
+                portalClassName="ReactModalPortal"
+                role="dialog"
+                shouldCloseOnEsc={true}
+                shouldCloseOnOverlayClick={true}
+                shouldFocusAfterRender={true}
+                shouldReturnFocusAfterClose={true}
+                style={
+                  Object {
+                    "content": Object {
+                      "border": "none",
+                      "borderRadius": "10px",
+                      "bottom": "auto",
+                      "left": "50%",
+                      "padding": "0px",
+                      "right": "auto",
+                      "top": "50%",
+                      "transform": "translate(-50%, -50%)",
+                    },
+                  }
+                }
+              >
+                <Portal
+                  containerInfo={
+                    <div
+                      class="ReactModalPortal"
+                    />
+                  }
+                >
+                  <ModalPortal
+                    ariaHideApp={true}
+                    bodyOpenClassName="ReactModal__Body--open"
+                    closeTimeoutMS={0}
+                    defaultStyles={
+                      Object {
+                        "content": Object {
+                          "WebkitOverflowScrolling": "touch",
+                          "background": "#fff",
+                          "border": "1px solid #ccc",
+                          "borderRadius": "4px",
+                          "bottom": "40px",
+                          "left": "40px",
+                          "outline": "none",
+                          "overflow": "auto",
+                          "padding": "20px",
+                          "position": "absolute",
+                          "right": "40px",
+                          "top": "40px",
+                        },
+                        "overlay": Object {
+                          "backgroundColor": "rgba(255, 255, 255, 0.75)",
+                          "bottom": 0,
+                          "left": 0,
+                          "position": "fixed",
+                          "right": 0,
+                          "top": 0,
+                        },
+                      }
+                    }
+                    isOpen={false}
+                    onRequestClose={[Function]}
+                    parentSelector={[Function]}
+                    portalClassName="ReactModalPortal"
+                    role="dialog"
+                    shouldCloseOnEsc={true}
+                    shouldCloseOnOverlayClick={true}
+                    shouldFocusAfterRender={true}
+                    shouldReturnFocusAfterClose={true}
+                    style={
+                      Object {
+                        "content": Object {
+                          "border": "none",
+                          "borderRadius": "10px",
+                          "bottom": "auto",
+                          "left": "50%",
+                          "padding": "0px",
+                          "right": "auto",
+                          "top": "50%",
+                          "transform": "translate(-50%, -50%)",
+                        },
+                      }
+                    }
+                  />
+                </Portal>
+              </Modal>
+            </AuthModal>
+          </div>
+        </Dropdown>
+      </div>
+      <SearchTextfield>
+        <div
+          className="search-container"
+        >
+          <input
+            id="search"
+            placeholder="Search"
+            type="text"
+          />
+          <button
+            id="search-button"
+          >
+            <img
+              alt="Search Icon"
+              id="search-icon"
+              src="search-icon.png"
+            />
+          </button>
+        </div>
+      </SearchTextfield>
+      <HeaderText
+        key="0"
+        value="Contact"
+      >
+        <div
+          className="header-text-container"
+          onClick={[Function]}
+        >
+          <span
+            className="header-text"
+          >
+            Contact
+          </span>
+        </div>
+      </HeaderText>
+      <HeaderText
+        key="1"
+        value="News"
+      >
+        <div
+          className="header-text-container"
+          onClick={[Function]}
+        >
+          <span
+            className="header-text"
+          >
+            News
+          </span>
+        </div>
+      </HeaderText>
+      <HeaderText
+        key="2"
+        value="Services"
+      >
+        <div
+          className="header-text-container"
+          onClick={[Function]}
+        >
+          <span
+            className="header-text"
+          >
+            Services
+          </span>
+        </div>
+      </HeaderText>
+      <HeaderText
+        key="3"
+        value="About"
+      >
+        <div
+          className="header-text-container"
+          onClick={[Function]}
+        >
+          <span
+            className="header-text"
+          >
+            About
+          </span>
+        </div>
+      </HeaderText>
+    </div>
+  </div>
+</Header>
+`;

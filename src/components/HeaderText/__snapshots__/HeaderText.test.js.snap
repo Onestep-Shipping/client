@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderText should render the HeaderText Component correctly 1`] = `
+<HeaderText
+  value="Contact"
+>
+  <div
+    className="header-text-container"
+    onClick={[Function]}
+  >
+    <span
+      className="header-text"
+    >
+      Contact
+    </span>
+  </div>
+</HeaderText>
+`;

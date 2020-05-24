@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm should render the LoginForm Component correctly 1`] = `
+<div
+  className="inner-container"
+>
+  <div
+    className="header"
+  >
+    <span
+      className="schedule-header-text"
+    >
+      Login
+    </span>
+  </div>
+  <form
+    className="box"
+    noValidate={true}
+    onSubmit={[Function]}
+  >
+    <Input
+      displayErrors={false}
+      name="Email"
+      type="email"
+    />
+    <Input
+      displayErrors={false}
+      name="Password"
+      type="password"
+    />
+    <button
+      className="login-btn"
+    >
+      Login
+    </button>
+  </form>
+</div>
+`;

@@ -20,8 +20,8 @@ const LoginForm = (props) => {
     if (email.length > 0 && password.length > 0) {
       try {
         await app
-            .auth()
-            .signInWithEmailAndPassword(email, password);
+          .auth()
+          .signInWithEmailAndPassword(email, password);
         closeModal();
       } catch (error) {
         alert(error);
@@ -36,7 +36,10 @@ const LoginForm = (props) => {
       </div>
       <form className="box" onSubmit={handleLogin} noValidate>
         {errors.length > 0 &&
-          errors.map((err, ind) => <small className="danger-error" key={ind}>{err}</small>)}
+          errors.map((err, ind) => 
+            <small className="danger-error" key={ind}>{err}</small>
+          )
+        }
         <Input name="Email" type="email" displayErrors={displayErrors} />
         <Input name="Password" type="password" displayErrors={displayErrors} />
         <button className="login-btn">Login</button>
