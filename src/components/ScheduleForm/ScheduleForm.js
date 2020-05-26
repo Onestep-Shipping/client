@@ -76,7 +76,7 @@ const ScheduleForm = (props) => {
           </select>
         </div>
       </div>
-      <button className={styles.findButton}>Find</button>
+      <button className={styles.findButton} id="find-schedule-button">Find</button>
     </form>
   );
 };
